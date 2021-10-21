@@ -1,4 +1,4 @@
-import type { Prop } from './@types'
+import { Prop } from './types'
 import Head from 'next/head';
 import Header from '@components/header';
 import Footer from '@components/footer';

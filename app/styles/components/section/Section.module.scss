@@ -1,0 +1,17 @@
+$defaultWidth: 92px;
+
+.defaultStyle {
+  @apply 
+    w-[#{$defaultWidth}] 
+    h-6 
+    bg-THEME_COMPONENT_SECTION 
+    rounded-THEME_COMPONENT_SECTION 
+    text-black font-medium;
+
+  & .textWrapper {
+    @apply 
+      h-full 
+      text-center 
+      leading-6;
+  }
+}
