@@ -1,7 +1,7 @@
-const { borderRadius: sectionBorderRadius } = require('../../components/section');
+const { borderRadius: buttonBorderRadius } = require('../../components/button');
 
 module.exports = {
 	borderRadius: {
-		...sectionBorderRadius,
+		...buttonBorderRadius,
 	}
 }

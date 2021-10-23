@@ -1,9 +1,9 @@
 const color = {
-	'THEME_COMPONENT_SECTION': 'rgb(238, 238, 238)',
+	'THEME_COMPONENT_BUTTON': 'rgb(238, 238, 238)',
 }
 
 const borderRadius = {
-	'THEME_COMPONENT_SECTION': '500px',
+	'THEME_COMPONENT_BUTTON': '500px',
 }
 
 module.exports = {

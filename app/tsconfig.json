@@ -19,19 +19,19 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
+      "components/*": [
         "components/*"
       ],
-      "@features/*": [
+      "features/*": [
         "features/*"
       ],
-      "@pages/*": [
+      "pages/*": [
         "pages/*"
       ],
-      "@styles/*": [
+      "styles/*": [
         "styles/*"
       ],
-      "@themes/*": [
+      "themes/*": [
         "themes/*"
       ],
     }

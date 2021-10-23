@@ -1,7 +1,7 @@
 import { Prop } from './types'
 import Head from 'next/head';
-import Header from '@components/header';
-import Footer from '@components/footer';
+import Header from 'features/header';
+import Footer from 'features/footer';
 
 function Layout({ children }: Prop) {
 	return (

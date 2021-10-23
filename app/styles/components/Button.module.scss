@@ -4,9 +4,10 @@ $defaultWidth: 92px;
   @apply 
     w-[#{$defaultWidth}] 
     h-6 
-    bg-THEME_COMPONENT_SECTION 
-    rounded-THEME_COMPONENT_SECTION 
-    text-black font-medium;
+    bg-THEME_COMPONENT_BUTTON
+    rounded-THEME_COMPONENT_BUTTON
+    text-black 
+    font-medium;
 
   & .textWrapper {
     @apply 

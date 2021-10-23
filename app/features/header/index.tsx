@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Section from '../section';
+import Button from 'components/button';
 
 function Header() {
 	return (
@@ -11,11 +11,15 @@ function Header() {
 				<Image src="/images/logo.svg" width={146} height={24} />
 			</div>
 			<div className="delivery-options-button-wrapper">
-				<Section text='外送' />
-				<Section text='外帶' />
+				<Button
+					text='外送'
+				/>
+				<Button
+					text='外帶'
+				/>
 			</div>
 			<div className="location-choosing-button-wrapper">
-				<Section
+				<Button
 					icon={<Image src="/images/location.svg" width={16} height={24} />}
 					text={'ABCD . A Better Coffee & Doughnut'}
 				/>
@@ -26,13 +30,13 @@ function Header() {
 				<input type="text" placeholder="想吃點什麼?" />
 			</div>
 			<div className="cart-wrapper">
-				<Section
+				<Button
 					icon={<Image src="/images/cart.svg" width={16} height={16} />}
 					text="購物車 • 0"
 				/>
 			</div>
 			<div className="login-">
-				<Section
+				<Button
 					text="登入"
 				/>
 			</div>
