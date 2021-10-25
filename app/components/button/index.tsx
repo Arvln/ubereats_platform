@@ -15,7 +15,6 @@ function Button({
 		appendWrapper,
 		appendContent,
 	} = appendClass;
-
 	const wrapperStyle = `${wrapper} ${appendWrapper}`;
 	const contentStyle = `${content} ${appendContent}`;
 

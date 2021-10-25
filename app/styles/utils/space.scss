@@ -1,0 +1,27 @@
+@mixin space($width) {
+  @apply w-#{$width};
+}
+
+.space_8 {
+  @include space(2);
+}
+
+.space_16 {
+  @include space(4);
+}
+
+.space_24 {
+  @include space(6);
+}
+
+.space_32 {
+  @include space(8);
+}
+
+.space_40 {
+  @include space(10);
+}
+
+.space_64 {
+  @include space(16);
+}

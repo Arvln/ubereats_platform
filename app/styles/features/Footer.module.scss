@@ -1,0 +1,97 @@
+@import '../utils/index.scss';
+
+@mixin textStyle {
+  @apply
+    font-light
+    text-white;
+}
+
+.wrapper {
+  @apply
+    pt-18
+    px-10
+    pb-22
+    bg-black;
+
+  hr {
+    @apply 
+      h-0.5
+      my-10
+      bg-white;
+  }
+}
+
+.moreOptionsWrapper {
+  @apply
+    h-56
+    flex;
+
+  .brand {
+    @apply
+      flex-2
+      flex
+      justify-between
+      flex-col;
+
+    .logoWrapper {
+      @apply
+        flex
+        justify-start;
+    }
+
+    .download {
+      @apply flex;
+    }
+  }
+
+  .moreOptions {
+    @apply flex-1;
+
+    > ul > li {
+      @apply
+        h-6
+        mb-4;
+
+      a, span {
+        @include textStyle();
+      }
+
+      .selectLanguage {
+        @apply
+          flex
+          cursor-pointer;
+      }
+    }
+  }
+}
+
+.about {
+  @apply
+    flex
+    justify-between;
+
+  .socialMedia {
+    @apply flex;
+  }
+  
+  .policy {
+    @apply flex;
+  
+    a {
+      @include textStyle();
+
+      @apply
+        pb-4
+        text-sm;
+    }
+  }
+}
+
+.statement {
+  @include textStyle();
+
+  @apply
+    flex
+    justify-end
+    text-sm;
+}

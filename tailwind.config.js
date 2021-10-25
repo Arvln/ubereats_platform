@@ -1,6 +1,8 @@
 const spacing = require('./app/themes/constants/spacing')
 const color = require('./app/themes/constants/color');
-const	borderRadius = require('./app/themes/constants/border_radius');
+const borderRadius = require('./app/themes/constants/border_radius');
+const padding = require('./app/themes/constants/padding');
+const flex = require('./app/themes/constants/flex');
 
 module.exports = {
 	mode: 'jit',
@@ -9,6 +11,8 @@ module.exports = {
 	theme: {
 		extend: {
 			spacing,
+			padding,
+			flex,
 			color,
 			backgroundColor: theme => ({
 				...theme('color')

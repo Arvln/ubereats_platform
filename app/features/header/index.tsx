@@ -26,7 +26,7 @@ import {
 	space_24,
 	space_32,
 	space_40,
-	space_64,
+	space_64
 } from 'styles/features/Header.module.scss';
 
 const unSelectedButton: TAppendClass = {
@@ -60,13 +60,13 @@ function Header() {
 	const takeOutButtonClass = isDeliveried ? unSelectedButton : selectedButton;
 
 	const _handleElementFocus = () => {
-		const searchBarInput = document.getElementsByClassName(searchbarWrapper)[0];
-		searchBarInput.classList.add(searchbarShadow);
+		const element = document.getElementsByClassName(searchbarWrapper)[0];
+		element.classList.add(searchbarShadow);
 	}
 
 	const _handleElementBlur = () => {
-		const searchBarInput = document.getElementsByClassName(searchbarWrapper)[0];
-		searchBarInput.classList.remove(searchbarShadow);
+		const element = document.getElementsByClassName(searchbarWrapper)[0];
+		element.classList.remove(searchbarShadow);
 	}
 
 	return (
@@ -75,14 +75,14 @@ function Header() {
 				src="/images/dropdown.svg"
 				width={20}
 				height={20}
-				alt="dropdown"
+				alt="Dropdown"
 			/>
 			<div className={ space_32 } />
 			<Image
-				src="/images/logo.svg"
+				src="/images/header_logo.svg"
 				width={146}
 				height={24}
-				alt="logo"
+				alt="Logo"
 			/>
 			<div className={ space_40 } />
 			<div className={ deliveryOptions }>
@@ -114,7 +114,7 @@ function Header() {
 							src="/images/location.svg"
 							width={16}
 							height={24}
-							alt="location"
+							alt="Location"
 						/>
 					}
 					text={'ABCD . A Better Coffee & Doughnut  •  立刻'}
@@ -128,7 +128,7 @@ function Header() {
 						src="/images/search.svg"
 						width={24}
 						height={24}
-						alt="search"
+						alt="Search"
 					/>
 					<div className={ space_16 } />
 					<input
@@ -148,7 +148,7 @@ function Header() {
 							src="/images/cart.svg"
 							width={16}
 							height={16}
-							alt="cart" />
+							alt="Cart" />
 					}
 					text="購物車 • 0"
 				/>
