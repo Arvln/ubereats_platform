@@ -1,16 +1,28 @@
 import { Prop } from './types';
+
 import {
-	defaultStyle,
-	textWrapper
+	wrapper,
+	content,
 } from 'styles/components/Button.module.scss';
 
-function Button({ appendClass, icon, text }: Prop) {
-	const buttonClass = appendClass ? `${defaultStyle} ${appendClass}` : defaultStyle;
+function Button({
+	appendClass,
+	icon,
+	text
+}: Prop
+) {
+	const {
+		appendWrapper,
+		appendContent,
+	} = appendClass;
+
+	const wrapperStyle = `${wrapper} ${appendWrapper}`;
+	const contentStyle = `${content} ${appendContent}`;
 
 	return (
-		<div className={ buttonClass }>
+		<div className={ wrapperStyle }>
 			{ icon }
-			<div className={ textWrapper }>{ text }</div>
+			<div className={ contentStyle }>{ text }</div>
 		</div>
 	)
 }

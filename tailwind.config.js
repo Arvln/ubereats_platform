@@ -1,9 +1,6 @@
-const {
-	color,
-} = require('./app/themes/constants/color');
-const {
-	borderRadius,
-} = require('./app/themes/constants/border_radius');
+const spacing = require('./app/themes/constants/spacing')
+const color = require('./app/themes/constants/color');
+const	borderRadius = require('./app/themes/constants/border_radius');
 
 module.exports = {
 	mode: 'jit',
@@ -11,6 +8,7 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
+			spacing,
 			color,
 			backgroundColor: theme => ({
 				...theme('color')

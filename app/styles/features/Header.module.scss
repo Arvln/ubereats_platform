@@ -1,7 +1,170 @@
-.test1 {
-  @apply bg-white;
+.wrapper {
+  @apply
+    px-10
+    flex
+    items-center
+    h-24;
 }
 
-.test2 {
-  @apply bg-black;
+.deliveryOptions {
+  @apply
+    flex
+    w-32
+    h-12
+    p-1
+    bg-THEME_FEATURES_HEADER
+    rounded-THEME_FEATURES_HEADER;
+
+  .deliveryOption {
+    @apply w-full;
+
+    .deliveryButtonWrapper {
+      transition: all 400ms ease 0s;
+
+      @apply
+      w-full
+      h-full
+      cursor-pointer;
+
+      .deliveryButtonContent{
+        @apply
+          text-sm
+          leading-10;
+      }
+    }
+  
+    .deliveryButtonSelected {
+      @apply bg-white;
+    }
+  }
+}
+
+.locationChoosingWrapper {
+  @apply
+    h-12
+    rounded-THEME_FEATURES_HEADER;
+
+  .locationButtonWrapper {
+    @apply
+      flex
+      px-3
+      py-2
+      cursor-pointer
+      bg-THEME_FEATURES_HEADER
+      hover:bg-THEME_FEATURES_HEADER_HOVER;
+
+    .locationButtonContent {
+      @apply
+        pl-2
+        text-sm
+        leading-8;
+    }
+  }
+}
+
+.searchbarWrapper {
+  @apply
+    h-14
+    p-4
+    flex-grow
+    relative
+    bg-THEME_FEATURES_HEADER;
+
+  > label {
+    clip: rect(1px, 1px, 1px, 1px);
+
+    @apply
+      w-px
+      h-px
+      absolute;
+  }
+
+  .searchbar {
+    @apply
+      flex;
+
+    > input {
+      @apply
+        h-6
+        flex-1
+        font-light
+        tracking-wide
+        placeholder-black
+        placeholder-opacity-50
+        bg-THEME_FEATURES_HEADER;
+
+      &::placeholder {
+        @apply
+          font-medium
+          tracking-wide;
+      }
+    }
+  }
+}
+
+.searchbarShadow {
+  box-shadow: rgb(0, 0, 0) 0px -2px 0 inset;
+}
+
+.cartWrapper {
+  @apply h-9;
+
+  .cartButtonWrapper {
+    @apply
+      h-full
+      flex
+      px-3
+      py-2
+      bg-black;
+
+    .cartButtonContent {
+      @apply
+        pl-2
+        text-sm
+        text-white;
+    }
+  }
+}
+
+.loginWrapper {
+  @apply
+    w-13 
+    h-9;
+
+  .loginButtonWrapper {
+    @apply
+      h-full
+      p-3
+      hover:bg-THEME_FEATURES_HEADER_HOVER;
+
+    .loginButtonContent {
+      @apply 
+        text-sm
+        leading-3;
+    }
+  }
+}
+
+@mixin space($width) {
+  @apply w-#{$width};
+}
+
+.space_16 {
+  @include space(4);
+}
+
+.space_24 {
+  @include space(6);
+}
+
+.space_32 {
+  @include space(8);
+}
+
+.space_40 {
+  @include space(10);
+}
+
+.space_64 {
+  @include space(16);
 }
