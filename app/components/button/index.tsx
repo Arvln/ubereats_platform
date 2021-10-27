@@ -9,8 +9,7 @@ function Button({
 	appendClass,
 	icon,
 	text
-}: Prop
-) {
+}: Prop) {
 	const {
 		appendWrapper,
 		appendContent,

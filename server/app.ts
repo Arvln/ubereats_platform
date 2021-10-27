@@ -1,12 +1,17 @@
-const express = require('express');
+import express from 'express';
+import { graphqlHTTP } from 'express-graphql';
+import cors from 'cors';
+import { schema } from './schema';
 
 const app = express();
+const SERVER_PORT = process.env.SERVER_PORT;
 
-app.get('/', (req: any, res: any) => {
-	console.log(req);
-	res.send({ 'a': '1' });
-})
+app.use(cors());
+app.use('/', graphqlHTTP({
+  schema,
+  graphiql: true,
+}));
 
-app.listen(4000, () => {
-  console.log('server running on port 4000');
+app.listen(SERVER_PORT, () => {
+  console.log(`server running on port ${SERVER_PORT}`);
 })

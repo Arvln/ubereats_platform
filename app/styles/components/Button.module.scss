@@ -1,5 +1,6 @@
 .wrapper {
   @apply
+    flex-shrink-0
     bg-THEME_COMPONENT_BUTTON
     rounded-THEME_COMPONENT_BUTTON
     text-black;
@@ -7,6 +8,7 @@
   .content {
     @apply
       h-full
+      whitespace-nowrap
       text-center
       font-normal;
   }

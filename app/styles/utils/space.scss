@@ -1,5 +1,7 @@
 @mixin space($width) {
-  @apply w-#{$width};
+  @apply 
+    w-#{$width}
+    flex-shrink-0;
 }
 
 .space_8 {

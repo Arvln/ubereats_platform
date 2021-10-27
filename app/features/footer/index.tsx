@@ -16,7 +16,7 @@ import {
 	space_8,
 	space_16,
 	space_24,
-	space_40,
+	space_40
 } from 'styles/features/Footer.module.scss';
 
 function Footer() {
@@ -87,9 +87,8 @@ function Footer() {
 						<li>
 							<Link
 								href="#"
-								passHref={true}
 							>
-								<div className={ selectLanguage }>
+								<a className={ selectLanguage }>
 									<Image
 										src="/images/chinese.svg"
 										width={16}
@@ -98,7 +97,7 @@ function Footer() {
 									/>
 									<div className={ space_8 } />
 									<span>中文</span>
-								</div>
+								</a>
 							</Link>
 						</li>
 					</ul>
@@ -109,38 +108,41 @@ function Footer() {
 				<div className={socialMedia}>
 					<Link
 						href="https://www.facebook.com/ubereats"
-						passHref={true}
 					>
-						<Image
-							src="/images/facebook.svg"
-							width={16}
-							height={16}
-							alt="Facebook"
-						/>
+						<a>
+							<Image
+								src="/images/facebook.svg"
+								width={16}
+								height={16}
+								alt="Facebook"
+							/>
+						</a>
 					</Link>
 					<div className={ space_24 } />
 					<Link
 						href="https://www.twitter.com/ubereats"
-						passHref={true}
 					>
-						<Image
-							src="/images/twitter.svg"
-							width={16}
-							height={16}
-							alt="Twitter"
-						/>
+						<a>
+							<Image
+								src="/images/twitter.svg"
+								width={16}
+								height={16}
+								alt="Twitter"
+							/>
+						</a>
 					</Link>
 					<div className={ space_24 } />
 					<Link
 						href="https://www.instagram.com/ubereats"
-						passHref={true}
 					>
-						<Image
-							src="/images/instagram.svg"
-							width={16}
-							height={16}
-							alt="Instagram"
-						/>
+						<a>
+							<Image
+								src="/images/instagram.svg"
+								width={16}
+								height={16}
+								alt="Instagram"
+							/>
+						</a>
 					</Link>
 				</div>
 				<div className={ policy }>

@@ -8,6 +8,10 @@
     h-24;
 }
 
+.imageWrapper {
+  @apply flex-shrink-0;
+}
+
 .deliveryOptions {
   @apply
     flex
@@ -18,15 +22,15 @@
     rounded-THEME_FEATURES_HEADER;
 
   .deliveryOption {
-    @apply w-full;
+    @apply w-15;
 
     .deliveryButtonWrapper {
       transition: all 400ms ease 0s;
 
       @apply
-      w-full
-      h-full
-      cursor-pointer;
+        w-full
+        h-full
+        cursor-pointer;
 
       .deliveryButtonContent{
         @apply
@@ -114,7 +118,7 @@
   .cartButtonWrapper {
     @apply
       h-full
-      flex
+      flex      
       px-3
       py-2
       bg-black;

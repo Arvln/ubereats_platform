@@ -5,6 +5,7 @@ import { TAppendClass } from 'components/button/types';
 
 import {
 	wrapper,
+	imageWrapper,
 	deliveryOptions,
 	deliveryOption,
 	deliveryButtonWrapper,
@@ -56,8 +57,8 @@ const loginButton: TAppendClass = {
 
 function Header() {
 	const [isDeliveried, setIsDeliveried] = useState<boolean>(true);
-	const deliveryButtonClass = isDeliveried ? selectedButton : unSelectedButton;
-	const takeOutButtonClass = isDeliveried ? unSelectedButton : selectedButton;
+	const deliveryButton = isDeliveried ? selectedButton : unSelectedButton;
+	const takeOutButton = isDeliveried ? unSelectedButton : selectedButton;
 
 	const _handleElementFocus = () => {
 		const element = document.getElementsByClassName(searchbarWrapper)[0];
@@ -71,19 +72,23 @@ function Header() {
 
 	return (
 		<header className={ wrapper }>
-			<Image
-				src="/images/dropdown.svg"
-				width={20}
-				height={20}
-				alt="Dropdown"
-			/>
+			<div className={ imageWrapper }>
+				<Image
+					src="/images/dropdown.svg"
+					width={20}
+					height={20}
+					alt="Dropdown"
+				/>
+			</div>
 			<div className={ space_32 } />
-			<Image
-				src="/images/header_logo.svg"
-				width={146}
-				height={24}
-				alt="Logo"
-			/>
+			<div className={ imageWrapper }>
+				<Image
+					src="/images/header_logo.svg"
+					width={146}
+					height={24}
+					alt="Logo"
+				/>
+			</div>
 			<div className={ space_40 } />
 			<div className={ deliveryOptions }>
 				<div
@@ -91,7 +96,7 @@ function Header() {
 					onClick={() => setIsDeliveried(!isDeliveried)}
 				>
 					<Button
-						appendClass={ deliveryButtonClass }
+						appendClass={ deliveryButton }
 						text='外送'
 					/>
 				</div>
@@ -100,7 +105,7 @@ function Header() {
 					onClick={() => setIsDeliveried(!isDeliveried)}
 				>
 					<Button
-						appendClass={ takeOutButtonClass }
+						appendClass={ takeOutButton }
 						text='外帶'
 					/>
 				</div>
