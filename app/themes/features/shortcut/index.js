@@ -3,5 +3,5 @@ const spacing = {
 }
 
 module.exports = {
-	spacing
+	spacing,
 }

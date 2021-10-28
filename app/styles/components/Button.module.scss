@@ -1,8 +1,10 @@
+$THEME_COMPONENT_BUTTON_COLOR: rgb(238, 238, 238);
+
 .wrapper {
   @apply
     flex-shrink-0
-    bg-THEME_COMPONENT_BUTTON
-    rounded-THEME_COMPONENT_BUTTON
+    bg-[#{$THEME_COMPONENT_BUTTON_COLOR}]
+    rounded-500
     text-black;
 
   .content {

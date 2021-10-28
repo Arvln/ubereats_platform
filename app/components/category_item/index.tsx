@@ -14,14 +14,14 @@ function CategoryItem({
 	const wrapperStyle = `${wrapper} ${appendClass}`
 
 	return (
-		<li className={wrapperStyle}>
+		<div className={ wrapperStyle }>
 			<Link href={ pageUrl }>
 				<a>
 					{ icon }
 					<span>{ text }</span>
 				</a>
 			</Link>
-		</li>
+		</div>
 	)
 }
 

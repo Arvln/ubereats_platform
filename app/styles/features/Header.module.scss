@@ -1,5 +1,9 @@
 @import '../utils/index.scss';
 
+$THEME_FEATURES_HEADER_BACKGROUND_COLOR: rgb(238, 238, 238);
+$THEME_FEATURES_HEADER_HOVER_COLOR: #E2E2E2;
+$THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
+
 .wrapper {
   @apply
     px-10
@@ -18,8 +22,8 @@
     w-32
     h-12
     p-1
-    bg-THEME_FEATURES_HEADER
-    rounded-THEME_FEATURES_HEADER;
+    bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}]
+    rounded-[#{$THEME_FEATURES_HEADER_BORDER_RADIUS}];
 
   .deliveryOption {
     @apply w-15;
@@ -48,7 +52,7 @@
 .locationChoosingWrapper {
   @apply
     h-12
-    rounded-THEME_FEATURES_HEADER;
+    rounded-[#{$THEME_FEATURES_HEADER_BORDER_RADIUS}];
 
   .locationButtonWrapper {
     @apply
@@ -56,8 +60,8 @@
       px-3
       py-2
       cursor-pointer
-      bg-THEME_FEATURES_HEADER
-      hover:bg-THEME_FEATURES_HEADER_HOVER;
+      bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}]
+      hover:bg-[#{$THEME_FEATURES_HEADER_HOVER_COLOR}];
 
     .locationButtonContent {
       @apply
@@ -74,7 +78,7 @@
     p-4
     flex-grow
     relative
-    bg-THEME_FEATURES_HEADER;
+    bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}];
 
   > label {
     clip: rect(1px, 1px, 1px, 1px);
@@ -97,7 +101,7 @@
         tracking-wide
         placeholder-black
         placeholder-opacity-50
-        bg-THEME_FEATURES_HEADER;
+        bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}];
 
       &::placeholder {
         @apply
@@ -141,7 +145,7 @@
     @apply
       h-full
       p-3
-      hover:bg-THEME_FEATURES_HEADER_HOVER;
+      hover:bg-[#{$THEME_FEATURES_HEADER_HOVER_COLOR}];
 
     .loginButtonContent {
       @apply 

@@ -1,38 +1,36 @@
 import type { NextPage, GetStaticProps } from 'next';
-import { TShortcut } from 'graphql/types';
+import { ApolloQueryResult } from '@apollo/client';
+import { Prop } from 'graphql/types/pages';
 import { client } from 'graphql/apollo_client';
 import Shortcut from 'features/shortcut';
-import { getShortcutQuery } from 'graphql/queries';
+import { query } from 'graphql/queries/pages';
 
 import {
 	wrapper,
 } from 'styles/pages/Home.module.scss';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<Prop> = async () => {
 	const {
-		data: {
-			shortcut
-		}
-	} = await client.query({
-		query: getShortcutQuery,
+		data: props
+	}: ApolloQueryResult<Prop> = await client.query({
+		query
 	});
 
 	return {
-		props: {
-			shortcut
-		}
+		props
 	}
 }
 
-type Prop = {
-	shortcut: TShortcut[];
-}
+const Home: NextPage<Prop> = ({
+	shortcut,
+	carousel
+}) => {
+	console.log(carousel);
 
-const Home: NextPage<Prop> = ({ shortcut }) => {	
 	return (
-		<div className={ wrapper }>
+		<main className={wrapper}>
 			<Shortcut shortcut={ shortcut } />
-		</div>
+		</main>
 	)
 }
 

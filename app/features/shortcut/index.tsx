@@ -1,19 +1,26 @@
-import { TShortcut } from 'graphql/types';
+import { Prop } from './types';
 import Image from 'next/image';
 import CategoryItem from 'components/category_item';
 
 import {
 	wrapper,
 	shortcutItemWrapper,
+	itemHoverStyle,
 } from 'styles/features/Shortcut.module.scss';
 
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 
-type Prop = {
-	shortcut: TShortcut[];
-}
-
 function Shortcut({ shortcut }: Prop) {
+	function _handleMouseEnter(key: string) {
+		const element = document.getElementsByClassName(`shortcut-item-${key}`)[0];
+		element.classList.add(itemHoverStyle);
+	}
+
+	function _handleMouseLeave(key: string) {
+		const element = document.getElementsByClassName(`shortcut-item-${key}`)[0];
+		element.classList.remove(itemHoverStyle);
+	}
+
 	function _renderShortcut() {
 		return shortcut.map(({
 			title,
@@ -21,20 +28,26 @@ function Shortcut({ shortcut }: Prop) {
 			isCuisines,
 			uuid
 		}) => (
-			<CategoryItem
+			<li
 				key={uuid}
-				appendClass={shortcutItemWrapper}
-				pageUrl={`/shortcut/${uuid}`}
-				icon={
-					<Image
-						src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
-						width={60}
-						height={60}
-						alt={shortcutImageSuffix}
-					/>
-				}
-				text={title}
-			/>
+				onMouseEnter={() => _handleMouseEnter(uuid)}
+				onMouseLeave={() => _handleMouseLeave(uuid)}
+			>
+				<CategoryItem
+					appendClass={shortcutItemWrapper}
+					pageUrl={`/shortcut/${uuid}`}
+					icon={
+						<Image
+							className={`shortcut-item-${uuid}`}
+							src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
+							width={60}
+							height={60}
+							alt={shortcutImageSuffix}
+						/>
+					}
+					text={title}
+				/>
+			</li>
 		))
 	}
 	

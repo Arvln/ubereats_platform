@@ -2,30 +2,32 @@ $itemMinWidth: 80px;
 $itemHorizontalPadding: 10px;
 
 .wrapper {
-  @apply
+  @apply 
     my-6
-    flex
-    justify-center;
+    flex 
+    justify-center
+    min-w-min;
 
   ul {
     @apply flex;
 
-    .shortcutItemWrapper {
-      @apply
-        flex-shrink-0
-        min-w-[#{$itemMinWidth}]
-        px-[#{$itemHorizontalPadding}];
-    
-      a {
+    li {
+      .shortcutItemWrapper {
         @apply
-        h-21
-        flex
-        flex-col
-        justify-between;
-      }
-    
-      span {
-        @apply text-sm;
+          min-w-[#{$itemMinWidth}]
+          px-[#{$itemHorizontalPadding}];
+      
+        a {
+          @apply
+          h-21
+          flex
+          flex-col
+          justify-between;
+        }
+      
+        span {
+          @apply text-sm;
+        }
       }
 
       &:not(:last-child){
@@ -33,4 +35,12 @@ $itemHorizontalPadding: 10px;
       }
     }
   }
+}
+
+$imageHoverColor: rgb(226, 226, 226);
+
+.itemHoverStyle {
+  @apply 
+    rounded-500
+    bg-[#{$imageHoverColor}];
 }
