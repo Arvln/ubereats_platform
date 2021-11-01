@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react';
+import { TAppendClass } from 'components/button/types';
+import { useState } from 'react';
 import Image from 'next/image';
 import Button from 'components/button';
-import { TAppendClass } from 'components/button/types';
 
 import {
 	wrapper,

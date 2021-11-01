@@ -37,10 +37,8 @@ $itemHorizontalPadding: 10px;
   }
 }
 
-$imageHoverColor: rgb(226, 226, 226);
-
 .itemHoverStyle {
   @apply 
     rounded-500
-    bg-[#{$imageHoverColor}];
+    bg-LIGHT_GREY;
 }

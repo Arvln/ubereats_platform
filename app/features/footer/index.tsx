@@ -24,7 +24,7 @@ function Footer() {
 		<footer className={ wrapper }>
 			<div className={ moreOptionsWrapper }>
 				<div className={ brand }>
-					<div className={ logoWrapper }>
+					<div className={logoWrapper}>
 						<Image
 							src="/images/footer_logo.svg"
 							width={146}
@@ -32,20 +32,28 @@ function Footer() {
 							alt="Logo"
 						/>
 					</div>
-					<div className={ download }>
-						<Image
-							src="/images/app_store.svg"
-							width={135}
-							height={40}
-							alt="App Store"
-						/>
-						<div className={ space_16 } />
-						<Image
-							src="/images/google_play.png"
-							width={135}
-							height={40}
-							alt="Google Play"
-						/>
+					<div className={download}>
+						<Link href="https://apps.apple.com/us/app/uber-eats-food-delivery/id1058959277">
+							<a>
+								<Image
+									src="/images/app_store.svg"
+									width={135}
+									height={40}
+									alt="App Store"
+								/>
+							</a>
+						</Link>
+						<div className={space_16} />
+						<Link href="https://play.google.com/store/apps/details?id=com.ubercab.eats">
+							<a>
+								<Image
+									src="/images/google_play.png"
+									width={135}
+									height={40}
+									alt="Google Play"
+								/>
+							</a>
+						</Link>
 					</div>
 				</div>
 				<div className={moreOptions}>

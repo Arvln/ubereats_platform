@@ -13,6 +13,7 @@ module.exports = {
 			spacing,
 			padding,
 			flex,
+			borderRadius,
 			color,
 			backgroundColor: theme => ({
 				...theme('color')
@@ -20,8 +21,10 @@ module.exports = {
 			textColor: theme => ({
 				...theme('color')
 			}),
+			borderColor: theme => ({
+				...theme('color')
+			})
 		},
-		borderRadius,
 	},
 	variants: {
 			extend: {},

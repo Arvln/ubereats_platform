@@ -4,11 +4,13 @@ import {
 } from 'graphql';
 import {
 	ShortcutType,
-	CarouselType
+	CarouselType,
+	CannelType
 } from '../../models/type_defs';
 import {
 	getShortcut,
-	getCarousel
+	getCarousel,
+	getCannel
 } from '../resolvers';
 
 export const query = new GraphQLObjectType({
@@ -22,5 +24,9 @@ export const query = new GraphQLObjectType({
 			type: new GraphQLList(CarouselType),
 			resolve: getCarousel
 		},
+		cannel: {
+			type: new GraphQLList(CannelType),
+			resolve: getCannel
+		}
   },
 });

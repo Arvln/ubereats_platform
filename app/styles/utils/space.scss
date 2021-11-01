@@ -4,6 +4,10 @@
     flex-shrink-0;
 }
 
+.space_4 {
+  @include space(1);
+}
+
 .space_8 {
   @include space(2);
 }

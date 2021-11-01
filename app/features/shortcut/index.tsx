@@ -21,7 +21,7 @@ function Shortcut({ shortcut }: Prop) {
 		element.classList.remove(itemHoverStyle);
 	}
 
-	function _renderShortcut() {
+	function _renderItems() {
 		return shortcut.map(({
 			title,
 			shortcutImageSuffix,
@@ -54,7 +54,7 @@ function Shortcut({ shortcut }: Prop) {
 	return (
 		<nav className={ wrapper }>
 			<ul>
-				{ _renderShortcut() }
+				{ _renderItems() }
 			</ul>
 		</nav>
 	)

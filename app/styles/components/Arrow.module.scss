@@ -1,0 +1,13 @@
+.wrapper {
+  @apply
+    w-9
+    h-9
+    flex-shrink-0;
+
+  .buttonWrapper {
+    @apply
+      h-full
+      flex
+      justify-center;
+  }
+}
