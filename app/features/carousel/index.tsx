@@ -21,21 +21,21 @@ const offsetPerClick: number = 33.3333;
 function Carousel({ carousel }: Prop) {
 	const [horizontalOffset, setHorizontalOffset] = useState<number>(originOffset);
 
-	function _handlePreviousButton() {
+	function _handlePreviousButton(): void {
 		if (horizontalOffset >= 0)
 			setHorizontalOffset(originOffset)
 		else
 			setHorizontalOffset(horizontalOffset + offsetPerClick)
 	}
 
-	function _handleNextButton() {
+	function _handleNextButton(): void {
 		if (horizontalOffset <= offsetPerClick * (3 - carousel.length))
 			setHorizontalOffset(originOffset)
 		else
 			setHorizontalOffset(horizontalOffset - offsetPerClick)
 	}
 
-	function _renderItems() {
+	function _renderItems(): JSX.Element[] {
 		return (
 			carousel.map(({
 				imageSuffix,
@@ -70,7 +70,8 @@ function Carousel({ carousel }: Prop) {
 			<div className={ content }>
 				<ol
 					className={ advertiseWrapper }
-					style={{ transform: `translateX(${horizontalOffset}%)` }}>
+					style={{ transform: `translateX(${horizontalOffset}%)` }}
+				>
 					{ _renderItems() }
 				</ol>
 			</div>

@@ -1,9 +1,13 @@
 import { getShortcut } from './shortcut';
 import { getCarousel } from './carousel';
-import { getCannel } from './cannel';
+import {
+	getChannel,
+	getChannelShops
+} from './channel';
 
 export {
 	getShortcut,
 	getCarousel,
-	getCannel
+	getChannel,
+	getChannelShops
 }

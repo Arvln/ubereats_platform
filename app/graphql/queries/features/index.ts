@@ -1,9 +1,9 @@
 import { shortcutQuery } from './shortcut';
 import { carouselQuery } from './carousel';
-import { cannelQuery } from './cannel';
+import { channelQuery } from './channel';
 
 export {
 	shortcutQuery,
 	carouselQuery,
-	cannelQuery
+	channelQuery
 }

@@ -5,16 +5,16 @@ import {
 import {
 	ShortcutType,
 	CarouselType,
-	CannelType
+	ChannelType
 } from '../../models/type_defs';
 import {
 	getShortcut,
 	getCarousel,
-	getCannel
+	getChannel
 } from '../resolvers';
 
 export const query = new GraphQLObjectType({
-  name: 'RootQuery',
+  name: 'HomePageQuery',
   fields: {
     shortcut: {
       type: new GraphQLList(ShortcutType),
@@ -24,9 +24,9 @@ export const query = new GraphQLObjectType({
 			type: new GraphQLList(CarouselType),
 			resolve: getCarousel
 		},
-		cannel: {
-			type: new GraphQLList(CannelType),
-			resolve: getCannel
+		channel: {
+			type: new GraphQLList(ChannelType),
+			resolve: getChannel
 		}
   },
 });

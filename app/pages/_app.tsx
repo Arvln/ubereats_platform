@@ -3,11 +3,11 @@ import { Layout } from 'features';
 
 import 'styles/globals.scss'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
 	return (
 		<Layout>
 			<Component {...pageProps} />
 		</Layout>
 	);
 }
-export default MyApp
+export default App

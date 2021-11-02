@@ -2,13 +2,13 @@ import { gql } from '@apollo/client';
 import {
 	shortcutQuery,
 	carouselQuery,
-	cannelQuery
+	channelQuery
 } from '../features';
 
 export const query = gql`
 	query {
 		${shortcutQuery}
 		${carouselQuery}
-		${cannelQuery}
+		${channelQuery}
 	}
 `

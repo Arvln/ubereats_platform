@@ -1,3 +1,4 @@
+import { TCarousel } from '../../../types/carousel';
 import { query } from '../../db/query';
 
 const isShow: boolean = true;
@@ -11,10 +12,10 @@ export async function getData(){
 			FROM
 				Table_Advertise
 			WHERE
-				is_show = ?
+				is_show = ?;
 		`,
 		[isShow]
-	);
+	) as TCarousel[];
 
 	return carousel;
 }

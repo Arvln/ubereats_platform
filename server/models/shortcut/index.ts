@@ -1,3 +1,4 @@
+import { TShortcut } from '../../../types/shortcut';
 import { query } from '../../db/query';
 
 const shortcutLength: number = 14;
@@ -12,10 +13,10 @@ export async function getData(){
 				HEX(uuid) AS uuid
 			FROM
 				Table_Shop_Category
-			LIMIT ?
+			LIMIT ?;
 		`,
 		[shortcutLength]
-	);
+	) as TShortcut[];
 
 	return shortcut;
 }

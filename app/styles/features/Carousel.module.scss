@@ -17,6 +17,8 @@ $itemHeight: 41%;
       overflow-hidden;
 
     .advertiseWrapper {
+      transition: transform 500ms ease-in-out 0s;
+
       @apply
         flex
         items-center;

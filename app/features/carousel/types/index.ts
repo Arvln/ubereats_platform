@@ -1,4 +1,4 @@
-import { TCarousel } from 'graphql/types/features';
+import { TCarousel } from '../../../../types/carousel';
 
 export type Prop = {
 	carousel: TCarousel[];

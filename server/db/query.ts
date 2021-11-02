@@ -4,7 +4,7 @@ const {
 	db: dbConfig
 } = productConfig;
 
-export async function query(sql: string, params?: unknown[]) {
+export async function query(sql: string, params?: unknown[]): Promise<unknown> {
 	const pool = await mysql.createPool(dbConfig);
 	const [result,] = await pool.query(sql, params);
 

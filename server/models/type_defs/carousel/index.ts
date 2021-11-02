@@ -1,7 +1,7 @@
-const {
+import {
 	GraphQLObjectType,
 	GraphQLString
-} = require('graphql');
+} from 'graphql';
 
 export const CarouselType = new GraphQLObjectType({
   name: 'Carousel',

@@ -1,9 +1,9 @@
 import { ShortcutType } from './shortcut';
 import { CarouselType } from './carousel';
-import { CannelType } from './cannel';
+import { ChannelType } from './channel';
 
 export {
 	ShortcutType,
 	CarouselType,
-	CannelType
+	ChannelType
 }

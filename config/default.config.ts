@@ -9,5 +9,8 @@ export const productConfig = {
 		user: ENV.MYSQL_USER,
 		password: ENV.MYSQL_PASSWORD,
 		database: ENV.DATABASE_NAME
+	},
+	api: {
+		version: ENV.API_VERSION
 	}
 }

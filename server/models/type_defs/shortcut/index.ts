@@ -1,8 +1,8 @@
-const {
+import {
 	GraphQLObjectType,
 	GraphQLString,
 	GraphQLInt
-} = require('graphql');
+} from 'graphql';
 
 export const ShortcutType = new GraphQLObjectType({
   name: 'Shortcut',
