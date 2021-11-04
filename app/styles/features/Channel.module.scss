@@ -1,5 +1,88 @@
+@import '../utils/index.scss';
+
+$titleLineHeight: 44px;
+$imageWidth: 133px;
+
 .wrapper {
   @apply
     w-3/4
-    px-3;
+    pt-6
+    pl-3;
+
+  .regularWrapper {
+    @apply pb-6;
+
+    .regularTitle {
+      @apply
+        mb-6
+        flex
+        justify-between;
+    }
+  }
+
+  .emphasisWrapper {
+    @apply flex;
+
+    .emphasisTitle {
+      @apply
+        w-1/4
+        pr-3;
+
+      .titleImage {
+        @apply
+          w-[#{$imageWidth}]
+          h-20
+          -ml-10
+          mb-4
+          relative;
+      }
+    }
+
+    .emphasisContent {
+      @apply
+        w-3/4
+        pl-3;
+
+      .emphasisButton {
+        @apply
+          mb-6
+          flex
+          justify-end
+          self-start;
+      }
+    }
+  }
+
+  .titleWrapper {
+    > h1 {
+      @apply
+        text-4xl
+        font-medium
+        leading-[#{$titleLineHeight}];
+    }
+
+    > span {
+      @apply 
+        leading-5
+        text-sm
+        text-FONT_GREY;
+    }
+  }
+
+  .buttonWrapper {
+    @apply
+      flex
+      items-center;
+  
+    > button {
+      @apply
+        leading-5
+        text-base
+        underline;
+    }
+  
+    .disableButton {
+      @apply opacity-40;
+    }
+  }
 }

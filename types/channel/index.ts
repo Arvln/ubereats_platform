@@ -7,7 +7,7 @@ export type TChannel = {
 
 export type TParent = TChannel & { id: number; }
 
-export type TChannelShops = {
+export type TChannelShop = {
 	name: string;
 	deliveryCost: number;
 	shortestDeliveryTime: number;
@@ -17,3 +17,11 @@ export type TChannelShops = {
 	uuid: string;
 	channelId: number;
 }
+
+export type TChannelCategory = {
+	title: string;
+	categoryName: string;
+	uuid: string;
+}
+
+export type TChannelItem = TChannelShop | TChannelCategory;

@@ -44,7 +44,7 @@ $itemHeight: 41%;
 
   .rightButtonWrapper {
     img {
-      @extend .rotate-180;
+      @extend .rotate_180;
     }
   }
 }

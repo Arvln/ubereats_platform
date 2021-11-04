@@ -2,7 +2,7 @@ import { TShortcut } from '../shortcut';
 import { TCarousel } from '../carousel';
 import {
 	TChannel,
-	TChannelShops
+	TChannelItem
 } from '../channel';
 
 export type Prop = {
@@ -10,7 +10,7 @@ export type Prop = {
 	carousel: TCarousel[],
 	channel: (
 		TChannel & {
-			channelShops: TChannelShops[];
+			channelItems: TChannelItem[];
 		}
 	)[]
 }

@@ -1,11 +1,12 @@
 import {
 	GraphQLObjectType,
+	GraphQLUnionType,
 	GraphQLID,
 	GraphQLInt,
 	GraphQLString,
 	GraphQLList
 } from 'graphql';
-import { getChannelShops } from '../../../controllers/resolvers';
+import { getChannelItems } from '../../../controllers/resolvers';
 
 export const ChannelType = new GraphQLObjectType({
   name: 'Channel',
@@ -25,15 +26,21 @@ export const ChannelType = new GraphQLObjectType({
 		uuid: {
 			type: GraphQLString
 		},
-		channelShops: {
-			type: new GraphQLList(ChannelShopsType),
-			resolve: getChannelShops
+		channelItems: {
+			type: new GraphQLList(ChannelItemType),
+			resolve: getChannelItems
 		}
 	})
 });
 
-export const ChannelShopsType = new GraphQLObjectType({
-	name: 'ChannelShops',
+const ChannelItemType = new GraphQLUnionType({
+	name: 'ChannelItem',
+	types: () => [ChannelShopType, channelCategoryType],
+	resolveType: value => value.name ? ChannelShopType : channelCategoryType
+})
+
+const ChannelShopType = new GraphQLObjectType({
+	name: 'ChannelShop',
 	fields: () => ({
 		name: {
 			type: GraphQLString
@@ -58,6 +65,21 @@ export const ChannelShopsType = new GraphQLObjectType({
 		},
 		channelId: {
 			type: GraphQLID
+		}
+	})
+})
+
+const channelCategoryType = new GraphQLObjectType({
+	name: 'ChannelCategory',
+	fields: () => ({
+		title: {
+			type: GraphQLString
+		},
+		categoryName: {
+			type: GraphQLString
+		},
+		uuid: {
+			type: GraphQLString
 		}
 	})
 })

@@ -4,14 +4,21 @@ export const channelQuery: string = `
 		subtitle
 		imageSuffix
 		uuid
-		channelShops {
-			name
-			deliveryCost
-			shortestDeliveryTime
-			score
-			discountInfo
-			imageSuffix
-			uuid
+		channelItems {
+			... on ChannelShop {
+				name
+				deliveryCost
+				shortestDeliveryTime
+				score
+				discountInfo
+				imageSuffix
+				uuid
+			}
+			... on ChannelCategory {
+				title
+				categoryName
+				uuid
+			}
 		}
 	}
 `

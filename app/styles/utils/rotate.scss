@@ -2,6 +2,6 @@
   transform: rotate(#{$deg});
 }
 
-.rotate-180 {
+.rotate_180 {
   @include rotate(180deg);
 }

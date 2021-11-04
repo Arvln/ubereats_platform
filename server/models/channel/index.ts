@@ -1,8 +1,11 @@
 import {
 	TParent,
-	TChannelShops
+	TChannelShop,
+	TChannelCategory
 } from '../../../types/channel'
 import { query } from '../../db/query';
+
+const CATEGORY_LIMIT: number = 12;
 
 export async function getData(){
 	const channel = await query(
@@ -35,10 +38,26 @@ export async function getData(){
 			ON
 				Table_Mapping_Shop_And_Channel.shop_id = Table_Shop.id;
 		`
-	) as TChannelShops[]
+	) as TChannelShop[]
+	const channelCategory = await query(
+		`
+			SELECT
+				title,
+				category_name AS categoryName,
+				HEX(uuid) AS uuid
+			FROM
+				Table_Shop_Category
+			ORDER BY
+				category_rank
+			LIMIT
+				?;
+		`,
+		[CATEGORY_LIMIT]
+	) as TChannelCategory[];
 
 	return {
 		channel,
-		channelShop
+		channelShop,
+		channelCategory
 	};
 }

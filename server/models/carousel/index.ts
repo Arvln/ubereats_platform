@@ -1,7 +1,7 @@
 import { TCarousel } from '../../../types/carousel';
 import { query } from '../../db/query';
 
-const isShow: boolean = true;
+const IS_SHOW: boolean = true;
 
 export async function getData(){
 	const carousel = await query(
@@ -14,7 +14,7 @@ export async function getData(){
 			WHERE
 				is_show = ?;
 		`,
-		[isShow]
+		[IS_SHOW]
 	) as TCarousel[];
 
 	return carousel;
