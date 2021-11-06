@@ -21,7 +21,7 @@ $imageWidth: 133px;
   }
 
   .emphasisWrapper {
-    @apply flex;
+    @apply flex pb-6;
 
     .emphasisTitle {
       @apply

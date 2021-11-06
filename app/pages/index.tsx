@@ -33,16 +33,14 @@ const Home: NextPage<Prop> = ({
 	carousel,
 	channel
 }) => {
-	console.log(channel);
-	
 	return (
 		<main className={ wrapper }>
-			<Shortcut shortcut={ shortcut } />
+			<Shortcut data={ shortcut } />
 			<hr />
-			<Carousel carousel={ carousel } />
+			<Carousel data={ carousel } />
 			<section className={ storesWrapper }>
 				<RestrictSearch />
-				<Channel channel={ channel } />
+				<Channel data={ channel } />
 			</section>
 		</main>
 	)

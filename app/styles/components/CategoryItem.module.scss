@@ -1,7 +1,14 @@
 .wrapper {
-  span {
+  a {
     @apply
-      text-center
-      font-medium;
+      block
+      w-full
+      h-full;
+
+    span {
+      @apply
+        text-center
+        font-medium;
+    }
   }
 }

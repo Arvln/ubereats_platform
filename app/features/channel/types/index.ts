@@ -1,12 +1,15 @@
 import {
-	TChannel,
+	TChannelData,
 	TChannelItem
 } from "../../../../types/channel";
 
 export type Prop = {
-	channel: (
-		TChannel & {
-			channelItems: TChannelItem[];
-		}
-	)[]
-}
+	data: TChannelData[]
+};
+
+export enum ContentType {
+	CHANNELSHOP = 'ChannelShop',
+	CHANNELCATEGORY = 'ChannelCategory'
+};
+
+export type { TChannelItem };

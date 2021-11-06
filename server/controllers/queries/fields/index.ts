@@ -23,4 +23,4 @@ export const homeFields = {
 		type: new GraphQLList(ChannelType),
 		resolve: getChannel
 	}
-}
+};

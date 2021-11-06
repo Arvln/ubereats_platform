@@ -10,7 +10,7 @@ import {
 
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 
-function Shortcut({ shortcut }: Prop) {
+function Shortcut({ data }: Prop) {
 	function _handleMouseEnter(key: string): void {
 		const element = document.getElementsByClassName(`shortcut-item-${key}`)[0];
 		element.classList.add(itemHoverStyle);
@@ -22,33 +22,35 @@ function Shortcut({ shortcut }: Prop) {
 	}
 
 	function _renderItems(): JSX.Element[] {
-		return shortcut.map(({
-			title,
-			shortcutImageSuffix,
-			isCuisines,
-			uuid
-		}) => (
-			<li
-				key={uuid}
-				onMouseEnter={() => _handleMouseEnter(uuid)}
-				onMouseLeave={() => _handleMouseLeave(uuid)}
-			>
-				<CategoryItem
-					appendClass={shortcutItemWrapper}
-					pageUrl={`/shortcut/${uuid}`}
-					icon={
-						<Image
-							className={`shortcut-item-${uuid}`}
-							src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
-							width={60}
-							height={60}
-							alt={shortcutImageSuffix}
-						/>
-					}
-					text={title}
-				/>
-			</li>
-		))
+		return (
+			data.map(({
+				title,
+				shortcutImageSuffix,
+				isCuisines,
+				uuid
+			}) => (
+				<li
+					key={uuid}
+					onMouseEnter={() => _handleMouseEnter(uuid)}
+					onMouseLeave={() => _handleMouseLeave(uuid)}
+				>
+					<CategoryItem
+						appendClass={shortcutItemWrapper}
+						pageUrl={`/shortcut/${uuid}`}
+						icon={
+							<Image
+								className={`shortcut-item-${uuid}`}
+								src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
+								width={60}
+								height={60}
+								alt={shortcutImageSuffix}
+							/>
+						}
+						text={title}
+					/>
+				</li>
+			))
+		)
 	}
 	
 	return (

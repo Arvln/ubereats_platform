@@ -18,7 +18,7 @@ const ADVERTISE_IMAGE_SERVER_HOST = process.env.ADVERTISE_IMAGE_SERVER_HOST;
 const originOffset: number = -66.6666;
 const offsetPerClick: number = 33.3333;
 
-function Carousel({ carousel }: Prop) {
+function Carousel({ data }: Prop) {
 	const [horizontalOffset, setHorizontalOffset] = useState<number>(originOffset);
 
 	function _handlePreviousButton(): void {
@@ -29,7 +29,7 @@ function Carousel({ carousel }: Prop) {
 	}
 
 	function _handleNextButton(): void {
-		if (horizontalOffset <= offsetPerClick * (3 - carousel.length))
+		if (horizontalOffset <= offsetPerClick * (3 - data.length))
 			setHorizontalOffset(originOffset)
 		else
 			setHorizontalOffset(horizontalOffset - offsetPerClick)
@@ -37,7 +37,7 @@ function Carousel({ carousel }: Prop) {
 
 	function _renderItems(): JSX.Element[] {
 		return (
-			carousel.map(({
+			data.map(({
 				imageSuffix,
 				uuid
 			}) => (

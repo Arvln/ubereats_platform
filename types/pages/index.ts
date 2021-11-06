@@ -1,16 +1,11 @@
 import { TShortcut } from '../shortcut';
 import { TCarousel } from '../carousel';
 import {
-	TChannel,
-	TChannelItem
+	TChannelData
 } from '../channel';
 
 export type Prop = {
 	shortcut: TShortcut[],
 	carousel: TCarousel[],
-	channel: (
-		TChannel & {
-			channelItems: TChannelItem[];
-		}
-	)[]
+	channel: TChannelData[]
 }

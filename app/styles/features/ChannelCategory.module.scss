@@ -1,0 +1,55 @@
+$categoryBackgroundColor: rgb(246, 246, 246);
+$categoryImageWidth: 68px;
+
+.wrapper {
+  scroll-snap-type: x mandatory;
+
+  @apply
+    flex
+    overflow-x-auto
+    -mx-3;
+  
+  .pageWrapper {
+    scroll-snap-align: start;
+
+    @apply
+      w-full
+      flex
+      flex-wrap
+      flex-shrink-0;
+
+    .categoryWrapper {
+      @apply
+        w-1/4
+        px-3
+        mb-6
+        flex-grow;
+  
+      .category {
+        @apply
+          h-20
+          bg-[#{$categoryBackgroundColor}];
+    
+        a {
+          @apply
+            flex
+            flex-row-reverse
+            justify-between;
+
+          > div {
+            @apply flex-shrink-0;
+          }
+
+          span {
+            @apply
+              p-4
+              text-lg
+              font-normal
+              whitespace-nowrap
+              flex-shrink-0;
+          }
+        }
+      }
+    }
+  }
+}

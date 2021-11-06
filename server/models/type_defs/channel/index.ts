@@ -37,7 +37,7 @@ const ChannelItemType = new GraphQLUnionType({
 	name: 'ChannelItem',
 	types: () => [ChannelShopType, channelCategoryType],
 	resolveType: value => value.name ? ChannelShopType : channelCategoryType
-})
+});
 
 const ChannelShopType = new GraphQLObjectType({
 	name: 'ChannelShop',
@@ -67,7 +67,7 @@ const ChannelShopType = new GraphQLObjectType({
 			type: GraphQLID
 		}
 	})
-})
+});
 
 const channelCategoryType = new GraphQLObjectType({
 	name: 'ChannelCategory',
@@ -82,4 +82,4 @@ const channelCategoryType = new GraphQLObjectType({
 			type: GraphQLString
 		}
 	})
-})
+});

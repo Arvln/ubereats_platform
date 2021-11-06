@@ -12,6 +12,10 @@
   @include space(2);
 }
 
+.space_12 {
+  @include space(3);
+}
+
 .space_16 {
   @include space(4);
 }

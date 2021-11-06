@@ -1,7 +1,13 @@
-import { Prop } from './types';
-import { useState } from 'react';
+import { Prop, TChannelItem } from './types';
 import Image from 'next/image';
 import Arrow from 'components/arrow';
+import ChannelCategory from 'features/channel_category';
+import {
+	getPageDataList,
+	getEmphsisPageSize,
+	getRegularPageSize,
+	isShopsChannel
+} from './utils';
 
 import {
 	wrapper,
@@ -19,8 +25,9 @@ import {
 	space_40,
 	rotate_180
 } from 'styles/features/Channel.module.scss';
+import ChannelShop from 'features/channel_shop';
 
-function Channel({ channel }: Prop) {
+function Channel({ data }: Prop) {
 	function _renderTitleImage(imageSuffix: string) {
 		return (
 			<div className={titleImage}>
@@ -45,16 +52,39 @@ function Channel({ channel }: Prop) {
 		)
 	}
 
+	function _renderRegularContent(data: TChannelItem[]) {
+		if (isShopsChannel(data)) {
+			return (
+				<ChannelShop
+					data={getPageDataList(
+						data,
+						getRegularPageSize(data)
+					)}
+					pageSize={getRegularPageSize(data)}
+				/>
+			)
+		} else {
+			return (
+				<ChannelCategory
+					data={getPageDataList(
+						data,
+						getRegularPageSize(data)
+					)}
+				/>
+			)
+		}
+	}
+
 	function _renderChannel() {
 		return (
-			channel.map(({
+			data.map(({
 				title,
 				subtitle,
 				imageSuffix,
 				uuid,
 				channelItems
 			}) => {
-				let isEmphasisTitle: boolean = imageSuffix !== '';
+				const isEmphasisTitle: boolean = imageSuffix !== '';
 
 				if (isEmphasisTitle) {
 					return (
@@ -71,7 +101,13 @@ function Channel({ channel }: Prop) {
 								<div className={ emphasisButton }>
 									{ _renderButtons() }
 								</div>
-								<div>emphasis</div>
+								<ChannelShop
+									data={getPageDataList(
+										channelItems,
+										getEmphsisPageSize()
+									)}
+									pageSize={getEmphsisPageSize()}
+								/>
 							</div>
 						</div>
 					)
@@ -89,7 +125,7 @@ function Channel({ channel }: Prop) {
 							</div>
 							{ _renderButtons() }
 						</div>
-						<div>regular</div>
+						{ _renderRegularContent(channelItems) }
 					</div>
 				)
 			})

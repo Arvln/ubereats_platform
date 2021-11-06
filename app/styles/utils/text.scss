@@ -1,0 +1,6 @@
+@mixin textOmitted {
+  @apply
+    whitespace-nowrap
+    overflow-hidden
+    overflow-ellipsis;
+}
