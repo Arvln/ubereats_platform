@@ -1,4 +1,5 @@
 import { Prop } from './types';
+import { useState } from 'react';
 import Image from 'next/image';
 import CategoryItem from 'components/category_item';
 
@@ -11,14 +12,14 @@ import {
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 
 function Shortcut({ data }: Prop) {
-	function _handleMouseEnter(key: string): void {
-		const element = document.getElementsByClassName(`shortcut-item-${key}`)[0];
-		element.classList.add(itemHoverStyle);
+	const [selectedId, setSelectedId] = useState<string>('');
+
+	function _handleMouseEnter(selectedId: string): void {
+		setSelectedId(selectedId);
 	}
 
-	function _handleMouseLeave(key: string): void {
-		const element = document.getElementsByClassName(`shortcut-item-${key}`)[0];
-		element.classList.remove(itemHoverStyle);
+	function _handleMouseLeave(): void {
+		setSelectedId('');
 	}
 
 	function _renderItems(): JSX.Element[] {
@@ -28,28 +29,33 @@ function Shortcut({ data }: Prop) {
 				shortcutImageSuffix,
 				isCuisines,
 				uuid
-			}) => (
-				<li
-					key={uuid}
-					onMouseEnter={() => _handleMouseEnter(uuid)}
-					onMouseLeave={() => _handleMouseLeave(uuid)}
-				>
-					<CategoryItem
-						appendClass={shortcutItemWrapper}
-						pageUrl={`/shortcut/${uuid}`}
-						icon={
-							<Image
-								className={`shortcut-item-${uuid}`}
-								src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
-								width={60}
-								height={60}
-								alt={shortcutImageSuffix}
-							/>
-						}
-						text={title}
-					/>
-				</li>
-			))
+			}) => {
+				const isSelected: boolean = uuid === selectedId;
+				const hoverStyle: string = isSelected ? itemHoverStyle : '';
+
+				return (
+					<li
+						key={uuid}
+						onMouseEnter={() => _handleMouseEnter(uuid)}
+						onMouseLeave={() => _handleMouseLeave()}
+					>
+						<CategoryItem
+							appendClass={shortcutItemWrapper}
+							pageUrl={`/shortcut/${uuid}`}
+							icon={
+								<Image
+									className={ hoverStyle }
+									src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
+									width={60}
+									height={60}
+									alt={shortcutImageSuffix}
+								/>
+							}
+							text={title}
+						/>
+					</li>
+				)
+			})
 		)
 	}
 	

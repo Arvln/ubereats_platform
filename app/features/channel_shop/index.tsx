@@ -50,7 +50,8 @@ const STORE_IMAGE_SERVER_HOST = process.env.STORE_IMAGE_SERVER_HOST;
 
 function ChannelShop({
 	data: pages,
-	pageSize
+	pageSize,
+	pageOffset
 }: Prop) {
 	function _renderDetailContent(
 		cost: number,
@@ -189,7 +190,8 @@ function ChannelShop({
 		return (
 			pages.map((shops, index) => (
 				<div
-					className={ pageWrapper }
+					className={pageWrapper}
+					style={{ transform: `translateX(${pageOffset}%)` }}
 					key={index}
 				>
 					{ _renderShop(shops as TChannelShop[]) }

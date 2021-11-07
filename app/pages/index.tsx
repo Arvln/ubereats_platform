@@ -32,7 +32,7 @@ const Home: NextPage<Prop> = ({
 	shortcut,
 	carousel,
 	channel
-}) => {
+}) => {	
 	return (
 		<main className={ wrapper }>
 			<Shortcut data={ shortcut } />

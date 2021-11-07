@@ -2,7 +2,8 @@
   @apply
     w-9
     h-9
-    flex-shrink-0;
+    flex-shrink-0
+    cursor-pointer;
 
   .buttonWrapper {
     @apply

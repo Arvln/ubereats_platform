@@ -11,7 +11,10 @@ import {
 
 const CATEGORY_ICONS_SERVER_HOST = process.env.CATEGORY_ICONS_SERVER_HOST;
 
-function ChannelCategory({ data: pages }: Prop) {
+function ChannelCategory({
+	data: pages,
+	pageOffset
+}: Prop) {
 	function _renderCategory(categoies: TChannelCategory[]) {
 		return (
 			categoies.map(({
@@ -20,7 +23,7 @@ function ChannelCategory({ data: pages }: Prop) {
 				uuid
 			}) => (
 				<div
-					className={ categoryWrapper }
+					className={categoryWrapper}
 					key={uuid}
 				>
 					<CategoryItem
@@ -45,7 +48,8 @@ function ChannelCategory({ data: pages }: Prop) {
 		return (
 			pages.map((categoies, index) => (
 				<div
-					className={ pageWrapper }
+					className={pageWrapper}
+					style={{ transform: `translateX(${pageOffset}%)` }}
 					key={index}
 				>
 					{ _renderCategory(categoies as TChannelCategory[]) }

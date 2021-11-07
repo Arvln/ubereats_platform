@@ -11,11 +11,11 @@ const {
 	CHANNELCATEGORY
 } = ContentType;
 
-function getOffset(
+export function getOffset(
 	currentPage: number,
-	pageSize: number
+	size: number
 ) {
-  return (currentPage - 1) * pageSize;
+  return (currentPage - 1) * size;
 }
 
 export function getPageDataList(
@@ -59,4 +59,11 @@ export function getRegularPageSize(data: TChannelItem[]) {
 	if (type === CHANNELCATEGORY) return CATEGORY_PAGE_SIZE;
 
 	return REGULAR_DEFAULT_PAGE_SIZE;
+}
+
+export function getTotalPage(
+	data: TChannelItem[],
+	pageSize: number
+) {
+	return Math.ceil(data.length / pageSize);
 }

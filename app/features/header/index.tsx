@@ -57,27 +57,27 @@ const loginButton: TAppendClass = {
 
 function Header() {
 	const [isDeliveried, setIsDeliveried] = useState<boolean>(true);
+	const [searchbarShadowStyle, setSearchbarShadowStyle] = useState<string>('');
 	const deliveryButton = isDeliveried ? selectedButton : unSelectedButton;
 	const takeOutButton = isDeliveried ? unSelectedButton : selectedButton;
+	const searchbarWrapperStyle = `${searchbarWrapper} ${searchbarShadowStyle}`;
 
-	const _handleElementFocus = () => {
-		const element = document.getElementsByClassName(searchbarWrapper)[0];
-		element.classList.add(searchbarShadow);
+	function _handleSearchbarInputFocus () {
+		setSearchbarShadowStyle(searchbarShadow);
 	}
 
-	const _handleElementBlur = () => {
-		const element = document.getElementsByClassName(searchbarWrapper)[0];
-		element.classList.remove(searchbarShadow);
+	function _handleSearchbarInputBlur () {
+		setSearchbarShadowStyle('');
 	}
 
 	return (
 		<header className={ wrapper }>
 			<div className={ imageWrapper }>
 				<Image
-					src="/images/dropdown.svg"
+					src="/images/sidebar.svg"
 					width={20}
 					height={20}
-					alt="Dropdown"
+					alt="Sidebar"
 				/>
 			</div>
 			<div className={ space_32 } />
@@ -126,7 +126,7 @@ function Header() {
 				/>
 			</div>
 			<div className={ space_64 } />
-			<div className={ searchbarWrapper }>
+			<div className={ searchbarWrapperStyle }>
 				<label htmlFor="search-input">想吃點什麼</label>
 				<div className={ searchbar }>
 					<Image
@@ -139,8 +139,8 @@ function Header() {
 					<input
 						type="text"
 						placeholder="想吃點什麼?"
-						onFocus={() => _handleElementFocus()}
-						onBlur={() => _handleElementBlur()}
+						onFocus={() => _handleSearchbarInputFocus()}
+						onBlur={() => _handleSearchbarInputBlur()}
 					/>
 				</div>
 			</div>

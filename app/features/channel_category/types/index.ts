@@ -5,6 +5,7 @@ import {
 
 export type Prop = {
 	data: TChannelItem[][];
+	pageOffset: number;
 };
 
 export type {
