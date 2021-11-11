@@ -61,7 +61,7 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
       py-2
       cursor-pointer
       bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}]
-      hover:bg-[#{$THEME_FEATURES_HEADER_HOVER_COLOR}];
+      hover:bg-BUTTON_HOVER_COLOR;
 
     .locationButtonContent {
       @apply
@@ -145,7 +145,7 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
     @apply
       h-full
       p-3
-      hover:bg-[#{$THEME_FEATURES_HEADER_HOVER_COLOR}];
+      hover:bg-BUTTON_HOVER_COLOR;
 
     .loginButtonContent {
       @apply 

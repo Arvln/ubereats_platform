@@ -1,5 +1,6 @@
 import { TAppendClass } from 'components/button/types';
 import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'components/button';
 
@@ -72,7 +73,7 @@ function Header() {
 
 	return (
 		<header className={ wrapper }>
-			<div className={ imageWrapper }>
+			<div className={imageWrapper}>
 				<Image
 					src="/images/sidebar.svg"
 					width={20}
@@ -82,12 +83,18 @@ function Header() {
 			</div>
 			<div className={ space_32 } />
 			<div className={ imageWrapper }>
-				<Image
-					src="/images/header_logo.svg"
-					width={146}
-					height={24}
-					alt="Logo"
-				/>
+				<Link
+					href="/"
+				>
+					<a>
+						<Image
+							src="/images/header_logo.svg"
+							width={146}
+							height={24}
+							alt="Logo"
+						/>
+					</a>
+				</Link>
 			</div>
 			<div className={ space_40 } />
 			<div className={ deliveryOptions }>

@@ -1,11 +1,325 @@
 import {
-	wrapper
- } from 'styles/features/RestrictSearch.module.scss';
+	TConditionsState,
+	ConditionsType,
+	ClassificationType,
+	ClassificationsType,
+	PriceLevelType,
+	DeliveryCostLimitType,
+	DeliveryRestrictionType,
+	DeliveryRestrictionsType
+} from './types';
+import { TAppendClass } from 'components/button/types';
+import { useState, useRef } from 'react';
+import Image from 'next/image';
+import Button from 'components/button';
+
+import {
+	wrapper,
+	content,
+	title,
+	conditionWrapper,
+	conditionTitle,
+	optionTitle,
+	buttonWrapper,
+	conditionContent,
+	hidden,
+	classificationContent,
+	optionContentLabel,
+	selectedLabel,
+	priceContent,
+	rangeButtonWrapper,
+	rangeButtonContentWrapper,
+	deliveryCostContent,
+	deliveryCostOptions,
+	deliveryCostOption,
+	divider,
+	slider,
+	dietaryContent,
+	dietaryButtonWrapper,
+	dietaryButtonContentWrapper,
+	space_16,
+	rotate_180
+} from 'styles/features/RestrictSearch.module.scss';
+
+const {
+	CLASSIFICATION,
+	PRICE_RANGE,
+	DELIVERY_COST_LIMITATION,
+	DIETARY_RESTRICTION
+} = ConditionsType;
+const {
+	RECOMMEND,
+	POPULAR,
+	SCORE,
+	DELIVERY_TIME
+} = ClassificationType;
+const {
+	EXTREMELY_LOW,
+	LOW,
+	MIDDLE,
+	HIGH
+} = PriceLevelType;
+const {
+	NT$25,
+	NT$40,
+	NT$60,
+	NT$60_PLUS
+} = DeliveryCostLimitType;
+const {
+	VEGETABLE,
+	VEGAN,
+	GLUTEN_FREE,
+	NO_ALLERGY
+} = DeliveryRestrictionType;
 
 function RestrictSearch() {
+	const [conditionsState, setConditionsState] = useState<TConditionsState>({});
+	const [classificationOption, setClassificationOption] = useState<number>(RECOMMEND);
+	const [deliveryCostInputValue, setDeliveryCostInputValue] = useState<number>(NT$60_PLUS);
+	const deliveryCostInput = useRef<HTMLInputElement | null>(null);
+	
+	function _handleButton(title: string) {
+		const conditionState = conditionsState[title];
+
+		if (!conditionState) {
+			setConditionsState({
+				...conditionsState,
+				[title]: {
+					rotate: '',
+					conditionContentWrapper: hidden
+				}
+			})
+			return;
+		}
+
+		const {
+			rotate,
+			conditionContentWrapper
+		} = conditionState;
+
+		setConditionsState({
+			...conditionsState,
+			[title]: {
+				rotate: rotate === '' ? rotate_180 : '',
+				conditionContentWrapper:
+					conditionContentWrapper === hidden ? conditionContent : hidden
+			}
+		});
+	}
+
+	function _renderClassificationContent() {
+		const classifications: number[] = [RECOMMEND, POPULAR, SCORE, DELIVERY_TIME];
+
+		return (
+			classifications.map(classification => {
+				const isSelected: boolean = classification === classificationOption;
+				const labelStyle =
+					isSelected ? `${optionContentLabel} ${selectedLabel}` : optionContentLabel;
+				const key: string = ClassificationType[classification];
+				const title: string = (ClassificationsType as any)[key];
+
+				return (
+					<div
+						className={classificationContent}
+						key={key}
+					>
+						<input
+							type="radio"
+							id={key}
+							name={key}
+							value={title}
+							defaultChecked={isSelected}
+							onClick={() => setClassificationOption(classification)}
+						/>
+						<label
+							className={ labelStyle }
+							htmlFor={key}
+						>
+							<div className={space_16}></div>
+							<span>{title}</span>
+						</label>
+					</div>
+				)
+			})
+		)
+	}
+
+	function _renderPriceRange() {
+		const priceRanges: string[] = [EXTREMELY_LOW, LOW, MIDDLE, HIGH];
+		const priceRangeButton: TAppendClass = {
+			appendWrapper: rangeButtonWrapper,
+			appendContent: rangeButtonContentWrapper
+		};
+
+		return (
+			<div className={ priceContent }>
+				{
+					priceRanges.map(priceRange => (
+						<Button
+							key={priceRange}
+							appendClass={ priceRangeButton }
+							text={priceRange}
+						/>
+					))
+				}
+			</div>
+		)
+	}
+
+	function _handleDeliveryCostInput(element: HTMLInputElement | null) {
+		if (!element) return;
+		setDeliveryCostInputValue(parseInt(element.value));
+	}
+
+	function _renderDeliveryCostLimitation() {
+		const firstDivider: string = `${deliveryCostOption} ${divider}`;
+		const secondDivider: string = `${deliveryCostOption} ${deliveryCostInputValue !== 2 ? divider : ''}`;
+
+		return (
+			<div className={ deliveryCostContent }>
+				<div className={ deliveryCostOptions }>
+					<div
+						className={ deliveryCostOption }
+						onClick={() => setDeliveryCostInputValue(NT$25)}
+					>
+						NT$25
+					</div>
+					<div
+						className={ firstDivider }
+						onClick={() => setDeliveryCostInputValue(NT$40)}
+					>
+						NT$40
+					</div>
+					<div
+						className={ secondDivider }
+						onClick={() => setDeliveryCostInputValue(NT$60)}
+					>
+						NT$60
+					</div>
+					<div
+						className={ deliveryCostOption }
+						onClick={() => setDeliveryCostInputValue(NT$60_PLUS)}
+					>
+						NT$60+
+					</div>
+				</div>
+				<input
+					ref={deliveryCostInput}
+					type="range"
+					className={ slider }
+					max="3"
+					value={deliveryCostInputValue}
+					onInput={() => _handleDeliveryCostInput(deliveryCostInput.current)}
+				/>
+			</div>
+		)
+	}
+
+	function _renderDietaryRestriction() {
+		const deliveryRestrictions: number[] = [VEGETABLE, VEGAN, GLUTEN_FREE, NO_ALLERGY];
+		const deliveryRestrictionButton: TAppendClass = {
+			appendWrapper: dietaryButtonWrapper,
+			appendContent: dietaryButtonContentWrapper
+		};
+
+		return (
+			<div className={ dietaryContent }>
+				{
+					deliveryRestrictions.map(deliveryRestriction => {
+						const key: string = DeliveryRestrictionType[deliveryRestriction];
+						const title: string = (DeliveryRestrictionsType as any)[key];
+
+						return (
+							<Button
+								key={key}
+								appendClass={deliveryRestrictionButton}
+								icon={
+									<Image
+										src={`/images/${key}.svg`}
+										width="20"
+										height="20"
+										alt={key}
+									/>
+								}
+								text={title}
+							/>
+						)
+					})
+				}
+			</div>
+			
+		)
+	}
+
+	function _renderCondition(
+		condition: string,
+		content: JSX.Element | JSX.Element[]
+	) {
+		const initialConditionsState = {
+			rotate: rotate_180,
+			conditionContentWrapper: conditionContent
+		};
+		const {
+			rotate,
+			conditionContentWrapper
+		} = conditionsState[condition] ?? initialConditionsState;
+		const button = `${buttonWrapper} ${rotate}`;
+
+		return (
+			<div className={ conditionWrapper }>
+				<div
+					className={ conditionTitle }
+				>
+					<div className={ optionTitle }>{condition}</div>
+					<div
+						className={ button }
+						onClick={() => _handleButton(condition)}
+					>
+						<Image
+							src="/images/dropdown.svg"
+							layout="fill"
+							alt="Dropdown"
+						/>
+					</div>
+				</div>
+				<div className={ conditionContentWrapper }>
+					{content}
+				</div>
+			</div>
+		)
+	}
+
 	return (
 		<aside className={ wrapper }>
-			<div style={{ backgroundColor: 'pink', paddingBottom: '100%' }} />
+			<div className={ content }>
+				<div className={ title }>
+					<h1>所有餐廳門市</h1>
+				</div>
+				{
+					_renderCondition(
+						CLASSIFICATION,
+						_renderClassificationContent()
+					)
+				}
+				{
+					_renderCondition(
+						PRICE_RANGE,
+						_renderPriceRange()
+					)
+				}
+				{
+					_renderCondition(
+						DELIVERY_COST_LIMITATION,
+						_renderDeliveryCostLimitation()
+					)
+				}
+				{
+					_renderCondition(
+						DIETARY_RESTRICTION,
+						_renderDietaryRestriction()
+					)
+				}
+			</div>
 		</aside>
 	)
 }

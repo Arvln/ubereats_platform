@@ -44,7 +44,7 @@ function Channel({ data }: Prop) {
 	function _handlePreviousButton(selectedId: string) {
 		const page = pagesState[selectedId];
 
-		if (!page || page.currentPage - 1 <= 1) {
+		if (!page || page.currentPage - 1 <= initialPage) {
 			setPagesState({
 				...pagesState,
 				[selectedId]: initialPageState

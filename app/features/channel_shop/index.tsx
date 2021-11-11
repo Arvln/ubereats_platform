@@ -25,6 +25,7 @@ import {
 	title,
 	scoreButtonWrapper,
 	scoreText,
+	hidden,
 	detailMessage,
 	detailMessageImage,
 	fare,
@@ -37,16 +38,8 @@ import {
 
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 const UTILS_ICONS_SERVER_HOST = process.env.UTILS_ICONS_SERVER_HOST;
-const favorButton: TAppendClass = {
-	appendWrapper: favorButtonWrapper,
-	appendContent: ''
-}
-const scoreButton: TAppendClass = {
-	appendWrapper: scoreButtonWrapper,
-	appendContent: scoreText
-}
-
 const STORE_IMAGE_SERVER_HOST = process.env.STORE_IMAGE_SERVER_HOST;
+const withoutCommentScore: string = '0.0';
 
 function ChannelShop({
 	data: pages,
@@ -89,8 +82,14 @@ function ChannelShop({
 				</>
 			)
 	}
+
 	function _renderScoreButton(score: number) {
 		const isCarefullySelected: boolean = score === 100;
+		const isComment: boolean = getScore(score) !== withoutCommentScore;
+		const scoreButton: TAppendClass = {
+			appendWrapper: isComment ? scoreButtonWrapper : hidden,
+			appendContent: scoreText
+		}
 
 		if (isCarefullySelected)
 			return (
@@ -122,9 +121,12 @@ function ChannelShop({
 				imageSuffix,
 				uuid
 			}) => {
-				const hideEmptyElement: string =
-					discountInfo === '' ? hideEmpty : '';
 				const pageSizeWrapper = getPageSizeWrapper(pageSize);
+				const hideEmptyElement: string = discountInfo === '' ? hideEmpty : '';
+				const favorButton: TAppendClass = {
+					appendWrapper: favorButtonWrapper,
+					appendContent: ''
+				};
 
 				return (
 					<li

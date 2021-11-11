@@ -1,5 +1,5 @@
 export const shortcutQuery: string = `
-	shortcut{
+	shortcut {
 		title
 		shortcutImageSuffix
 		isCuisines
