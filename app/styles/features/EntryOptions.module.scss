@@ -1,0 +1,74 @@
+@import '../utils/index.scss';
+
+$width: 300px;
+$loginButtonHeight: 56px;
+
+.wrapper {
+  @apply
+    w-[#{$width}]
+    h-screen
+    p-6
+    bg-white
+    flex
+    flex-col
+    justify-between;
+
+  .login {
+    @apply
+      px-4
+      py-3
+      bg-black
+      flex
+      justify-center
+      items-center
+      text-white
+      text-lg
+      min-h-[#{$loginButtonHeight}];
+  }
+
+  .register {
+    @apply py-6;
+
+    > li {
+      @apply
+        pb-4
+        text-sm
+        cursor-pointer;
+    }
+  }
+
+  .download {
+    @apply
+      flex
+      items-center;
+
+    .imageWrapper {
+      @apply
+        w-14
+        h-14
+        relative
+        flex-shrink-0;
+    }
+  }
+
+  .source {
+    @apply
+      mt-4
+      mb-8
+      flex;
+
+    .buttonWrapper {
+      @apply
+        p-3
+        flex
+        hover:bg-BUTTON_HOVER_COLOR;
+
+      .buttonContent {
+        @apply
+          ml-2
+          text-sm
+          leading-4;
+      }
+    }
+  }
+}

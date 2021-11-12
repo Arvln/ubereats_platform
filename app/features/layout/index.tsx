@@ -1,9 +1,37 @@
-import { Prop } from './types'
+import { Prop } from './types';
+import { useState } from 'react';
 import Head from 'next/head';
-import { Header } from 'features';
-import { Footer } from 'features';
+import EntryOptions from 'features/entry_options';
+import Header from 'features/header';
+import Footer from 'features/footer';
+
+import {
+	wrapper,
+	showMask,
+	hideMask,
+	showMaskContent,
+	hideMaskContent,
+	hideContent,
+	showContent
+} from 'styles/features/Layout.module.scss';
 
 function Layout({ children }: Prop) {
+	const [isEliminateMask, setIsEliminateMask] = useState<boolean>(true);
+	const maskWrapper = isEliminateMask ? hideMask : showMask;
+	const maskContent = isEliminateMask ? hideMaskContent : showMaskContent;
+
+	function _handleMask() {
+		console.log(isEliminateMask);
+		
+		const body = document.body.classList;
+		const newContent: string = isEliminateMask ? hideContent : showContent;
+		const oldContent: string = isEliminateMask ? showContent : hideContent;
+
+		setIsEliminateMask(!isEliminateMask);
+		body.add(newContent);
+		body.remove(oldContent);
+	}
+
 	return (
 		<>
 			<Head>
@@ -14,8 +42,18 @@ function Layout({ children }: Prop) {
 				<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 				<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 			</Head>
-			<Header />
-			{ children }
+			<div
+				className={ wrapper }
+				onClick={() => _handleMask()}
+			>
+				<div className={ maskWrapper }>
+					<div className={ maskContent }>
+						<EntryOptions />
+					</div>
+				</div>
+			</div>
+			<Header handleSideBar={_handleMask} />
+				{ children }
 			<Footer />
 		</>
 	)

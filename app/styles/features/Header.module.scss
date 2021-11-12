@@ -9,11 +9,14 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
     px-10
     flex
     items-center
-    h-24;
+    h-24
+    overflow-x-hidden;
 }
 
 .imageWrapper {
-  @apply flex-shrink-0;
+  @apply
+    flex-shrink-0
+    cursor-pointer;
 }
 
 .deliveryOptions {

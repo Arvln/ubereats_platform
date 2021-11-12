@@ -1,3 +1,4 @@
+import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -56,7 +57,7 @@ const loginButton: TAppendClass = {
 	appendContent: loginButtonContent
 }
 
-function Header() {
+function Header({ handleSideBar }: Prop) {
 	const [isDeliveried, setIsDeliveried] = useState<boolean>(true);
 	const [searchbarShadowStyle, setSearchbarShadowStyle] = useState<string>('');
 	const deliveryButton = isDeliveried ? selectedButton : unSelectedButton;
@@ -73,7 +74,10 @@ function Header() {
 
 	return (
 		<header className={ wrapper }>
-			<div className={imageWrapper}>
+			<div
+				className={ imageWrapper }
+				onClick={() => handleSideBar()}
+			>
 				<Image
 					src="/images/sidebar.svg"
 					width={20}

@@ -2,6 +2,7 @@ import { Prop, TChannelItem, TPagesState } from './types';
 import { useState } from 'react';
 import Image from 'next/image';
 import Arrow from 'components/arrow';
+import ChannelShop from 'features/channel_shop';
 import ChannelCategory from 'features/channel_category';
 import {
 	getOffset,
@@ -28,7 +29,6 @@ import {
 	rotate_180,
 	disableButton
 } from 'styles/features/Channel.module.scss';
-import ChannelShop from 'features/channel_shop';
 
 const initialPage: number = 1;
 const initialPageState = {
