@@ -5,7 +5,9 @@ import EntryOptions from 'features/entry_options';
 import Header from 'features/header';
 import Footer from 'features/footer';
 
-import {
+import classes from 'styles/features/Layout.module.scss';
+
+const {
 	wrapper,
 	showMask,
 	hideMask,
@@ -13,14 +15,14 @@ import {
 	hideMaskContent,
 	hideContent,
 	showContent
-} from 'styles/features/Layout.module.scss';
+} = classes;
 
 function Layout({ children }: Prop) {
 	const [isEliminateMask, setIsEliminateMask] = useState<boolean>(true);
 	const maskWrapper = isEliminateMask ? hideMask : showMask;
 	const maskContent = isEliminateMask ? hideMaskContent : showMaskContent;
 
-	function _handleMask() {
+	function _handleEntryOptions() {
 		console.log(isEliminateMask);
 		
 		const body = document.body.classList;
@@ -44,7 +46,7 @@ function Layout({ children }: Prop) {
 			</Head>
 			<div
 				className={ wrapper }
-				onClick={() => _handleMask()}
+				onClick={() => _handleEntryOptions()}
 			>
 				<div className={ maskWrapper }>
 					<div className={ maskContent }>
@@ -52,7 +54,7 @@ function Layout({ children }: Prop) {
 					</div>
 				</div>
 			</div>
-			<Header handleSideBar={_handleMask} />
+			<Header handleSideBar={_handleEntryOptions} />
 				{ children }
 			<Footer />
 		</>

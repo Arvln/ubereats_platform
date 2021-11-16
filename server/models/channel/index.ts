@@ -2,7 +2,7 @@ import {
 	TParent,
 	TChannelShop,
 	TChannelCategory
-} from '../../../types/channel'
+} from 'types/channel'
 import { query } from '../../db/query';
 
 const CATEGORY_LIMIT: number = 12;

@@ -13,7 +13,9 @@ import { useState, useRef } from 'react';
 import Image from 'next/image';
 import Button from 'components/button';
 
-import {
+import classes from 'styles/features/RestrictSearch.module.scss';
+
+const {
 	wrapper,
 	content,
 	title,
@@ -39,8 +41,7 @@ import {
 	dietaryButtonContentWrapper,
 	space_16,
 	rotate_180
-} from 'styles/features/RestrictSearch.module.scss';
-
+} = classes;
 const {
 	CLASSIFICATION,
 	PRICE_RANGE,
@@ -173,7 +174,7 @@ function RestrictSearch() {
 
 	function _renderDeliveryCostLimitation() {
 		const firstDivider: string = `${deliveryCostOption} ${divider}`;
-		const secondDivider: string = `${deliveryCostOption} ${deliveryCostInputValue !== 2 ? divider : ''}`;
+		const secondDivider: string = `${deliveryCostOption} ${deliveryCostInputValue !== NT$60 ? divider : ''}`;
 
 		return (
 			<div className={ deliveryCostContent }>

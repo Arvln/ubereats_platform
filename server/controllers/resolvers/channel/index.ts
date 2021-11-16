@@ -1,9 +1,9 @@
 import {
 	TParent,
 	TChannelItem
-} from '../../../../types/channel';
+} from 'types/channel';
 import _ from 'lodash';
-import { getData } from '../../../models/channel';
+import { getData } from 'models/channel';
 
 const SEARCH_BY_CATEGORY_CANNEL_ID: number = 5;
 

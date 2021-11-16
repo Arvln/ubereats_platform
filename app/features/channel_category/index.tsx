@@ -2,13 +2,14 @@ import { Prop, TChannelCategory } from './types';
 import Image from 'next/image';
 import CategoryItem from 'components/category_item';
 
-import {
+import classes from 'styles/features/ChannelCategory.module.scss';
+
+const {
 	wrapper,
 	pageWrapper,
 	categoryWrapper,
 	category
-} from 'styles/features/ChannelCategory.module.scss';
-
+} = classes;
 const CATEGORY_ICONS_SERVER_HOST = process.env.CATEGORY_ICONS_SERVER_HOST;
 
 function ChannelCategory({

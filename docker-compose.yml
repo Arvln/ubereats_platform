@@ -1,0 +1,87 @@
+version: "3"
+
+services:
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ubereats_platform_local
+    volumes:
+      - ./docker/mysql/config/my.cnf:/etc/mysql/my.cnf
+      - ./docker/mysql/data:/docker-entrypoint-initdb.d/
+    expose:
+      - "3306"
+    restart: always
+    networks:
+      - mysql_net
+  database_tool:
+    image: phpmyadmin
+    environment:
+      PMA_HOST: database
+    ports:
+      - "8081:80"
+    depends_on:
+      - database
+    restart: always
+    networks:
+      - mysql_net
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    environment:
+      MYSQL_HOST: database
+    volumes:
+      - ./server:/usr/src/app
+    depends_on:
+      - database
+    restart: always
+    networks:
+      - mysql_net
+      - server_net
+  web:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    environment:
+      SERVER_HOST: server
+    volumes:
+      - ./app:/usr/src/app
+    depends_on:
+      - server
+    restart: always
+    networks:
+      - server_net
+      - web_net
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/log:/var/log/nginx
+    depends_on:
+      - web
+    restart: always
+    networks:
+      - server_net
+      - web_net
+
+networks:
+  mysql_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
+  server_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+          gateway: 172.19.0.1
+  web_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1

@@ -3,12 +3,12 @@ import {
 	ShortcutType,
 	CarouselType,
 	ChannelType
-} from '../../../models/type_defs';
+} from 'models/type_defs';
 import {
 	getShortcut,
 	getCarousel,
 	getChannel
-} from '../../resolvers';
+} from 'controllers/resolvers';
 
 export const homeFields = {
 	shortcut: {

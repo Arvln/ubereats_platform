@@ -10,10 +10,12 @@ import {
 } from 'features';
 import { query } from 'graphql/queries/pages';
 
-import {
+import classes from 'styles/pages/Home.module.scss';
+
+const {
 	wrapper,
 	storesWrapper
-} from 'styles/pages/Home.module.scss';
+} = classes;
 
 export const getStaticProps: GetStaticProps<Prop> = async () => {
 	const client = getApolloClient();
@@ -32,7 +34,7 @@ const Home: NextPage<Prop> = ({
 	shortcut,
 	carousel,
 	channel
-}) => {	
+}) => {
 	return (
 		<main className={ wrapper }>
 			<Shortcut data={ shortcut } />

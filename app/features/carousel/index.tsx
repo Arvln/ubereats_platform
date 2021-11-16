@@ -4,7 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Arrow from 'components/arrow';
 
-import {
+import classes from 'styles/features/Carousel.module.scss';
+
+const {
 	wrapper,
 	content,
 	advertiseWrapper,
@@ -12,7 +14,7 @@ import {
 	itemWrapper,
 	space_4,
 	rightButtonWrapper
-} from 'styles/features/Carousel.module.scss';
+} = classes;
 
 const ADVERTISE_IMAGE_SERVER_HOST = process.env.ADVERTISE_IMAGE_SERVER_HOST;
 const originOffset: number = -66.6666;

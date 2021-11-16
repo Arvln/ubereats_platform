@@ -13,7 +13,9 @@ import {
 	getTotalPage
 } from './utils';
 
-import {
+import classes from 'styles/features/Channel.module.scss';
+
+const {
 	wrapper,
 	emphasisWrapper,
 	emphasisTitle,
@@ -28,8 +30,7 @@ import {
 	space_40,
 	rotate_180,
 	disableButton
-} from 'styles/features/Channel.module.scss';
-
+} = classes;
 const initialPage: number = 1;
 const initialPageState = {
 	currentPage: initialPage,

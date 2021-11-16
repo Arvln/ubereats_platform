@@ -5,7 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'components/button';
 
-import {
+import classes from 'styles/features/Header.module.scss';
+
+const {
 	wrapper,
 	imageWrapper,
 	deliveryOptions,
@@ -30,28 +32,23 @@ import {
 	space_32,
 	space_40,
 	space_64
-} from 'styles/features/Header.module.scss';
-
+} = classes;
 const unSelectedButton: TAppendClass = {
 	appendWrapper: deliveryButtonWrapper,
 	appendContent: deliveryButtonContent
 }
-
 const selectedButton: TAppendClass = {
 	...unSelectedButton,
 	appendWrapper: `${deliveryButtonWrapper} ${deliveryButtonSelected}`
 }
-
 const locationButton: TAppendClass = {
 	appendWrapper: locationButtonWrapper,
 	appendContent: locationButtonContent
 }
-
 const cartButton: TAppendClass = {
 	appendWrapper: cartButtonWrapper,
 	appendContent: cartButtonContent
 }
-
 const loginButton: TAppendClass = {
 	appendWrapper: loginButtonWrapper,
 	appendContent: loginButtonContent

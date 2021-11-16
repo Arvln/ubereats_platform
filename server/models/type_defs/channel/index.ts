@@ -6,7 +6,7 @@ import {
 	GraphQLString,
 	GraphQLList
 } from 'graphql';
-import { getChannelItems } from '../../../controllers/resolvers';
+import { getChannelItems } from 'controllers/resolvers';
 
 export const ChannelType = new GraphQLObjectType({
   name: 'Channel',

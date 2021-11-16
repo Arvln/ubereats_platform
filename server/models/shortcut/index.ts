@@ -1,4 +1,4 @@
-import { TShortcut } from '../../../types/shortcut';
+import { TShortcut } from 'types/shortcut';
 import { query } from '../../db/query';
 
 const SHORTCUT_LENGTH: number = 14;

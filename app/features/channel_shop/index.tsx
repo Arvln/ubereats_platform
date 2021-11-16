@@ -10,7 +10,9 @@ import {
 	getPageSizeWrapper
 } from './utils';
 
-import {
+import classes from 'styles/features/ChannelShop.module.scss';
+
+const {
 	wrapper,
 	pageWrapper,
 	shopWrapper,
@@ -34,8 +36,7 @@ import {
 	detailImageWrapper,
 	space_12,
 	space_16
-} from 'styles/features/ChannelShop.module.scss';
-
+} = classes;
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 const UTILS_ICONS_SERVER_HOST = process.env.UTILS_ICONS_SERVER_HOST;
 const STORE_IMAGE_SERVER_HOST = process.env.STORE_IMAGE_SERVER_HOST;

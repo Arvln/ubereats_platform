@@ -1,5 +1,5 @@
 import mysql from 'mysql2/promise';
-import { productConfig } from '../../config/default.config';
+import { productConfig } from '../config/default.config';
 const {
 	db: dbConfig
 } = productConfig;

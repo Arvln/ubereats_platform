@@ -3,10 +3,12 @@ import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
 import Button from 'components/button';
 
-import {
+import classes from 'styles/components/Arrow.module.scss';
+
+const {
 	wrapper,
 	buttonWrapper
-} from 'styles/components/Arrow.module.scss';
+} = classes;
 
 function Arrow({ appendWrapper }: Prop) {
 	const button: TAppendClass = {

@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {
+import classes from 'styles/features/Footer.module.scss';
+
+const {
 	wrapper,
 	moreOptionsWrapper,
 	brand,
@@ -17,7 +19,7 @@ import {
 	space_16,
 	space_24,
 	space_40
-} from 'styles/features/Footer.module.scss';
+} = classes;
 
 function Footer() {
 	return (

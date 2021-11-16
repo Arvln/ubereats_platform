@@ -1,8 +1,9 @@
-import {
+import classes from 'styles/features/ChannelShop.module.scss';
+
+const {
 	shopWidth_3,
 	shopWidth_4
-} from 'styles/features/ChannelShop.module.scss';
-
+} = classes;
 const minDistance: number = 0;
 const maxDistance: number = 100;
 const defaultShopsWidth: number = 4;

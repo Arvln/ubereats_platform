@@ -3,7 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'components/button';
 
-import {
+import classes from 'styles/features/EntryOptions.module.scss';
+
+const {
 	wrapper,
 	login,
 	register,
@@ -14,8 +16,7 @@ import {
 	buttonContent,
 	space_8,
 	space_16
-} from 'styles/features/EntryOptions.module.scss';
-
+} = classes;
 const sourceButton: TAppendClass = {
 	appendWrapper: buttonWrapper,
 	appendContent: buttonContent

@@ -1,9 +1,11 @@
 import { Prop } from './types';
 
-import {
+import classes from 'styles/components/Button.module.scss';
+
+const {
 	wrapper,
 	content,
-} from 'styles/components/Button.module.scss';
+} = classes;
 
 function Button({
 	appendClass,

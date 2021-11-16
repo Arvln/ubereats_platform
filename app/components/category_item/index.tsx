@@ -1,9 +1,9 @@
 import { Prop } from './types';
 import Link from 'next/link';
 
-import {
-	wrapper,
-} from 'styles/components/CategoryItem.module.scss';
+import classes from 'styles/components/CategoryItem.module.scss';
+
+const { wrapper } = classes;
 
 function CategoryItem({
 	appendClass,

@@ -3,12 +3,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import CategoryItem from 'components/category_item';
 
-import {
+import classes from 'styles/features/Shortcut.module.scss';
+
+const {
 	wrapper,
 	shortcutItemWrapper,
 	itemHoverStyle,
-} from 'styles/features/Shortcut.module.scss';
-
+} = classes;
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 
 function Shortcut({ data }: Prop) {

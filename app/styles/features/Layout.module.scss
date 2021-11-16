@@ -29,13 +29,13 @@ $hideMaskContentOffset: -300px;
 }
 
 .showMaskContent {
-  transform: translateX(#{$showMaskContentOffset});
+  transform: translateX($showMaskContentOffset);
 
   @extend .maskAnimation;
 }
 
 .hideMaskContent {
-  transform: translateX(#{$hideMaskContentOffset});
+  transform: translateX($hideMaskContentOffset);
 
   @extend .maskAnimation;
   @apply opacity-0;
