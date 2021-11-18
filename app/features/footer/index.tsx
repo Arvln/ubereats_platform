@@ -22,11 +22,13 @@ const {
 } = classes;
 
 function Footer() {
-	return (
-		<footer className={ wrapper }>
-			<div className={ moreOptionsWrapper }>
+	function _renderMoreOptions() {
+		const wrapper = moreOptionsWrapper;
+
+		return (
+			<div className={ wrapper }>
 				<div className={ brand }>
-					<div className={logoWrapper}>
+					<div className={ logoWrapper }>
 						<Image
 							src="/images/footer_logo.svg"
 							width={146}
@@ -34,7 +36,7 @@ function Footer() {
 							alt="Logo"
 						/>
 					</div>
-					<div className={download}>
+					<div className={ download }>
 						<Link href="https://apps.apple.com/us/app/uber-eats-food-delivery/id1058959277">
 							<a>
 								<Image
@@ -58,7 +60,7 @@ function Footer() {
 						</Link>
 					</div>
 				</div>
-				<div className={moreOptions}>
+				<div className={ moreOptions }>
 					<ul>
 						<li>
 							<Link href="https://help.uber.com/ubereats">取得協助</Link>
@@ -77,7 +79,7 @@ function Footer() {
 						</li>
 					</ul>
 				</div>
-				<div className={moreOptions}>
+				<div className={ moreOptions }>
 					<ul>
 						<li>
 							<Link href="https://www.ubereats.com/tw/near-me">我附近的美食外送</Link>
@@ -113,9 +115,15 @@ function Footer() {
 					</ul>
 				</div>
 			</div>
+		)
+	}
+
+	return (
+		<footer className={ wrapper }>
+			{ _renderMoreOptions() }
 			<hr />
 			<div className={ about }>
-				<div className={socialMedia}>
+				<div className={ socialMedia }>
 					<Link
 						href="https://www.facebook.com/ubereats"
 					>

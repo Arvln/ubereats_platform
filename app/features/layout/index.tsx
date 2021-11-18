@@ -23,8 +23,6 @@ function Layout({ children }: Prop) {
 	const maskContent = isEliminateMask ? hideMaskContent : showMaskContent;
 
 	function _handleEntryOptions() {
-		console.log(isEliminateMask);
-		
 		const body = document.body.classList;
 		const newContent: string = isEliminateMask ? hideContent : showContent;
 		const oldContent: string = isEliminateMask ? showContent : hideContent;
@@ -32,6 +30,21 @@ function Layout({ children }: Prop) {
 		setIsEliminateMask(!isEliminateMask);
 		body.add(newContent);
 		body.remove(oldContent);
+	}
+
+	function _renderMask() {
+		return (
+			<div
+				className={ wrapper }
+				onClick={() => _handleEntryOptions()}
+			>
+				<div className={ maskWrapper }>
+					<div className={ maskContent }>
+						<EntryOptions />
+					</div>
+				</div>
+			</div>
+		)
 	}
 
 	return (
@@ -44,16 +57,7 @@ function Layout({ children }: Prop) {
 				<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 				<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 			</Head>
-			<div
-				className={ wrapper }
-				onClick={() => _handleEntryOptions()}
-			>
-				<div className={ maskWrapper }>
-					<div className={ maskContent }>
-						<EntryOptions />
-					</div>
-				</div>
-			</div>
+			{ _renderMask() }
 			<Header handleSideBar={_handleEntryOptions} />
 				{ children }
 			<Footer />

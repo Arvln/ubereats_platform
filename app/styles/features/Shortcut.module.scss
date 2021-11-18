@@ -2,37 +2,40 @@ $itemMinWidth: 80px;
 $itemHorizontalPadding: 10px;
 
 .wrapper {
-  @apply
-    w-full
-    my-6
-    flex 
-    justify-center
-    overflow-x-hidden;
+  @apply overflow-x-hidden;
 
-  ul {
-    @apply flex;
+  nav {
+    @apply
+      w-min
+      my-6
+      flex 
+      justify-center;
 
-    li {
-      .shortcutItemWrapper {
-        @apply
-          min-w-[#{$itemMinWidth}]
-          px-[#{$itemHorizontalPadding}];
-      
-        a {
+    ul {
+      @apply flex;
+
+      li {
+        .shortcutItemWrapper {
           @apply
-          h-21
-          flex
-          flex-col
-          justify-between;
+            min-w-[#{$itemMinWidth}]
+            px-[#{$itemHorizontalPadding}];
+        
+          a {
+            @apply
+            h-21
+            flex
+            flex-col
+            justify-between;
+          }
+        
+          span {
+            @apply text-sm;
+          }
         }
-      
-        span {
-          @apply text-sm;
-        }
-      }
 
-      &:not(:last-child){
-        @apply mr-4;
+        &:not(:last-child){
+          @apply mr-4;
+        }
       }
     }
   }

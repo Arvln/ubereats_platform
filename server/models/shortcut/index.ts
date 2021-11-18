@@ -1,4 +1,4 @@
-import { TShortcut } from 'types/shortcut';
+import { TShortcut } from 'types/features';
 import { query } from '../../db/query';
 
 const SHORTCUT_LENGTH: number = 14;
@@ -8,7 +8,7 @@ export async function getData(){
 		`
 			SELECT
 				title,
-				shortcut_image_suffix AS shortcutImageSuffix,
+				image_suffix AS imageSuffix ,
 				is_cuisines AS isCuisines,
 				HEX(uuid) AS uuid
 			FROM

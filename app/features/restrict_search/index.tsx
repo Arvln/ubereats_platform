@@ -1,4 +1,5 @@
 import {
+	Prop,
 	TConditionsState,
 	ConditionsType,
 	ClassificationType,
@@ -73,7 +74,7 @@ const {
 	NO_ALLERGY
 } = DeliveryRestrictionType;
 
-function RestrictSearch() {
+function RestrictSearch({ isCuisines }: Prop) {
 	const [conditionsState, setConditionsState] = useState<TConditionsState>({});
 	const [classificationOption, setClassificationOption] = useState<number>(RECOMMEND);
 	const [deliveryCostInputValue, setDeliveryCostInputValue] = useState<number>(NT$60_PLUS);
@@ -216,7 +217,7 @@ function RestrictSearch() {
 		)
 	}
 
-	function _renderDietaryRestriction() {
+	function _renderDietaryRestriction(): JSX.Element {
 		const deliveryRestrictions: number[] = [VEGETABLE, VEGAN, GLUTEN_FREE, NO_ALLERGY];
 		const deliveryRestrictionButton: TAppendClass = {
 			appendWrapper: dietaryButtonWrapper,
@@ -256,6 +257,8 @@ function RestrictSearch() {
 		condition: string,
 		content: JSX.Element | JSX.Element[]
 	) {
+		if (condition === DIETARY_RESTRICTION && !isCuisines) return;
+
 		const initialConditionsState = {
 			rotate: rotate_180,
 			conditionContentWrapper: conditionContent

@@ -1,9 +1,9 @@
-import { shortcutQuery } from './shortcut';
-import { carouselQuery } from './carousel';
-import { channelQuery } from './channel';
+import { getShortcut } from './shortcut';
+import { getCarousel } from './carousel';
+import { getChannel } from './channel';
 
 export {
-	shortcutQuery,
-	carouselQuery,
-	channelQuery
+	getShortcut,
+	getCarousel,
+	getChannel
 }

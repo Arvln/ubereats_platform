@@ -2,7 +2,7 @@ import {
 	TParent,
 	TChannelShop,
 	TChannelCategory
-} from 'types/channel'
+} from 'types/features'
 import { query } from '../../db/query';
 
 const CATEGORY_LIMIT: number = 12;
@@ -43,12 +43,12 @@ export async function getData(){
 		`
 			SELECT
 				title,
-				category_name AS categoryName,
+				name,
 				HEX(uuid) AS uuid
 			FROM
 				Table_Shop_Category
 			ORDER BY
-				category_rank
+				rank
 			LIMIT
 				?;
 		`,

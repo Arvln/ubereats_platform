@@ -1,4 +1,4 @@
-import { TShortcut } from 'types/shortcut';
+import { TShortcut } from 'types/features';
 import { getData } from 'models/shortcut';
 
 export async function getShortcut(): Promise<TShortcut[]> {

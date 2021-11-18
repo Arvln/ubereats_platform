@@ -1,4 +1,4 @@
-import classes from 'styles/features/ChannelShop.module.scss';
+import classes from 'styles/components/Shop.module.scss';
 
 const {
 	shopWidth_3,
@@ -22,6 +22,8 @@ export function getPickupDistance(cost: number): string {
 	return (cost / 1000).toFixed(1);
 }
 
-export function getPageSizeWrapper(pageSize: number): string {
+export function getPageSizeWrapper(pageSize?: number): string | void {
+	if (!pageSize) return;
+
 	return pageSize === defaultShopsWidth ? shopWidth_4 : shopWidth_3;
 }

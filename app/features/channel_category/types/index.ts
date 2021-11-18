@@ -1,7 +1,7 @@
 import {
 	TChannelItem,
 	TChannelCategory
-} from 'types/channel';
+} from 'types/features';
 
 export type Prop = {
 	data: TChannelItem[][];

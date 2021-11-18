@@ -1,4 +1,4 @@
-import { TShortcut } from "types/shortcut";
+import { TShortcut } from "types/features";
 
 export type Prop = {
 	data: TShortcut[];

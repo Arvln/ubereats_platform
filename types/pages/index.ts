@@ -1,8 +1,8 @@
-import { TShortcut } from '../shortcut';
-import { TCarousel } from '../carousel';
+import { TShortcut } from '../features';
+import { TCarousel } from '../features';
 import {
 	TChannelData
-} from '../channel';
+} from '../features';
 
 export type Prop = {
 	shortcut: TShortcut[],

@@ -1,4 +1,4 @@
-import { TCarousel } from 'types/carousel';
+import { TCarousel } from 'types/features';
 import { getData } from 'models/carousel';
 
 export async function getCarousel(): Promise<TCarousel[]> {

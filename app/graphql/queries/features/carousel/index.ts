@@ -1,4 +1,4 @@
-export const carouselQuery: string = `
+export const getCarousel: string = `
 	carousel {
 		imageSuffix
 		uuid

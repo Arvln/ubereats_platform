@@ -27,7 +27,7 @@ function Shortcut({ data }: Prop) {
 		return (
 			data.map(({
 				title,
-				shortcutImageSuffix,
+				imageSuffix,
 				isCuisines,
 				uuid
 			}) => {
@@ -42,14 +42,14 @@ function Shortcut({ data }: Prop) {
 					>
 						<CategoryItem
 							appendClass={shortcutItemWrapper}
-							pageUrl={`/shortcut/${uuid}`}
+							pageUrl={`/${title}`}
 							icon={
 								<Image
 									className={ hoverStyle }
-									src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${shortcutImageSuffix}`}
+									src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${imageSuffix}`}
 									width={60}
 									height={60}
-									alt={shortcutImageSuffix}
+									alt={imageSuffix}
 								/>
 							}
 							text={title}
@@ -61,11 +61,13 @@ function Shortcut({ data }: Prop) {
 	}
 	
 	return (
-		<nav className={ wrapper }>
-			<ul>
-				{ _renderItems() }
-			</ul>
-		</nav>
+		<div className={ wrapper }>
+			<nav>
+				<ul>
+					{ _renderItems() }
+				</ul>
+			</nav>
+		</div>
 	)
 }
 

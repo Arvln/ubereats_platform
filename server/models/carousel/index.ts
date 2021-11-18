@@ -1,4 +1,4 @@
-import { TCarousel } from 'types/carousel';
+import { TCarousel } from 'types/features';
 import { query } from '../../db/query';
 
 const IS_SHOW: boolean = true;

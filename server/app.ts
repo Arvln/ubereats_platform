@@ -6,8 +6,8 @@ const app = express();
 const SERVER_PORT = process.env.SERVER_PORT;
 
 app.use('/', graphqlHTTP({
-  schema,
-  graphiql: true,
+	schema,
+	graphiql: true,
 }));
 
 app.listen(SERVER_PORT, () => {

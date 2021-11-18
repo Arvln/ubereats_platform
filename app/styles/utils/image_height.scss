@@ -1,0 +1,15 @@
+@mixin imageHeight($height) {
+  @apply pb-[#{$height}];
+}
+
+.imageHeight_30 {
+  @include imageHeight(30%);
+}
+
+.imageHeight_38 {
+  @include imageHeight(38%);
+}
+
+.imageHeight_57 {
+  @include imageHeight(57%);
+}

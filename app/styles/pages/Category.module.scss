@@ -1,0 +1,103 @@
+@import '../utils/index.scss';
+
+$titleBackground: rgb(246, 240, 234);
+$topBackgroundHeight: 152px;
+$bottomBackgroundHeight: 88px;
+$titleFontSize: 52px;
+$titleLineHeight: 64px;
+$contentZIndex: 1;
+$imageHeight: 149px;
+$imageMargin: 120px;
+
+
+.wrapper {
+  @apply
+    px-10
+    flex;
+
+  .shopWrapper {
+    @apply
+      w-3/4
+      mt-6
+      grid
+      grid-cols-3
+      gap-6;
+    
+    > li {
+      @apply
+        w-full
+        p-0;
+    }
+  }
+
+  .recommandShop {
+    @apply w-full;
+  }
+}
+
+.titleWrapper {
+  @apply
+    h-60
+    relative;
+
+  .background {
+    @apply
+      w-full
+      h-full
+      absolute;
+
+    .topBackground {
+      @apply
+        h-[#{$topBackgroundHeight}]
+        bg-[#{$titleBackground}];
+    }
+
+    .bottomBackground {
+      @apply
+        flex
+        h-[#{$bottomBackgroundHeight}];
+
+      .left {
+        @apply
+          w-3/4
+          bg-[#{$titleBackground}];
+      }
+
+      .right {
+        background-image: url('../../public/images/curve.svg');
+
+        @apply
+          w-1/4
+          bg-no-repeat
+          bg-contain;
+      }
+    }
+  }
+
+  .content {
+    @apply
+      h-full
+      px-10
+      flex
+      justify-between;
+
+    .text {
+      @apply
+        self-center
+      text-black
+        font-medium
+        text-[#{$titleFontSize}]
+        leading-[#{$titleLineHeight}]
+        z-[#{$contentZIndex}];
+    }
+
+    .imageWrapper {
+      @apply
+        self-center
+        relative
+        w-40
+        h-[#{$imageHeight}]
+        mx-[#{$imageMargin}];
+    }
+  }
+}

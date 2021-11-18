@@ -1,0 +1,149 @@
+@import '../utils/index.scss';
+
+$discountMessageBackgroundColor: rgb(5, 163, 87);
+$favorBackgroundColor: rgb(238, 238, 238);
+$storeTitleWidth: 200px;
+$detailImageWrapperPaddingTop: 2px;
+
+.wrapper {
+  @apply
+    px-3;
+
+  .storeTitle {
+    font-size: 0;
+  }
+
+  .imageWrapper {
+    @apply relative;
+
+    .image {
+      @apply object-cover;
+    }
+
+    .discountMessage {
+      @apply
+        w-full
+        py-3
+        absolute
+        flex
+        justify-between;
+
+      .buttonWrapper {
+        @apply
+          flex
+          flex-shrink-0;
+      }
+
+      .discountText {
+        @include textOmitted();
+
+        @apply
+          px-3
+          py-1
+          text-sm
+          text-white
+          tracking-widest
+          rounded-r-3xl
+          flex-shrink
+          bg-[#{$discountMessageBackgroundColor}];
+      }
+
+      .favorButtonWrapper {
+        @apply
+          h-5
+          flex-shrink-0
+          cursor-pointer
+          bg-transparent;
+      }
+
+      .hideEmpty {
+        @apply bg-transparent;
+      }
+    }
+  }
+
+  .baseMessage {
+    @apply
+      mt-3
+      flex
+      justify-between;
+
+    .title {
+      @include textOmitted();
+
+      @apply
+        w-[#{$storeTitleWidth}]
+        flex-shrink
+        text-lg;
+    }
+
+    .scoreButtonWrapper {
+      @apply
+        relative
+        flex-shrink-0
+        w-7
+        h-7;
+
+      .scoreText {
+        @apply
+          flex
+          justify-center
+          items-center
+          text-xs;
+      }
+    }
+
+    .hidden {
+      @apply hidden;
+    }
+  }
+
+  .detailMessage {
+    @apply
+      flex
+      items-center;
+
+    .detailImageWrapper {
+      @apply pt-[#{$detailImageWrapperPaddingTop}];
+
+      .detailMessageImage {
+        @apply
+          w-3.5
+          h-3.5
+          mx-px
+          relative;
+      }
+    }
+
+    > span,
+    .costTime > span
+    .distance > span {
+      @apply text-FONT_GREY;
+    }
+
+    .fare,
+    .costTime,
+    .distance {
+      @apply
+        mx-px;
+    }
+
+    span {
+      @include textOmitted();
+
+      @apply
+        text-sm
+        leading-5
+        tracking-wide
+        font-light;
+    }
+  }
+}
+
+.shopWidth_3 {
+  @apply w-1/3;
+}
+
+.shopWidth_4 {
+  @apply w-1/4;
+}

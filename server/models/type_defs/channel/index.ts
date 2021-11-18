@@ -1,3 +1,4 @@
+import { TChannelShop, TChannelItem } from 'types/features/channel'
 import {
 	GraphQLObjectType,
 	GraphQLUnionType,
@@ -36,7 +37,8 @@ export const ChannelType = new GraphQLObjectType({
 const ChannelItemType = new GraphQLUnionType({
 	name: 'ChannelItem',
 	types: () => [ChannelShopType, channelCategoryType],
-	resolveType: value => value.name ? ChannelShopType : channelCategoryType
+	resolveType: (value: TChannelItem) =>
+		(value as TChannelShop).channelId ? ChannelShopType : channelCategoryType
 });
 
 const ChannelShopType = new GraphQLObjectType({
@@ -75,7 +77,7 @@ const channelCategoryType = new GraphQLObjectType({
 		title: {
 			type: GraphQLString
 		},
-		categoryName: {
+		name: {
 			type: GraphQLString
 		},
 		uuid: {

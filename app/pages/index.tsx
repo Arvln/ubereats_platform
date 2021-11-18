@@ -1,4 +1,4 @@
-import { Prop } from '../../types/pages';
+import { Prop } from 'types/pages';
 import type { NextPage, GetStaticProps } from 'next';
 import { ApolloQueryResult } from '@apollo/client';
 import { getApolloClient } from 'graphql/apollo_client';
@@ -41,7 +41,7 @@ const Home: NextPage<Prop> = ({
 			<hr />
 			<Carousel data={ carousel } />
 			<section className={ storesWrapper }>
-				<RestrictSearch />
+				<RestrictSearch isCuisines />
 				<Channel data={ channel } />
 			</section>
 		</main>

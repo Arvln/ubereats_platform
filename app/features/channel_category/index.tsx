@@ -20,7 +20,7 @@ function ChannelCategory({
 		return (
 			categoies.map(({
 				title,
-				categoryName,
+				name,
 				uuid
 			}) => (
 				<div
@@ -29,13 +29,13 @@ function ChannelCategory({
 				>
 					<CategoryItem
 						appendClass={ category }
-						pageUrl={`/category/${categoryName}`}
+						pageUrl={`/category/${name}`}
 						icon={
 							<Image
-								src={`https://${CATEGORY_ICONS_SERVER_HOST}/new_search_home_eats_icon/${categoryName}_BrowseHome@3x.png`}
+								src={`https://${CATEGORY_ICONS_SERVER_HOST}/new_search_home_eats_icon/${name}_BrowseHome@3x.png`}
 								width={68}
 								height={80}
-								alt={categoryName}
+								alt={name}
 							/>
 						}
 						text={title}

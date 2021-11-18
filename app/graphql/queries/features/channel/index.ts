@@ -1,4 +1,4 @@
-export const channelQuery: string = `
+export const getChannel: string = `
 	channel {
 		title
 		subtitle
@@ -16,7 +16,7 @@ export const channelQuery: string = `
 			}
 			... on ChannelCategory {
 				title
-				categoryName
+				name
 				uuid
 			}
 		}

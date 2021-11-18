@@ -1,3 +1,5 @@
+import { TShop } from '../../shop';
+
 export type TChannel = {
 	title: string;
 	subtitle: string;
@@ -7,22 +9,12 @@ export type TChannel = {
 
 export type TParent = TChannel & { id: number; }
 
-export type TChannelShop = {
-	__typename: string;
-	name: string;
-	deliveryCost: number;
-	shortestDeliveryTime: number;
-	score: number;
-	discountInfo: string;
-	imageSuffix: string;
-	uuid: string;
-	channelId: number;
-}
+export type TChannelShop = TShop & { channelId: number; }
 
 export type TChannelCategory = {
 	__typename: string;
 	title: string;
-	categoryName: string;
+	name: string;
 	uuid: string;
 }
 

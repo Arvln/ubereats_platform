@@ -1,7 +1,4 @@
-import {
-	TParent,
-	TChannelItem
-} from 'types/channel';
+import { TParent, TChannelItem } from 'types/features';
 import _ from 'lodash';
 import { getData } from 'models/channel';
 

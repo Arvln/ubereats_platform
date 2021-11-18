@@ -1,4 +1,4 @@
-import { TCarousel } from 'types/carousel';
+import { TCarousel } from 'types/features';
 
 export type Prop = {
 	data: TCarousel[];

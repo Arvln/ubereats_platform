@@ -1,4 +1,4 @@
-import { TChannelItem } from "../../../types/channel";
+import { TChannelItem } from "types/features";
 import { ContentType } from './types';
 
 const EMPHASIS_SHOP_PAGE_SIZE: number = 3;

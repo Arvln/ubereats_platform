@@ -23,21 +23,8 @@ const sourceButton: TAppendClass = {
 }
 
 function EntryOptions() {
-	return (
-		<div
-			className={ wrapper }
-			onClick={event => event.stopPropagation()}
-		>
-			<div>
-				<Link href="#">
-					<a className={ login }>登入</a>
-				</Link>
-				<div className={ register }>
-					<li>建立企業帳戶</li>
-					<li>新增您的餐廳</li>
-					<li>註冊成為外送夥伴</li>
-				</div>
-			</div>
+	function _renderDownloadOptions() {
+		return (
 			<div>
 				<div className={ download }>
 					<div className={ imageWrapper }>
@@ -90,6 +77,25 @@ function EntryOptions() {
 					</Link>
 				</div>
 			</div>
+		)
+	}
+
+	return (
+		<div
+			className={ wrapper }
+			onClick={event => event.stopPropagation()}
+		>
+			<div>
+				<Link href="#">
+					<a className={ login }>登入</a>
+				</Link>
+				<div className={ register }>
+					<li>建立企業帳戶</li>
+					<li>新增您的餐廳</li>
+					<li>註冊成為外送夥伴</li>
+				</div>
+			</div>
+			{ _renderDownloadOptions() }
 		</div>
 	)
 }

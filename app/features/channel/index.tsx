@@ -139,8 +139,8 @@ function Channel({ data }: Prop) {
 						data,
 						getRegularPageSize(data)
 					)}
-					pageSize={getRegularPageSize(data)}
-					pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
+					size={getRegularPageSize(data)}
+					offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
 				/>
 			)
 		} else {
@@ -190,8 +190,8 @@ function Channel({ data }: Prop) {
 										channelItems,
 										getEmphsisPageSize()
 									)}
-									pageSize={getEmphsisPageSize()}
-									pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
+									size={getEmphsisPageSize()}
+									offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
 								/>
 							</div>
 						</div>

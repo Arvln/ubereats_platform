@@ -1,4 +1,8 @@
 import { getShortcut } from './shortcut';
+import {
+	getCategory,
+	getCategoryShopItems
+} from './category';
 import { getCarousel } from './carousel';
 import {
 	getChannel,
@@ -7,6 +11,8 @@ import {
 
 export {
 	getShortcut,
+	getCategory,
+	getCategoryShopItems,
 	getCarousel,
 	getChannel,
 	getChannelItems

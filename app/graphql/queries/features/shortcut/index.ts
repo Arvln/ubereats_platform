@@ -1,7 +1,7 @@
-export const shortcutQuery: string = `
+export const getShortcut: string = `
 	shortcut {
 		title
-		shortcutImageSuffix
+		imageSuffix
 		isCuisines
 		uuid
 	}

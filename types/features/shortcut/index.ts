@@ -1,6 +1,6 @@
 export type TShortcut = {
 	title: string;
-	shortcutImageSuffix: string;
+	imageSuffix: string;
 	isCuisines: number;
 	uuid: string;
 }

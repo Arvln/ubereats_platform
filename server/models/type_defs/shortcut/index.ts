@@ -10,7 +10,7 @@ export const ShortcutType = new GraphQLObjectType({
 		title: {
 			type: GraphQLString
 		},
-		shortcutImageSuffix: {
+		imageSuffix: {
 			type: GraphQLString
 		},
 		isCuisines: {
