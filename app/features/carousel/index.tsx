@@ -1,14 +1,20 @@
 import { Prop } from './types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Arrow from 'components/arrow';
+import {
+	getRenderData,
+	getRightStartPoint
+} from './utils';
 
 import classes from 'styles/features/Carousel.module.scss';
 
 const {
 	wrapper,
 	content,
+	smoothTransition,
+	clearTransition,
 	advertiseWrapper,
 	advertiseItem,
 	itemWrapper,
@@ -17,49 +23,76 @@ const {
 } = classes;
 
 const ADVERTISE_IMAGE_SERVER_HOST = process.env.ADVERTISE_IMAGE_SERVER_HOST;
-const originOffset: number = -66.6666;
-const offsetPerClick: number = 33.3333;
+const originOffset: number = -100;
+const offsetPerClick: number = 100;
+const leftBoundaryValue: number = originOffset;
+const rightBoundaryValue: number = -433.333;
+const leftStratPoint: number = -133.333;
 
 function Carousel({ data }: Prop) {
 	const [horizontalOffset, setHorizontalOffset] = useState<number>(originOffset);
+	const [transition, setTransition] = useState<string>(smoothTransition);
+
+	useEffect(() => {
+		if (horizontalOffset <= rightBoundaryValue) {
+			setHorizontalOffset(leftStratPoint);
+			setTransition(clearTransition);
+		}
+
+		if (horizontalOffset > leftBoundaryValue) {
+			setHorizontalOffset(getRightStartPoint(horizontalOffset));
+			setTransition(clearTransition);
+		}
+
+	}, [horizontalOffset]);
 
 	function _handlePreviousButton(): void {
-		if (horizontalOffset >= 0)
-			setHorizontalOffset(originOffset)
-		else
-			setHorizontalOffset(horizontalOffset + offsetPerClick)
+		if (horizontalOffset <= leftBoundaryValue) {
+			setHorizontalOffset(horizontalOffset + offsetPerClick);
+			setTransition(smoothTransition);
+		}
 	}
 
 	function _handleNextButton(): void {
-		if (horizontalOffset <= offsetPerClick * (3 - data.length))
-			setHorizontalOffset(originOffset)
-		else
-			setHorizontalOffset(horizontalOffset - offsetPerClick)
+		if (horizontalOffset > rightBoundaryValue) {
+			setHorizontalOffset(horizontalOffset - offsetPerClick);
+			setTransition(smoothTransition);
+		}
 	}
 
-	function _renderItems(): JSX.Element[] {
+	function _renderItems() {
+		data = getRenderData(data);
+
 		return (
 			data.map(({
 				imageSuffix,
 				uuid
-			}) => (
-				<li
-					key={uuid}
-					className={ advertiseItem }
-				>
-					<div className={ itemWrapper }>
-						<Link href={`/carousel/${uuid}`}>
-							<a>
-								<Image
-									src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
-									layout="fill"
-									alt={imageSuffix}
-								/>
-							</a>
-						</Link>
-					</div>
-				</li>
-			))
+			}, index) => {
+				const ariaHidden: boolean | undefined =
+					index < 3 || index > data.length - 6
+						? true
+						: undefined;
+
+				return (
+					<li
+						key={index}
+						aria-hidden={ariaHidden}
+						className={ advertiseItem }
+					>
+						<div className={ itemWrapper }>
+							<Link href={`/marketing/${uuid}`}>
+								<a>
+									<Image
+										src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
+										layout="fill"
+										alt={imageSuffix}
+									/>
+								</a>
+							</Link>
+						</div>
+					</li>
+				)
+			})
 		)
 	}
 
@@ -71,7 +104,7 @@ function Carousel({ data }: Prop) {
 			<div className={ space_4 } />
 			<div className={ content }>
 				<ol
-					className={ advertiseWrapper }
+					className={ `${advertiseWrapper} ${transition}` }
 					style={{ transform: `translateX(${horizontalOffset}%)` }}
 				>
 					{ _renderItems() }

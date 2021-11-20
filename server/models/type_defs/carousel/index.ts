@@ -6,6 +6,9 @@ import {
 export const CarouselType = new GraphQLObjectType({
   name: 'Carousel',
 	fields: () => ({
+		content: {
+			type: GraphQLString
+		},
 		imageSuffix: {
 			type: GraphQLString
 		},

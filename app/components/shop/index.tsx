@@ -140,11 +140,12 @@ function Shop({
 							<Link href={`/store/${name}`}>
 								<a>
 									<h3 className={ storeTitle }>{name}</h3>
-									<div className={ `${imageWrapper} ${imageHeight}` }>
+									<div className={`${imageWrapper} ${imageHeight}`}>
 										<Image
-											className={image}
 											src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
 											layout="fill"
+											sizes="25vw"
+											objectFit="cover"
 											alt="Shop"
 										/>
 										<div className={ discountMessage }>

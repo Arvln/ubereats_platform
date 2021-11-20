@@ -1,7 +1,5 @@
 import { Prop } from 'types/pages';
-import type { NextPage, GetStaticProps } from 'next';
-import { ApolloQueryResult } from '@apollo/client';
-import { getApolloClient } from 'graphql/apollo_client';
+import type { NextPage } from 'next';
 import {
 	Shortcut,
 	Carousel,
@@ -11,24 +9,12 @@ import {
 import { query } from 'graphql/queries/pages';
 
 import classes from 'styles/pages/Home.module.scss';
+import { getPageStaticProps } from 'utils';
 
 const {
 	wrapper,
 	storesWrapper
 } = classes;
-
-export const getStaticProps: GetStaticProps<Prop> = async () => {
-	const client = getApolloClient();
-	const {
-		data: props
-	}: ApolloQueryResult<Prop> = await client.query({
-		query
-	});
-
-	return {
-		props
-	}
-}
 
 const Home: NextPage<Prop> = ({
 	shortcut,
@@ -47,5 +33,7 @@ const Home: NextPage<Prop> = ({
 		</main>
 	)
 }
+
+export const getStaticProps = getPageStaticProps<Prop>(query);
 
 export default Home;

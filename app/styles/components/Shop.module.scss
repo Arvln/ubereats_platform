@@ -16,10 +16,6 @@ $detailImageWrapperPaddingTop: 2px;
   .imageWrapper {
     @apply relative;
 
-    .image {
-      @apply object-cover;
-    }
-
     .discountMessage {
       @apply
         w-full

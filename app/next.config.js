@@ -23,6 +23,7 @@ module.exports = {
 			STORE_IMAGE_SERVER_HOST,
 			UTILS_ICONS_SERVER_HOST
 		],
+		deviceSizes: [240, 550, 640, 750, 1080, 2880],
 	},
 	webpack(config) {
 		const rules = config.module.rules

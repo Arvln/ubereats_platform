@@ -16,9 +16,15 @@ $itemHeight: 41%;
       flex-grow
       overflow-hidden;
 
-    .advertiseWrapper {
-      transition: transform 500ms ease-in-out 0s;
+    .clearTransition {
+      @apply transition-none;
+    }
 
+    .smoothTransition {
+      transition: transform 500ms ease-in-out 0s;
+    }
+
+    .advertiseWrapper {
       @apply
         flex
         items-center;

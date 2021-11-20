@@ -1,5 +1,4 @@
 import { TShop } from '../shop';
-import { ParsedUrlQuery } from 'querystring';
 
 export type TCategory = {
 	title: string;
@@ -12,10 +11,6 @@ export type TParent = TCategory & { id: number; };
 export type TCategoryShop = TShop & { categoryId: number };
 
 export type TTitles = {
-	title: string;
-};
-
-export interface IParams extends ParsedUrlQuery{
 	title: string;
 };
 

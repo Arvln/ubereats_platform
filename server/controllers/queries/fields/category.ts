@@ -17,4 +17,3 @@ export const categoryFields = {
 		resolve: getCategory
 	}
 };
-

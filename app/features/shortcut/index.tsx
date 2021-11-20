@@ -49,7 +49,7 @@ function Shortcut({ data }: Prop) {
 									src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${imageSuffix}`}
 									width={60}
 									height={60}
-									alt={imageSuffix}
+									alt={title}
 								/>
 							}
 							text={title}

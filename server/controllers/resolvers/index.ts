@@ -4,6 +4,7 @@ import {
 	getCategoryShopItems
 } from './category';
 import { getCarousel } from './carousel';
+import { getAdvertise } from './advertise';
 import {
 	getChannel,
 	getChannelItems
@@ -14,6 +15,7 @@ export {
 	getCategory,
 	getCategoryShopItems,
 	getCarousel,
+	getAdvertise,
 	getChannel,
 	getChannelItems
 }

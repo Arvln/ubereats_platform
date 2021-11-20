@@ -1,0 +1,12 @@
+.wrapper {
+  @apply
+    px-10
+    py-6;
+
+  .massage {
+    @apply
+      text-sm
+      leading-5
+      whitespace-pre-wrap;
+  }
+}

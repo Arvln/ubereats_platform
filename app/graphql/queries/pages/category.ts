@@ -8,7 +8,7 @@ export const getTitles = gql`
 	}
 `
 
-export const getCategory = gql`
+export const getCategoryByTitle = gql`
 	query($title: String!) {
 		category(title: $title) {
 			title

@@ -32,7 +32,7 @@ function Layout({ children }: Prop) {
 		body.remove(oldContent);
 	}
 
-	function _renderMask() {
+	function _renderEntryOptionsWithMask() {
 		return (
 			<div
 				className={ wrapper }
@@ -57,7 +57,7 @@ function Layout({ children }: Prop) {
 				<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 				<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 			</Head>
-			{ _renderMask() }
+			{ _renderEntryOptionsWithMask() }
 			<Header handleSideBar={_handleEntryOptions} />
 				{ children }
 			<Footer />

@@ -1,23 +1,20 @@
 import {
 	TTitles,
-	IParams,
 	TPageData,
 	Prop
 } from 'types/pages/title';
-import type {
-	NextPage,
-	GetStaticPaths,
-	GetStaticProps
-} from 'next';
+import type { NextPage } from 'next';
 import Image from 'next/image';
-import { ApolloQueryResult } from '@apollo/client';
-import { getApolloClient } from 'graphql/apollo_client';
 import {
 	getTitles,
-	getCategory
-} from 'graphql/queries/pages/title';
+	getCategoryByTitle
+} from 'graphql/queries/pages/category';
 import Shop from 'components/shop';
 import RestrictSearch from 'features/restrict_search';
+import {
+	getPageStaticPaths,
+	getPageStaticProps
+} from 'utils';
 
 import classes from 'styles/pages/Category.module.scss';
 
@@ -35,75 +32,31 @@ const {
 	right,
 	content,
 	text,
-	imageWrapper,
-	grey
+	imageWrapper
 } = classes;
-const client = getApolloClient();
-enum RecommandCategoryType {
+const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
+enum RecommandCategories {
 	DEALS = '優惠',
 	TOP_EATS = '嚴選餐廳',
 	PET = '寵物用品',
 	FLOWERS = '鮮花',
 	RETAIL = '百貨商場'
 };
+enum Fields {
+	SHORTCUT = 'shortcut',
+	CATEGORY = 'category'
+}
 const {
 	DEALS,
 	TOP_EATS,
 	PET,
 	FLOWERS,
 	RETAIL
-} = RecommandCategoryType;
-const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-	const {
-		data: {
-			shortcut: titles
-		}
-	}: ApolloQueryResult<{shortcut: TTitles[]}> = await client.query({
-		query: getTitles
-	});
-	const paths = titles.map(({ title }) => ({
-		params: { title }
-	}));
-
-	return {
-		paths,
-		fallback: true
-	};
-}
-
-export const getStaticProps: GetStaticProps = async ({
-	params
-}) => {
-	const { title } = params as IParams;
-	const {
-		data: {
-			category
-		}
-	}: ApolloQueryResult<{category: TPageData[]}> = await client.query({
-		query: getCategory,
-		variables: {
-			title
-		},
-	});
-	const pageData = category[0];
-
-	if (!pageData) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false,
-			},
-		}
-	}
-	
-	return {
-		props: {
-			pageData
-		}
-	}
-}
+} = RecommandCategories;
+const {
+	SHORTCUT,
+	CATEGORY
+} = Fields
 
 const Category: NextPage<Prop> = ({ pageData }) => {
 	if (!pageData) return <div>loading...</div>;
@@ -114,6 +67,7 @@ const Category: NextPage<Prop> = ({ pageData }) => {
 		imageSuffix,
 		categoryShopItems: shops
 	} = pageData;
+
 	function _renderImage(): JSX.Element | void {
 		if (title === PET || title === FLOWERS || title === RETAIL) return;
 
@@ -179,5 +133,14 @@ const Category: NextPage<Prop> = ({ pageData }) => {
 		</div>
 	);
 }
+
+export const getStaticPaths = getPageStaticPaths<TTitles>(
+	getTitles,
+	SHORTCUT
+);
+export const getStaticProps = getPageStaticProps<TPageData>(
+	getCategoryByTitle,
+	CATEGORY
+);
 
 export default Category;
