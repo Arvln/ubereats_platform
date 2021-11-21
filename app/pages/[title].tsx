@@ -4,6 +4,11 @@ import {
 	Prop
 } from 'types/pages/title';
 import type { NextPage } from 'next';
+import {
+	RecommandCategories,
+	Fields
+} from 'enums/pages/category';
+import { FallbackTypes } from 'enums/pages/common';
 import Image from 'next/image';
 import {
 	getTitles,
@@ -35,17 +40,6 @@ const {
 	imageWrapper
 } = classes;
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
-enum RecommandCategories {
-	DEALS = '優惠',
-	TOP_EATS = '嚴選餐廳',
-	PET = '寵物用品',
-	FLOWERS = '鮮花',
-	RETAIL = '百貨商場'
-};
-enum Fields {
-	SHORTCUT = 'shortcut',
-	CATEGORY = 'category'
-}
 const {
 	DEALS,
 	TOP_EATS,
@@ -56,11 +50,10 @@ const {
 const {
 	SHORTCUT,
 	CATEGORY
-} = Fields
+} = Fields;
+const { SHOW_ERROR_PAGE } = FallbackTypes;
 
 const Category: NextPage<Prop> = ({ pageData }) => {
-	if (!pageData) return <div>loading...</div>;
-
 	const {
 		title,
 		isCuisines,
@@ -136,7 +129,8 @@ const Category: NextPage<Prop> = ({ pageData }) => {
 
 export const getStaticPaths = getPageStaticPaths<TTitles>(
 	getTitles,
-	SHORTCUT
+	SHORTCUT,
+	SHOW_ERROR_PAGE
 );
 export const getStaticProps = getPageStaticProps<TPageData>(
 	getCategoryByTitle,

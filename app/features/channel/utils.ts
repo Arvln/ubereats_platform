@@ -1,5 +1,5 @@
 import { TChannelItem } from "types/features";
-import { ContentType } from './types';
+import { ContentTypes } from 'enums/features/channel';
 
 const EMPHASIS_SHOP_PAGE_SIZE: number = 3;
 const REGULAR_DEFAULT_PAGE_SIZE: number = 4;
@@ -9,7 +9,7 @@ const CATEGORY_PAGE_SIZE: number = 8;
 const {
 	CHANNELSHOP,
 	CHANNELCATEGORY
-} = ContentType;
+} = ContentTypes;
 
 export function getOffset(
 	currentPage: number,

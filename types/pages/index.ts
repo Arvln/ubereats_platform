@@ -4,8 +4,12 @@ import {
 	TChannelData
 } from '../features';
 
-export type Prop = {
+export type TPageData = {
 	shortcut: TShortcut[],
 	carousel: TCarousel[],
 	channel: TChannelData[]
+}
+
+export type Prop = {
+	pageData: TPageData;
 }

@@ -1,5 +1,7 @@
-import { TUUID, TAdvertise, Prop } from 'types/pages/marketing';
-import { NextPage } from 'next';
+import { TUUID, TPageData, Prop } from 'types/pages/marketing/advertise';
+import type { NextPage } from 'next';
+import { Fields } from 'enums/pages/marketing/advertise';
+import { FallbackTypes } from 'enums/pages/common';
 import { getUUID, getAdvertiseByUUID } from 'graphql/queries/pages/marketing/advertise';
 import {
 	getPageStaticPaths,
@@ -12,14 +14,11 @@ const {
 	wrapper,
 	massage
 } = classes;
-enum Fields {
-	CAROUSEL = 'carousel',
-	ADVERTISE = 'advertise'
-};
 const {
 	CAROUSEL,
 	ADVERTISE
 } = Fields;
+const { SHOW_ERROR_PAGE } = FallbackTypes;
 
 const Advertise: NextPage<Prop> = ({ pageData }) => {
 	const { content } = pageData;
@@ -31,8 +30,12 @@ const Advertise: NextPage<Prop> = ({ pageData }) => {
 	)
 }
 
-export const getStaticPaths = getPageStaticPaths<TUUID>(getUUID, CAROUSEL);
-export const getStaticProps = getPageStaticProps<TAdvertise>(
+export const getStaticPaths = getPageStaticPaths<TUUID>(
+	getUUID,
+	CAROUSEL,
+	SHOW_ERROR_PAGE
+);
+export const getStaticProps = getPageStaticProps<TPageData>(
 	getAdvertiseByUUID,
 	ADVERTISE
 );

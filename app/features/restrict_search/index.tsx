@@ -1,14 +1,13 @@
+import { Prop, TConditionsState } from './types';
 import {
-	Prop,
-	TConditionsState,
-	ConditionsType,
-	ClassificationType,
-	ClassificationsType,
-	PriceLevelType,
-	DeliveryCostLimitType,
-	DeliveryRestrictionType,
-	DeliveryRestrictionsType
-} from './types';
+	ConditionsTypes,
+	ClassificationTypes,
+	ClassificationsTypes,
+	PriceLevelTypes,
+	DeliveryCostLimitTypes,
+	DeliveryRestrictionTypes,
+	DeliveryRestrictionsTypes
+} from 'enums/features/restrict_search';
 import { TAppendClass } from 'components/button/types';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
@@ -48,31 +47,31 @@ const {
 	PRICE_RANGE,
 	DELIVERY_COST_LIMITATION,
 	DIETARY_RESTRICTION
-} = ConditionsType;
+} = ConditionsTypes;
 const {
 	RECOMMEND,
 	POPULAR,
 	SCORE,
 	DELIVERY_TIME
-} = ClassificationType;
+} = ClassificationTypes;
 const {
 	EXTREMELY_LOW,
 	LOW,
 	MIDDLE,
 	HIGH
-} = PriceLevelType;
+} = PriceLevelTypes;
 const {
 	NT$25,
 	NT$40,
 	NT$60,
 	NT$60_PLUS
-} = DeliveryCostLimitType;
+} = DeliveryCostLimitTypes;
 const {
 	VEGETABLE,
 	VEGAN,
 	GLUTEN_FREE,
 	NO_ALLERGY
-} = DeliveryRestrictionType;
+} = DeliveryRestrictionTypes;
 
 function RestrictSearch({ isCuisines }: Prop) {
 	const [conditionsState, setConditionsState] = useState<TConditionsState>({});
@@ -117,8 +116,8 @@ function RestrictSearch({ isCuisines }: Prop) {
 				const isSelected: boolean = classification === classificationOption;
 				const labelStyle =
 					isSelected ? `${optionContentLabel} ${selectedLabel}` : optionContentLabel;
-				const key: string = ClassificationType[classification];
-				const title: string = (ClassificationsType as any)[key];
+				const key: string = ClassificationTypes[classification];
+				const title: string = (ClassificationsTypes as any)[key];
 
 				return (
 					<div
@@ -228,8 +227,8 @@ function RestrictSearch({ isCuisines }: Prop) {
 			<div className={ dietaryContent }>
 				{
 					deliveryRestrictions.map(deliveryRestriction => {
-						const key: string = DeliveryRestrictionType[deliveryRestriction];
-						const title: string = (DeliveryRestrictionsType as any)[key];
+						const key: string = DeliveryRestrictionTypes[deliveryRestriction];
+						const title: string = (DeliveryRestrictionsTypes as any)[key];
 
 						return (
 							<Button

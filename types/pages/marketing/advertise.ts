@@ -2,10 +2,10 @@ export type TUUID = {
 	uuid: string;
 };
 
-export type TAdvertise = {
+export type TPageData = {
 	content: string;
 };
 
 export type Prop = {
-	pageData: TAdvertise;
+	pageData: TPageData;
 };

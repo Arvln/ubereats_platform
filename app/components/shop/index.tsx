@@ -16,7 +16,6 @@ const {
 	wrapper,
 	storeTitle,
 	imageWrapper,
-	image,
 	discountMessage,
 	buttonWrapper,
 	favorButtonWrapper,
@@ -172,7 +171,7 @@ function Shop({
 									</div>
 									<div className={ baseMessage }>
 										<div className={ title }>{name}</div>
-										{_renderScoreButton(score)}
+										{ _renderScoreButton(score) }
 									</div>
 									<div className={ detailMessage }>
 										<div className={ detailImageWrapper }>
@@ -184,7 +183,7 @@ function Shop({
 												/>
 											</div>
 										</div>
-										{_renderDetailContent(deliveryCost, shortestDeliveryTime)}
+										{ _renderDetailContent(deliveryCost, shortestDeliveryTime) }
 									</div>
 								</a>
 							</Link>

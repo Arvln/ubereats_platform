@@ -1,4 +1,4 @@
-import { Prop } from 'types/pages';
+import { TPageData, Prop } from 'types/pages';
 import type { NextPage } from 'next';
 import {
 	Shortcut,
@@ -16,11 +16,13 @@ const {
 	storesWrapper
 } = classes;
 
-const Home: NextPage<Prop> = ({
-	shortcut,
-	carousel,
-	channel
-}) => {
+const Home: NextPage<Prop> = ({ pageData }) => {
+	const {
+		shortcut,
+		carousel,
+		channel
+	} = pageData;
+
 	return (
 		<main className={ wrapper }>
 			<Shortcut data={ shortcut } />
@@ -34,6 +36,6 @@ const Home: NextPage<Prop> = ({
 	)
 }
 
-export const getStaticProps = getPageStaticProps<Prop>(query);
+export const getStaticProps = getPageStaticProps<TPageData>(query);
 
 export default Home;

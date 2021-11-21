@@ -15,9 +15,4 @@ export type TPagesState = {
 	}
 }
 
-export enum ContentType {
-	CHANNELSHOP = 'ChannelShop',
-	CHANNELCATEGORY = 'ChannelCategory'
-};
-
 export type { TChannelItem };

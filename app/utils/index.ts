@@ -1,5 +1,6 @@
 import {
 	TPath,
+	TDynamicRoutesPageResult,
 	TQueryResult
 } from './types';
 import type {
@@ -13,14 +14,15 @@ const client = getApolloClient();
 
 export function getPageStaticPaths<T>(
 	query: DocumentNode,
-	key: string
+	key: string,
+	fallback: boolean
 ): GetStaticPaths {
 	return async () => {
 		const {
 			data: {
 				[key]: slugs
 			}
-		}: ApolloQueryResult<TQueryResult<T>> = await client.query({
+		}: ApolloQueryResult<TDynamicRoutesPageResult<T>> = await client.query({
 			query
 		});
 		const paths = slugs.map(slug => ({
@@ -29,7 +31,7 @@ export function getPageStaticPaths<T>(
 	
 		return {
 			paths,
-			fallback: true
+			fallback
 		};
 	};
 }
@@ -38,46 +40,37 @@ export function getPageStaticProps<T>(
 	query: DocumentNode,
 	key?: string
 ): GetStaticProps {
-	if (!key) {
-		return async () => {
-			const {
-				data: props
-			}: ApolloQueryResult<T> = await client.query({
-				query
-			});
-
-			return {
-				props
-			}
-		}
-	}
-
 	return async ({
 		params: variables
 	}) => {
-		const {
-			data: {
-				[key]: pageDataList
-			}
+		let {
+			data: pageData
 		}: ApolloQueryResult<TQueryResult<T>> = await client.query({
 			query,
-			variables,
+			variables
 		});
-		const pageData = pageDataList[0];
+
+		if (key) {
+			const {
+				[key]: pageDataList
+			} = pageData as TDynamicRoutesPageResult<T>;
 	
-		if (!pageData) {
+			pageData = pageDataList[0];
+		};
+
+		if (pageData) {
 			return {
-				redirect: {
-					destination: '/',
-					permanent: false,
-				},
+				props: {
+					pageData
+				}
 			}
-		}
-		
+		};
+
 		return {
-			props: {
-				pageData
+			redirect: {
+				destination: '/',
+				permanent: false,
 			}
-		}
+		};
 	}
 }

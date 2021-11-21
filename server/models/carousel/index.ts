@@ -7,7 +7,6 @@ export async function getData(){
 	const carousel = await query(
 		`
 			SELECT
-				content,
 				image_suffix AS imageSuffix,
 				HEX(uuid) AS uuid
 			FROM
