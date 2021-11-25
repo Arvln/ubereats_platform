@@ -15,7 +15,7 @@ const client = getApolloClient();
 export function getPageStaticPaths<T>(
 	query: DocumentNode,
 	key: string,
-	fallback: boolean
+	fallback: boolean | 'blocking'
 ): GetStaticPaths {
 	return async () => {
 		const {
@@ -28,7 +28,7 @@ export function getPageStaticPaths<T>(
 		const paths = slugs.map(slug => ({
 			params: slug
 		} as TPath<T>));
-	
+
 		return {
 			paths,
 			fallback

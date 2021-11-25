@@ -136,7 +136,7 @@ function Shop({
 							className={ shopWrapper }
 							key={uuid}
 						>
-							<Link href={`/store/${name}`}>
+							<Link href={`/store/${name}/${uuid}`}>
 								<a>
 									<h3 className={ storeTitle }>{name}</h3>
 									<div className={`${imageWrapper} ${imageHeight}`}>

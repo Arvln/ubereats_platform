@@ -54,7 +54,10 @@ const loginButton: TAppendClass = {
 	appendContent: loginButtonContent
 }
 
-function Header({ handleSideBar }: Prop) {
+function Header({
+	showEntryOptions,
+	showDeliveryDetails
+}: Prop) {
 	const [isDeliveried, setIsDeliveried] = useState<boolean>(true);
 	const [searchbarShadowStyle, setSearchbarShadowStyle] = useState<string>('');
 	const deliveryButton = isDeliveried ? selectedButton : unSelectedButton;
@@ -73,7 +76,7 @@ function Header({ handleSideBar }: Prop) {
 		<header className={ wrapper }>
 			<div
 				className={ imageWrapper }
-				onClick={() => handleSideBar()}
+				onClick={() => showEntryOptions()}
 			>
 				<Image
 					src="/images/sidebar.svg"
@@ -119,7 +122,7 @@ function Header({ handleSideBar }: Prop) {
 				</div>
 			</div>
 			<div className={ space_16 } />
-			<div className={ locationChoosingWrapper }>
+			<div className={locationChoosingWrapper}>
 				<Button
 					appendClass={ locationButton }
 					icon={
@@ -146,7 +149,7 @@ function Header({ handleSideBar }: Prop) {
 					<div className={ space_16 } />
 					<input
 						type="text"
-						placeholder="想吃點什麼?"
+						placeholder="美食、生鮮雜貨、飲料等"
 						onFocus={() => _handleSearchbarInputFocus()}
 						onBlur={() => _handleSearchbarInputBlur()}
 					/>

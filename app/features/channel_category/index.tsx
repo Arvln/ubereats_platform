@@ -29,7 +29,7 @@ function ChannelCategory({
 				>
 					<CategoryItem
 						appendClass={ category }
-						pageUrl={`/category/${name}`}
+						pageUrl={`/${title}`}
 						icon={
 							<Image
 								src={`https://${CATEGORY_ICONS_SERVER_HOST}/new_search_home_eats_icon/${name}_BrowseHome@3x.png`}

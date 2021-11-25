@@ -1,4 +1,4 @@
-import { TChannelShop, TChannelItem } from 'types/features/channel'
+import { TChannelShop, TChannelItem } from 'types/features/channel';
 import {
 	GraphQLObjectType,
 	GraphQLUnionType,

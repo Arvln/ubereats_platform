@@ -9,6 +9,10 @@ import {
 	getChannel,
 	getChannelItems
 } from './channel';
+import {
+	getStoreSlugs,
+	getStore
+} from './store';
 
 export {
 	getShortcut,
@@ -17,5 +21,7 @@ export {
 	getCarousel,
 	getAdvertise,
 	getChannel,
-	getChannelItems
+	getChannelItems,
+	getStoreSlugs,
+	getStore
 }

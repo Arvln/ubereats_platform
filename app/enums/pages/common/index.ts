@@ -1,11 +1,11 @@
 type TFallbackTypes = {
-	BLOCKING: string;
-	SHOW_ERROR_PAGE: boolean;
+	BLOCKING: 'blocking';
 	SHOW_FALLBACK_PAGE: boolean;
+	SHOW_ERROR_PAGE: boolean;
 }
 
 export const FallbackTypes: TFallbackTypes = {
 	BLOCKING: 'blocking',
-	SHOW_ERROR_PAGE: false,
-	SHOW_FALLBACK_PAGE: true
+	SHOW_FALLBACK_PAGE: true,
+	SHOW_ERROR_PAGE: false
 };

@@ -143,17 +143,17 @@ function Channel({ data }: Prop) {
 					offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
 				/>
 			)
-		} else {
-			return (
-				<ChannelCategory
-					data={getPageDataList(
-						data,
-						getRegularPageSize(data)
-					)}
-					pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
-				/>
-			)
 		}
+
+		return (
+			<ChannelCategory
+				data={getPageDataList(
+					data,
+					getRegularPageSize(data)
+				)}
+				pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
+			/>
+		)
 	}
 
 	function _renderChannel() {

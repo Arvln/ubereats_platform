@@ -1,6 +1,7 @@
-import { Prop } from './types';
-import { useState } from 'react';
+import { Prop, THandleForm } from './types';
+import { createContext, useState } from 'react';
 import Head from 'next/head';
+import Popups from 'features/popups';
 import EntryOptions from 'features/entry_options';
 import Header from 'features/header';
 import Footer from 'features/footer';
@@ -8,47 +9,66 @@ import Footer from 'features/footer';
 import classes from 'styles/features/Layout.module.scss';
 
 const {
-	wrapper,
-	showMask,
-	hideMask,
-	showMaskContent,
-	hideMaskContent,
 	hideContent,
-	showContent
+	showContent,
+	showForm,
+	hideForm
 } = classes;
+let _handleForm: THandleForm = () => {};
 
 function Layout({ children }: Prop) {
-	const [isEliminateMask, setIsEliminateMask] = useState<boolean>(true);
-	const maskWrapper = isEliminateMask ? hideMask : showMask;
-	const maskContent = isEliminateMask ? hideMaskContent : showMaskContent;
+	const [isShowEntryOptions, setIsShowEntryOptions] = useState<boolean>(false);
+	const [isShowForm, setIsShowFrom] = useState<boolean>(false);
+	const [form, setForm] = useState<JSX.Element>(<></>);
 
-	function _handleEntryOptions() {
+	function _handleBodyStyle(isShow: boolean) {
 		const body = document.body.classList;
-		const newContent: string = isEliminateMask ? hideContent : showContent;
-		const oldContent: string = isEliminateMask ? showContent : hideContent;
+		const newContent: string = isShow ? showContent : hideContent;
+		const oldContent: string = isShow ? hideContent : showContent;
 
-		setIsEliminateMask(!isEliminateMask);
 		body.add(newContent);
 		body.remove(oldContent);
 	}
 
+	function _handleEntryOptions() {
+		_handleBodyStyle(isShowEntryOptions);
+		setIsShowEntryOptions(!isShowEntryOptions);
+	}
+
+	_handleForm = form => {
+		_handleBodyStyle(isShowForm);
+		setIsShowFrom(!isShowForm);
+		form && setForm(form);
+	}
+
 	function _renderEntryOptionsWithMask() {
 		return (
-			<div
-				className={ wrapper }
-				onClick={() => _handleEntryOptions()}
+			<Popups
+				isShow={isShowEntryOptions}
+				hide={_handleEntryOptions}
 			>
-				<div className={ maskWrapper }>
-					<div className={ maskContent }>
-						<EntryOptions />
-					</div>
-				</div>
+				<EntryOptions />
+			</Popups>
+		)
+	}
+
+	function _renderFormWithMask() {
+		const formContent: string = isShowForm ? showForm : hideForm;
+
+		return (
+			<div className={ formContent }>
+				<Popups
+					isShow={isShowForm}
+					hide={_handleForm}
+				>
+					{ form }
+				</Popups>
 			</div>
 		)
 	}
 
 	return (
-		<>
+		<FormContext.Provider value={_handleForm}>
 			<Head>
 				<title>線上訂購餐點 | 美食外送 App | Uber Eats 優食</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
@@ -58,11 +78,17 @@ function Layout({ children }: Prop) {
 				<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 			</Head>
 			{ _renderEntryOptionsWithMask() }
-			<Header handleSideBar={_handleEntryOptions} />
+			<Header
+				showEntryOptions={_handleEntryOptions}
+				showDeliveryDetails={_handleForm}
+			/>
 				{ children }
 			<Footer />
-		</>
+			{ _renderFormWithMask() }
+		</FormContext.Provider>
 	)
 }
+
+export const FormContext = createContext(_handleForm);
 
 export default Layout;

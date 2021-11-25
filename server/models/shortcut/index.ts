@@ -3,7 +3,7 @@ import { query } from '../../db/query';
 
 const SHORTCUT_LENGTH: number = 14;
 
-export async function getData(){
+export async function getData() {
 	const shortcut = await query(
 		`
 			SELECT

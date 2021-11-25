@@ -1,3 +1,4 @@
 export type Prop = {
-	handleSideBar: () => void;
+	showEntryOptions: () => void;
+	showDeliveryDetails: (form: JSX.Element) => void;
 }

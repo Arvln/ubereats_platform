@@ -1,4 +1,4 @@
-import { TAdvertise } from 'types/pages/marketing';
+import { TAdvertise } from 'types/pages/marketing/advertise';
 import { query } from '../../db/query';
 
 export async function getData(uuid: string){

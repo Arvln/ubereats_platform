@@ -1,4 +1,4 @@
-import { TAdvertise } from 'types/pages/marketing';
+import { TAdvertise } from 'types/pages/marketing/advertise';
 import { getData } from 'models/advertise';
 
 export async function getAdvertise(
