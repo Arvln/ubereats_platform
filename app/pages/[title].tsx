@@ -18,7 +18,7 @@ import Shop from 'components/shop';
 import RestrictSearch from 'features/restrict_search';
 import {
 	getPageStaticPaths,
-	getPageStaticProps
+	getPageProps
 } from 'utils';
 
 import classes from 'styles/pages/Category.module.scss';
@@ -101,7 +101,7 @@ const Category: NextPage<Prop> = ({ pageData }) => {
 		return (
 			<div className={ wrapper }>
 				<Shop
-					shops={shops}
+					data={shops}
 					imageHeight={imageHeight}
 				/>
 			</div>
@@ -117,13 +117,13 @@ const Category: NextPage<Prop> = ({ pageData }) => {
 	}
 
 	return (
-		<div>
+		<>
 			{ _renderTitle() }
 			<main className={ wrapper }>
 				<RestrictSearch isCuisines={isCuisines} />
 				{ _renderShops(imageHeight_38) }
 			</main>
-		</div>
+		</>
 	);
 }
 
@@ -132,7 +132,7 @@ export const getStaticPaths = getPageStaticPaths<TTitles>(
 	SHORTCUT,
 	SHOW_ERROR_PAGE
 );
-export const getStaticProps = getPageStaticProps<TPageData>(
+export const getStaticProps = getPageProps<TPageData>(
 	getCategoryByTitle,
 	CATEGORY
 );

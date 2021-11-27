@@ -44,7 +44,7 @@ const CategoryShopType = new GraphQLObjectType({
 		score: {
 			type: GraphQLInt
 		},
-		discountInfo: {
+		discountLabel: {
 			type: GraphQLString
 		},
 		imageSuffix: {

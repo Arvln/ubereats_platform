@@ -5,7 +5,7 @@ import { FallbackTypes } from 'enums/pages/common';
 import { getUUID, getAdvertiseByUUID } from 'graphql/queries/pages/marketing/advertise';
 import {
 	getPageStaticPaths,
-	getPageStaticProps
+	getPageProps
 } from "utils";
 
 import classes from 'styles/pages/marketing/Advertise.module.scss';
@@ -24,9 +24,9 @@ const Advertise: NextPage<Prop> = ({ pageData }) => {
 	const { content } = pageData;
 
 	return (
-		<div className={ wrapper }>
+		<main className={ wrapper }>
 			<div className={ massage }>{ content }</div>
-		</div>
+		</main>
 	)
 }
 
@@ -35,7 +35,7 @@ export const getStaticPaths = getPageStaticPaths<TUUID>(
 	CAROUSEL,
 	SHOW_ERROR_PAGE
 );
-export const getStaticProps = getPageStaticProps<TPageData>(
+export const getStaticProps = getPageProps<TPageData>(
 	getAdvertiseByUUID,
 	ADVERTISE
 );

@@ -122,7 +122,7 @@ function Header({
 				</div>
 			</div>
 			<div className={ space_16 } />
-			<div className={locationChoosingWrapper}>
+			<div className={ locationChoosingWrapper }>
 				<Button
 					appendClass={ locationButton }
 					icon={

@@ -3,16 +3,47 @@ export type TStoreSlug = {
 	uuid: string;
 }
 
-export type TStore = TStoreSlug & {
+export type TStore = {
 	__typename: string;
+	name: string;
 	deliveryCost: number;
 	shortestDeliveryTime: number;
 	score: number;
-	discountInfo: string;
+	discountLabel: string;
 	bannerSuffix: string;
+	address: string;
 }
 
-export type TPageData = TStore;
+export type TGood = {
+	name: string;
+	price: number;
+	discription: string;
+	imageSuffix: string;
+	spicyLevel: string;
+	isEmphasis: boolean;
+	uuid: string;
+};
+
+export type TGoodWithShopId = TGood & { shopId: number; };
+
+export type TChannel = {
+	id: number;
+	title: string;
+	shopId: number;
+};
+
+export type TGoodWithChannelId = TGood & { channelId: number; };
+
+export type TGoodChannel = {
+	label: string;
+	items: TGood[];
+};
+
+export type TParent = TStore & { id: number };
+
+export type TPageData = TStore & {
+	goodChannels: TGoodChannel[];
+};
 
 export type Prop = {
 	pageData: TPageData;

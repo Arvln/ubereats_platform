@@ -16,10 +16,20 @@ export const getStoreBySlug = gql`
 			deliveryCost
 			shortestDeliveryTime
 			score
-			discountInfo
 			bannerSuffix
 			address
-			uuid
+			goodChannels {
+				label,
+				items {
+					name
+					price
+					discription
+					spicyLevel
+					imageSuffix
+					isEmphasis
+					uuid
+				}
+			}
 		}
 	}
 `

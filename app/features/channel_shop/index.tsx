@@ -23,7 +23,7 @@ function ChannelShop({
 					key={index}
 				>
 					<Shop
-						shops={shops as TShop[]}
+						data={shops as TShop[]}
 						size={size}
 						imageHeight={imageHeight_57}
 					/>

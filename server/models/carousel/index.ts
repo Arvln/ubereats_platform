@@ -1,8 +1,6 @@
 import { TCarousel } from 'types/features';
 import { query } from '../../db/query';
 
-const IS_SHOW: boolean = true;
-
 export async function getData(){
 	const carousel = await query(
 		`
@@ -12,9 +10,8 @@ export async function getData(){
 			FROM
 				Table_Advertise
 			WHERE
-				is_show = ?;
-		`,
-		[IS_SHOW]
+				is_show = TRUE;
+		`
 	) as TCarousel[];
 
 	return carousel;

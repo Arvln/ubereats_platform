@@ -1,3 +1,108 @@
-.wrapper {
+@import '../../utils/index.scss';
 
+$iconBorderRadius: 50%;
+$imageWidth: 14px;
+
+.wrapper {
+  @apply px-10;
+
+  .banner {
+    @apply
+      h-40
+      -mx-10
+      relative;
+
+    .moreOptions {
+      @apply
+        w-20
+        h-9
+        mx-10
+        my-6
+        absolute
+        top-0
+        right-0
+        flex
+        justify-between;
+
+        .buttonWrapper {
+          @apply
+            w-9
+            h-9
+          bg-white
+            flex
+            justify-center
+            items-center
+            cursor-pointer
+            rounded-[#{$iconBorderRadius}];
+        }
+    }
+  }
+
+  .info {
+    @apply
+      pt-6
+      pb-4;
+
+    .title {
+      @apply
+        text-4xl
+        font-medium;
+    }
+
+    .detail {
+      @apply
+        flex
+        items-center
+        text-sm
+        leading-4;
+
+      .imageWrapper {
+        @apply
+          w-[#{$imageWidth}]
+          h-4
+          flex
+          items-center;
+      }
+
+      .detailInfo {
+        @apply px-1;
+      }
+
+      .moreDetail {
+        @apply
+          underline
+          cursor-pointer;
+      }
+    }
+
+    .time,
+    .cost {
+      @apply
+        text-sm
+        leading-5
+        font-light
+        text-FONT_GREY;
+    }
+  }
+
+  .orders {
+    @apply
+      h-10
+      flex;
+
+    .optionWrapper {
+      @apply
+        px-4
+        py-3
+        flex
+        hover:bg-BUTTON_HOVER_COLOR;
+
+      .optionText {
+        @apply
+          pl-2
+          text-sm
+          leading-4;
+      }
+    }
+  }
 }

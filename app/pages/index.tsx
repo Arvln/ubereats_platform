@@ -9,7 +9,7 @@ import {
 import { query } from 'graphql/queries/pages';
 
 import classes from 'styles/pages/Home.module.scss';
-import { getPageStaticProps } from 'utils';
+import { getPageProps } from 'utils';
 
 const {
 	wrapper,
@@ -36,6 +36,6 @@ const Home: NextPage<Prop> = ({ pageData }) => {
 	)
 }
 
-export const getStaticProps = getPageStaticProps<TPageData>(query);
+export const getServerSideProps = getPageProps<TPageData>(query);
 
 export default Home;

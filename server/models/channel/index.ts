@@ -27,7 +27,7 @@ export async function getData(){
 				Table_Shop.delivery_cost AS deliveryCost,
 				Table_Shop.shortest_delivery_time AS shortestDeliveryTime,
 				Table_Shop.score AS score,
-				Table_Shop.discount_info AS discountInfo,
+				Table_Shop.discount_label AS discountLabel,
 				Table_Shop.image_suffix AS imageSuffix,
 				HEX(Table_Shop.uuid) AS uuid,
 				Table_Mapping_Shop_And_Channel.channel_id AS channelId

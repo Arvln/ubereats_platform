@@ -19,7 +19,7 @@ export const getCategoryByTitle = gql`
 				deliveryCost
 				shortestDeliveryTime
 				score
-				discountInfo
+				discountLabel
 				imageSuffix
 				uuid
 			}

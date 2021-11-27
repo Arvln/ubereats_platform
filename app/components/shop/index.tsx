@@ -41,7 +41,7 @@ const STORE_IMAGE_SERVER_HOST = process.env.STORE_IMAGE_SERVER_HOST;
 const withoutCommentScore: string = '0.0';
 
 function Shop({
-	shops,
+	data,
 	size,
 	imageHeight
 }: Prop) {
@@ -113,19 +113,19 @@ function Shop({
 	return (
 		<>
 			{
-				shops.map(({
+				data.map(({
 					name,
 					deliveryCost,
 					shortestDeliveryTime,
 					score,
-					discountInfo,
+					discountLabel,
 					imageSuffix,
 					uuid
 				}) => {
 					const pageSizeWrapper: string | void = getPageSizeWrapper(size);
 					const shopWrapper =
 						pageSizeWrapper ? `${wrapper} ${pageSizeWrapper}` : wrapper;
-					const hideEmptyElement: string = discountInfo === '' ? hideEmpty : '';
+					const hideEmptyElement: string = discountLabel === '' ? hideEmpty : '';
 					const favorButton: TAppendClass = {
 						appendWrapper: favorButtonWrapper,
 						appendContent: ''
@@ -150,7 +150,7 @@ function Shop({
 										<div className={ discountMessage }>
 											<span
 												className={`${hideEmptyElement} ${discountText}`}>
-												{discountInfo}
+												{discountLabel}
 											</span>
 											<div className={ buttonWrapper }>
 												<div className={ space_16 } />
@@ -158,7 +158,7 @@ function Shop({
 													appendClass={favorButton}
 													icon={
 														<Image
-															src="/images/favor.svg"
+															src="/images/favor_white.svg"
 															width="20"
 															height="20"
 															alt="Favor"

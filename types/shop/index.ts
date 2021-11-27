@@ -4,7 +4,7 @@ export type TShop = {
 	deliveryCost: number;
 	shortestDeliveryTime: number;
 	score: number;
-	discountInfo: string;
+	discountLabel: string;
 	imageSuffix: string;
 	uuid: string;
-}
+};

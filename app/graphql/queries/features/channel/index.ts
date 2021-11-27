@@ -10,7 +10,7 @@ export const getChannel: string = `
 				deliveryCost
 				shortestDeliveryTime
 				score
-				discountInfo
+				discountLabel
 				imageSuffix
 				uuid
 			}

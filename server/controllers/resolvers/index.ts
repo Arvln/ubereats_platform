@@ -11,6 +11,7 @@ import {
 } from './channel';
 import {
 	getStoreSlugs,
+	getGoodChannels,
 	getStore
 } from './store';
 
@@ -23,5 +24,6 @@ export {
 	getChannel,
 	getChannelItems,
 	getStoreSlugs,
+	getGoodChannels,
 	getStore
 }

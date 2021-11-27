@@ -5,7 +5,8 @@ import {
 } from './types';
 import type {
 	GetStaticPaths,
-	GetStaticProps
+	GetStaticProps,
+	GetServerSideProps
 } from 'next';
 import { ApolloQueryResult, DocumentNode } from '@apollo/client';
 import { getApolloClient } from 'graphql/apollo_client';
@@ -36,10 +37,10 @@ export function getPageStaticPaths<T>(
 	};
 }
 
-export function getPageStaticProps<T>(
+export function getPageProps<T>(
 	query: DocumentNode,
 	key?: string
-): GetStaticProps {
+): GetStaticProps & GetServerSideProps {
 	return async ({
 		params: variables
 	}) => {

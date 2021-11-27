@@ -1,7 +1,7 @@
 import { TShop } from "types/shop";
 
 export type Prop = {
-	shops: TShop[];
+	data: TShop[];
 	size?: number;
 	imageHeight: string;
 };
