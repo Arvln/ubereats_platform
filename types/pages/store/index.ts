@@ -24,12 +24,9 @@ export type TGood = {
 	uuid: string;
 };
 
-export type TGoodWithShopId = TGood & { shopId: number; };
-
 export type TChannel = {
 	id: number;
-	title: string;
-	shopId: number;
+	label: string;
 };
 
 export type TGoodWithChannelId = TGood & { channelId: number; };

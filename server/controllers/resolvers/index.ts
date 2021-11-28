@@ -11,9 +11,9 @@ import {
 } from './channel';
 import {
 	getStoreSlugs,
-	getGoodChannels,
 	getStore
 } from './store';
+import { getGoodChannels } from './store/good_channels';
 
 export {
 	getShortcut,

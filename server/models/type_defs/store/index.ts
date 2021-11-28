@@ -51,7 +51,7 @@ const GoodChannelType = new GraphQLObjectType({
 	name: 'GoodChannel',
 	fields: () => ({
 		label: {
-			type: GraphQLString
+			type: GraphQLString,
 		},
 		items: {
 			type: new GraphQLList(GoodType)
