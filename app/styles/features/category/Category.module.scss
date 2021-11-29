@@ -1,0 +1,26 @@
+@import '../../utils/index.scss';
+
+.wrapper {
+  @apply
+    px-10
+    flex;
+
+  .shopWrapper {
+    @apply
+      w-3/4
+      mt-6
+      grid
+      grid-cols-3
+      gap-6;
+    
+    > li {
+      @apply
+        w-full
+        p-0;
+    }
+  }
+
+  .recommandShop {
+    @apply w-full;
+  }
+}

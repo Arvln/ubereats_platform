@@ -1,7 +1,7 @@
 import { Prop, TChannelItem, TPagesState } from './types';
 import { useState } from 'react';
 import Image from 'next/image';
-import Arrow from 'components/arrow';
+import { Arrow } from 'components';
 import ChannelShop from 'features/channel_shop';
 import ChannelCategory from 'features/channel_category';
 import {
@@ -36,7 +36,7 @@ const initialPageState = {
 	currentPage: initialPage,
 	previousButtonStyle: disableButton,
 	nextButtonStyle: ''
-}
+};
 const CHANNEL_PAGE_OFFSET_SIZE: number = -100;
 
 function Channel({ data }: Prop) {
@@ -59,8 +59,8 @@ function Channel({ data }: Prop) {
 					nextButtonStyle: ''
 				}
 			});
-		}
-	}
+		};
+	};
 
 	function _handleNextButton(selectedId: string, totalPage: number) {
 		const page = pagesState[selectedId];
@@ -75,7 +75,7 @@ function Channel({ data }: Prop) {
 				}
 			});
 			return;
-		}
+		};
 
 		if (page.currentPage + 1 < totalPage) {
 			setPagesState({
@@ -95,8 +95,8 @@ function Channel({ data }: Prop) {
 					nextButtonStyle: disableButton
 				}
 			});
-		}
-	}
+		};
+	};
 
 	function _renderTitleImage(imageSuffix: string) {
 		return (
@@ -107,8 +107,8 @@ function Channel({ data }: Prop) {
 					alt="Emphasis"
 				/>
 			</div>
-		)
-	}
+		);
+	};
 
 	function _renderButtons(uuid: string, totalPage: number) {
 		const {
@@ -117,19 +117,19 @@ function Channel({ data }: Prop) {
 		} = pagesState[uuid] ?? initialPageState;
 
 		return (
-			<div className={ buttonWrapper }>
+			<div className={buttonWrapper}>
 				<button>查看全部</button>
-				<div className={ space_40 } />
+				<div className={space_40} />
 				<div onClick={() => _handlePreviousButton(uuid)}>
-					<Arrow appendWrapper={ previousButton } />
+					<Arrow appendWrapper={previousButton} />
 				</div>
-				<div className={ space_4 } />
+				<div className={space_4} />
 				<div onClick={() => _handleNextButton(uuid, totalPage)}>
-					<Arrow appendWrapper={ `${nextButton} ${rotate_180}`} />
+					<Arrow appendWrapper={`${nextButton} ${rotate_180}`} />
 				</div>
 			</div>
-		)
-	}
+		);
+	};
 
 	function _renderRegularContent(data: TChannelItem[], currentPage: number) {
 		if (isShopsChannel(data)) {
@@ -142,8 +142,8 @@ function Channel({ data }: Prop) {
 					size={getRegularPageSize(data)}
 					offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
 				/>
-			)
-		}
+			);
+		};
 
 		return (
 			<ChannelCategory
@@ -153,8 +153,8 @@ function Channel({ data }: Prop) {
 				)}
 				pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
 			/>
-		)
-	}
+		);
+	};
 
 	function _renderChannel() {
 		return (
@@ -173,17 +173,17 @@ function Channel({ data }: Prop) {
 
 					return (
 						<div
-							className={ emphasisWrapper }
+							className={emphasisWrapper}
 							key={uuid}
 						>
 							<div className={`${titleWrapper} ${emphasisTitle}`}>
-								{ _renderTitleImage(imageSuffix) }
+								{_renderTitleImage(imageSuffix)}
 								<h1>{title}</h1>
 								{subtitle === '' || <span>{subtitle}</span>}
 							</div>
-							<div className={ emphasisContent }>
-								<div className={ emphasisButton }>
-									{ _renderButtons(uuid, totalPage) }
+							<div className={emphasisContent}>
+								<div className={emphasisButton}>
+									{_renderButtons(uuid, totalPage)}
 								</div>
 								<ChannelShop
 									data={getPageDataList(
@@ -195,8 +195,8 @@ function Channel({ data }: Prop) {
 								/>
 							</div>
 						</div>
-					)
-				}
+					);
+				};
 
 				const totalPage = getTotalPage(
 					channelItems,
@@ -205,28 +205,28 @@ function Channel({ data }: Prop) {
 
 				return (
 					<div
-						className={ regularWrapper }
+						className={regularWrapper}
 						key={uuid}
 					>
-						<div className={ regularTitle }>
-							<div className={ titleWrapper }>
+						<div className={regularTitle}>
+							<div className={titleWrapper}>
 								<h1>{title}</h1>
 								{subtitle === '' || <span>{subtitle}</span>}
 							</div>
-							{ _renderButtons(uuid, totalPage) }
+							{_renderButtons(uuid, totalPage)}
 						</div>
-						{ _renderRegularContent(channelItems, currentPage) }
+						{_renderRegularContent(channelItems, currentPage)}
 					</div>
-				)
+				);
 			})
-		)
-	}
+		);
+	};
 
 	return (
-		<div className={ wrapper }>
-			{ _renderChannel() }
+		<div className={wrapper}>
+			{_renderChannel()}
 		</div>
-	)
-}
+	);
+};
 
 export default Channel;

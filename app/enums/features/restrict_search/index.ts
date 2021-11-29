@@ -38,7 +38,7 @@ export enum DeliveryRestrictionTypes {
 	VEGAN = 1,
 	GLUTEN_FREE = 2,
 	NO_ALLERGY = 3
-};;
+};
 
 export enum DeliveryRestrictionsTypes {
 	VEGETABLE = '  蔬食料理',

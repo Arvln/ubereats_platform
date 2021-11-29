@@ -1,6 +1,6 @@
 import { Prop, TChannelCategory } from './types';
 import Image from 'next/image';
-import CategoryItem from 'components/category_item';
+import { CategoryItem } from 'components';
 
 import classes from 'styles/features/ChannelCategory.module.scss';
 
@@ -28,7 +28,7 @@ function ChannelCategory({
 					key={uuid}
 				>
 					<CategoryItem
-						appendClass={ category }
+						appendClass={category}
 						pageUrl={`/${title}`}
 						icon={
 							<Image
@@ -42,8 +42,8 @@ function ChannelCategory({
 					/>
 				</div>
 			))
-		)
-	}
+		);
+	};
 
 	function _renderPages() {
 		return (
@@ -57,13 +57,13 @@ function ChannelCategory({
 				</div>
 			))
 		);
-	}
+	};
 
 	return (
-		<div className={ wrapper }>
-				{ _renderPages() }
+		<div className={wrapper}>
+			{_renderPages()}
 		</div>
-	)
-}
+	);
+};
 
 export default ChannelCategory;

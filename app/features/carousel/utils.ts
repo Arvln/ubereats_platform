@@ -6,7 +6,7 @@ export function getRenderData(data: TCarousel[]) {
 		...data,
 		...data.slice(data.length - 5, data.length)
 	];
-}
+};
 
 export function getRightStartPoint(offset: number) {
 	const isReachLeftBoundary: boolean = offset === 0 || offset === -33.333;
@@ -14,4 +14,4 @@ export function getRightStartPoint(offset: number) {
 	if (isReachLeftBoundary) offset -= 0.001;
 
 	return Math.round((offset - 333.333) * 1000) / 1000;
-}
+};

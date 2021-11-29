@@ -20,11 +20,11 @@ function Button({
 	const contentStyle = `${content} ${appendContent}`;
 
 	return (
-		<div className={ wrapperStyle }>
-			{ icon }
-			<div className={ contentStyle }>{ text }</div>
+		<div className={wrapperStyle}>
+			{icon}
+			<div className={contentStyle}>{text}</div>
 		</div>
-	)
-}
+	);
+};
 
 export default Button;

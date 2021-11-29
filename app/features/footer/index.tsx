@@ -26,9 +26,9 @@ function Footer() {
 		const wrapper = moreOptionsWrapper;
 
 		return (
-			<div className={ wrapper }>
-				<div className={ brand }>
-					<div className={ logoWrapper }>
+			<div className={wrapper}>
+				<div className={brand}>
+					<div className={logoWrapper}>
 						<Image
 							src="/images/footer_logo.svg"
 							width={146}
@@ -36,7 +36,7 @@ function Footer() {
 							alt="Logo"
 						/>
 					</div>
-					<div className={ download }>
+					<div className={download}>
 						<Link href="https://apps.apple.com/us/app/uber-eats-food-delivery/id1058959277">
 							<a>
 								<Image
@@ -60,7 +60,7 @@ function Footer() {
 						</Link>
 					</div>
 				</div>
-				<div className={ moreOptions }>
+				<div className={moreOptions}>
 					<ul>
 						<li>
 							<Link href="https://help.uber.com/ubereats">取得協助</Link>
@@ -79,7 +79,7 @@ function Footer() {
 						</li>
 					</ul>
 				</div>
-				<div className={ moreOptions }>
+				<div className={moreOptions}>
 					<ul>
 						<li>
 							<Link href="https://www.ubereats.com/tw/near-me">我附近的美食外送</Link>
@@ -100,14 +100,14 @@ function Footer() {
 							<Link
 								href="#"
 							>
-								<a className={ selectLanguage }>
+								<a className={selectLanguage}>
 									<Image
 										src="/images/chinese.svg"
 										width={16}
 										height={15}
 										alt="Chinese"
 									/>
-									<div className={ space_8 } />
+									<div className={space_8} />
 									<span>中文</span>
 								</a>
 							</Link>
@@ -115,15 +115,15 @@ function Footer() {
 					</ul>
 				</div>
 			</div>
-		)
-	}
+		);
+	};
 
 	return (
-		<footer className={ wrapper }>
-			{ _renderMoreOptions() }
+		<footer className={wrapper}>
+			{_renderMoreOptions()}
 			<hr />
-			<div className={ about }>
-				<div className={ socialMedia }>
+			<div className={about}>
+				<div className={socialMedia}>
 					<Link
 						href="https://www.facebook.com/ubereats"
 					>
@@ -136,7 +136,7 @@ function Footer() {
 							/>
 						</a>
 					</Link>
-					<div className={ space_24 } />
+					<div className={space_24} />
 					<Link
 						href="https://www.twitter.com/ubereats"
 					>
@@ -149,7 +149,7 @@ function Footer() {
 							/>
 						</a>
 					</Link>
-					<div className={ space_24 } />
+					<div className={space_24} />
 					<Link
 						href="https://www.instagram.com/ubereats"
 					>
@@ -163,17 +163,17 @@ function Footer() {
 						</a>
 					</Link>
 				</div>
-				<div className={ policy }>
+				<div className={policy}>
 					<Link href="https://www.uber.com/legal/privacy/users">隱私政策</Link>
-					<div className={ space_40 } />
+					<div className={space_40} />
 					<Link href="https://www.uber.com/terms">條款</Link>
-					<div className={ space_40 } />
+					<div className={space_40} />
 					<Link href="https://help.uber.com/ubereats/article/uber-eats-pricing?nodeId=2adbed88-9822-4690-9529-3061c4821755">價格</Link>
-					<div className={ space_40 } />
+					<div className={space_40} />
 					<Link href="https://privacy.uber.com/privacy/california">請勿銷售我的資訊 (加州)</Link>
 				</div>
 			</div>
-			<div className={ statement }>
+			<div className={statement}>
 				<div>
 					本網站受到 reCAPTCHA 和 Google <Link href="https://policies.google.com/privacy">隱私政策</Link>的保護，且適用<Link href="https://policies.google.com/terms">服務條款</Link>。
 				</div>
@@ -181,7 +181,7 @@ function Footer() {
 				<div>© 2021 Uber Technologies Inc.</div>
 			</div>
 		</footer>
-	)
-}
+	);
+};
 
 export default Footer;

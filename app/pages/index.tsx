@@ -24,17 +24,17 @@ const Home: NextPage<Prop> = ({ pageData }) => {
 	} = pageData;
 
 	return (
-		<main className={ wrapper }>
-			<Shortcut data={ shortcut } />
+		<main className={wrapper}>
+			<Shortcut data={shortcut} />
 			<hr />
-			<Carousel data={ carousel } />
-			<section className={ storesWrapper }>
+			<Carousel data={carousel} />
+			<section className={storesWrapper}>
 				<RestrictSearch isCuisines />
-				<Channel data={ channel } />
+				<Channel data={channel} />
 			</section>
 		</main>
-	)
-}
+	);
+};
 
 export const getServerSideProps = getPageProps<TPageData>(query);
 

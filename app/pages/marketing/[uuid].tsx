@@ -24,11 +24,11 @@ const Advertise: NextPage<Prop> = ({ pageData }) => {
 	const { content } = pageData;
 
 	return (
-		<main className={ wrapper }>
-			<div className={ massage }>{ content }</div>
+		<main className={wrapper}>
+			<div className={massage}>{content}</div>
 		</main>
-	)
-}
+	);
+};
 
 export const getStaticPaths = getPageStaticPaths<TUUID>(
 	getUUID,

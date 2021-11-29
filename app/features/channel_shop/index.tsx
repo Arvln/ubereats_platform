@@ -1,5 +1,5 @@
 import { Prop, TShop } from './types';
-import Shop from 'components/shop';
+import { Shop } from 'components';
 
 import classes from 'styles/features/ChannelShop.module.scss';
 
@@ -30,13 +30,13 @@ function ChannelShop({
 				</div>
 			))
 		);
-	}
+	};
 
 	return (
-		<div className={ wrapper }>
-			{ _renderPages() }
+		<div className={wrapper}>
+			{_renderPages()}
 		</div>
-	)
-}
+	);
+};
 
 export default ChannelShop;

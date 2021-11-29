@@ -20,16 +20,16 @@ function Popups({
 
 	return (
 		<div
-			className={ wrapper }
+			className={wrapper}
 			onClick={() => hide()}
 		>
-			<div className={ maskWrapper }>
-				<div className={ maskContent }>
-					{ children }
+			<div className={maskWrapper}>
+				<div className={maskContent}>
+					{children}
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default Popups;

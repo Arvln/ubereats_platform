@@ -3,7 +3,7 @@ import { TAppendClass } from 'components/button/types';
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Button from 'components/button';
+import { Button } from 'components';
 
 import classes from 'styles/features/Header.module.scss';
 
@@ -36,23 +36,23 @@ const {
 const unSelectedButton: TAppendClass = {
 	appendWrapper: deliveryButtonWrapper,
 	appendContent: deliveryButtonContent
-}
+};
 const selectedButton: TAppendClass = {
 	...unSelectedButton,
 	appendWrapper: `${deliveryButtonWrapper} ${deliveryButtonSelected}`
-}
+};
 const locationButton: TAppendClass = {
 	appendWrapper: locationButtonWrapper,
 	appendContent: locationButtonContent
-}
+};
 const cartButton: TAppendClass = {
 	appendWrapper: cartButtonWrapper,
 	appendContent: cartButtonContent
-}
+};
 const loginButton: TAppendClass = {
 	appendWrapper: loginButtonWrapper,
 	appendContent: loginButtonContent
-}
+};
 
 function Header({
 	showEntryOptions,
@@ -66,16 +66,16 @@ function Header({
 
 	function _handleSearchbarInputFocus () {
 		setSearchbarShadowStyle(searchbarShadow);
-	}
+	};
 
 	function _handleSearchbarInputBlur () {
 		setSearchbarShadowStyle('');
-	}
+	};
 
 	return (
-		<header className={ wrapper }>
+		<header className={wrapper}>
 			<div
-				className={ imageWrapper }
+				className={imageWrapper}
 				onClick={() => showEntryOptions()}
 			>
 				<Image
@@ -85,8 +85,8 @@ function Header({
 					alt="Sidebar"
 				/>
 			</div>
-			<div className={ space_32 } />
-			<div className={ imageWrapper }>
+			<div className={space_32} />
+			<div className={imageWrapper}>
 				<Link
 					href="/"
 				>
@@ -100,31 +100,31 @@ function Header({
 					</a>
 				</Link>
 			</div>
-			<div className={ space_40 } />
-			<div className={ deliveryOptions }>
+			<div className={space_40} />
+			<div className={deliveryOptions}>
 				<div
-					className={ deliveryOption }
+					className={deliveryOption}
 					onClick={() => setIsDeliveried(!isDeliveried)}
 				>
 					<Button
-						appendClass={ deliveryButton }
+						appendClass={deliveryButton}
 						text='外送'
 					/>
 				</div>
 				<div
-					className={ deliveryOption }
+					className={deliveryOption}
 					onClick={() => setIsDeliveried(!isDeliveried)}
 				>
 					<Button
-						appendClass={ takeOutButton }
+						appendClass={takeOutButton}
 						text='外帶'
 					/>
 				</div>
 			</div>
-			<div className={ space_16 } />
-			<div className={ locationChoosingWrapper }>
+			<div className={space_16} />
+			<div className={locationChoosingWrapper}>
 				<Button
-					appendClass={ locationButton }
+					appendClass={locationButton}
 					icon={
 						<Image
 							src="/images/location.svg"
@@ -136,17 +136,17 @@ function Header({
 					text={'ABCD . A Better Coffee & Doughnut  •  立刻'}
 				/>
 			</div>
-			<div className={ space_64 } />
-			<div className={ searchbarWrapperStyle }>
+			<div className={space_64} />
+			<div className={searchbarWrapperStyle}>
 				<label htmlFor="search-input">想吃點什麼</label>
-				<div className={ searchbar }>
+				<div className={searchbar}>
 					<Image
 						src="/images/search.svg"
 						width={24}
 						height={24}
 						alt="Search"
 					/>
-					<div className={ space_16 } />
+					<div className={space_16} />
 					<input
 						type="text"
 						placeholder="美食、生鮮雜貨、飲料等"
@@ -155,10 +155,10 @@ function Header({
 					/>
 				</div>
 			</div>
-			<div className={ space_24 } />
-			<div className={ cartWrapper }>
+			<div className={space_24} />
+			<div className={cartWrapper}>
 				<Button
-					appendClass={ cartButton }
+					appendClass={cartButton}
 					icon={
 						<Image
 							src="/images/cart.svg"
@@ -170,14 +170,14 @@ function Header({
 				/>
 			</div>
 			<div className={space_24} />
-			<div className={ loginWrapper }>
+			<div className={loginWrapper}>
 				<Button
-					appendClass={ loginButton }
+					appendClass={loginButton}
 					text="登入"
 				/>
 			</div>
 		</header>
-	)
-}
+	);
+};
 
 export default Header;

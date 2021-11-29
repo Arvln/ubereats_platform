@@ -5,8 +5,3 @@ export enum RecommandCategories {
 	FLOWERS = '鮮花',
 	RETAIL = '百貨商場'
 };
-
-export enum Fields {
-	SHORTCUT = 'shortcut',
-	CATEGORY = 'category'
-};

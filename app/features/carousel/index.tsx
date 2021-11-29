@@ -2,7 +2,7 @@ import { Prop } from './types';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Arrow from 'components/arrow';
+import { Arrow } from 'components';
 import {
 	getRenderData,
 	getRightStartPoint
@@ -77,9 +77,9 @@ function Carousel({ data }: Prop) {
 					<li
 						key={index}
 						aria-hidden={ariaHidden}
-						className={ advertiseItem }
+						className={advertiseItem}
 					>
-						<div className={ itemWrapper }>
+						<div className={itemWrapper}>
 							<Link href={`/marketing/${uuid}`}>
 								<a>
 									<Image
@@ -93,29 +93,29 @@ function Carousel({ data }: Prop) {
 					</li>
 				)
 			})
-		)
-	}
+		);
+	};
 
 	return (
-		<div className={ wrapper }>
+		<div className={wrapper}>
 			<div onClick={() => _handlePreviousButton()}>
 				<Arrow />
 			</div>
-			<div className={ space_4 } />
-			<div className={ content }>
+			<div className={space_4} />
+			<div className={content}>
 				<ol
-					className={ `${advertiseWrapper} ${transition}` }
+					className={`${advertiseWrapper} ${transition}`}
 					style={{ transform: `translateX(${horizontalOffset}%)` }}
 				>
-					{ _renderItems() }
+					{_renderItems()}
 				</ol>
 			</div>
-			<div className={ space_4 } />
+			<div className={space_4} />
 			<div onClick={() => _handleNextButton()}>
-				<Arrow appendWrapper={ rightButtonWrapper } />
+				<Arrow appendWrapper={rightButtonWrapper} />
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default Carousel;

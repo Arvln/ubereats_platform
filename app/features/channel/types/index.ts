@@ -4,7 +4,7 @@ import {
 } from "types/features";
 
 export type Prop = {
-	data: TChannelData[]
+	data: TChannelData[];
 };
 
 export type TPagesState = {
@@ -12,7 +12,7 @@ export type TPagesState = {
 		currentPage: number;
 		previousButtonStyle: string;
 		nextButtonStyle: string;
-	}
-}
+	};
+};
 
 export type { TChannelItem };

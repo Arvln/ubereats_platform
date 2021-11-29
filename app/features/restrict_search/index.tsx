@@ -11,7 +11,7 @@ import {
 import { TAppendClass } from 'components/button/types';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
-import Button from 'components/button';
+import { Button } from 'components';
 
 import classes from 'styles/features/RestrictSearch.module.scss';
 
@@ -89,9 +89,9 @@ function RestrictSearch({ isCuisines }: Prop) {
 					rotate: '',
 					conditionContentWrapper: hidden
 				}
-			})
+			});
 			return;
-		}
+		};
 
 		const {
 			rotate,
@@ -106,7 +106,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 					conditionContentWrapper === hidden ? conditionContent : hidden
 			}
 		});
-	}
+	};
 
 	function _renderClassificationContent() {
 		const classifications: number[] = [RECOMMEND, POPULAR, SCORE, DELIVERY_TIME];
@@ -133,17 +133,17 @@ function RestrictSearch({ isCuisines }: Prop) {
 							onClick={() => setClassificationOption(classification)}
 						/>
 						<label
-							className={ labelStyle }
+							className={labelStyle}
 							htmlFor={key}
 						>
 							<div className={space_16}></div>
 							<span>{title}</span>
 						</label>
 					</div>
-				)
+				);
 			})
-		)
-	}
+		);
+	};
 
 	function _renderPriceRange() {
 		const priceRanges: string[] = [EXTREMELY_LOW, LOW, MIDDLE, HIGH];
@@ -153,52 +153,52 @@ function RestrictSearch({ isCuisines }: Prop) {
 		};
 
 		return (
-			<div className={ priceContent }>
+			<div className={priceContent}>
 				{
 					priceRanges.map(priceRange => (
 						<Button
 							key={priceRange}
-							appendClass={ priceRangeButton }
+							appendClass={priceRangeButton}
 							text={priceRange}
 						/>
 					))
 				}
 			</div>
-		)
-	}
+		);
+	};
 
 	function _handleDeliveryCostInput(element: HTMLInputElement | null) {
 		if (!element) return;
 		setDeliveryCostInputValue(parseInt(element.value));
-	}
+	};
 
 	function _renderDeliveryCostLimitation() {
 		const firstDivider: string = `${deliveryCostOption} ${divider}`;
 		const secondDivider: string = `${deliveryCostOption} ${deliveryCostInputValue !== NT$60 ? divider : ''}`;
 
 		return (
-			<div className={ deliveryCostContent }>
-				<div className={ deliveryCostOptions }>
+			<div className={deliveryCostContent}>
+				<div className={deliveryCostOptions}>
 					<div
-						className={ deliveryCostOption }
+						className={deliveryCostOption}
 						onClick={() => setDeliveryCostInputValue(NT$25)}
 					>
 						NT$25
 					</div>
 					<div
-						className={ firstDivider }
+						className={firstDivider}
 						onClick={() => setDeliveryCostInputValue(NT$40)}
 					>
 						NT$40
 					</div>
 					<div
-						className={ secondDivider }
+						className={secondDivider}
 						onClick={() => setDeliveryCostInputValue(NT$60)}
 					>
 						NT$60
 					</div>
 					<div
-						className={ deliveryCostOption }
+						className={deliveryCostOption}
 						onClick={() => setDeliveryCostInputValue(NT$60_PLUS)}
 					>
 						NT$60+
@@ -207,14 +207,14 @@ function RestrictSearch({ isCuisines }: Prop) {
 				<input
 					ref={deliveryCostInput}
 					type="range"
-					className={ slider }
+					className={slider}
 					max="3"
 					value={deliveryCostInputValue}
 					onInput={() => _handleDeliveryCostInput(deliveryCostInput.current)}
 				/>
 			</div>
-		)
-	}
+		);
+	};
 
 	function _renderDietaryRestriction(): JSX.Element {
 		const deliveryRestrictions: number[] = [VEGETABLE, VEGAN, GLUTEN_FREE, NO_ALLERGY];
@@ -224,7 +224,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 		};
 
 		return (
-			<div className={ dietaryContent }>
+			<div className={dietaryContent}>
 				{
 					deliveryRestrictions.map(deliveryRestriction => {
 						const key: string = DeliveryRestrictionTypes[deliveryRestriction];
@@ -248,9 +248,8 @@ function RestrictSearch({ isCuisines }: Prop) {
 					})
 				}
 			</div>
-			
-		)
-	}
+		);
+	};
 
 	function _renderCondition(
 		condition: string,
@@ -269,13 +268,13 @@ function RestrictSearch({ isCuisines }: Prop) {
 		const button = `${buttonWrapper} ${rotate}`;
 
 		return (
-			<div className={ conditionWrapper }>
+			<div className={conditionWrapper}>
 				<div
-					className={ conditionTitle }
+					className={conditionTitle}
 				>
-					<div className={ optionTitle }>{condition}</div>
+					<div className={optionTitle}>{condition}</div>
 					<div
-						className={ button }
+						className={button}
 						onClick={() => _handleButton(condition)}
 					>
 						<Image
@@ -285,17 +284,17 @@ function RestrictSearch({ isCuisines }: Prop) {
 						/>
 					</div>
 				</div>
-				<div className={ conditionContentWrapper }>
+				<div className={conditionContentWrapper}>
 					{content}
 				</div>
 			</div>
-		)
-	}
+		);
+	};
 
 	return (
-		<aside className={ wrapper }>
-			<div className={ content }>
-				<div className={ title }>
+		<aside className={wrapper}>
+			<div className={content}>
+				<div className={title}>
 					<h1>所有餐廳門市</h1>
 				</div>
 				{
@@ -324,7 +323,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 				}
 			</div>
 		</aside>
-	)
-}
+	);
+};
 
 export default RestrictSearch;

@@ -11,18 +11,18 @@ function CategoryItem({
 	icon,
 	text
 }: Prop) {
-	const wrapperStyle = `${wrapper} ${appendClass}`
+	const wrapperStyle = `${wrapper} ${appendClass}`;
 
 	return (
-		<div className={ wrapperStyle }>
-			<Link href={ pageUrl }>
+		<div className={wrapperStyle}>
+			<Link href={pageUrl}>
 				<a>
-					{ icon }
-					<span>{ text }</span>
+					{icon}
+					<span>{text}</span>
 				</a>
 			</Link>
 		</div>
-	)
-}
+	);
+};
 
 export default CategoryItem;

@@ -1,7 +1,7 @@
 import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
-import Button from 'components/button';
+import { Button } from 'components';
 
 import classes from 'styles/components/Arrow.module.scss';
 
@@ -14,12 +14,12 @@ function Arrow({ appendWrapper }: Prop) {
 	const button: TAppendClass = {
 		appendWrapper: `${appendWrapper ?? ''} ${buttonWrapper}`,
 		appendContent: ''
-	}
+	};
 
 	return (
-		<div className={ wrapper }>
+		<div className={wrapper}>
 			<Button
-				appendClass={ button }
+				appendClass={button}
 				icon={
 					<Image
 						src="/images/arrow.svg"
@@ -30,7 +30,7 @@ function Arrow({ appendWrapper }: Prop) {
 				}
 			/>
 		</div>
-	)
-}
+	);
+};
 
 export default Arrow;

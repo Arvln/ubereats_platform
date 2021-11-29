@@ -5,9 +5,9 @@ export type Prop = {
 	data: TChannelItem[][];
 	size: number;
 	offset: number;
-}
+};
 
 export type {
 	TChannelItem,
 	TShop
-}
+};

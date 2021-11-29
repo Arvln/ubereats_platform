@@ -16,7 +16,7 @@ export function getOffset(
 	size: number
 ) {
   return (currentPage - 1) * size;
-}
+};
 
 export function getPageDataList(
 	data: TChannelItem[],
@@ -35,22 +35,22 @@ export function getPageDataList(
 		currentPage++;
 		offset = getOffset(currentPage, size);
 		hasData = data.length > offset + size;
-	}
+	};
 	pageDataList = [
 		...pageDataList,
 		data.slice(offset, data.length)
 	];
 
 	return pageDataList;
-}
+};
 
 export function getEmphsisPageSize() {
 	return EMPHASIS_SHOP_PAGE_SIZE;
-}
+};
 
 export function isShopsChannel(data: TChannelItem[]) {
 	return data[0]['__typename'] === CHANNELSHOP;
-}
+};
 
 export function getRegularPageSize(data: TChannelItem[]) {
 	const type: string = data[0]['__typename'];
@@ -59,11 +59,11 @@ export function getRegularPageSize(data: TChannelItem[]) {
 	if (type === CHANNELCATEGORY) return CATEGORY_PAGE_SIZE;
 
 	return REGULAR_DEFAULT_PAGE_SIZE;
-}
+};
 
 export function getTotalPage(
 	data: TChannelItem[],
 	pageSize: number
 ) {
 	return Math.ceil(data.length / pageSize);
-}
+};

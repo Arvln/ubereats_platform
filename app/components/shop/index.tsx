@@ -2,7 +2,7 @@ import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from 'components/button';
+import { Button } from 'components';
 import {
 	getScore,
 	isPickup,
@@ -88,25 +88,25 @@ function Shop({
 		const scoreButton: TAppendClass = {
 			appendWrapper: isComment ? scoreButtonWrapper : hidden,
 			appendContent: scoreText
-		}
+		};
 
 		if (isCarefullySelected)
 			return (
-				<div className={ scoreButtonWrapper }>
+				<div className={scoreButtonWrapper}>
 					<Image
 						src={`https://${SHORTCUT_ICONS_SERVER_HOST}/eatsfeed/other_icons/top_eats.png`}
 						layout="fill"
 						alt="Carefully Selected"
 					/>
 				</div>
-			)
+			);
 		else
 			return (
 				<Button
 					appendClass={scoreButton}
 					text={getScore(score)}
 				/>
-			)
+			);
 	}
 
 
@@ -133,12 +133,12 @@ function Shop({
 
 					return (
 						<li
-							className={ shopWrapper }
+							className={shopWrapper}
 							key={uuid}
 						>
 							<Link href={`/store/${name}/${uuid}`}>
 								<a>
-									<h3 className={ storeTitle }>{name}</h3>
+									<h3 className={storeTitle}>{name}</h3>
 									<div className={`${imageWrapper} ${imageHeight}`}>
 										<Image
 											src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
@@ -147,13 +147,13 @@ function Shop({
 											objectFit="cover"
 											alt="Shop"
 										/>
-										<div className={ discountMessage }>
+										<div className={discountMessage}>
 											<span
 												className={`${hideEmptyElement} ${discountText}`}>
 												{discountLabel}
 											</span>
-											<div className={ buttonWrapper }>
-												<div className={ space_16 } />
+											<div className={buttonWrapper}>
+												<div className={space_16} />
 												<Button
 													appendClass={favorButton}
 													icon={
@@ -165,17 +165,17 @@ function Shop({
 														/>
 													}
 												/>
-												<div className={ space_12 } />
+												<div className={space_12} />
 											</div>
 										</div>
 									</div>
-									<div className={ baseMessage }>
-										<div className={ title }>{name}</div>
-										{ _renderScoreButton(score) }
+									<div className={baseMessage}>
+										<div className={title}>{name}</div>
+										{_renderScoreButton(score)}
 									</div>
-									<div className={ detailMessage }>
-										<div className={ detailImageWrapper }>
-											<div className={ detailMessageImage }>
+									<div className={detailMessage}>
+										<div className={detailImageWrapper}>
+											<div className={detailMessageImage}>
 												<Image
 													src={`https://${UTILS_ICONS_SERVER_HOST}/ticket@3x.png`}
 													layout="fill"
@@ -183,12 +183,12 @@ function Shop({
 												/>
 											</div>
 										</div>
-										{ _renderDetailContent(deliveryCost, shortestDeliveryTime) }
+										{_renderDetailContent(deliveryCost, shortestDeliveryTime)}
 									</div>
 								</a>
 							</Link>
 						</li>
-					)
+					);
 				})
 			}
 		</>

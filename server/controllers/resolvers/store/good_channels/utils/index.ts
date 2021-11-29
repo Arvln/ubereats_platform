@@ -17,7 +17,7 @@ function getChannel(
 
 	return {
 		label: getLabel(label),
-		items: items
+		items
 	};
 };
 

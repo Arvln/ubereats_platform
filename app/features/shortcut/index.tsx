@@ -1,7 +1,7 @@
 import { Prop } from './types';
 import { useState } from 'react';
 import Image from 'next/image';
-import CategoryItem from 'components/category_item';
+import { CategoryItem } from 'components';
 
 import classes from 'styles/features/Shortcut.module.scss';
 
@@ -17,11 +17,11 @@ function Shortcut({ data }: Prop) {
 
 	function _handleMouseEnter(selectedId: string): void {
 		setSelectedId(selectedId);
-	}
+	};
 
 	function _handleMouseLeave(): void {
 		setSelectedId('');
-	}
+	};
 
 	function _renderItems(): JSX.Element[] {
 		return (
@@ -45,7 +45,7 @@ function Shortcut({ data }: Prop) {
 							pageUrl={`/${title}`}
 							icon={
 								<Image
-									className={ hoverStyle }
+									className={hoverStyle}
 									src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${imageSuffix}`}
 									width={60}
 									height={60}
@@ -57,18 +57,18 @@ function Shortcut({ data }: Prop) {
 					</li>
 				)
 			})
-		)
-	}
+		);
+	};
 	
 	return (
-		<div className={ wrapper }>
+		<div className={wrapper}>
 			<nav>
 				<ul>
-					{ _renderItems() }
+					{_renderItems()}
 				</ul>
 			</nav>
 		</div>
-	)
-}
+	);
+};
 
 export default Shortcut;
