@@ -5,18 +5,18 @@ export type TChannel = {
 	subtitle: string;
 	imageSuffix: string;
 	uuid: string;
-}
+};
 
-export type TParent = TChannel & { id: number; }
+export type TParent = TChannel & { id: number; };
 
-export type TChannelShop = TShop & { channelId: number; }
+export type TChannelShop = TShop & { channelId: number; };
 
 export type TChannelCategory = {
 	__typename: string;
 	title: string;
 	name: string;
 	uuid: string;
-}
+};
 
 export type TChannelItem = TChannelShop | TChannelCategory;
 

@@ -1,0 +1,127 @@
+@import '../../utils/index.scss';
+
+$imageHeight: 40%;
+$textColor: rgb(117, 117, 117);
+$discountPriceTextColor: rgb(5, 148, 79);
+
+.wrapper {
+  @apply
+    w-full
+    pt-6;
+
+  .contentWrapper {
+    @apply
+      mt-10;
+
+    &:first-child {
+      @apply mt-0;
+    }
+
+    .title {
+      @apply
+        pb-4
+        font-medium
+        text-2xl
+        leading-8;
+    }
+
+    .content {
+      @apply
+        grid
+        grid-cols-2
+        gap-x-6
+        gap-y-10;
+
+      .goodWrapper {
+        &:hover {
+          box-shadow: 0px 4px 16px rgb(0 0 0 / 12%);
+
+          @include transition(box-shadow, 300);
+          @apply
+            -m-2
+            p-2
+            cursor-pointer;
+        }
+
+        .goodItem {
+          .imageWrapper {
+            @extend .imageHeight_38;
+            @apply relative;
+  
+            .image {
+              @include transition(transform, 500);
+  
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+          }
+  
+          span {
+            @apply leading-5;
+          }
+  
+          .detail {
+            @apply
+              pt-1
+              leading-5;
+  
+            .goodPrice,
+            .introduction {
+              @apply
+                text-[#{$textColor}]
+                text-sm
+                font-light
+                whitespace-pre-wrap;
+            }
+  
+            .origin {
+              @apply line-through;
+            }
+  
+            .discount {
+              @apply
+                pr-1
+                text-[#{$discountPriceTextColor}];
+            }
+  
+            .introduction {
+              @apply pt-1;
+            }
+          }
+        }
+      }
+
+      .emphasis {
+        @apply col-span-2;
+
+        .emphasisItem {
+          @apply
+            flex
+            flex-row-reverse
+            justify-between;
+        }
+
+        .goodItem {
+          .imageWrapper {
+            @include imageHeight(15%);
+            @apply
+              w-5/12
+              flex-shrink-0;
+          }
+
+          .emphasisPrice {
+            @apply pt-1;
+          }
+
+          .detail {
+            @apply
+              pt-0
+              pr-2
+              pb-2;
+          }
+        }
+      }
+    }
+  }
+}

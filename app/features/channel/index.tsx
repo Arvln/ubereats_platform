@@ -179,7 +179,7 @@ function Channel({ data }: Prop) {
 							<div className={`${titleWrapper} ${emphasisTitle}`}>
 								{_renderTitleImage(imageSuffix)}
 								<h1>{title}</h1>
-								{subtitle === '' || <span>{subtitle}</span>}
+								{!subtitle || <span>{subtitle}</span>}
 							</div>
 							<div className={emphasisContent}>
 								<div className={emphasisButton}>
@@ -211,7 +211,7 @@ function Channel({ data }: Prop) {
 						<div className={regularTitle}>
 							<div className={titleWrapper}>
 								<h1>{title}</h1>
-								{subtitle === '' || <span>{subtitle}</span>}
+								{!subtitle || <span>{subtitle}</span>}
 							</div>
 							{_renderButtons(uuid, totalPage)}
 						</div>

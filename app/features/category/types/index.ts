@@ -1,4 +1,4 @@
-import { TPageData } from 'types/pages/title';
+import { TPageData } from 'types/pages/categories';
 
 export type Prop = {
 	data: TPageData;

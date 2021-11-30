@@ -1,4 +1,4 @@
-import { TParent, TCategoryShop } from 'types/pages/title';
+import { TParent, TCategoryShop } from 'types/pages/categories';
 import _ from 'lodash';
 import { getData } from 'models/category';
 

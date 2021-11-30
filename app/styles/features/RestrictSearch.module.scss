@@ -9,241 +9,243 @@ $optionInputDefaultBorderWidth: 3px;
 $optionInputDefaultBorderColor: rgb(107, 107, 107);
 
 .wrapper {
-  @apply
-    w-1/4
-    pt-6
-    pr-5
-    sticky
-    top-0
-    max-h-screen
-    overflow-y-auto;
+  @apply w-1/4;
 
-  .content {
+  .searchWrapper {
     @apply
-      max-w-[#{$contentMaxWidth}];
-
-    .title {
-      @apply
-        font-medium
-        leading-9
-        text-[#{$titleFontSize}]
-        mb-6;
-    }
-
-    .conditionWrapper {
-      @apply pb-4;
-
-      .conditionTitle {
-        @apply
-          flex
-          justify-between;
+      pt-6
+      pr-5
+      sticky
+      top-0
+      overflow-y-auto;
   
-        .optionTitle {
-          @apply
-            leading-6
-            text-lg;
-        }
-    
-        .buttonWrapper {
-          @apply
-            w-6
-            h-6
-            relative
-            cursor-pointer;
-        }
+    .content {
+      @apply
+        max-w-[#{$contentMaxWidth}];
+  
+      .title {
+        @apply
+          font-medium
+          leading-9
+          text-[#{$titleFontSize}]
+          mb-6;
       }
   
-      .conditionContent {
-        @apply py-3;
+      .conditionWrapper {
+        @apply pb-4;
   
-        .classificationContent {
+        .conditionTitle {
           @apply
-            pb-[#{$optionContentPaddingBottom}]
             flex
-            items-center
-            relative;
-  
-          > input {
+            justify-between;
+    
+          .optionTitle {
             @apply
-              w-full
-              h-full
-              absolute
-              opacity-0
+              leading-6
+              text-lg;
+          }
+      
+          .buttonWrapper {
+            @apply
+              w-6
+              h-6
+              relative
               cursor-pointer;
           }
-  
-          &:last-child {
-            @apply pb-0;
-          }
-    
-          .optionContentLabel {
-            @apply
-              flex
-              items-center;
-  
-            &::before {
-              content: "";
-  
-              @apply
-                w-[#{$optionInputSize}]
-                h-[#{$optionInputSize}]
-                rounded-[#{$optionInputBorderRadius}]
-                border-[#{$optionInputDefaultBorderWidth}]
-                border-[#{$optionInputDefaultBorderColor}];
-            }
-  
-            > span {
-              @apply
-                text-sm
-                leading-4;
-            }
-          }
-  
-          .selectedLabel {
-            &::before {
-              content: "";
-  
-              @apply
-                border-8
-                border-black;
-            }
-          }
         }
-
-        .priceContent {
-          @apply
-            -mx-1.5
-            -mb-3
-            h-11
-            flex;
-
-          .rangeButtonWrapper {
+    
+        .conditionContent {
+          @apply py-3;
+    
+          .classificationContent {
             @apply
-              mt-0
-              mx-1.5
-              mb-3
-              px-3
-              py-2
-              hover:bg-BUTTON_HOVER_COLOR;
-
-            .rangeButtonContentWrapper {
+              pb-[#{$optionContentPaddingBottom}]
+              flex
+              items-center
+              relative;
+    
+            > input {
+              @apply
+                w-full
+                h-full
+                absolute
+                opacity-0
+                cursor-pointer;
+            }
+    
+            &:last-child {
+              @apply pb-0;
+            }
+      
+            .optionContentLabel {
               @apply
                 flex
-                items-center
-                text-sm;
+                items-center;
+    
+              &::before {
+                content: "";
+    
+                @apply
+                  w-[#{$optionInputSize}]
+                  h-[#{$optionInputSize}]
+                  rounded-[#{$optionInputBorderRadius}]
+                  border-[#{$optionInputDefaultBorderWidth}]
+                  border-[#{$optionInputDefaultBorderColor}];
+              }
+    
+              > span {
+                @apply
+                  text-sm
+                  leading-4;
+              }
+            }
+    
+            .selectedLabel {
+              &::before {
+                content: "";
+    
+                @apply
+                  border-8
+                  border-black;
+              }
             }
           }
-        }
-
-        .deliveryCostContent {
-          @apply
-            h-16
-            relative
-            flex;
-
-          .deliveryCostOptions {
+  
+          .priceContent {
             @apply
-              w-full
-              h-full
-              flex
-              justify-between
-              absolute;
-
-              .deliveryCostOption {
+              -mx-1.5
+              -mb-3
+              h-11
+              flex;
+  
+            .rangeButtonWrapper {
+              @apply
+                mt-0
+                mx-1.5
+                mb-3
+                px-3
+                py-2
+                hover:bg-BUTTON_HOVER_COLOR;
+  
+              .rangeButtonContentWrapper {
                 @apply
                   flex
-                  flex-col
                   items-center
-                  text-sm
-                  cursor-pointer;
-
-                &::before {
-                  content: "";
-
-                  @apply
-                    w-0.5
-                    bg-transparent
-                    flex-grow;
-                }
-
-                &:last-child {
-                  @apply mr-2;
-                }
+                  text-sm;
               }
-
-              .divider {
-                &::before {
-                  content: "";
-
-                  @apply
-                    w-0.5
-                    bg-white
-                    flex-grow;
-                }
-              }
-          }
-
-          .slider {
-            @apply
-              px-3
-              flex-grow
-              appearance-none
-              cursor-pointer;
-
-            &::-webkit-slider-runnable-track {
-              @apply
-                h-0.5
-                bg-black;
             }
-
-            &::-webkit-slider-thumb {
+          }
+  
+          .deliveryCostContent {
+            @apply
+              h-16
+              relative
+              flex;
+  
+            .deliveryCostOptions {
               @apply
-                w-3
-                h-3
-                -mt-1.5
-                bg-black
-                relative
+                w-full
+                h-full
+                flex
+                justify-between
+                absolute;
+  
+                .deliveryCostOption {
+                  @apply
+                    flex
+                    flex-col
+                    items-center
+                    text-sm
+                    cursor-pointer;
+  
+                  &::before {
+                    content: "";
+  
+                    @apply
+                      w-0.5
+                      bg-transparent
+                      flex-grow;
+                  }
+  
+                  &:last-child {
+                    @apply mr-2;
+                  }
+                }
+  
+                .divider {
+                  &::before {
+                    content: "";
+  
+                    @apply
+                      w-0.5
+                      bg-white
+                      flex-grow;
+                  }
+                }
+            }
+  
+            .slider {
+              @apply
+                px-3
+                flex-grow
                 appearance-none
-                rounded-[#{$optionInputBorderRadius}]
-                transition;
-            }
-
-            &:active::-webkit-slider-thumb {
-              @apply
-                w-4
-                h-4;
+                cursor-pointer;
+  
+              &::-webkit-slider-runnable-track {
+                @apply
+                  h-0.5
+                  bg-black;
+              }
+  
+              &::-webkit-slider-thumb {
+                @apply
+                  w-3
+                  h-3
+                  -mt-1.5
+                  bg-black
+                  relative
+                  appearance-none
+                  rounded-[#{$optionInputBorderRadius}]
+                  transition;
+              }
+  
+              &:active::-webkit-slider-thumb {
+                @apply
+                  w-4
+                  h-4;
+              }
             }
           }
-        }
-
-        .dietaryContent {
-          @apply
-            -mx-1.5
-            flex
-            flex-wrap;
-
-          .dietaryButtonWrapper {
+  
+          .dietaryContent {
             @apply
-              mt-0
-              mx-1.5
-              mb-3
-              px-3
-              py-2
+              -mx-1.5
               flex
-              leading-4
-              hover:bg-BUTTON_HOVER_COLOR;
-
-            .dietaryButtonContentWrapper {
+              flex-wrap;
+  
+            .dietaryButtonWrapper {
               @apply
-                pl-2
-                text-sm;
+                mt-0
+                mx-1.5
+                mb-3
+                px-3
+                py-2
+                flex
+                leading-4
+                hover:bg-BUTTON_HOVER_COLOR;
+  
+              .dietaryButtonContentWrapper {
+                @apply
+                  pl-2
+                  text-sm;
+              }
             }
           }
         }
-      }
-
-      .hidden {
-        @apply hidden;
+  
+        .hidden {
+          @apply hidden;
+        }
       }
     }
   }

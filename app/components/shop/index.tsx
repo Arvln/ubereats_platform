@@ -125,7 +125,7 @@ function Shop({
 					const pageSizeWrapper: string | void = getPageSizeWrapper(size);
 					const shopWrapper =
 						pageSizeWrapper ? `${wrapper} ${pageSizeWrapper}` : wrapper;
-					const hideEmptyElement: string = discountLabel === '' ? hideEmpty : '';
+					const hideEmptyElement: string = !discountLabel ? hideEmpty : '';
 					const favorButton: TAppendClass = {
 						appendWrapper: favorButtonWrapper,
 						appendContent: ''

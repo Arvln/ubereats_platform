@@ -14,7 +14,7 @@ const {
 	showForm,
 	hideForm
 } = classes;
-let _handleForm: THandleForm = () => {};
+let handleForm: THandleForm = () => {};
 
 function Layout({ children }: Prop) {
 	const [isShowEntryOptions, setIsShowEntryOptions] = useState<boolean>(false);
@@ -35,7 +35,7 @@ function Layout({ children }: Prop) {
 		setIsShowEntryOptions(!isShowEntryOptions);
 	};
 
-	_handleForm = form => {
+	handleForm = form => {
 		_handleBodyStyle(isShowForm);
 		setIsShowFrom(!isShowForm);
 		form && setForm(form);
@@ -59,7 +59,7 @@ function Layout({ children }: Prop) {
 			<div className={formContent}>
 				<Popups
 					isShow={isShowForm}
-					hide={_handleForm}
+					hide={handleForm}
 				>
 					{form}
 				</Popups>
@@ -68,7 +68,7 @@ function Layout({ children }: Prop) {
 	};
 
 	return (
-		<FormContext.Provider value={_handleForm}>
+		<FormContext.Provider value={handleForm}>
 			<Head>
 				<title>線上訂購餐點 | 美食外送 App | Uber Eats 優食</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
@@ -80,15 +80,15 @@ function Layout({ children }: Prop) {
 			{_renderEntryOptionsWithMask()}
 			<Header
 				showEntryOptions={_handleEntryOptions}
-				showDeliveryDetails={_handleForm}
+				showDeliveryDetails={handleForm}
 			/>
-			{children}
+				{children}
 			<Footer />
 			{_renderFormWithMask()}
 		</FormContext.Provider>
 	);
 };
 
-export const FormContext = createContext(_handleForm);
+export const FormContext = createContext(handleForm);
 
 export default Layout;

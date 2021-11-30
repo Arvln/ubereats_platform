@@ -10,8 +10,8 @@
 
   .pageWrapper {
     scroll-snap-align: start;
-    transition: transform 500ms ease-in-out 0s;
 
+    @include transition(transform, 500);
     @apply
       w-full
       flex

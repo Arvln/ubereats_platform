@@ -36,4 +36,8 @@ $iconBorderRadius: 50%;
         }
     }
   }
+
+  .content {
+    @apply flex;
+  }
 }

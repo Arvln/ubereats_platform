@@ -17,6 +17,7 @@ import classes from 'styles/features/RestrictSearch.module.scss';
 
 const {
 	wrapper,
+	searchWrapper,
 	content,
 	title,
 	conditionWrapper,
@@ -101,7 +102,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 		setConditionsState({
 			...conditionsState,
 			[title]: {
-				rotate: rotate === '' ? rotate_180 : '',
+				rotate: !rotate ? rotate_180 : '',
 				conditionContentWrapper:
 					conditionContentWrapper === hidden ? conditionContent : hidden
 			}
@@ -292,37 +293,39 @@ function RestrictSearch({ isCuisines }: Prop) {
 	};
 
 	return (
-		<aside className={wrapper}>
-			<div className={content}>
-				<div className={title}>
-					<h1>所有餐廳門市</h1>
+		<div className={wrapper}>
+			<aside className={searchWrapper}>
+				<div className={content}>
+					<div className={title}>
+						<h1>所有餐廳門市</h1>
+					</div>
+					{
+						_renderCondition(
+							CLASSIFICATION,
+							_renderClassificationContent()
+						)
+					}
+					{
+						_renderCondition(
+							PRICE_RANGE,
+							_renderPriceRange()
+						)
+					}
+					{
+						_renderCondition(
+							DELIVERY_COST_LIMITATION,
+							_renderDeliveryCostLimitation()
+						)
+					}
+					{
+						_renderCondition(
+							DIETARY_RESTRICTION,
+							_renderDietaryRestriction()
+						)
+					}
 				</div>
-				{
-					_renderCondition(
-						CLASSIFICATION,
-						_renderClassificationContent()
-					)
-				}
-				{
-					_renderCondition(
-						PRICE_RANGE,
-						_renderPriceRange()
-					)
-				}
-				{
-					_renderCondition(
-						DELIVERY_COST_LIMITATION,
-						_renderDeliveryCostLimitation()
-					)
-				}
-				{
-					_renderCondition(
-						DIETARY_RESTRICTION,
-						_renderDietaryRestriction()
-					)
-				}
-			</div>
-		</aside>
+			</aside>
+		</div>
 	);
 };
 

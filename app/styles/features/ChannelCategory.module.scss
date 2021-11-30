@@ -1,3 +1,5 @@
+@import '../utils/index.scss';
+
 $categoryBackgroundColor: rgb(246, 246, 246);
 $categoryImageWidth: 68px;
 
@@ -11,8 +13,8 @@ $categoryImageWidth: 68px;
   
   .pageWrapper {
     scroll-snap-align: start;
-    transition: transform 500ms ease-in-out 0s;
 
+    @include transition(transform, 500);
     @apply
       w-full
       flex

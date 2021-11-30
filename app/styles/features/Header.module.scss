@@ -31,8 +31,7 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
     @apply w-15;
 
     .deliveryButtonWrapper {
-      transition: all 400ms ease 0s;
-
+      @include transition(all, 400);
       @apply
         w-full
         h-full

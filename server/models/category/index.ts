@@ -1,4 +1,4 @@
-import { TParent, TCategoryShop } from 'types/pages/title'
+import { TParent, TCategoryShop } from 'types/pages/categories';
 import { query } from '../../db/query';
 
 export async function getData(title?: string) {
