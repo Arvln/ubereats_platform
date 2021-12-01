@@ -1,0 +1,28 @@
+@import '../utils/index.scss';
+
+.wrapper {
+  @apply
+    flex
+    flex-col
+    items-center
+    min-w-min
+    min-h-screen;
+
+  .content {
+    @apply relative;
+
+    .buttonWrapper {
+      @extend .z-2;
+      @apply
+        w-12
+        h-12
+        absolute
+        top-2
+        left-2
+        flex
+        justify-center
+        items-center
+        bg-white;
+    }
+  }
+}

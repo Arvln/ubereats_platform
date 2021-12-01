@@ -98,7 +98,7 @@ function Carousel({ data }: Prop) {
 
 	return (
 		<div className={wrapper}>
-			<div onClick={() => _handlePreviousButton()}>
+			<div onClick={_handlePreviousButton}>
 				<Arrow />
 			</div>
 			<div className={space_4} />
@@ -111,7 +111,7 @@ function Carousel({ data }: Prop) {
 				</ol>
 			</div>
 			<div className={space_4} />
-			<div onClick={() => _handleNextButton()}>
+			<div onClick={_handleNextButton}>
 				<Arrow appendWrapper={rightButtonWrapper} />
 			</div>
 		</div>

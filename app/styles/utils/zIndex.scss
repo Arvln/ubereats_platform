@@ -1,0 +1,11 @@
+@mixin zIndex($value) {
+  @apply z-[#{$value}];
+}
+
+.z-1 {
+  @include zIndex(1);
+}
+
+.z-2 {
+  @include zIndex(2);
+}

@@ -1,0 +1,14 @@
+@mixin height($height) {
+  @apply
+    w-0
+    h-#{$height}
+    flex-shrink-0;
+}
+
+.height_48 {
+  @include height(12);
+}
+
+.height_80 {
+  @include height(20);
+}

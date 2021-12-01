@@ -1,6 +1,5 @@
 @import '../utils/index.scss';
 
-$categoryBackgroundColor: rgb(246, 246, 246);
 $categoryImageWidth: 68px;
 
 .wrapper {
@@ -31,7 +30,7 @@ $categoryImageWidth: 68px;
       .category {
         @apply
           h-20
-          bg-[#{$categoryBackgroundColor}];
+          bg-DOVE_GREY;
     
         a {
           @apply

@@ -1,6 +1,7 @@
 import { Prop, THandleForm } from './types';
 import { createContext, useState } from 'react';
 import Head from 'next/head';
+import { Form } from 'components';
 import Popups from 'features/popups';
 import EntryOptions from 'features/entry_options';
 import Header from 'features/header';
@@ -53,15 +54,15 @@ function Layout({ children }: Prop) {
 	};
 
 	function _renderFormWithMask() {
-		const formContent: string = isShowForm ? showForm : hideForm;
+		const wrapper: string = isShowForm ? showForm : hideForm;
 
 		return (
-			<div className={formContent}>
+			<div className={wrapper}>
 				<Popups
 					isShow={isShowForm}
 					hide={handleForm}
 				>
-					{form}
+					<Form data={form} />
 				</Popups>
 			</div>
 		);

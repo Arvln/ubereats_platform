@@ -1,0 +1,161 @@
+@import '../../utils/index.scss';
+
+$width: 676px;
+$imageHeight: 400px;
+$statusTextColor: #AFAFAF;
+$statusBackgroundColor: #F6F6F6;
+
+.wrapper {
+  @apply
+    w-[#{$width}]
+    bg-white
+    overflow-y-auto;
+
+  .navbar {
+    box-shadow: rgb(226 226 226) 0px -2px 0px inset;
+
+    @extend .z-1;
+    @apply
+      w-full
+      h-16
+      absolute
+      top-0
+      flex
+      justify-center
+      items-center
+      bg-white
+      text-lg;
+  }
+
+  .hidden {
+    @apply hidden;
+  }
+
+  .imageWrapper {
+    @apply
+      h-[#{$imageHeight}]
+      relative;
+  }
+
+  .information {
+    @apply
+      pt-6
+      pb-8
+      px-6;
+
+    .title {
+      @apply
+        font-medium
+        text-4xl
+        leading-10;
+    }
+
+    .introduction {
+      @apply
+        pt-2
+        leading-6
+        text-FONT_GREY;
+    }
+
+    .spicyWrapper {
+      @apply
+        pt-4
+        flex
+        items-center
+        text-sm
+        leading-5
+        text-FONT_GREY;
+
+      .spicyImage {
+        @apply
+          w-5
+          h-5
+          relative;
+      }
+    }
+  }
+
+  .invoice {
+    @apply
+      pt-4
+      pb-6
+      px-6
+      text-xs
+      leading-5
+      text-FONT_GREY;
+  }
+
+  .doveGreyDivider,
+  .lightGreyDivider {
+    @apply border;
+  }
+
+  .doveGreyDivider {
+    @apply bg-DOVE_GREY;
+  }
+
+  .lightGreyDivider {
+    @apply bg-LIGHT_GREY;
+  }
+
+  .placeOrder {
+    @apply
+      p-6
+      flex;
+
+    .operation {
+      @apply
+        flex
+        items-center;
+
+      .amount {
+        @apply
+          w-9
+          font-light
+          text-center
+          leading-6;
+      }
+
+      .buttonWrapper {
+        @apply
+          w-12
+          h-12
+          flex
+          justify-center
+          items-center
+          hover:bg-BUTTON_HOVER_COLOR;
+      }
+    }
+
+    .status {
+      @apply
+        w-full
+        px-4
+        py-3
+        h-14
+        flex
+        justify-end
+        items-center
+        bg-[#{$statusBackgroundColor}];
+
+      .totalAmount,
+      .totalPrice {
+        @apply
+          text-right
+          whitespace-nowrap
+          text-[#{$statusTextColor}];
+      }
+
+      .totalAmount {
+        @apply
+          text-lg
+          leading-6
+          flex-grow-[2];
+      }
+
+      .totalPrice {
+        @apply flex-grow-[2] font-light;
+      }
+    }
+  }
+}

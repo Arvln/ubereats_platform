@@ -1,9 +1,10 @@
+@import '../../utils/zIndex.scss';
+
 $titleBackground: rgb(246, 240, 234);
 $topBackgroundHeight: 152px;
 $bottomBackgroundHeight: 88px;
 $titleFontSize: 52px;
 $titleLineHeight: 64px;
-$contentZIndex: 1;
 $imageHeight: 149px;
 $imageMargin: 120px;
 
@@ -54,13 +55,13 @@ $imageMargin: 120px;
       justify-between;
 
     .text {
+      @extend .z-1;
       @apply
         self-center
       text-black
         font-medium
         text-[#{$titleFontSize}]
-        leading-[#{$titleLineHeight}]
-        z-[#{$contentZIndex}];
+        leading-[#{$titleLineHeight}];
     }
 
     .imageWrapper {

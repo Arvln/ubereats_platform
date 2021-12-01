@@ -1,8 +1,10 @@
 import { Prop } from './types';
 import { TGood } from 'types/pages/store';
-import { useRef } from 'react';
+import { useContext } from 'react';
 import Image from 'next/image';
-import { getDiscountPrice } from './utils';
+import { getDiscountPrice, isFreeGift } from './utils';
+import { FormContext } from 'features/layout';
+import OrderForm from '../order_form';
 
 import classes from 'styles/features/store/Menu.module.scss';
 
@@ -26,8 +28,8 @@ const {
 } = classes;
 const STORE_IMAGE_SERVER_HOST = process.env.STORE_IMAGE_SERVER_HOST;
 
-function Menu({ data, position, setPosition }: Prop) {
-	const element = useRef<HTMLLIElement | null>(null);
+function Menu({ data }: Prop) {
+	const handleForm = useContext(FormContext);
 
 	function _renderImage(name: string, suffix?: string) {
 		if (!suffix) return;
@@ -50,10 +52,10 @@ function Menu({ data, position, setPosition }: Prop) {
 		style?: string,
 		label?: string
 	) {
-		if (text <= 0) return;
 		if (!text) return;
 
 		const discountPrice = getDiscountPrice(text, label);
+
 		if (typeof (text) === 'number')
 			text = `$${text}`;
 		if (discountPrice) {
@@ -72,6 +74,14 @@ function Menu({ data, position, setPosition }: Prop) {
 		);
 	};
 
+	function _handleOrder(label: string, good: TGood) {
+		const { price } = good;
+
+		if (!price || isFreeGift(label)) return;
+
+		return () => handleForm(<OrderForm data={good} />);
+	}
+
 	function _renderGoods(label: string, goods: TGood[]) {
 		return (
 			goods.map(good => {
@@ -80,7 +90,6 @@ function Menu({ data, position, setPosition }: Prop) {
 					price,
 					discription,
 					imageSuffix,
-					spicyLevel,
 					isEmphasis,
 					uuid
 				} = good;
@@ -91,6 +100,7 @@ function Menu({ data, position, setPosition }: Prop) {
 				return (
 					<li
 						className={wrapper}
+						onClick={_handleOrder(label, good)}
 						key={uuid}
 					>
 						<div className={itemWrapper}>
@@ -114,9 +124,8 @@ function Menu({ data, position, setPosition }: Prop) {
 			data.map(({
 				label,
 				items
-			}, index) => (
+			}) => (
 				<li
-					ref={index === position ? element : null}
 					className={wrapper}
 					key={label}
 				>

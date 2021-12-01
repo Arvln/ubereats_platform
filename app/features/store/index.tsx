@@ -94,11 +94,7 @@ function Store({ data }: Prop) {
 						position={position}
 					/>
 					<div className={space_40} />
-					<Menu
-						data={goodChannels}
-						position={position}
-						setPosition={setPosition}
-					/>
+					<Menu data={goodChannels} />
 				</div>
 			</main>
 		</>

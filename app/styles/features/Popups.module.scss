@@ -1,18 +1,17 @@
 @import '../utils/index.scss';
 
 $maskBackgroundImage: rgba(38, 38, 38, .8);
-$maskZIndex: 1;
 $showMaskContentOffset: 0px;
 $hideMaskContentOffset: -300px;
 
 .wrapper {
+  @extend .z-1;
   @apply
     w-0
     h-0
     fixed
     top-0
-    left-0
-    z-[#{$maskZIndex}];
+    left-0;
 }
 
 .showMask {
@@ -32,6 +31,9 @@ $hideMaskContentOffset: -300px;
   transform: translateX($showMaskContentOffset);
 
   @extend .maskAnimation;
+  @apply
+    h-screen
+    overflow-y-auto;
 }
 
 .hideMaskContent {
