@@ -2,7 +2,7 @@ import {
 	TTitles,
 	TPageData,
 	Prop
-} from 'types/pages/title';
+} from 'types/pages/categories';
 import type { NextPage } from 'next';
 import { Fields } from 'enums/pages/categories';
 import { FallbackTypes } from 'enums/pages/common';
