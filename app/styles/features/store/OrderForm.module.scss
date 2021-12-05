@@ -2,8 +2,7 @@
 
 $width: 676px;
 $imageHeight: 400px;
-$statusTextColor: #AFAFAF;
-$statusBackgroundColor: #F6F6F6;
+$statusBackgroundHoverColor: #333333;
 
 .wrapper {
   @apply
@@ -136,14 +135,15 @@ $statusBackgroundColor: #F6F6F6;
         flex
         justify-end
         items-center
-        bg-[#{$statusBackgroundColor}];
+        bg-black
+        hover:bg-[#{$statusBackgroundHoverColor}];
 
       .totalAmount,
       .totalPrice {
         @apply
           text-right
           whitespace-nowrap
-          text-[#{$statusTextColor}];
+          text-white;
       }
 
       .totalAmount {

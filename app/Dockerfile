@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /usr/src/app
 
-COPY ./app/package*.json .
+COPY ./app/package*.json ./
 
 RUN npm install -g pm2 && npm install
 

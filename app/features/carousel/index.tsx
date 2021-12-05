@@ -7,6 +7,8 @@ import {
 	getRenderData,
 	getRightStartPoint
 } from './utils';
+import { horizontalOffsetVar } from 'graphql/cache/features'
+import { useVar } from 'utils';
 
 import classes from 'styles/features/Carousel.module.scss';
 
@@ -23,24 +25,23 @@ const {
 } = classes;
 
 const ADVERTISE_IMAGE_SERVER_HOST = process.env.ADVERTISE_IMAGE_SERVER_HOST;
-const originOffset: number = -100;
 const offsetPerClick: number = 100;
-const leftBoundaryValue: number = originOffset;
+const leftBoundaryValue: number = -100;
 const rightBoundaryValue: number = -433.333;
 const leftStratPoint: number = -133.333;
 
 function Carousel({ data }: Prop) {
-	const [horizontalOffset, setHorizontalOffset] = useState<number>(originOffset);
+	const [horizontalOffset] = useVar<number>(horizontalOffsetVar);
 	const [transition, setTransition] = useState<string>(smoothTransition);
 
 	useEffect(() => {
 		if (horizontalOffset <= rightBoundaryValue) {
-			setHorizontalOffset(leftStratPoint);
+			horizontalOffsetVar(leftStratPoint);
 			setTransition(clearTransition);
 		}
 
 		if (horizontalOffset > leftBoundaryValue) {
-			setHorizontalOffset(getRightStartPoint(horizontalOffset));
+			horizontalOffsetVar(getRightStartPoint(horizontalOffset));
 			setTransition(clearTransition);
 		}
 
@@ -48,14 +49,14 @@ function Carousel({ data }: Prop) {
 
 	function _handlePreviousButton(): void {
 		if (horizontalOffset <= leftBoundaryValue) {
-			setHorizontalOffset(horizontalOffset + offsetPerClick);
+			horizontalOffsetVar(horizontalOffset + offsetPerClick);
 			setTransition(smoothTransition);
 		}
 	}
 
 	function _handleNextButton(): void {
 		if (horizontalOffset > rightBoundaryValue) {
-			setHorizontalOffset(horizontalOffset - offsetPerClick);
+			horizontalOffsetVar(horizontalOffset - offsetPerClick);
 			setTransition(smoothTransition);
 		}
 	}

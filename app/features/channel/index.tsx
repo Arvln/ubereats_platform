@@ -1,5 +1,4 @@
 import { Prop, TChannelItem, TPagesState } from './types';
-import { useState } from 'react';
 import Image from 'next/image';
 import { Arrow } from 'components';
 import ChannelShop from 'features/channel_shop';
@@ -12,6 +11,8 @@ import {
 	isShopsChannel,
 	getTotalPage
 } from './utils';
+import { pagesStateVar } from 'graphql/cache/features';
+import { useVar } from 'utils';
 
 import classes from 'styles/features/Channel.module.scss';
 
@@ -40,18 +41,18 @@ const initialPageState = {
 const CHANNEL_PAGE_OFFSET_SIZE: number = -100;
 
 function Channel({ data }: Prop) {
-	const [pagesState, setPagesState] = useState<TPagesState>({});
+	const [pages, pagesState] = useVar<TPagesState>(pagesStateVar);
 
 	function _handlePreviousButton(selectedId: string) {
 		const page = pagesState[selectedId];
 
 		if (!page || page.currentPage - 1 <= initialPage) {
-			setPagesState({
+			pagesStateVar({
 				...pagesState,
 				[selectedId]: initialPageState
 			});
 		} else {
-			setPagesState({
+			pagesStateVar({
 				...pagesState,
 				[selectedId]: {
 					currentPage: page.currentPage - 1,
@@ -66,7 +67,7 @@ function Channel({ data }: Prop) {
 		const page = pagesState[selectedId];
 
 		if (!page) {
-			setPagesState({
+			pagesStateVar({
 				...pagesState,
 				[selectedId]: {
 					currentPage: 2,
@@ -78,7 +79,7 @@ function Channel({ data }: Prop) {
 		};
 
 		if (page.currentPage + 1 < totalPage) {
-			setPagesState({
+			pagesStateVar({
 				...pagesState,
 				[selectedId]: {
 					currentPage: page.currentPage + 1,
@@ -87,7 +88,7 @@ function Channel({ data }: Prop) {
 				}
 			});
 		} else {
-			setPagesState({
+			pagesStateVar({
 				...pagesState,
 				[selectedId]: {
 					currentPage: totalPage,
@@ -114,7 +115,7 @@ function Channel({ data }: Prop) {
 		const {
 			previousButtonStyle: previousButton,
 			nextButtonStyle: nextButton
-		} = pagesState[uuid] ?? initialPageState;
+		} = pages[uuid] ?? initialPageState;
 
 		return (
 			<div className={buttonWrapper}>
@@ -166,7 +167,7 @@ function Channel({ data }: Prop) {
 				channelItems
 			}) => {
 				const isEmphasisTitle: boolean = imageSuffix !== '';
-				const { currentPage } = pagesState[uuid] ?? initialPageState;
+				const { currentPage } = pages[uuid] ?? initialPageState;
 
 				if (isEmphasisTitle) {
 					const totalPage = getTotalPage(channelItems, getEmphsisPageSize());

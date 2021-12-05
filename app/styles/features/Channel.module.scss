@@ -10,7 +10,9 @@ $imageWidth: 133px;
     pl-3;
 
   .regularWrapper {
-    @apply pb-6;
+    @apply
+      pb-6
+      overflow-x-hidden;
 
     .regularTitle {
       @apply
@@ -21,7 +23,9 @@ $imageWidth: 133px;
   }
 
   .emphasisWrapper {
-    @apply flex pb-6;
+    @apply
+      flex
+      pb-6;
 
     .emphasisTitle {
       @apply
@@ -41,7 +45,8 @@ $imageWidth: 133px;
     .emphasisContent {
       @apply
         w-3/4
-        pl-3;
+        pl-3
+        overflow-x-hidden;
 
       .emphasisButton {
         @apply

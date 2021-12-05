@@ -19,7 +19,6 @@ function ChannelShop({
 			pages.map((shops, index) => (
 				<div
 					className={ pageWrapper }
-					style={{ transform: `translateX(${offset}%)` }}
 					key={index}
 				>
 					<Shop
@@ -33,7 +32,10 @@ function ChannelShop({
 	};
 
 	return (
-		<div className={wrapper}>
+		<div
+			className={wrapper}
+			style={{ transform: `translateX(${offset}%)` }}
+		>
 			{_renderPages()}
 		</div>
 	);

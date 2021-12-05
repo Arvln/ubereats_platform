@@ -7,9 +7,9 @@ import {
 	Channel
 } from 'features';
 import { query } from 'graphql/queries/pages';
+import { getPageProps } from 'utils';
 
 import classes from 'styles/pages/Home.module.scss';
-import { getPageProps } from 'utils';
 
 const {
 	wrapper,

@@ -3,15 +3,13 @@
 .wrapper {
   scroll-snap-type: x mandatory;
 
+  @include transition(transform, 500);
   @apply
     flex
-    overflow-x-auto
     -mx-3;
 
   .pageWrapper {
     scroll-snap-align: start;
-
-    @include transition(transform, 500);
     @apply
       w-full
       flex

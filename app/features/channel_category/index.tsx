@@ -50,7 +50,6 @@ function ChannelCategory({
 			pages.map((categoies, index) => (
 				<div
 					className={pageWrapper}
-					style={{ transform: `translateX(${pageOffset}%)` }}
 					key={index}
 				>
 					{ _renderCategory(categoies as TChannelCategory[]) }
@@ -60,7 +59,10 @@ function ChannelCategory({
 	};
 
 	return (
-		<div className={wrapper}>
+		<div
+			className={wrapper}
+			style={{ transform: `translateX(${pageOffset}%)` }}
+		>
 			{_renderPages()}
 		</div>
 	);

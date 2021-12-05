@@ -3,6 +3,7 @@ version: "3"
 services:
   database:
     image: mysql:5.7
+    container_name: database
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ubereats_platform_local
@@ -16,6 +17,7 @@ services:
       - mysql_net
   database_tool:
     image: phpmyadmin
+    container_name: database_tool
     environment:
       PMA_HOST: database
     ports:
@@ -29,6 +31,7 @@ services:
     build:
       context: .
       dockerfile: ./server/Dockerfile
+    container_name: server
     environment:
       MYSQL_HOST: database
     volumes:
@@ -43,6 +46,9 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile
+      args:
+        SERVER_HOST: server
+    container_name: web
     environment:
       SERVER_HOST: server
     volumes:
@@ -55,6 +61,7 @@ services:
       - web_net
   nginx:
     build: ./docker/nginx
+    container_name: nginx
     ports:
       - "80:80"
     volumes:

@@ -12,6 +12,8 @@ import { TAppendClass } from 'components/button/types';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Button } from 'components';
+import { conditionsStateVar } from 'graphql/cache/features';
+import { useVar } from 'utils';
 
 import classes from 'styles/features/RestrictSearch.module.scss';
 
@@ -75,7 +77,7 @@ const {
 } = DeliveryRestrictionTypes;
 
 function RestrictSearch({ isCuisines }: Prop) {
-	const [conditionsState, setConditionsState] = useState<TConditionsState>({});
+	const [conditions, conditionsState] = useVar<TConditionsState>(conditionsStateVar);
 	const [classificationOption, setClassificationOption] = useState<number>(RECOMMEND);
 	const [deliveryCostInputValue, setDeliveryCostInputValue] = useState<number>(NT$60_PLUS);
 	const deliveryCostInput = useRef<HTMLInputElement | null>(null);
@@ -84,7 +86,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 		const conditionState = conditionsState[title];
 
 		if (!conditionState) {
-			setConditionsState({
+			conditionsStateVar({
 				...conditionsState,
 				[title]: {
 					rotate: '',
@@ -99,7 +101,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 			conditionContentWrapper
 		} = conditionState;
 
-		setConditionsState({
+		conditionsStateVar({
 			...conditionsState,
 			[title]: {
 				rotate: !rotate ? rotate_180 : '',
@@ -265,7 +267,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 		const {
 			rotate,
 			conditionContentWrapper
-		} = conditionsState[condition] ?? initialConditionsState;
+		} = conditions[condition] ?? initialConditionsState;
 		const button = `${buttonWrapper} ${rotate}`;
 
 		return (
