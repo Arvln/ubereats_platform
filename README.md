@@ -31,7 +31,7 @@ docker logs web
 ready - started server on 0.0.0.0:3000, url: http://localhost:3000
 ```
 
-大功告成，使用瀏覽器開啟 [http://localhost](http://localhost) 查看專案內容，***若無法點連結需手動刷新頁面後可正常使用***，詳細商品數據在本日優惠方案下的九湯屋日本拉麵 中山林森店、21PLUS 京站台北店、兔寶寶漢堡店有完整數據可供瀏覽！
+大功告成，使用瀏覽器開啟 [http://localhost](http://localhost) 查看專案內容，詳細商品數據在本日優惠方案下的九湯屋日本拉麵 中山林森店、21PLUS 京站台北店、兔寶寶漢堡店有完整數據可供瀏覽！
 
 ## 技術架構
 
