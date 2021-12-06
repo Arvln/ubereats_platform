@@ -34,9 +34,6 @@ services:
     container_name: server
     environment:
       MYSQL_HOST: database
-    volumes:
-      - ./server:/usr/src/app
-      - /server/node_modules
     depends_on:
       - database
     restart: always
@@ -52,9 +49,6 @@ services:
     container_name: web
     environment:
       SERVER_HOST: server
-    volumes:
-      - ./app:/usr/src/app
-      - /app/node_modules
     depends_on:
       - server
     restart: always

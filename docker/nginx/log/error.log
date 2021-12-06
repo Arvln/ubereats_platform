@@ -1,0 +1,16 @@
+2021/12/06 02:00:07 [notice] 1#1: using the "epoll" event method
+2021/12/06 02:00:07 [notice] 1#1: nginx/1.21.4
+2021/12/06 02:00:07 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/06 02:00:07 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/06 02:00:07 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/06 02:00:07 [notice] 1#1: start worker processes
+2021/12/06 02:00:07 [notice] 1#1: start worker process 31
+2021/12/06 02:00:07 [notice] 1#1: start worker process 32
+2021/12/06 02:00:07 [notice] 1#1: start worker process 33
+2021/12/06 02:00:07 [notice] 1#1: start worker process 34
+2021/12/06 02:00:07 [notice] 1#1: start cache manager process 35
+2021/12/06 02:00:07 [notice] 1#1: start cache loader process 36
+2021/12/06 02:01:07 [notice] 36#36: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/06 02:01:07 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/06 02:01:07 [notice] 1#1: cache loader process 36 exited with code 0
+2021/12/06 02:01:07 [notice] 1#1: signal 29 (SIGIO) received
