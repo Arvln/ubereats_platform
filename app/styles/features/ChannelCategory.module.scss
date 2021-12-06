@@ -3,16 +3,12 @@
 $categoryImageWidth: 68px;
 
 .wrapper {
-  scroll-snap-type: x mandatory;
-
   @include transition(transform, 500);
   @apply
     flex
     -mx-3;
   
   .pageWrapper {
-    scroll-snap-align: start;
-
     @apply
       w-full
       flex

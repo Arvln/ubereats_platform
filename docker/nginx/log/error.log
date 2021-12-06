@@ -1,0 +1,452 @@
+2021/12/02 01:41:06 [notice] 1#1: using the "epoll" event method
+2021/12/02 01:41:06 [notice] 1#1: nginx/1.21.4
+2021/12/02 01:41:06 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/02 01:41:06 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/02 01:41:06 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/02 01:41:06 [notice] 1#1: start worker processes
+2021/12/02 01:41:06 [notice] 1#1: start worker process 33
+2021/12/02 01:41:06 [notice] 1#1: start worker process 34
+2021/12/02 01:41:06 [notice] 1#1: start worker process 35
+2021/12/02 01:41:06 [notice] 1#1: start worker process 36
+2021/12/02 01:41:06 [notice] 1#1: start cache manager process 37
+2021/12/02 01:41:06 [notice] 1#1: start cache loader process 38
+2021/12/02 01:42:06 [notice] 38#38: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/02 01:42:06 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2021/12/02 01:42:06 [notice] 1#1: cache loader process 38 exited with code 0
+2021/12/02 01:42:06 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/02 01:50:13 [error] 33#33: *9 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:50:13 [error] 33#33: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:50:13 [error] 33#33: *11 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:50:13 [error] 34#34: *5 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:51:42 [error] 33#33: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:51:42 [error] 33#33: *11 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:51:42 [error] 33#33: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 01:51:42 [error] 33#33: *12 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 02:23:12 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/02 02:23:12 [notice] 34#34: gracefully shutting down
+2021/12/02 02:23:12 [notice] 34#34: exiting
+2021/12/02 02:23:12 [notice] 35#35: gracefully shutting down
+2021/12/02 02:23:12 [notice] 35#35: exiting
+2021/12/02 02:23:12 [notice] 36#36: gracefully shutting down
+2021/12/02 02:23:12 [notice] 36#36: exiting
+2021/12/02 02:23:12 [notice] 33#33: gracefully shutting down
+2021/12/02 02:23:12 [notice] 37#37: exiting
+2021/12/02 02:23:12 [notice] 34#34: exit
+2021/12/02 02:23:12 [notice] 35#35: exit
+2021/12/02 02:23:12 [notice] 36#36: exit
+2021/12/02 02:23:12 [notice] 33#33: exiting
+2021/12/02 02:23:12 [notice] 33#33: exit
+2021/12/02 02:23:12 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2021/12/02 02:23:12 [notice] 1#1: worker process 34 exited with code 0
+2021/12/02 02:23:12 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/02 02:23:12 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2021/12/02 02:23:12 [notice] 1#1: worker process 35 exited with code 0
+2021/12/02 02:23:12 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/02 02:23:12 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2021/12/02 02:23:12 [notice] 1#1: worker process 33 exited with code 0
+2021/12/02 02:23:12 [notice] 1#1: worker process 36 exited with code 0
+2021/12/02 02:23:12 [notice] 1#1: cache manager process 37 exited with code 0
+2021/12/02 02:23:12 [notice] 1#1: exit
+2021/12/02 02:32:25 [notice] 1#1: using the "epoll" event method
+2021/12/02 02:32:25 [notice] 1#1: nginx/1.21.4
+2021/12/02 02:32:25 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/02 02:32:25 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/02 02:32:25 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/02 02:32:25 [notice] 1#1: start worker processes
+2021/12/02 02:32:25 [notice] 1#1: start worker process 33
+2021/12/02 02:32:25 [notice] 1#1: start worker process 34
+2021/12/02 02:32:25 [notice] 1#1: start worker process 35
+2021/12/02 02:32:25 [notice] 1#1: start worker process 36
+2021/12/02 02:32:25 [notice] 1#1: start cache manager process 37
+2021/12/02 02:32:25 [notice] 1#1: start cache loader process 38
+2021/12/02 02:33:25 [notice] 38#38: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/02 02:33:25 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2021/12/02 02:33:25 [notice] 1#1: cache loader process 38 exited with code 0
+2021/12/02 02:33:25 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/02 04:20:18 [notice] 1#1: using the "epoll" event method
+2021/12/02 04:20:18 [notice] 1#1: nginx/1.21.4
+2021/12/02 04:20:18 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/02 04:20:18 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/02 04:20:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/02 04:20:18 [notice] 1#1: start worker processes
+2021/12/02 04:20:18 [notice] 1#1: start worker process 31
+2021/12/02 04:20:18 [notice] 1#1: start worker process 32
+2021/12/02 04:20:18 [notice] 1#1: start worker process 33
+2021/12/02 04:20:18 [notice] 1#1: start worker process 34
+2021/12/02 04:20:18 [notice] 1#1: start cache manager process 35
+2021/12/02 04:20:18 [notice] 1#1: start cache loader process 36
+2021/12/02 04:21:09 [error] 32#32: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET / HTTP/1.1", upstream: "http://172.19.0.3:3000/", host: "localhost"
+2021/12/02 04:21:09 [error] 32#32: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET /favicon.ico HTTP/1.1", upstream: "http://172.19.0.3:3000/favicon.ico", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:22:38 [notice] 36#36: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/02 04:22:38 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/02 04:22:38 [notice] 1#1: cache loader process 36 exited with code 0
+2021/12/02 04:22:38 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/02 04:24:01 [error] 32#32: *7 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:24:01 [error] 31#31: *11 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:24:01 [error] 32#32: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:24:01 [error] 32#32: *15 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:25:28 [error] 32#32: *15 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:25:28 [error] 32#32: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:25:28 [error] 32#32: *7 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/02 04:25:28 [error] 31#31: *11 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 00:55:01 [notice] 1#1: using the "epoll" event method
+2021/12/03 00:55:01 [notice] 1#1: nginx/1.21.4
+2021/12/03 00:55:01 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/03 00:55:01 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/03 00:55:01 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/03 00:55:01 [notice] 1#1: start worker processes
+2021/12/03 00:55:01 [notice] 1#1: start worker process 33
+2021/12/03 00:55:01 [notice] 1#1: start worker process 34
+2021/12/03 00:55:01 [notice] 1#1: start worker process 35
+2021/12/03 00:55:01 [notice] 1#1: start worker process 36
+2021/12/03 00:55:01 [notice] 1#1: start cache manager process 37
+2021/12/03 00:55:01 [notice] 1#1: start cache loader process 38
+2021/12/03 00:56:01 [notice] 38#38: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/03 00:56:01 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2021/12/03 00:56:01 [notice] 1#1: cache loader process 38 exited with code 0
+2021/12/03 00:56:01 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 01:07:28 [error] 34#34: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:07:28 [error] 34#34: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:07:28 [error] 34#34: *8 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:07:28 [error] 34#34: *5 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:09:40 [error] 34#34: *8 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:09:40 [error] 33#33: *183 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:09:40 [error] 34#34: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:09:40 [error] 34#34: *5 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:40:21 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/03 01:40:21 [notice] 33#33: gracefully shutting down
+2021/12/03 01:40:21 [notice] 36#36: gracefully shutting down
+2021/12/03 01:40:21 [notice] 35#35: gracefully shutting down
+2021/12/03 01:40:21 [notice] 35#35: exiting
+2021/12/03 01:40:21 [notice] 34#34: gracefully shutting down
+2021/12/03 01:40:21 [notice] 34#34: exiting
+2021/12/03 01:40:21 [notice] 37#37: exiting
+2021/12/03 01:40:21 [notice] 33#33: exiting
+2021/12/03 01:40:21 [notice] 36#36: exiting
+2021/12/03 01:40:21 [notice] 35#35: exit
+2021/12/03 01:40:21 [notice] 34#34: exit
+2021/12/03 01:40:21 [notice] 33#33: exit
+2021/12/03 01:40:21 [notice] 36#36: exit
+2021/12/03 01:40:21 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2021/12/03 01:40:21 [notice] 1#1: cache manager process 37 exited with code 0
+2021/12/03 01:40:21 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 01:40:21 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/03 01:40:21 [notice] 1#1: worker process 33 exited with code 0
+2021/12/03 01:40:21 [notice] 1#1: worker process 34 exited with code 0
+2021/12/03 01:40:21 [notice] 1#1: worker process 35 exited with code 0
+2021/12/03 01:40:21 [notice] 1#1: worker process 36 exited with code 0
+2021/12/03 01:40:21 [notice] 1#1: exit
+2021/12/03 01:42:59 [notice] 1#1: using the "epoll" event method
+2021/12/03 01:42:59 [notice] 1#1: nginx/1.21.4
+2021/12/03 01:42:59 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/03 01:42:59 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/03 01:42:59 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/03 01:42:59 [notice] 1#1: start worker processes
+2021/12/03 01:42:59 [notice] 1#1: start worker process 32
+2021/12/03 01:42:59 [notice] 1#1: start worker process 33
+2021/12/03 01:42:59 [notice] 1#1: start worker process 34
+2021/12/03 01:42:59 [notice] 1#1: start worker process 35
+2021/12/03 01:42:59 [notice] 1#1: start cache manager process 36
+2021/12/03 01:42:59 [notice] 1#1: start cache loader process 37
+2021/12/03 01:43:59 [notice] 37#37: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/03 01:43:59 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2021/12/03 01:43:59 [notice] 1#1: cache loader process 37 exited with code 0
+2021/12/03 01:43:59 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 01:45:53 [error] 33#33: *9 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:45:53 [error] 32#32: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:45:54 [error] 32#32: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:45:54 [error] 32#32: *12 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:57:30 [error] 33#33: *185 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:57:30 [error] 32#32: *179 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:57:30 [error] 32#32: *184 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 01:57:30 [error] 32#32: *188 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:17:23 [error] 32#32: *297 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:17:23 [error] 32#32: *302 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:17:24 [error] 33#33: *306 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:17:24 [error] 33#33: *305 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:19:54 [error] 32#32: *420 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:19:54 [error] 33#33: *423 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:19:54 [error] 33#33: *424 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 02:19:54 [error] 33#33: *421 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:13:08 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/03 03:13:08 [notice] 33#33: gracefully shutting down
+2021/12/03 03:13:08 [notice] 35#35: gracefully shutting down
+2021/12/03 03:13:08 [notice] 34#34: gracefully shutting down
+2021/12/03 03:13:08 [notice] 36#36: exiting
+2021/12/03 03:13:08 [notice] 32#32: gracefully shutting down
+2021/12/03 03:13:08 [notice] 35#35: exiting
+2021/12/03 03:13:08 [notice] 34#34: exiting
+2021/12/03 03:13:08 [notice] 35#35: exit
+2021/12/03 03:13:08 [notice] 34#34: exit
+2021/12/03 03:13:08 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/03 03:13:08 [notice] 1#1: cache manager process 36 exited with code 0
+2021/12/03 03:13:08 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:13:08 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2021/12/03 03:13:08 [notice] 1#1: worker process 34 exited with code 0
+2021/12/03 03:13:08 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:13:08 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2021/12/03 03:13:08 [notice] 1#1: worker process 35 exited with code 0
+2021/12/03 03:13:08 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:15:58 [notice] 1#1: using the "epoll" event method
+2021/12/03 03:15:58 [notice] 1#1: nginx/1.21.4
+2021/12/03 03:15:58 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/03 03:15:58 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/03 03:15:58 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/03 03:15:58 [notice] 1#1: start worker processes
+2021/12/03 03:15:58 [notice] 1#1: start worker process 32
+2021/12/03 03:15:58 [notice] 1#1: start worker process 33
+2021/12/03 03:15:58 [notice] 1#1: start worker process 34
+2021/12/03 03:15:58 [notice] 1#1: start worker process 35
+2021/12/03 03:15:58 [notice] 1#1: start cache manager process 36
+2021/12/03 03:15:58 [notice] 1#1: start cache loader process 37
+2021/12/03 03:16:58 [notice] 37#37: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/03 03:16:58 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2021/12/03 03:16:58 [notice] 1#1: cache loader process 37 exited with code 0
+2021/12/03 03:16:58 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:23:42 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/03 03:23:42 [notice] 36#36: exiting
+2021/12/03 03:23:42 [notice] 34#34: gracefully shutting down
+2021/12/03 03:23:42 [notice] 34#34: exiting
+2021/12/03 03:23:42 [notice] 33#33: gracefully shutting down
+2021/12/03 03:23:42 [notice] 32#32: gracefully shutting down
+2021/12/03 03:23:42 [notice] 35#35: gracefully shutting down
+2021/12/03 03:23:42 [notice] 34#34: exit
+2021/12/03 03:23:42 [notice] 33#33: exiting
+2021/12/03 03:23:42 [notice] 32#32: exiting
+2021/12/03 03:23:42 [notice] 35#35: exiting
+2021/12/03 03:23:42 [notice] 33#33: exit
+2021/12/03 03:23:42 [notice] 32#32: exit
+2021/12/03 03:23:42 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/03 03:23:42 [notice] 1#1: cache manager process 36 exited with code 0
+2021/12/03 03:23:42 [notice] 35#35: exit
+2021/12/03 03:23:42 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:23:42 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2021/12/03 03:23:42 [notice] 1#1: worker process 34 exited with code 0
+2021/12/03 03:23:42 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:23:42 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2021/12/03 03:23:42 [notice] 1#1: worker process 33 exited with code 0
+2021/12/03 03:23:42 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:23:42 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2021/12/03 03:23:42 [notice] 1#1: worker process 32 exited with code 0
+2021/12/03 03:23:42 [notice] 1#1: worker process 35 exited with code 0
+2021/12/03 03:23:42 [notice] 1#1: exit
+2021/12/03 03:23:53 [notice] 1#1: using the "epoll" event method
+2021/12/03 03:23:53 [notice] 1#1: nginx/1.21.4
+2021/12/03 03:23:53 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/03 03:23:53 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/03 03:23:53 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/03 03:23:53 [notice] 1#1: start worker processes
+2021/12/03 03:23:53 [notice] 1#1: start worker process 31
+2021/12/03 03:23:53 [notice] 1#1: start worker process 32
+2021/12/03 03:23:53 [notice] 1#1: start worker process 33
+2021/12/03 03:23:53 [notice] 1#1: start worker process 34
+2021/12/03 03:23:53 [notice] 1#1: start cache manager process 35
+2021/12/03 03:23:53 [notice] 1#1: start cache loader process 36
+2021/12/03 03:23:58 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET / HTTP/1.1", upstream: "http://172.19.0.3:3000/", host: "localhost"
+2021/12/03 03:23:58 [error] 31#31: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET /favicon.ico HTTP/1.1", upstream: "http://172.19.0.3:3000/favicon.ico", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:24:53 [notice] 36#36: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/03 03:24:53 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/03 03:24:53 [notice] 1#1: cache loader process 36 exited with code 0
+2021/12/03 03:24:53 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/03 03:27:18 [error] 31#31: *93 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:27:18 [error] 31#31: *9 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:27:18 [error] 31#31: *95 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:27:18 [error] 32#32: *89 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:30:00 [error] 31#31: *169 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:30:00 [error] 32#32: *171 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:30:00 [error] 31#31: *174 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 03:30:00 [error] 32#32: *175 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 04:01:01 [error] 31#31: *246 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 04:01:01 [error] 31#31: *247 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 04:01:02 [error] 32#32: *250 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/03 04:01:02 [error] 31#31: *251 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:16:02 [error] 31#31: *553 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:16:02 [error] 31#31: *543 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:16:02 [error] 31#31: *544 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:16:02 [error] 32#32: *552 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:19:01 [error] 31#31: *708 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:19:01 [error] 31#31: *705 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:19:02 [error] 31#31: *718 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 00:19:02 [error] 31#31: *714 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 01:11:39 [error] 32#32: *2213 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=https%3A%2F%2Fd1ralsognjng37.cloudfront.net%2F40c04703-0a2f-4283-8ec4-53ce20704268.jpeg&w=750&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=https%3A%2F%2Fd1ralsognjng37.cloudfront.net%2F40c04703-0a2f-4283-8ec4-53ce20704268.jpeg&w=750&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 01:21:05 [error] 31#31: *2580 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 01:21:05 [error] 31#31: *2585 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 01:21:05 [error] 31#31: *2583 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 01:21:05 [error] 31#31: *2578 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 01:43:41 [error] 31#31: *2755 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET / HTTP/1.1", upstream: "http://172.19.0.3:3000/", host: "localhost"
+2021/12/04 01:43:41 [error] 31#31: *2755 connect() failed (111: Connection refused) while connecting to upstream, client: 172.19.0.1, server: _, request: "GET /favicon.ico HTTP/1.1", upstream: "http://172.19.0.3:3000/favicon.ico", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:58:16 [error] 31#31: *4782 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:58:16 [error] 31#31: *4777 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:58:16 [error] 31#31: *4779 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:58:16 [error] 31#31: *4784 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:59:16 [error] 31#31: *4784 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:59:16 [error] 31#31: *4779 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:59:16 [error] 31#31: *4777 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 02:59:16 [error] 31#31: *4782 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:06:53 [error] 31#31: *5035 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:06:53 [error] 31#31: *5041 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:06:53 [error] 31#31: *5040 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:06:53 [error] 31#31: *5039 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:13:55 [error] 31#31: *5154 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:13:55 [error] 32#32: *5161 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:13:56 [error] 31#31: *5150 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:13:56 [error] 31#31: *5155 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:15:06 [error] 31#31: *5163 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/%E4%B8%AD%E5%BC%8F%E7%BE%8E%E9%A3%9F"
+2021/12/04 03:15:06 [error] 31#31: *5150 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/%E4%B8%AD%E5%BC%8F%E7%BE%8E%E9%A3%9F"
+2021/12/04 03:15:06 [error] 31#31: *5151 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/%E4%B8%AD%E5%BC%8F%E7%BE%8E%E9%A3%9F"
+2021/12/04 03:15:06 [error] 31#31: *5154 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/%E4%B8%AD%E5%BC%8F%E7%BE%8E%E9%A3%9F"
+2021/12/04 03:26:41 [error] 31#31: *5523 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:26:42 [error] 31#31: *5517 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:26:42 [error] 31#31: *5513 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:26:42 [error] 31#31: *5515 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:29:05 [error] 31#31: *5601 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:29:05 [error] 31#31: *5603 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:29:05 [error] 31#31: *5605 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/04 03:29:05 [error] 31#31: *5606 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:30:49 [notice] 1#1: using the "epoll" event method
+2021/12/05 03:30:49 [notice] 1#1: nginx/1.21.4
+2021/12/05 03:30:49 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/05 03:30:49 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/05 03:30:49 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/05 03:30:49 [notice] 1#1: start worker processes
+2021/12/05 03:30:49 [notice] 1#1: start worker process 32
+2021/12/05 03:30:49 [notice] 1#1: start worker process 33
+2021/12/05 03:30:49 [notice] 1#1: start worker process 34
+2021/12/05 03:30:49 [notice] 1#1: start worker process 35
+2021/12/05 03:30:49 [notice] 1#1: start cache manager process 36
+2021/12/05 03:30:49 [notice] 1#1: start cache loader process 37
+2021/12/05 03:31:49 [notice] 37#37: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/05 03:31:49 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2021/12/05 03:31:49 [notice] 1#1: cache loader process 37 exited with code 0
+2021/12/05 03:31:49 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 03:34:06 [error] 33#33: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:34:06 [error] 32#32: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:34:06 [error] 35#35: *7 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:34:06 [error] 35#35: *6 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:35:36 [error] 35#35: *8 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:35:36 [error] 33#33: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:35:36 [error] 35#35: *4 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:35:36 [error] 32#32: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 03:36:17 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/05 03:36:17 [notice] 33#33: gracefully shutting down
+2021/12/05 03:36:17 [notice] 34#34: gracefully shutting down
+2021/12/05 03:36:17 [notice] 32#32: gracefully shutting down
+2021/12/05 03:36:17 [notice] 35#35: gracefully shutting down
+2021/12/05 03:36:17 [notice] 36#36: exiting
+2021/12/05 03:36:17 [notice] 33#33: exiting
+2021/12/05 03:36:17 [notice] 34#34: exiting
+2021/12/05 03:36:17 [notice] 32#32: exiting
+2021/12/05 03:36:17 [notice] 35#35: exiting
+2021/12/05 03:36:17 [notice] 33#33: exit
+2021/12/05 03:36:17 [notice] 34#34: exit
+2021/12/05 03:36:17 [notice] 32#32: exit
+2021/12/05 03:36:17 [notice] 35#35: exit
+2021/12/05 03:36:17 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/05 03:36:17 [notice] 1#1: cache manager process 36 exited with code 0
+2021/12/05 03:36:17 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 03:36:17 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2021/12/05 03:36:17 [notice] 1#1: worker process 34 exited with code 0
+2021/12/05 03:36:17 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 03:36:17 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2021/12/05 03:36:17 [notice] 1#1: worker process 33 exited with code 0
+2021/12/05 03:36:17 [notice] 1#1: worker process 35 exited with code 0
+2021/12/05 03:36:17 [notice] 1#1: worker process 32 exited with code 0
+2021/12/05 03:36:17 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2021/12/05 03:36:17 [notice] 1#1: exit
+2021/12/05 04:11:36 [notice] 1#1: using the "epoll" event method
+2021/12/05 04:11:36 [notice] 1#1: nginx/1.21.4
+2021/12/05 04:11:36 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/05 04:11:36 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/05 04:11:36 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/05 04:11:36 [notice] 1#1: start worker processes
+2021/12/05 04:11:36 [notice] 1#1: start worker process 31
+2021/12/05 04:11:36 [notice] 1#1: start worker process 32
+2021/12/05 04:11:36 [notice] 1#1: start worker process 33
+2021/12/05 04:11:36 [notice] 1#1: start worker process 34
+2021/12/05 04:11:36 [notice] 1#1: start cache manager process 35
+2021/12/05 04:11:36 [notice] 1#1: start cache loader process 36
+2021/12/05 04:11:43 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/05 04:11:43 [notice] 33#33: gracefully shutting down
+2021/12/05 04:11:43 [notice] 33#33: exiting
+2021/12/05 04:11:43 [notice] 35#35: exiting
+2021/12/05 04:11:43 [notice] 32#32: gracefully shutting down
+2021/12/05 04:11:43 [notice] 32#32: exiting
+2021/12/05 04:11:43 [notice] 31#31: gracefully shutting down
+2021/12/05 04:11:43 [notice] 31#31: exiting
+2021/12/05 04:11:43 [notice] 36#36: exiting
+2021/12/05 04:11:43 [notice] 34#34: gracefully shutting down
+2021/12/05 04:11:43 [notice] 33#33: exit
+2021/12/05 04:11:43 [notice] 32#32: exit
+2021/12/05 04:11:43 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2021/12/05 04:11:43 [notice] 1#1: cache manager process 35 exited with code 0
+2021/12/05 04:11:43 [notice] 31#31: exit
+2021/12/05 04:11:43 [notice] 34#34: exiting
+2021/12/05 04:11:43 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 04:11:43 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2021/12/05 04:11:43 [notice] 1#1: worker process 32 exited with code 0
+2021/12/05 04:11:43 [notice] 34#34: exit
+2021/12/05 04:11:43 [notice] 1#1: worker process 33 exited with code 0
+2021/12/05 04:11:43 [notice] 1#1: cache loader process 36 exited with code 0
+2021/12/05 04:11:43 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 04:11:43 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2021/12/05 04:11:43 [notice] 1#1: worker process 31 exited with code 0
+2021/12/05 04:11:43 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 04:11:43 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2021/12/05 04:11:43 [notice] 1#1: worker process 34 exited with code 0
+2021/12/05 04:11:43 [notice] 1#1: exit
+2021/12/05 04:15:53 [notice] 1#1: using the "epoll" event method
+2021/12/05 04:15:53 [notice] 1#1: nginx/1.21.4
+2021/12/05 04:15:53 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/05 04:15:53 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/05 04:15:53 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/05 04:15:53 [notice] 1#1: start worker processes
+2021/12/05 04:15:53 [notice] 1#1: start worker process 31
+2021/12/05 04:15:53 [notice] 1#1: start worker process 32
+2021/12/05 04:15:53 [notice] 1#1: start worker process 33
+2021/12/05 04:15:53 [notice] 1#1: start worker process 34
+2021/12/05 04:15:53 [notice] 1#1: start cache manager process 35
+2021/12/05 04:15:53 [notice] 1#1: start cache loader process 36
+2021/12/05 04:16:53 [notice] 36#36: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/05 04:16:53 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/05 04:16:53 [notice] 1#1: cache loader process 36 exited with code 0
+2021/12/05 04:16:53 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/05 04:18:16 [error] 32#32: *6 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:18:16 [error] 31#31: *1 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:18:16 [error] 31#31: *2 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:18:16 [error] 32#32: *4 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:23:39 [error] 31#31: *301 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:23:39 [error] 31#31: *298 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:23:39 [error] 33#33: *300 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:23:39 [error] 33#33: *304 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:30:02 [error] 33#33: *440 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:30:02 [error] 31#31: *441 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:30:02 [error] 31#31: *437 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 04:30:02 [error] 32#32: *443 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 23:42:09 [error] 31#31: *602 upstream prematurely closed connection while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 23:42:09 [error] 32#32: *530 upstream prematurely closed connection while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 23:42:09 [error] 31#31: *598 upstream prematurely closed connection while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/05 23:42:09 [error] 31#31: *597 upstream prematurely closed connection while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 00:40:05 [notice] 1#1: using the "epoll" event method
+2021/12/06 00:40:05 [notice] 1#1: nginx/1.21.4
+2021/12/06 00:40:05 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/06 00:40:05 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/06 00:40:05 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/06 00:40:05 [notice] 1#1: start worker processes
+2021/12/06 00:40:05 [notice] 1#1: start worker process 31
+2021/12/06 00:40:05 [notice] 1#1: start worker process 32
+2021/12/06 00:40:05 [notice] 1#1: start worker process 33
+2021/12/06 00:40:05 [notice] 1#1: start worker process 34
+2021/12/06 00:40:05 [notice] 1#1: start cache manager process 35
+2021/12/06 00:40:05 [notice] 1#1: start cache loader process 36
+2021/12/06 00:41:05 [notice] 36#36: http file cache: /var/cache/nginx 0.000M, bsize: 4096
+2021/12/06 00:41:05 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2021/12/06 00:41:05 [notice] 1#1: cache loader process 36 exited with code 0
+2021/12/06 00:41:05 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/06 01:15:39 [error] 32#32: *70 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:15:39 [error] 31#31: *73 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:15:39 [error] 31#31: *77 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:15:39 [error] 31#31: *74 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:16:54 [error] 31#31: *77 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGAN.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:16:54 [error] 31#31: *74 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FVEGETABLE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:16:54 [error] 31#31: *73 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FGLUTEN_FREE.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"
+2021/12/06 01:16:54 [error] 32#32: *70 upstream timed out (110: Operation timed out) while reading response header from upstream, client: 172.19.0.1, server: _, request: "GET /_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75 HTTP/1.1", upstream: "http://172.19.0.3:3000/_next/image?url=%2Fimages%2FNO_ALLERGY.svg&w=48&q=75", host: "localhost", referrer: "http://localhost/"

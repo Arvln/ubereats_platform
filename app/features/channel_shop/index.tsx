@@ -18,7 +18,7 @@ function ChannelShop({
 		return (
 			pages.map((shops, index) => (
 				<div
-					className={ pageWrapper }
+					className={pageWrapper}
 					key={index}
 				>
 					<Shop
