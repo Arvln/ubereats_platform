@@ -44,10 +44,13 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./app/Dockerfile
+      dockerfile: ./app/Dockerfile.dev
       args:
         SERVER_HOST: server
     container_name: web
+    volumes:
+      - ./app:/usr/src/app:cached
+      - /usr/src/app/node_modules
     environment:
       SERVER_HOST: server
     depends_on:

@@ -1,0 +1,15 @@
+{
+  "name": "dev container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/usr/src/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.node-debug2"
+      ],
+      "terminal.integrated.shell.linux": "/bin/bash"
+    }
+  }
+}
