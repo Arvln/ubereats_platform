@@ -2,9 +2,9 @@ FROM node:alpine
 
 WORKDIR /usr/src/app
 
-COPY ./server/package*.json ./
+COPY ./server/package.json .
 
-RUN npm install -g pm2 && npm install
+RUN npm install -g pm2 && npm install -g pnpm && pnpm i
 
 COPY ./server .
 
@@ -16,4 +16,4 @@ EXPOSE 8000
 
 USER node
 
-CMD ["pm2-runtime", "npm", "--", "start"]
+CMD ["pm2-runtime", "pnpm", "--", "run", "start"]
