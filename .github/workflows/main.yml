@@ -33,7 +33,7 @@ jobs:
     - name: Cache pnpm store
       uses: actions/cache@v3
       with:
-        path: ~/.pnpm-store
+        path: .pnpm-store
         key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-
@@ -49,10 +49,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
-          path: ~/.pnpm-store
+          path: .pnpm-store
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
+      - name: Verify pnpm installation
+        run: pnpm --version
       - name: Run linting
         run: pnpm run lint
         working-directory: app
