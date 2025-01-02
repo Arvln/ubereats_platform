@@ -40,9 +40,8 @@ jobs:
     needs: build
     steps:
       - name: Run linting
-        run: |
-          cd app
-          pnpm run lint
+        run: pnpm run lint
+        working-directory: ./app
 
   unit-tests:
     name: Unit Tests
@@ -51,6 +50,7 @@ jobs:
     steps:
       - name: Run unit test
         run: echo "Unit test passed!"
+        working-directory: ./app
 
   integration-tests:
     name: Integration Tests
