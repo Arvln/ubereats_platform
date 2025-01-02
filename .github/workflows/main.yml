@@ -39,16 +39,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/checkout@v4
       - name: Run linting
         run: pnpm run lint
+        working-directory: app
 
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/checkout@v4
       - name: Run unit test
         run: echo "Unit test passed!"
+        working-directory: app
 
   integration-tests:
     name: Integration Tests
