@@ -63,10 +63,7 @@ jobs:
 
       - name: Wait for MySQL to be ready
         run: |
-          until nc -z -v -w30 database 3306; do
-            echo "Waiting for MySQL to be available..."
-            sleep 5
-          done;
+          until nc -z -v -w30 database 3306;
       - name: Test database connection
         run: |
           docker exec database mysql -uroot -ppassword -e "SHOW DATABASES;" || exit 1;
