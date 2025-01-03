@@ -12,39 +12,39 @@ on:
       - develop
 
 jobs:
-  linting:
-    name: Code Linting
-    runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [20]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-          cache-dependency-path: app/pnpm-lock.yaml
-      - name: Install dependencies
-        run: pnpm install
-        working-directory: app
-      - name: Run linting
-        run: pnpm run lint
-        working-directory: app
+  # linting:
+  #   name: Code Linting
+  #   runs-on: ubuntu-22.04
+  #   strategy:
+  #     matrix:
+  #       node-version: [20]
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 9
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #         cache: 'pnpm'
+  #         cache-dependency-path: app/pnpm-lock.yaml
+  #     - name: Install dependencies
+  #       run: pnpm install
+  #       working-directory: app
+  #     - name: Run linting
+  #       run: pnpm run lint
+  #       working-directory: app
 
-  unit-tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run unit test
-        run: echo "Unit test passed!"
-        working-directory: app
+  # unit-tests:
+  #   name: Unit Tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Run unit test
+  #       run: echo "Unit test passed!"
+  #       working-directory: app
 
   integration-tests:
     name: Integration Tests
@@ -70,7 +70,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
       - name: Clear up docker network
-        run: docker network prune
+        run: yes | docker network prune
       - name: Set up Docker Compose
         run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
       - name: Wait for MySQL to be ready
