@@ -2,9 +2,9 @@ FROM node:alpine
 
 WORKDIR /usr/src/app
 
-COPY ./server/package.json .
+COPY ./server/package.json ./server/pnpm-lock.yaml .
 
-RUN npm install -g pm2 && npm install -g pnpm && pnpm i
+RUN npm install -g pm2 && npm install -g pnpm && pnpm i --frozen-lockfile
 
 COPY ./server .
 
