@@ -69,8 +69,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-      - name: Check Docker Compose version
-        run: docker-compose --version
+      - name: Clear up docker network
+        run: docker network prune
       - name: Set up Docker Compose
         run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
       - name: Wait for MySQL to be ready
