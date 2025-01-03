@@ -46,7 +46,8 @@
       "enums/*": [
         "enums/*"
       ]
-    }
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
