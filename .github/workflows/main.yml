@@ -71,12 +71,22 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-      - name: print
-        run: |
-          which docker
-          which docker-compose
-      - name: Set up Docker Compose
-        run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+      - name: Restore Docker layers cache
+        uses: actions/cache@v3
+        with:
+          path: /usr/bin/docker
+          key: ${{ runner.os }}-docker-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+      - name: Restore Docker Compose cache
+        uses: actions/cache@v3
+        with:
+          path: /usr/bin/docker-compose
+          key: ${{ runner.os }}-docker-compose-${{ hashFiles('**/docker-compose.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-compose-
+      # - name: Set up Docker Compose
+      #   run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
   integration-tests:
     name: Integration Tests
