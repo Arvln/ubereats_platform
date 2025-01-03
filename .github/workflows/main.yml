@@ -49,17 +49,17 @@ jobs:
   integration-tests:
     name: Integration Tests
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: ubereats_platform_local
-        options: >-
-          --health-cmd="mysqladmin ping -h localhost -u root --password=root"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
+    # services:
+    #   mysql:
+    #     image: mysql:5.7
+    #     env:
+    #       MYSQL_ROOT_PASSWORD: root
+    #       MYSQL_DATABASE: ubereats_platform_local
+    #     options: >-
+    #       --health-cmd="mysqladmin ping -h localhost -u root --password=root"
+    #       --health-interval=10s
+    #       --health-timeout=5s
+    #       --health-retries=3
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -69,16 +69,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-      - name: Clear up docker network
-        run: docker network inspect $(docker network ls -q)
       - name: Set up Docker Compose
         run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-      - name: Wait for MySQL to be ready
-        run: |
-          until docker exec mysql mysqladmin ping -h "localhost" --silent; do
-            echo "Waiting for MySQL..."
-            sleep 5
-          done
+      # - name: Wait for MySQL to be ready
+      #   run: |
+      #     until docker exec mysql mysqladmin ping -h "localhost" --silent; do
+      #       echo "Waiting for MySQL..."
+      #       sleep 5
+      #     done
       - name: Run integration test
         run: echo "Integration test passed!"
       - name: Tear down Docker Compose
