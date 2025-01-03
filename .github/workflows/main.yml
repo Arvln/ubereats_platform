@@ -67,9 +67,19 @@ jobs:
           echo "Database connection test passed!"
       - name: Run web service test
         run: |
-          sleep 30
-          curl --silent --fail http://localhost:80 || exit 1
-          echo "Web service test passed!"
+          for i in {1..10}; do
+            if curl --silent --fail http://localhost:80; then
+              echo "Web service test passed!"
+              break
+            fi
+            echo "Waiting for web service to be ready..."
+            sleep 5
+          done
+          # If after 10 tries the web service is not ready, fail the job
+          if [ $i -eq 10 ]; then
+            echo "Web service did not respond after 10 attempts"
+            exit 1
+          fi
       - name: Run nginx test
         run: |
           sleep 30  
