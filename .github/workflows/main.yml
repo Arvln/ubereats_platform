@@ -45,48 +45,6 @@ jobs:
   #     - name: Run unit test
   #       run: echo "Unit test passed!"
   #       working-directory: app
-  build:
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: $(which docker)
-          key: ${{ runner.os }}-docker-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
-      - name: Cache Docker Compose
-        uses: actions/cache@v3
-        with:
-          path: $(which docker-compose)
-          key: ${{ runner.os }}-docker-compose-${{ hashFiles('**/docker-compose.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-compose-
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-      - name: Restore Docker layers cache
-        uses: actions/cache@v3
-        with:
-          path: /usr/bin/docker
-          key: ${{ runner.os }}-docker-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
-      - name: Restore Docker Compose cache
-        uses: actions/cache@v3
-        with:
-          path: /usr/bin/docker-compose
-          key: ${{ runner.os }}-docker-compose-${{ hashFiles('**/docker-compose.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-compose-
-      # - name: Set up Docker Compose
-      #   run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
   integration-tests:
     name: Integration Tests
@@ -95,20 +53,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Restore Docker layers cache
-        uses: actions/cache@v3
-        with:
-          path: /usr/bin/docker
-          key: ${{ runner.os }}-docker-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
-      - name: Restore Docker Compose cache
-        uses: actions/cache@v3
-        with:
-          path: /usr/bin/docker-compose
-          key: ${{ runner.os }}-docker-compose-${{ hashFiles('**/docker-compose.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-compose-
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
       - name: Set up Docker Compose
         run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
@@ -117,11 +67,11 @@ jobs:
           sleep 10
           docker exec database mysql -uroot -proot -e "SHOW DATABASES;" || exit 1
           echo "Database connection test passed!"
-      # - name: Run web service test
-      #   run: |
-      #     sleep 10  
-      #     curl --silent --fail http://localhost:80 || exit 1
-      #     echo "Web service test passed!"
+      - name: Run web service test
+        run: |
+          sleep 10  
+          curl --silent --fail http://localhost:80 || exit 1
+          echo "Web service test passed!"
       # - name: Run nginx test
       #   run: |
       #     sleep 10  
