@@ -67,6 +67,7 @@ jobs:
           echo "Database connection test passed!"
       - name: Run web service test
         run: |
+          sleep 100
           docker ps | grep web || exit 1
           echo "Web service test passed!"
       - name: Run nginx test
