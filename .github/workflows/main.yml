@@ -61,12 +61,18 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
-      - name: Wait for MySQL to be ready
+      - name: Run database connection test
         run: |
-          until nc -z -v -w30 database 3306;
-      - name: Test database connection
+          sleep 10
+          docker exec database mysql -uroot -pubereats_platform_local -e "SHOW DATABASES;" || exit 1
+      - name: Run web service test
         run: |
-          docker exec database mysql -uroot -ppassword -e "SHOW DATABASES;" || exit 1;
+          sleep 10  
+          curl --silent --fail http://localhost:80 || exit 1
+      - name: Run nginx test
+        run: |
+          sleep 10  
+          curl --silent --fail http://localhost:80 || exit 1
         - name: Run integration test
           run: echo "Integration test passed!"
         - name: Tear down Docker Compose
