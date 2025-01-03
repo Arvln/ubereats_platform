@@ -4,4 +4,4 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.prod
+      dockerfile: ./app/Dockerfile.prod
