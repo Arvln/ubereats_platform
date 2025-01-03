@@ -66,11 +66,10 @@ jobs:
           until nc -z -v -w30 database 3306; do
             echo "Waiting for MySQL to be available..."
             sleep 5
-          done
-
+          done;
       - name: Test database connection
         run: |
-          docker exec database mysql -uroot -ppassword -e "SHOW DATABASES;" || exit 1
+          docker exec database mysql -uroot -ppassword -e "SHOW DATABASES;" || exit 1;
         - name: Run integration test
           run: echo "Integration test passed!"
         - name: Tear down Docker Compose
