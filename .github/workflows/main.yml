@@ -73,6 +73,7 @@ jobs:
       - name: Run nginx test
         run: |
           docker ps | grep nginx || exit 1
+          curl --silent --fail http://nginx:80
           echo "Nginx test passed!"
       - name: Run integration test
         run: echo "Integration test passed!"
