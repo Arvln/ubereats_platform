@@ -74,7 +74,6 @@ jobs:
           echo "Web service test passed!"
       - name: Run nginx test
         run: |
-          docker-compose logs
           curl --silent --fail http://localhost:80 || exit 1
           echo "Nginx test passed!"
       - name: Run integration test
