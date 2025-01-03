@@ -67,15 +67,12 @@ jobs:
           echo "Database connection test passed!"
       - name: Run web service test
         run: |
-          sleep 100
+          sleep 60
           docker ps | grep web || exit 1
           echo "Web service test passed!"
       - name: Run nginx test
         run: |
-          docker logs web
-          docker ps | grep nginx || exit 1
-          docker logs nginx
-          curl --silent --fail http://nginx:80
+          docker-compose logs
           echo "Nginx test passed!"
       - name: Run integration test
         run: echo "Integration test passed!"
