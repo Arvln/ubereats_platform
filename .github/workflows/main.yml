@@ -69,11 +69,11 @@ jobs:
         run: |
           sleep 30  
           docker ps | grep web || exit 1
-          echo "Nginx test passed!"
+          echo "Web service test passed!"
       - name: Run nginx test
         run: |
           sleep 30  
-          docker ps | grep nginx || exit 1
+          curl --silent --fail http://localhost:80 || exit 1
           echo "Nginx test passed!"
       - name: Run integration test
         run: echo "Integration test passed!"
