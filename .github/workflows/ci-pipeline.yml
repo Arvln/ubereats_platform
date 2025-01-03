@@ -35,7 +35,7 @@ jobs:
         working-directory: app
       - name: Run linting
         run: pnpm run lint
-        working-directory: ap
+        working-directory: app
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run unit test
         run: echo "Unit test passed!"
-        working-directory: ap
+        working-directory: app
   integration-tests:
     name: Integration Tests
     runs-on: ubuntu-latest
