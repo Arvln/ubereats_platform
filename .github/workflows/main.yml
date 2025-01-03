@@ -60,7 +60,6 @@ jobs:
           sudo apt-get install -y docker-compose
       - name: Set up Docker Compose
         run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-
       - name: Run database connection test
         run: |
           sleep 10
@@ -68,14 +67,14 @@ jobs:
           echo "Database connection test passed!"
       - name: Run web service test
         run: |
-          sleep 10  
+          sleep 30
           curl --silent --fail http://localhost:80 || exit 1
           echo "Web service test passed!"
-      # - name: Run nginx test
-      #   run: |
-      #     sleep 10  
-      #     curl --silent --fail http://localhost:80 || exit 1
-      #     echo "Nginx test passed!"
+      - name: Run nginx test
+        run: |
+          sleep 30  
+          curl --silent --fail http://localhost:80 || exit 1
+          echo "Nginx test passed!"
       - name: Run integration test
         run: echo "Integration test passed!"
       - name: Tear down Docker Compose
