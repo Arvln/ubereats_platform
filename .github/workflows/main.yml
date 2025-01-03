@@ -46,6 +46,7 @@ jobs:
   #       run: echo "Unit test passed!"
   #       working-directory: app
   build:
+    name: build
     runs-on: ubuntu-latest
     - name: Checkout code
       uses: actions/checkout@v4
