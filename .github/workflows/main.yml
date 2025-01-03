@@ -73,7 +73,7 @@ jobs:
       - name: Run nginx test
         run: |
           sleep 30  
-          curl --silent --fail http://localhost:80 || exit 1
+          curl --silent --fail http://nginx:80 || exit 1
           echo "Nginx test passed!"
       - name: Run integration test
         run: echo "Integration test passed!"
