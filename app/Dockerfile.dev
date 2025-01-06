@@ -1,10 +1,10 @@
-FROM node:alpine
+FROM node:18.17.1-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./app/package.json .
+COPY ./app/package.json ./app/pnpm-lock.yaml .
 
-RUN npm install -g pm2 && npm install -g pnpm && pnpm i
+RUN npm install -g pm2 && npm install -g pnpm && pnpm i --frozen-lockfile
 
 COPY ./app .
 
