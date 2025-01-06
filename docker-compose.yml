@@ -29,6 +29,7 @@ services:
     networks:
       - mysql_net
   server:
+    image: arvin1995/ubereats_platform:server-${TAG:-latest}
     build:
       context: .
       dockerfile: ./server/Dockerfile
@@ -42,6 +43,7 @@ services:
       - mysql_net
       - server_net
   web:
+    image: arvin1995/ubereats_platform:web-${TAG:-latest}
     build:
       context: .
       dockerfile: ./app/Dockerfile.dev
@@ -60,8 +62,9 @@ services:
       - server_net
       - web_net
   nginx:
-    build: ./docker/nginx
+    image: arvin1995/ubereats_platform:nginx-${TAG:-latest}
     container_name: nginx
+    build: ./docker/nginx
     ports:
       - "80:80"
     volumes:

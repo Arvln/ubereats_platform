@@ -5,14 +5,3 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile.prod
-      args:
-        SERVER_HOST: server
-    container_name: web
-    environment:
-      SERVER_HOST: server
-    depends_on:
-      - server
-    restart: always
-    networks:
-      - server_net
-      - web_net
