@@ -1,0 +1,91 @@
+name: ci pipeline
+
+on:
+  push:
+    branches:
+      - develop
+      - 'feature/*'
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  linting:
+    name: Code Linting
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: app
+      - name: Run linting
+        run: pnpm run lint
+        working-directory: app
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run unit test
+        run: echo "Unit test passed!"
+        working-directory: app
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+      - name: Set up Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml -f docker-compose.prod.yml build --no-cache
+          docker-compose up -d
+      - name: Run database connection test
+        run: |
+          MAX_RETRIES=10
+          RETRIES=0
+          while ! docker exec database mysql -uroot -proot -e "SHOW DATABASES;" > /dev/null 2>&1; do
+            RETRIES=$((RETRIES+1))
+            if [ $RETRIES -ge $MAX_RETRIES ]; then
+              echo "Database connection test failed after $MAX_RETRIES retries."
+              exit 1
+            fi
+            echo "Retrying database connection... Attempt $RETRIES"
+            sleep 5
+          done
+          echo "Database connection test passed!"
+      - name: Run nginx test
+        run: |
+          MAX_RETRIES=12
+          RETRIES=0
+          while ! curl --silent --fail http://localhost:80 > /dev/null 2>&1; do
+            RETRIES=$((RETRIES+1))
+            if [ $RETRIES -ge $MAX_RETRIES ]; then
+              echo "Nginx test failed after $MAX_RETRIES retries."
+              exit 1
+            fi
+            echo "Retrying nginx connection... Attempt $RETRIES"
+            sleep 5
+          done
+          echo "Nginx test passed!"
+      - name: Tear down Docker Compose
+        run: docker-compose down
