@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - develop
-<<<<<<< HEAD
-=======
-      - 'feature/*'
->>>>>>> 3562f52 (Fix nextjs 14 migration error)
 
 jobs:
   linting:

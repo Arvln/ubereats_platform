@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'feature/*'
+      - 'bugfix/*'
   pull_request:
     branches:
       - main
@@ -56,7 +57,7 @@ jobs:
           sudo apt-get install -y docker-compose
       - name: Set up Docker Compose
         run: |
-          docker-compose -f docker-compose.yml -f docker-compose.prod.yml build --no-cache
+          docker-compose build --no-cache
           docker-compose up -d
       - name: Run database connection test
         run: |
@@ -74,7 +75,7 @@ jobs:
           echo "Database connection test passed!"
       - name: Run nginx test
         run: |
-          MAX_RETRIES=12
+          MAX_RETRIES=10
           RETRIES=0
           while ! curl --silent --fail http://localhost:80 > /dev/null 2>&1; do
             RETRIES=$((RETRIES+1))
