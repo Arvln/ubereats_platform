@@ -3,6 +3,7 @@ name: ci pipeline
 on:
   push:
     branches:
+      - develop
       - 'feature/*'
       - 'bugfix/*'
   pull_request:
