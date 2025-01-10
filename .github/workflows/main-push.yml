@@ -72,7 +72,7 @@ jobs:
           echo "Database connection test passed!"
       - name: Run nginx test
         run: |
-          MAX_RETRIES=12
+          MAX_RETRIES=10
           RETRIES=0
           while ! curl --silent --fail http://localhost:80 > /dev/null 2>&1; do
             RETRIES=$((RETRIES+1))

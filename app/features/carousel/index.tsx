@@ -82,13 +82,11 @@ function Carousel({ data }: Prop) {
 					>
 						<div className={itemWrapper}>
 							<Link href={`/marketing/${uuid}`}>
-								<a>
-									<Image
-										src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
-										layout="fill"
-										alt={imageSuffix}
-									/>
-								</a>
+                <Image
+                  src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
+                  layout="fill"
+                  alt={imageSuffix}
+                />
 							</Link>
 						</div>
 					</li>
