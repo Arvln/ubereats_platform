@@ -6,23 +6,21 @@ import classes from 'styles/components/CategoryItem.module.scss';
 const { wrapper } = classes;
 
 function CategoryItem({
-	appendClass,
-	pageUrl,
-	icon,
-	text
+  appendClass,
+  pageUrl,
+  icon,
+  text
 }: Prop) {
-	const wrapperStyle = `${wrapper} ${appendClass}`;
+  const wrapperStyle = `${wrapper} ${appendClass}`;
 
-	return (
-		<div className={wrapperStyle}>
-			<Link href={pageUrl}>
-				<a>
-					{icon}
-					<span>{text}</span>
-				</a>
-			</Link>
-		</div>
-	);
+  return (
+    <div className={wrapperStyle}>
+      <Link href={pageUrl}>
+        {icon}
+        <span>{text}</span>
+      </Link>
+    </div>
+  );
 };
 
 export default CategoryItem;
