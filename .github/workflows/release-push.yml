@@ -1,9 +1,9 @@
-name: docker push
+name: release push
 
 on:
   push:
     branches:
-      - develop
+      - release
 
 jobs:
   linting:
