@@ -3,7 +3,7 @@ name: release push
 on:
   push:
     branches:
-      - release
+      - 'release*'
 
 jobs:
   linting:
