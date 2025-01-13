@@ -98,7 +98,6 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: Push Docker Image
         run: docker-compose push
-
   deploy-to-staging:
     name: Deploy to Staging
     runs-on: ubuntu-latest
