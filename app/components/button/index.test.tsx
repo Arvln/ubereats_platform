@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'
-import Button from ".";
+import { Button } from "components";
 
 const mockProps = {
   appendClass: {
@@ -15,8 +15,8 @@ describe("Test Button Component", () => {
   test("should render correctly", () => {
     render(<Button {...mockProps} />);
 
-    const wrapper = screen.getByTestId("wrapper");
-    const content = screen.getByTestId("content");
+    const wrapper = screen.getByTestId("button-wrapper");
+    const content = screen.getByTestId("button-content");
 
     expect(wrapper).toBeInTheDocument();
     expect(content).toBeInTheDocument();
@@ -27,8 +27,8 @@ describe("Test Button Component", () => {
   test("Should apply custom classes", () => {
     render(<Button {...mockProps} />);
 
-    const wrapper = screen.getByTestId("wrapper");
-    const content = screen.getByTestId("content");
+    const wrapper = screen.getByTestId("button-wrapper");
+    const content = screen.getByTestId("button-content");
 
     expect(wrapper).toHaveClass("custom-wrapper");
     expect(content).toHaveClass("custom-content");

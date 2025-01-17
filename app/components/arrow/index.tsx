@@ -17,7 +17,7 @@ function Arrow({ appendWrapper }: Prop) {
 	};
 
 	return (
-		<div className={wrapper} data-testid="wrapper">
+		<div className={wrapper} data-testid="arrow-wrapper">
 			<Button
 				appendClass={button}
 				icon={

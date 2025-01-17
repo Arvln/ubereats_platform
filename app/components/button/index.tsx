@@ -20,9 +20,9 @@ function Button({
   const contentStyle = `${content} ${appendContent}`;
 
   return (
-    <div className={wrapperStyle} data-testid="wrapper">
+    <div className={wrapperStyle} data-testid="button-wrapper">
       {icon}
-      <div className={contentStyle} data-testid="content">{text}</div>
+      <div className={contentStyle} data-testid="button-content">{text}</div>
     </div>
   );
 };

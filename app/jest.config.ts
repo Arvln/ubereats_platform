@@ -1,4 +1,30 @@
 import type { Config } from 'jest';
+import { readFileSync } from 'fs';
+
+const { compilerOptions } = JSON.parse(readFileSync('./tsconfig.json', 'utf8'));
+const convertPathsToModuleNameMapper = (paths: typeof compilerOptions) => {
+  const moduleNameMapper = {} as {
+      [key: string]: string | string[];
+  };
+  const createRootPath = (basePath: string) => {
+    if (basePath === 'styles') return `<rootDir>/${basePath}/globals.scss`;
+    else if (basePath === 'utils') return `../<rootDir>/${basePath}/index.ts`;
+    else return `<rootDir>/${basePath}/index.ts`;
+  }
+  const createPath = (basePath: string) => {
+    if (basePath === 'utils') return `../<rootDir>/${basePath}/$1`;
+    else return `<rootDir>/${basePath}/$1`;
+  }
+
+  Object.keys(paths).forEach((path) => {
+    const basePath = path.replace('/*', '');
+
+    moduleNameMapper[`^${basePath}/(.*)$`] = createRootPath(basePath);
+    moduleNameMapper[`^${basePath}$`] = createPath(basePath);
+  });
+
+  return moduleNameMapper;
+}
 
 const config: Config = {
   rootDir: './',
@@ -7,17 +33,7 @@ const config: Config = {
   transform: {
     '^.+\\.scss$': 'jest-transform-stub',
   },
-  moduleNameMapper: {
-    '^components/(.*)$': '<rootDir>/components/$1',
-    '^features/(.*)$': '<rootDir>/features/$1',
-    '^pages/(.*)$': '<rootDir>/pages/$1',
-    '^graphql/(.*)$': '<rootDir>/graphql/$1',
-    '^styles/(.*)$': '<rootDir>/styles/$1',
-    '^themes/(.*)$': '<rootDir>/themes/$1',
-    '^utils/(.*)$': '<rootDir>/utils/$1',
-    '^types/(.*)$': '<rootDir>/types/$1',
-    '^enums/(.*)$': '<rootDir>/enums/$1',
-  },
+  moduleNameMapper: convertPathsToModuleNameMapper(compilerOptions.paths)
 };
 
 export default config;
