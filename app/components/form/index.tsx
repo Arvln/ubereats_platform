@@ -9,8 +9,7 @@ const {
 	wrapper,
 	content,
 	height_80,
-	buttonWrapper,
-	test
+	buttonWrapper
 } = classes;
 const button: TAppendClass = {
 	appendWrapper: buttonWrapper,
@@ -19,9 +18,9 @@ const button: TAppendClass = {
 
 function Form({ data }: Prop) {
 	return (
-		<div className={wrapper}>
+		<div className={wrapper} data-testid="form-wrapper">
 			<div className={height_80} />
-			<div className={content}>
+			<div className={content} data-testid="form-content">
 				<Button
 					appendClass={button}
 					icon={
