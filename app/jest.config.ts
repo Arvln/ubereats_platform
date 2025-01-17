@@ -30,6 +30,7 @@ const config: Config = {
   rootDir: './',
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['./jest.setup.ts'],
   transform: {
     '^.+\\.scss$': 'jest-transform-stub',
   },

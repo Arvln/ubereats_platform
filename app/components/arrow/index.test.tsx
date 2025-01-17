@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { Arrow } from "components";
+
+import { Arrow } from 'components';
 
 jest.mock('next/image', () => ({
   __esModule: true,

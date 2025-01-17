@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import '@testing-library/jest-dom'
-import { Button } from "components";
+import { render, screen } from '@testing-library/react';
 
-const mockProps = {
+import type { Prop } from './types';
+import { Button } from 'components';
+
+const mockProps : Prop = {
   appendClass: {
     appendWrapper: "custom-wrapper",
     appendContent: "custom-content",
