@@ -10,7 +10,8 @@ const {
 function Button({
   appendClass,
   icon,
-  text
+  text,
+  ...restProps
 }: Prop) {
   const {
     appendWrapper,
@@ -20,7 +21,7 @@ function Button({
   const contentStyle = `${content} ${appendContent}`;
 
   return (
-    <div className={wrapperStyle} data-testid="button-wrapper">
+    <div className={wrapperStyle} data-testid="button-wrapper" {...restProps}>
       {icon}
       <div className={contentStyle} data-testid="button-content">{text}</div>
     </div>

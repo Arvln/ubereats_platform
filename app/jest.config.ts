@@ -7,8 +7,7 @@ const convertPathsToModuleNameMapper = (paths: typeof compilerOptions) => {
       [key: string]: string | string[];
   };
   const createRootPath = (basePath: string) => {
-    if (basePath === 'styles') return `<rootDir>/${basePath}/globals.scss`;
-    else if (basePath === 'utils') return `../<rootDir>/${basePath}/index.ts`;
+    if (basePath === 'utils') return `../<rootDir>/${basePath}/index.ts`;
     else return `<rootDir>/${basePath}/index.ts`;
   }
   const createPath = (basePath: string) => {
@@ -16,11 +15,11 @@ const convertPathsToModuleNameMapper = (paths: typeof compilerOptions) => {
     else return `<rootDir>/${basePath}/$1`;
   }
 
-  Object.keys(paths).forEach((path) => {
+  Object.keys(paths).filter((path) => path.includes('styles') === false).forEach((path) => {
     const basePath = path.replace('/*', '');
 
-    moduleNameMapper[`^${basePath}/(.*)$`] = createRootPath(basePath);
-    moduleNameMapper[`^${basePath}$`] = createPath(basePath);
+    moduleNameMapper[`^${basePath}$`] = createRootPath(basePath);
+    moduleNameMapper[`^${basePath}/(.*)$`] = createPath(basePath);
   });
 
   return moduleNameMapper;
@@ -31,10 +30,10 @@ const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./jest.setup.ts'],
-  transform: {
-    '^.+\\.scss$': 'jest-transform-stub',
-  },
-  moduleNameMapper: convertPathsToModuleNameMapper(compilerOptions.paths)
+  moduleNameMapper: {
+    ...convertPathsToModuleNameMapper(compilerOptions.paths),
+    '\\.scss$': 'identity-obj-proxy',
+  }
 };
 
 export default config;
