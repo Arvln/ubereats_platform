@@ -14,10 +14,10 @@ function CategoryItem({
   const wrapperStyle = `${wrapper} ${appendClass}`;
 
   return (
-    <div className={wrapperStyle}>
+    <div className={wrapperStyle} data-testid="category-item-wrapper">
       <Link href={pageUrl}>
         {icon}
-        <span>{text}</span>
+        <span data-testid="category-item-content">{text}</span>
       </Link>
     </div>
   );
