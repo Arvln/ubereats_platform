@@ -62,7 +62,7 @@ function Layout({ children }: Prop) {
 					isShow={isShowForm}
 					hide={handleForm}
 				>
-					<Form data={form} />
+          <Form>{form}</Form>
 				</Popups>
 			</div>
 		);
