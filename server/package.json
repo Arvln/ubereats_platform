@@ -9,7 +9,7 @@
     "watch": [
       "server"
     ],
-    "exec": "ts-node -r tsconfig-paths/register app.ts",
+    "exec": "tsc --noEmit && ts-node -r tsconfig-paths/register app.ts",
     "ext": "ts, js"
   },
   "scripts": {

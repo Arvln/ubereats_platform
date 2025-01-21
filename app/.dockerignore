@@ -1,4 +1,5 @@
 .next/
 .dockerignore
+*.tsbuildinfo
 Dockerfile
 node_modules
