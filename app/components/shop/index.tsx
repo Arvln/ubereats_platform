@@ -47,20 +47,21 @@ function Shop({
 }: Prop) {
   function _renderDetailContent(
     cost: number,
-    time: number
+    time: number,
+    uuid: string
   ) {
     const isPickupByCustomer: boolean = isPickup(cost);
 
     if (isPickupByCustomer)
       return (
         <>
-          <div className={costTime}>
+          <div className={costTime} data-testid={`cost-time-${uuid}`}>
             <span>
               {time}–{time + 10}分鐘
             </span>
           </div>
           <span> • </span>
-          <div className={distance}>
+          <div className={distance} data-testid={`distance-${uuid}`}>
             <span>{getPickupDistance(cost)}公里</span>
           </div>
         </>
@@ -69,11 +70,11 @@ function Shop({
       return (
         <>
           <span> • </span>
-          <div className={fare}>
+          <div className={fare} data-testid={`fare-${uuid}`}>
             <span>{cost}TWD 費用</span>
           </div>
           <span> • </span>
-          <div className={costTime}>
+          <div className={costTime} data-testid={`cost-time-${uuid}`}>
             <span>
               {time}–{time + 10}分鐘
             </span>
@@ -82,7 +83,7 @@ function Shop({
       )
   }
 
-  function _renderScoreButton(score: number) {
+  function _renderScoreButton(score: number, uuid: string) {
     const isCarefullySelected: boolean = score === 100;
     const isComment: boolean = getScore(score) !== withoutCommentScore;
     const scoreButton: TAppendClass = {
@@ -92,10 +93,10 @@ function Shop({
 
     if (isCarefullySelected)
       return (
-        <div className={scoreButtonWrapper}>
+        <div className={scoreButtonWrapper} data-testid={`score-button-${uuid}`}>
           <Image
             src={`https://${SHORTCUT_ICONS_SERVER_HOST}/eatsfeed/other_icons/top_eats.png`}
-            layout="fill"
+            fill
             alt="Carefully Selected"
           />
         </div>
@@ -105,6 +106,7 @@ function Shop({
         <Button
           appendClass={scoreButton}
           text={getScore(score)}
+          data-testid={`score-button-${uuid}`}
         />
       );
   }
@@ -135,23 +137,25 @@ function Shop({
             <li
               className={shopWrapper}
               key={uuid}
+              data-testid={`shop-item-${uuid}`}
             >
               <Link href={`/store/${name}/${uuid}`}>
-                <h3 className={storeTitle}>{name}</h3>
-                <div className={`${imageWrapper} ${imageHeight}`}>
+                <h3 className={storeTitle} data-testid={`store-title-${uuid}`}>{name}</h3>
+                <div className={`${imageWrapper} ${imageHeight}`} data-testid={`image-wrapper-${uuid}`}>
                   <Image
                     src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
-                    layout="fill"
+                    fill
                     sizes="25vw"
-                    objectFit="cover"
                     alt="Shop"
+                    style={{ objectFit: 'cover' }}
                   />
-                  <div className={discountMessage}>
+                  <div className={discountMessage} data-testid={`discount-message-${uuid}`}>
                     <span
-                      className={`${hideEmptyElement} ${discountText}`}>
+                      className={`${hideEmptyElement} ${discountText}`}
+                      data-testid={`discount-text-${uuid}`}>
                       {discountLabel}
                     </span>
-                    <div className={buttonWrapper}>
+                    <div className={buttonWrapper} data-testid={`button-wrapper-${uuid}`}>
                       <div className={space_16} />
                       <Button
                         appendClass={favorButton}
@@ -163,26 +167,27 @@ function Shop({
                             alt="Favor"
                           />
                         }
+                        data-testid={`favor-button-${uuid}`}
                       />
                       <div className={space_12} />
                     </div>
                   </div>
                 </div>
-                <div className={baseMessage}>
-                  <div className={title}>{name}</div>
-                  {_renderScoreButton(score)}
+                <div className={baseMessage} data-testid={`base-message-${uuid}`}>
+                  <div className={title} data-testid={`base-message-title-${uuid}`}>{name}</div>
+                  {_renderScoreButton(score, uuid)}
                 </div>
-                <div className={detailMessage}>
-                  <div className={detailImageWrapper}>
-                    <div className={detailMessageImage}>
+                <div className={detailMessage} data-testid={`detail-message-${uuid}`}>
+                  <div className={detailImageWrapper} data-testid={`detail-image-wrapper-${uuid}`}>
+                    <div className={detailMessageImage} data-testid={`detail-message-image-${uuid}`}>
                       <Image
                         src={`https://${UTILS_ICONS_SERVER_HOST}/ticket@3x.png`}
-                        layout="fill"
+                        fill
                         alt="Ticket"
                       />
                     </div>
                   </div>
-                  {_renderDetailContent(deliveryCost, shortestDeliveryTime)}
+                  {_renderDetailContent(deliveryCost, shortestDeliveryTime, uuid)}
                 </div>
               </Link>
             </li>

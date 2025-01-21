@@ -31,15 +31,31 @@ jobs:
         run: pnpm install
         working-directory: app
       - name: Run linting
-        run: pnpm run lint
+        run: pnpm lint
         working-directory: app
   unit-tests:
     name: Unit Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20]
     steps:
       - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: app
       - name: Run unit test
-        run: echo "Unit test passed!"
+        run: pnpm test
         working-directory: app
   build-and-push:
     name: Build and Push Docker Image
