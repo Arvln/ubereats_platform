@@ -30,6 +30,14 @@ const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./jest.setup.ts'],
+  transform: {
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: './tsconfig.test.json',
+      },
+    ],
+  },
   moduleNameMapper: {
     ...convertPathsToModuleNameMapper(compilerOptions.paths),
     '\\.scss$': 'identity-obj-proxy',
