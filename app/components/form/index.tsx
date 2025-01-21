@@ -1,7 +1,8 @@
-import { Prop } from './types';
+import { ReactNode } from 'react';
+import Image from 'next/image';
+
 import { TAppendClass } from 'components/button/types';
 import { Button } from 'components';
-import Image from 'next/image';
 
 import classes from 'styles/components/Form.module.scss';
 
@@ -9,19 +10,18 @@ const {
 	wrapper,
 	content,
 	height_80,
-	buttonWrapper,
-	test
+	buttonWrapper
 } = classes;
 const button: TAppendClass = {
 	appendWrapper: buttonWrapper,
 	appendContent: ''
 };
 
-function Form({ data }: Prop) {
+function Form({ children }: { children ?: ReactNode }) {
 	return (
-		<div className={wrapper}>
+		<div className={wrapper} data-testid="form-wrapper">
 			<div className={height_80} />
-			<div className={content}>
+			<div className={content} data-testid="form-content">
 				<Button
 					appendClass={button}
 					icon={
@@ -33,7 +33,7 @@ function Form({ data }: Prop) {
 						/>
 					}
 				/>
-				{data}
+				{children}
 			</div>
 			<div className={height_80} />
 		</div>
