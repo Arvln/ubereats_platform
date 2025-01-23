@@ -9,8 +9,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ubereats_platform_local
     volumes:
-      - ./docker/mysql/config/my.cnf:/etc/mysql/my.cnf
-      - ./docker/mysql/data:/docker-entrypoint-initdb.d/
+      - ./mysql/config/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/data:/docker-entrypoint-initdb.d/
     expose:
       - "3306"
     restart: always
@@ -29,9 +29,7 @@ services:
     networks:
       - mysql_net
   server:
-    build:
-      context: .
-      dockerfile: ./server/Dockerfile
+    image: arvin1995/ubereats_platform:server-${TAG:-latest}
     container_name: server
     environment:
       MYSQL_HOST: database
@@ -42,15 +40,8 @@ services:
       - mysql_net
       - server_net
   web:
-    build:
-      context: .
-      dockerfile: ./app/Dockerfile.dev
-      args:
-        SERVER_HOST: server
+    image: arvin1995/ubereats_platform:web-${TAG:-latest}
     container_name: web
-    volumes:
-      - ./app:/usr/src/app:cached
-      - /usr/src/app/node_modules
     environment:
       SERVER_HOST: server
     depends_on:
@@ -60,12 +51,12 @@ services:
       - server_net
       - web_net
   nginx:
-    build: ./docker/nginx
+    image: arvin1995/ubereats_platform:nginx-${TAG:-latest}
     container_name: nginx
     ports:
       - "80:80"
     volumes:
-      - ./docker/nginx/log:/var/log/nginx
+      - ./nginx/log:/var/log/nginx
     depends_on:
       - web
     restart: always
