@@ -239,7 +239,7 @@ function RestrictSearch({ isCuisines }: Prop) {
 								appendClass={deliveryRestrictionButton}
 								icon={
 									<Image
-										src={`/images/${key}.svg`}
+										src={`/images/${key.toLocaleLowerCase()}.svg`}
 										width="20"
 										height="20"
 										alt={key}
