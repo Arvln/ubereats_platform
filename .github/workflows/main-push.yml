@@ -130,16 +130,17 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
+      - name: Copy environment settings into compute engine
+        run: |
+          gcloud compute scp docker-compose.cd.yml ubereats-production:docker-compose.yml --zone=us-central1-b --project=ubereats-447103
+          gcloud compute scp --recurse ./docker/mysql/* ubereats-production:~/mysql --zone=us-central1-b --project=ubereats-447103
       - name: SSH to GCP Production and deploy
         run: |
           TAG=${{ needs.build-and-push.outputs.TAG }}
           gcloud compute ssh ubereats-production --project=ubereats-447103 --zone=us-central1-b --command="
-            git clone https://$GITHUB_TOKEN@github.com/Arvln/ubereats_platform.git
-            cd ubereats_platform
-            git pull origin release
-
             export TAG=$TAG
             docker-compose pull
+            docker-compose down -v
             docker-compose up -d
             docker system prune -a -f
           "
