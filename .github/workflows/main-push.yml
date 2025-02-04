@@ -28,7 +28,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm i --frozen-lockfile
         working-directory: app
       - name: Run linting
         run: pnpm lint
@@ -108,9 +108,23 @@ jobs:
             sleep 5
           done
           echo "Nginx test passed!"
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+      - name: Install cypress
+        run: pnpm i -D cypress@14.0.0
       - name: Run E2E Tests
-        run: echo "E2E test passed!"
-        working-directory: app
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          working-directory: app
       - name: Tear down Docker Compose
         run: docker-compose down
       - name: Log in to Docker Hub
