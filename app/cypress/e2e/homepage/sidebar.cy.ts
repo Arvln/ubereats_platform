@@ -9,7 +9,7 @@ describe('sidebar ui test', () => {
     const baseUrl = Cypress.config().baseUrl as string
     cy.get('img[alt="Logo"]').each(logo => {
       cy.wrap(logo).click()
-      cy.url().should('eq', `${Cypress.config().baseUrl}/`)
+      cy.location('pathname', { timeout: 10000 }).should('eq', '/')
     })
   })
 

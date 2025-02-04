@@ -28,7 +28,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm i --frozen-lockfile
         working-directory: app
       - name: Run linting
         run: pnpm lint
@@ -119,7 +119,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install cypress
-        run: pnpm i cypress
+        run: pnpm i -D cypress@14.0.0
       - name: Run E2E Tests
         uses: cypress-io/github-action@v6
         with:
