@@ -52,7 +52,11 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
+<<<<<<< HEAD
         run: pnpm i --frozen-lockfile
+=======
+        run: pnpm install
+>>>>>>> main
         working-directory: app
       - name: Run unit test
         run: pnpm test
