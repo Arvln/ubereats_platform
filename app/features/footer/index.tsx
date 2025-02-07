@@ -1,5 +1,8 @@
+import Button from 'components/button';
+import { useLocale } from 'contexts/LocaleContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import classes from 'styles/features/Footer.module.scss';
 
@@ -21,7 +24,41 @@ const {
   space_40
 } = classes;
 
+const Modal = ({ isOpen, onClose, children }: {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-start justify-center pt-20 z-50" style={{ backgroundColor: 'rgba(38, 38, 38, .8)' }} onClick={onClose}>
+      <div className="bg-white rounded-2xl w-[28rem]" onClick={(e) => e.stopPropagation()}>
+        <Button
+          onClick={onClose}
+          appendClass={{
+            appendWrapper: 'w-12 h-12 flex justify-center items-center bg-white ml-2 mt-2',
+            appendContent: ''
+          }}
+          icon={
+            <Image
+              src="/images/close.svg"
+              width="24"
+              height="24"
+              alt="Close"
+            />
+          }
+        />
+        {children}
+      </div>
+    </div>
+  );
+};
+
 function Footer() {
+  const { locale } = useLocale();
+  const [isLocaleSwitchModalOpen, setIsLocaleSwitchModalOpen] = useState(false);
+
   function _renderMoreOptions() {
     const wrapper = moreOptionsWrapper;
 
@@ -93,21 +130,33 @@ function Footer() {
               <Link href="https://about.ubereats.com">關於 Uber Eats</Link>
             </li>
             <li>
-              <Link
-                href="#"
-              >
-                <span className={selectLanguage}>
-                  <Image
-                    src="/images/chinese.svg"
-                    width={16}
-                    height={15}
-                    alt="Chinese"
-                  />
-                  <div className={space_8} />
-                  <span>中文</span>
-                </span>
-              </Link>
+              <span className={selectLanguage} onClick={() => setIsLocaleSwitchModalOpen(true)}>
+                <Image
+                  src="/images/chinese.svg"
+                  width={16}
+                  height={15}
+                  alt="Chinese"
+                />
+                <div className={space_8} />
+                <span>中文</span>
+              </span>
             </li>
+            <Modal isOpen={isLocaleSwitchModalOpen} onClose={() => setIsLocaleSwitchModalOpen(false)}>
+              <div className="p-6">
+                <h1 className="text-xl font-medium text-4xl pb-6">選擇語言</h1>
+                {['zh-TW', 'en-US'].map((language) => (
+                  <div key={language} className="mb-6 flex justify-between cursor-pointer">
+                    <span>{language}</span>
+                    {(locale === language) && <Image
+                      src="/images/checkmark.svg"
+                      width="16"
+                      height="16"
+                      alt="Checkmark"
+                    />}
+                  </div>
+                ))}
+              </div>
+            </Modal>
           </ul>
         </div>
       </div>
