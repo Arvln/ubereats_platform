@@ -71,6 +71,7 @@ export function getPageProps<T>(
 			return {
 				props: {
           pageData,
+          locale,
           messages: (await import(`locales/${locale}.json`)).default,
 				}
 			}

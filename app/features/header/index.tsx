@@ -1,6 +1,7 @@
 import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'components';
@@ -55,9 +56,9 @@ const loginButton: TAppendClass = {
 };
 
 function Header({
-  showEntryOptions,
-  showDeliveryDetails
+  showEntryOptions
 }: Prop) {
+  const t = useTranslations();
   const [isDeliveried, setIsDeliveried] = useState<boolean>(true);
   const [searchbarShadowStyle, setSearchbarShadowStyle] = useState<string>('');
   const deliveryButton = isDeliveried ? selectedButton : unSelectedButton;
@@ -106,7 +107,7 @@ function Header({
         >
           <Button
             appendClass={deliveryButton}
-            text='外送'
+            text={t('common.delivery')}
           />
         </div>
         <div
@@ -115,7 +116,7 @@ function Header({
         >
           <Button
             appendClass={takeOutButton}
-            text='外帶'
+            text={t('common.takeout')}
           />
         </div>
       </div>
@@ -131,7 +132,7 @@ function Header({
               alt="Location"
             />
           }
-          text={'ABCD . A Better Coffee & Doughnut  •  立刻'}
+          text={`ABCD . A Better Coffee & Doughnut  •  ${t('header.now')}`}
         />
       </div>
       <div className={space_64} />
@@ -147,7 +148,7 @@ function Header({
           <div className={space_16} />
           <input
             type="text"
-            placeholder="美食、生鮮雜貨、飲料等"
+            placeholder={t('header.search_hints')}
             onFocus={() => _handleSearchbarInputFocus()}
             onBlur={() => _handleSearchbarInputBlur()}
           />
@@ -164,14 +165,14 @@ function Header({
               height={16}
               alt="Cart" />
           }
-          text="購物車 • 0"
+          text={`${t('header.shopping_cart')} • 0`}
         />
       </div>
       <div className={space_24} />
       <div className={loginWrapper}>
         <Button
           appendClass={loginButton}
-          text="登入"
+          text={t('common.login')}
         />
       </div>
     </header>

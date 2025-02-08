@@ -37,6 +37,10 @@
     "delivery_time": "配送時間",
     "price_range": "價格範圍",
     "maximum_delivery_fee": "外送費上限",
+    "lowest": "最低",
+    "low": "低",
+    "moderate": "中等",
+    "higher": "較高",
     "dietary_restrictions": "飲食限制",
     "vegetarian_dishes": "蔬食料理",
     "vegan_dishes": "純素食料理",
@@ -68,9 +72,9 @@
   },
   "store": {
     "detailed_information": "詳細資訊",
-    "minutes": "分鐘",
-    "fee": "費用",
-    "group_purchase_order": "團購訂單",
+    "delivery_time": "{shartTime}–{endTime} 分鐘",
+    "delivery_fee": "{fee} TWD 費用",
+    "group_order": "團購訂單",
     "schedule_time": "安排時間"
   },
   "entry_options": {
@@ -91,6 +95,10 @@
     "terms": "條款",
     "pricing": "價格",
     "do_not_sell_my_info": "請勿銷售我的資訊",
-    "privacy_policy_statement": "本網站受到 reCAPTCHA 和 Google 隱私政策的保護，且適用服務條款。"
+    "policy_statement_1": "本網站受到 reCAPTCHA 和 Google ",
+    "policy_statement_2": "隱私政策",
+    "policy_statement_3": "的保護，且適用",
+    "policy_statement_4": "服務條款",
+    "policy_statement_5": "。"
   }
 }

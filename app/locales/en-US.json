@@ -9,7 +9,7 @@
   },
   "header": {
     "now": "Now",
-    "search_hints": "Gourmet food, fresh groceries, beverages, and more",
+    "search_hints": "Food, groceries, drinks, etc",
     "shopping_cart": "Shopping cart"
   },
   "shortcut": {
@@ -31,12 +31,16 @@
   "restrict_search": {
     "all_restaurant_locations": "All restaurant locations",
     "categories": "Categories",
-    "personalized_recommended_dishes": "Your personalized recommended dishes (default)",
+    "personalized_recommended_dishes": "Your Recommended Meals",
     "popular_dishes": "Popular dishes",
     "rating": "Rating",
     "delivery_time": "Delivery time",
     "price_range": "Price range",
     "maximum_delivery_fee": "Maximum delivery fee",
+    "lowest": "Lowest",
+    "low": "Low",
+    "moderate": "Moderate",
+    "higher": "Higher",
     "dietary_restrictions": "Dietary restrictions",
     "vegetarian_dishes": "Vegetarian dishes",
     "vegan_dishes": "Vegan dishes",
@@ -68,9 +72,9 @@
   },
   "store": {
     "detailed_information": "Detailed information",
-    "minutes": "Minutes",
-    "fee": "Fee",
-    "group_purchase_order": "Group purchase order",
+    "delivery_time": "{shartTime}–{endTime} minutes",
+    "delivery_fee": "{fee} TWD fee",
+    "group_order": "Group order",
     "schedule_time": "Schedule time"
   },
   "entry_options": {
@@ -91,6 +95,10 @@
     "terms": "Terms",
     "pricing": "Pricing",
     "do_not_sell_my_info": "Do not sell my info",
-    "privacy_policy_statement": "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply."
+    "policy_statement_1": "This site is protected by reCAPTCHA and the Google ",
+    "policy_statement_2": "Privacy Policy",
+    "policy_statement_3": " and ",
+    "policy_statement_4": "Terms of Service",
+    "policy_statement_5": " apply."
   }
 }

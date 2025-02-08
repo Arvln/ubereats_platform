@@ -1,48 +1,48 @@
 export enum ConditionsTypes {
-	CLASSIFICATION = '分類',
-	PRICE_RANGE = '價格範圍',
-	DELIVERY_COST_LIMITATION = '外送費上限',
-	DIETARY_RESTRICTION = '飲食限制'
+  CLASSIFICATION = 'restrict_search.categories',
+  PRICE_RANGE = 'restrict_search.price_range',
+  DELIVERY_COST_LIMITATION = 'restrict_search.maximum_delivery_fee',
+  DIETARY_RESTRICTION = 'restrict_search.dietary_restrictions'
 };
 
 export enum ClassificationTypes {
-	RECOMMEND = 0,
-	POPULAR = 1,
-	SCORE = 2,
-	DELIVERY_TIME = 3
+  RECOMMEND = 0,
+  POPULAR = 1,
+  SCORE = 2,
+  DELIVERY_TIME = 3
 };
 
 export enum ClassificationsTypes {
-	RECOMMEND = '  您專屬的推薦餐點 (預設)',
-	POPULAR = '  熱門餐點',
-	SCORE = '  評分',
-	DELIVERY_TIME = '  配送時間'
+  RECOMMEND = 'restrict_search.personalized_recommended_dishes',
+  POPULAR = 'restrict_search.popular_dishes',
+  SCORE = 'restrict_search.rating',
+  DELIVERY_TIME = 'restrict_search.delivery_time'
 };
 
 export enum PriceLevelTypes {
-	EXTREMELY_LOW = '$',
-	LOW = '$$',
-	MIDDLE = '$$$',
-	HIGH = '$$$$'
+  EXTREMELY_LOW = '$',
+  LOW = '$$',
+  MIDDLE = '$$$',
+  HIGH = '$$$$'
 };
 
 export enum DeliveryCostLimitTypes {
-	'NT$25' = 0,
-	'NT$40' = 1,
-	'NT$60' = 2,
-	'NT$60_PLUS' = 3,
+  LOWEST_FEE = 0,
+  LOW_FEE = 1,
+  MODERATE_FEE = 2,
+  HIGHER_FEE = 3,
 };
 
 export enum DeliveryRestrictionTypes {
-	VEGETABLE = 0,
-	VEGAN = 1,
-	GLUTEN_FREE = 2,
-	NO_ALLERGY = 3
+  VEGETABLE = 0,
+  VEGAN = 1,
+  GLUTEN_FREE = 2,
+  NO_ALLERGY = 3
 };
 
 export enum DeliveryRestrictionsTypes {
-	VEGETABLE = '  蔬食料理',
-	VEGAN = '  純素食料理',
-	GLUTEN_FREE = '  無麩質料理',
-	NO_ALLERGY = '  過敏者可食用'
+  VEGETABLE = 'restrict_search.vegetarian_dishes',
+  VEGAN = 'restrict_search.vegan_dishes',
+  GLUTEN_FREE = 'restrict_search.gluten_free_dishes',
+  NO_ALLERGY = 'restrict_search.allergy_friendly'
 };

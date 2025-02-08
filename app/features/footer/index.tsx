@@ -1,5 +1,6 @@
 import Button from 'components/button';
 import { useLocale } from 'contexts/LocaleContext';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -56,7 +57,8 @@ const Modal = ({ isOpen, onClose, children }: {
 };
 
 function Footer() {
-  const { locale } = useLocale();
+  const t = useTranslations();
+  const { locale, changeLocale } = useLocale();
   const [isLocaleSwitchModalOpen, setIsLocaleSwitchModalOpen] = useState(false);
 
   function _renderMoreOptions() {
@@ -96,38 +98,38 @@ function Footer() {
         <div className={moreOptions}>
           <ul>
             <li>
-              <Link href="https://help.uber.com/ubereats">取得協助</Link>
+              <Link href="https://help.uber.com/ubereats">{t('footer.get_help')}</Link>
             </li>
             <li>
-              <Link href="https://www.ubereats.com/restaurant">新增您的餐廳</Link>
+              <Link href="https://www.ubereats.com/restaurant">{t('common.add_your_restaurant')}</Link>
             </li>
             <li>
-              <Link href="https://www.uber.com/drive/delivery">註冊成為合作外送夥伴</Link>
+              <Link href="https://www.uber.com/drive/delivery">{t('common.register_as_delivery_partner')}</Link>
             </li>
             <li>
-              <Link href="https://www.uber.com/business/eats">建立企業帳戶</Link>
+              <Link href="https://www.uber.com/business/eats">{t('common.create_business_account')}</Link>
             </li>
             <li>
-              <Link href="#">首份訂單可享折扣優惠</Link>
+              <Link href="#">{t('footer.enjoy_a_discount_on_your_first_order')}</Link>
             </li>
           </ul>
         </div>
         <div className={moreOptions}>
           <ul>
             <li>
-              <Link href="https://www.ubereats.com/tw/near-me">我附近的美食外送</Link>
+              <Link href="https://www.ubereats.com/tw/near-me">{t('footer.food_delivery_near_me')}</Link>
             </li>
             <li>
-              <Link href="https://www.ubereats.com/tw/location">檢視所有城市</Link>
+              <Link href="https://www.ubereats.com/tw/location">{t('footer.view_all_cities')}</Link>
             </li>
             <li>
-              <Link href="https://www.ubereats.com/tw/location#all-countries">查看所有國家/地區</Link>
+              <Link href="https://www.ubereats.com/tw/location#all-countries">{t('footer.view_all_countries_regions')}</Link>
             </li>
             <li>
-              <Link href="https://www.uber.com/blog/eat">閱讀我們的部落格</Link>
+              <Link href="https://www.uber.com/blog/eat">{t('footer.read_our_blog')}</Link>
             </li>
             <li>
-              <Link href="https://about.ubereats.com">關於 Uber Eats</Link>
+              <Link href="https://about.ubereats.com">{t('footer.about_ubereats')}</Link>
             </li>
             <li>
               <span className={selectLanguage} onClick={() => setIsLocaleSwitchModalOpen(true)}>
@@ -138,15 +140,22 @@ function Footer() {
                   alt="Chinese"
                 />
                 <div className={space_8} />
-                <span>中文</span>
+                <span>{t(`footer.${locale}`)}</span>
               </span>
             </li>
             <Modal isOpen={isLocaleSwitchModalOpen} onClose={() => setIsLocaleSwitchModalOpen(false)}>
               <div className="p-6">
-                <h1 className="text-xl font-medium text-4xl pb-6">選擇語言</h1>
+                <h1 className="text-xl font-medium text-4xl pb-6">{t('footer.select_a_language')}</h1>
                 {['zh-TW', 'en-US'].map((language) => (
-                  <div key={language} className="mb-6 flex justify-between cursor-pointer">
-                    <span>{language}</span>
+                  <div
+                    key={language}
+                    className="mb-6 flex justify-between cursor-pointer"
+                    onClick={() => {
+                      changeLocale(language);
+                      setIsLocaleSwitchModalOpen(false);
+                    }}
+                  >
+                    <span>{t(`footer.${language}`)}</span>
                     {(locale === language) && <Image
                       src="/images/checkmark.svg"
                       width="16"
@@ -203,18 +212,32 @@ function Footer() {
           </Link>
         </div>
         <div className={policy}>
-          <Link href="https://www.uber.com/legal/privacy/users">隱私政策</Link>
+          <Link href="https://www.uber.com/legal/privacy/users">{t('footer.privacy_policy')}</Link>
           <div className={space_40} />
-          <Link href="https://www.uber.com/terms">條款</Link>
+          <Link href="https://www.uber.com/terms">{t('footer.terms')}</Link>
           <div className={space_40} />
-          <Link href="https://help.uber.com/ubereats/article/uber-eats-pricing?nodeId=2adbed88-9822-4690-9529-3061c4821755">價格</Link>
+          <Link href="https://help.uber.com/ubereats/article/uber-eats-pricing?nodeId=2adbed88-9822-4690-9529-3061c4821755">{t('footer.pricing')}</Link>
           <div className={space_40} />
-          <Link href="https://privacy.uber.com/privacy/california">請勿銷售我的資訊 (加州)</Link>
+          <Link href="https://privacy.uber.com/privacy/california">{t('footer.do_not_sell_my_info')}</Link>
         </div>
       </div>
       <div className={statement}>
         <div>
-          本網站受到 reCAPTCHA 和 Google <Link href="https://policies.google.com/privacy">隱私政策</Link>的保護，且適用<Link href="https://policies.google.com/terms">服務條款</Link>。
+          {t('footer.policy_statement_1')}
+          <Link
+            href="https://policies.google.com/privacy"
+            className="hover:underline"
+          >
+            {t('footer.policy_statement_2')}
+          </Link>
+          {t('footer.policy_statement_3')}
+          <Link
+            href="https://policies.google.com/terms"
+            className="hover:underline"
+          >
+            {t('footer.policy_statement_4')}
+          </Link>
+          {t('footer.policy_statement_5')}
         </div>
         <div className={space_40} />
         <div>© 2025 Uber Technologies Inc.</div>

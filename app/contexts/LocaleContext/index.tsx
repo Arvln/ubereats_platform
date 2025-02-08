@@ -9,14 +9,15 @@ interface LocaleContextType {
 
 const LocaleContext = createContext<LocaleContextType | null>(null);
 
-export const LocaleProvider = ({ children }: {
+export const LocaleProvider = ({ pageLocale, children }: {
+  pageLocale: 'zh-TW' | 'en-US';
   children: ReactNode;
 }) => {
   const router = useRouter();
   const [cookies, setCookie] = useCookies<"NEXT_LOCALE", {
     NEXT_LOCALE?: string;
   }>(['NEXT_LOCALE']);
-  const selectedLocale = cookies.NEXT_LOCALE || 'zh-TW';
+  const selectedLocale = cookies.NEXT_LOCALE || pageLocale || 'zh-TW';
   const [locale, setLocale] = useState(selectedLocale);
 
   useEffect(() => {

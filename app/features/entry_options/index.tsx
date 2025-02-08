@@ -1,4 +1,5 @@
 import { TAppendClass } from 'components/button/types';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'components';
@@ -23,6 +24,7 @@ const sourceButton: TAppendClass = {
 }
 
 function EntryOptions() {
+  const t = useTranslations();
   function _renderDownloadOptions() {
     return (
       <div>
@@ -35,7 +37,7 @@ function EntryOptions() {
             />
           </div>
           <div className={space_16} />
-          <p>App 為您帶來更多美食佳餚。</p>
+          <p>{t('entry_options.the_app_brings_you_more_delicious_dishes')}</p>
         </div>
         <div className={source}>
           <Link
@@ -83,12 +85,12 @@ function EntryOptions() {
     >
       <div>
         <Link href="#">
-          <span className={login}>登入</span>
+          <span className={login}>{t('common.login')}</span>
         </Link>
         <div className={register}>
-          <li>建立企業帳戶</li>
-          <li>新增您的餐廳</li>
-          <li>註冊成為外送夥伴</li>
+          <li>{t('common.create_business_account')}</li>
+          <li>{t('common.add_your_restaurant')}</li>
+          <li>{t('common.register_as_delivery_partner')}</li>
         </div>
       </div>
       {_renderDownloadOptions()}
