@@ -3,6 +3,10 @@ import { render, screen } from '@testing-library/react';
 import type { Prop } from './types';
 import { CategoryItem }from 'components';
 
+jest.mock('contexts', () => ({
+  useLocale: jest.fn(() => ({ locale: 'zh-TW', changeLocale: jest.fn() })),
+}));
+
 const mockProps: Prop = {
   appendClass: 'custom-class',
   pageUrl: '/test-url',
@@ -15,7 +19,7 @@ describe('Test CategoryItem Component', () => {
     render(<CategoryItem {...mockProps} />);
 
     const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute('href', mockProps.pageUrl);
+    expect(linkElement).toHaveAttribute('href', `/zh-TW${mockProps.pageUrl}`);
 
     const textElement = screen.getByTestId('category-item-content');
     expect(textElement).toHaveTextContent(mockProps.text);

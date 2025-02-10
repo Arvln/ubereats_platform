@@ -10,6 +10,11 @@ const SPICY_ICON_SERVER_HOST = ENV.SPICY_ICON_SERVER_HOST;
 
 module.exports = {
   reactStrictMode: true,
+  i18n: {
+    locales: ['zh-TW', 'en-US'],
+    defaultLocale: 'zh-TW',
+    localeDetection: false,
+  },
   env: {
     SHORTCUT_ICONS_SERVER_HOST,
     ADVERTISE_IMAGE_SERVER_HOST,

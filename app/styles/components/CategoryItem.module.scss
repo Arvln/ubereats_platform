@@ -1,14 +1,9 @@
 .wrapper {
   a {
-    @apply
-      block
-      w-full
-      h-full;
+    @apply block w-full h-full;
 
     span {
-      @apply
-        text-center
-        font-medium;
+      @apply max-w-[60px] text-center font-medium;
     }
   }
 }
