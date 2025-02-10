@@ -53,6 +53,7 @@ services:
     volumes:
       - ./app:/usr/src/app:cached
       - /usr/src/app/node_modules
+      - /usr/src/app/.next
     environment:
       SERVER_HOST: server
     depends_on:

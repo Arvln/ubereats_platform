@@ -4,46 +4,28 @@ $THEME_FEATURES_HEADER_BACKGROUND_COLOR: rgb(238, 238, 238);
 $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
 
 .wrapper {
-  @apply
-    px-10
-    flex
-    items-center
-    h-24
-    overflow-hidden;
+  @apply px-10 flex items-center h-24 overflow-hidden;
 }
 
 .imageWrapper {
-  @apply
-    flex-shrink-0
-    cursor-pointer;
+  @apply flex-shrink-0 cursor-pointer;
 }
 
 .deliveryOptions {
-  @apply
-    flex
-    w-32
-    h-12
-    p-1
-    bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}]
-    rounded-[#{$THEME_FEATURES_HEADER_BORDER_RADIUS}];
+  @apply flex w-32 h-12 p-1 bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}] rounded-[#{$THEME_FEATURES_HEADER_BORDER_RADIUS}];
 
   .deliveryOption {
     @apply w-15;
 
     .deliveryButtonWrapper {
       @include transition(all, 400);
-      @apply
-        w-full
-        h-full
-        cursor-pointer;
+      @apply w-full h-full cursor-pointer;
 
-      .deliveryButtonContent{
-        @apply
-          text-sm
-          leading-10;
+      .deliveryButtonContent {
+        @apply text-sm leading-10;
       }
     }
-  
+
     .deliveryButtonSelected {
       @apply bg-white;
     }
@@ -51,63 +33,34 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
 }
 
 .locationChoosingWrapper {
-  @apply
-    h-12
-    rounded-[#{$THEME_FEATURES_HEADER_BORDER_RADIUS}];
+  @apply h-12 rounded-[#{$THEME_FEATURES_HEADER_BORDER_RADIUS}];
 
   .locationButtonWrapper {
-    @apply
-      flex
-      px-3
-      py-2
-      cursor-pointer
-      bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}]
-      hover:bg-BUTTON_HOVER_COLOR;
+    @apply flex px-3 py-2 cursor-pointer bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}] hover:bg-BUTTON_HOVER_COLOR;
 
     .locationButtonContent {
-      @apply
-        pl-2
-        text-sm
-        leading-8;
+      @apply pl-2 text-sm leading-8;
     }
   }
 }
 
 .searchbarWrapper {
-  @apply
-    h-14
-    p-4
-    flex-grow
-    relative
-    bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}];
+  @apply h-14 p-4 flex-grow relative bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}];
 
-  > label {
+  >label {
     clip: rect(1px, 1px, 1px, 1px);
 
-    @apply
-      w-px
-      h-px
-      absolute;
+    @apply w-px h-px absolute;
   }
 
   .searchbar {
-    @apply
-      flex;
+    @apply flex;
 
-    > input {
-      @apply
-        h-6
-        flex-1
-        font-light
-        tracking-wide
-        placeholder-black
-        placeholder-opacity-50
-        bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}];
+    >input {
+      @apply h-6 flex-1 font-light tracking-wide placeholder-black placeholder-opacity-50 bg-[#{$THEME_FEATURES_HEADER_BACKGROUND_COLOR}];
 
       &::placeholder {
-        @apply
-          font-medium
-          tracking-wide;
+        @apply font-medium tracking-wide;
       }
     }
   }
@@ -121,37 +74,22 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
   @apply h-9;
 
   .cartButtonWrapper {
-    @apply
-      h-full
-      flex      
-      px-3
-      py-2
-      bg-black;
+    @apply h-full flex px-3 py-2 bg-black;
 
     .cartButtonContent {
-      @apply
-        pl-2
-        text-sm
-        text-white;
+      @apply pl-2 text-sm text-white;
     }
   }
 }
 
 .loginWrapper {
-  @apply
-    w-13 
-    h-9;
+  @apply w-20 h-9;
 
   .loginButtonWrapper {
-    @apply
-      h-full
-      p-3
-      hover:bg-BUTTON_HOVER_COLOR;
+    @apply h-full p-3 hover:bg-BUTTON_HOVER_COLOR;
 
     .loginButtonContent {
-      @apply 
-        text-sm
-        leading-3;
+      @apply text-sm leading-3;
     }
   }
 }

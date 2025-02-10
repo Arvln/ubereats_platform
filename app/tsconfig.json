@@ -22,6 +22,12 @@
       "components/*": [
         "components/*"
       ],
+      "contexts/*": [
+        "contexts/*"
+      ],
+      "locales/*": [
+        "locales/*"
+      ],
       "features/*": [
         "features/*"
       ],
