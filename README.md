@@ -1,6 +1,6 @@
 專案數據取自 [UberEats 官網](https://www.ubereats.com/tw)，屬於 **UberEats 及其店家合作夥伴**，僅用於學習參考之用。在本日優惠方案下的九湯屋日本拉麵 中山林森店、21PLUS 京站台北店、兔寶寶漢堡店有完整商品數據可供瀏覽！
 
-## 技術選型
+## Technology Selection
 
 本專案選用了多種現代技術，以下是主要技術選型及其原因：
 
@@ -8,7 +8,7 @@
 - **Git Flow**: 採用 Git Flow 工作流，規範分支管理與合併流程，保持專案開發流程的一致性。
 - **Dev Container**: 使用容器進行開發，保持不同開發環境間的一致性。
 
-### 前端
+### Frontend
 
 - **Next.js**: 實現伺服器端渲染（SSR）和靜態頁面生成（SSG），提升網站 SEO 性能與加載速度。
 - **CSS Module + SCSS + TailwindCSS**: 結合使用 CSS Module 及 SCSS 進行樣式管理，並搭配 TailwindCSS 開發樣式。
@@ -19,13 +19,13 @@
   - 與後端 API 通信，進行靈活的數據請求。
   - 使用 Apollo Client Cache 做全局狀態管理。
 
-### 後端
+### Backend
 
 - **Express.js + GraphQL**: 使用 Express.js 搭建 GraphQL 伺服器，靈活處理前端的數據需求。
 - **MySQL**: 選擇 MySQL 作為關聯式數據庫，存儲結構化數據，並保證數據的一致性與可靠性。
 - **MVC 架構**: 使用 MVC 架構進行解耦，將 Resolvers、Type Definitions 和數據獲取邏輯分開，保持代碼的可擴展性。
 
-### 部署
+### Deployment
 
 - **Docker Compose**: 使用 Docker Compose 管理多容器服務，簡化開發與部署過程。
 - **GitHub Actions**: 
