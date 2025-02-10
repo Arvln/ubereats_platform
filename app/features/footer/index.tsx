@@ -1,5 +1,5 @@
 import Button from 'components/button';
-import { useLocale } from 'contexts/LocaleContext';
+import { useLocale } from 'contexts';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';

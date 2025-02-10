@@ -3,6 +3,7 @@ import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from 'components';
+import { useLocale } from 'contexts';
 import {
   getScore,
   isPickup,
@@ -11,7 +12,6 @@ import {
 } from './utils';
 
 import classes from 'styles/components/Shop.module.scss';
-import { useLocale } from 'contexts/LocaleContext';
 
 const {
   wrapper,

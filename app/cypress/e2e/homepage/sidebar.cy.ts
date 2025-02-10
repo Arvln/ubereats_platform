@@ -37,10 +37,10 @@ describe('sidebar ui test', () => {
   })
 
   it('Should render dilivery cost options', () => {
-    cy.contains('NT$25').should('exist')
-    cy.contains('NT$40').should('exist')
-    cy.contains('NT$60').should('exist')
-    cy.contains('NT$60+').should('exist')
+    cy.contains('最低').should('exist')
+    cy.contains('低').should('exist')
+    cy.contains('中等').should('exist')
+    cy.contains('較高').should('exist')
   })
 
   it('Should render dietary restriction options', () => {
