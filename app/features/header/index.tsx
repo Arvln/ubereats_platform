@@ -148,7 +148,7 @@ function Header({
           <div className={space_16} />
           <input
             type="text"
-            placeholder={t('header.search_hints')}
+            placeholder={t('header.search-hints')}
             onFocus={() => _handleSearchbarInputFocus()}
             onBlur={() => _handleSearchbarInputBlur()}
           />
@@ -165,7 +165,7 @@ function Header({
               height={16}
               alt="Cart" />
           }
-          text={`${t('header.shopping_cart')} • 0`}
+          text={`${t('header.shopping-cart')} • 0`}
         />
       </div>
       <div className={space_24} />

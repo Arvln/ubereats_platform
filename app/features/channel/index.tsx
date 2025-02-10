@@ -121,7 +121,7 @@ function Channel({ data }: Prop) {
 
     return (
       <div className={buttonWrapper}>
-        <button>{t('channel.view_all')}</button>
+        <button>{t('channel.view-all')}</button>
         <div className={space_40} />
         <div onClick={() => _handlePreviousButton(uuid)}>
           <Arrow appendWrapper={previousButton} />
@@ -181,8 +181,8 @@ function Channel({ data }: Prop) {
             >
               <div className={`${titleWrapper} ${emphasisTitle}`}>
                 {_renderTitleImage(imageSuffix)}
-                <h1>{title}</h1>
-                {!subtitle || <span>{subtitle}</span>}
+                <h1>{t(title)}</h1>
+                {!subtitle || <span>{t(subtitle)}</span>}
               </div>
               <div className={emphasisContent}>
                 <div className={emphasisButton}>
@@ -213,8 +213,8 @@ function Channel({ data }: Prop) {
           >
             <div className={regularTitle}>
               <div className={titleWrapper}>
-                <h1>{title}</h1>
-                {!subtitle || <span>{subtitle}</span>}
+                <h1>{t(title)}</h1>
+                {!subtitle || <span>{t(subtitle)}</span>}
               </div>
               {_renderButtons(uuid, totalPage)}
             </div>

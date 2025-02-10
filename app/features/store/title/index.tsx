@@ -59,16 +59,16 @@ function Title({
             />
           </div>
           <span className={detailInfo}>•</span>
-          <div className={moreDetail}>{t('store.detailed_information')}</div>
+          <div className={moreDetail}>{t('store.detailed-information')}</div>
         </div>
         <div>
           <span className={time}>
-            {t('store.delivery_time', {
+            {t('store.delivery-time', {
               shartTime: shortestDeliveryTime,
               endTime: shortestDeliveryTime + 10
             })}
           </span>
-          <span className={cost}> • {t('store.delivery_fee', { fee: deliveryCost })}</span>
+          <span className={cost}> • {t('store.delivery-fee', { fee: deliveryCost })}</span>
         </div>
       </div>
       <div className={orders}>
@@ -82,7 +82,7 @@ function Title({
               alt="Favor"
             />
           }
-          text={t('store.group_order')}
+          text={t('store.group-order')}
         />
         <div className={space_8} />
         <Button
@@ -95,7 +95,7 @@ function Title({
               alt="Favor"
             />
           }
-          text={t('store.schedule_time')}
+          text={t('store.schedule-time')}
         />
       </div>
     </>

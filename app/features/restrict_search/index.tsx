@@ -188,25 +188,25 @@ function RestrictSearch({ isCuisines }: Prop) {
             className={deliveryCostOption}
             onClick={() => setDeliveryCostInputValue(LOWEST_FEE)}
           >
-            {t('restrict_search.lowest')}
+            {t('restrict-search.lowest')}
           </div>
           <div
             className={firstDivider}
             onClick={() => setDeliveryCostInputValue(LOW_FEE)}
           >
-            {t('restrict_search.low')}
+            {t('restrict-search.low')}
           </div>
           <div
             className={secondDivider}
             onClick={() => setDeliveryCostInputValue(MODERATE_FEE)}
           >
-            {t('restrict_search.moderate')}
+            {t('restrict-search.moderate')}
           </div>
           <div
             className={deliveryCostOption}
             onClick={() => setDeliveryCostInputValue(HIGHER_FEE)}
           >
-            {t('restrict_search.higher')}
+            {t('restrict-search.higher')}
           </div>
         </div>
         <input
@@ -301,7 +301,7 @@ function RestrictSearch({ isCuisines }: Prop) {
       <aside className={searchWrapper}>
         <div className={content}>
           <div className={title}>
-            <h1>{t('restrict_search.all_restaurant_locations')}</h1>
+            <h1>{t('restrict-search.all-restaurant-locations')}</h1>
           </div>
           {
             _renderCondition(

@@ -37,7 +37,7 @@ function EntryOptions() {
             />
           </div>
           <div className={space_16} />
-          <p>{t('entry_options.the_app_brings_you_more_delicious_dishes')}</p>
+          <p>{t('entry-options.the-app-brings-you-more-delicious-dishes')}</p>
         </div>
         <div className={source}>
           <Link
@@ -88,9 +88,9 @@ function EntryOptions() {
           <span className={login}>{t('common.login')}</span>
         </Link>
         <div className={register}>
-          <li>{t('common.create_business_account')}</li>
-          <li>{t('common.add_your_restaurant')}</li>
-          <li>{t('common.register_as_delivery_partner')}</li>
+          <li>{t('common.create-business-account')}</li>
+          <li>{t('common.add-your-restaurant')}</li>
+          <li>{t('common.register-as-delivery-partner')}</li>
         </div>
       </div>
       {_renderDownloadOptions()}

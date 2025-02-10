@@ -98,38 +98,38 @@ function Footer() {
         <div className={moreOptions}>
           <ul>
             <li>
-              <Link href="https://help.uber.com/ubereats">{t('footer.get_help')}</Link>
+              <Link href="https://help.uber.com/ubereats">{t('footer.get-help')}</Link>
             </li>
             <li>
-              <Link href="https://www.ubereats.com/restaurant">{t('common.add_your_restaurant')}</Link>
+              <Link href="https://www.ubereats.com/restaurant">{t('common.add-your-restaurant')}</Link>
             </li>
             <li>
-              <Link href="https://www.uber.com/drive/delivery">{t('common.register_as_delivery_partner')}</Link>
+              <Link href="https://www.uber.com/drive/delivery">{t('common.register-as-delivery-partner')}</Link>
             </li>
             <li>
-              <Link href="https://www.uber.com/business/eats">{t('common.create_business_account')}</Link>
+              <Link href="https://www.uber.com/business/eats">{t('common.create-business-account')}</Link>
             </li>
             <li>
-              <Link href="#">{t('footer.enjoy_a_discount_on_your_first_order')}</Link>
+              <Link href="#">{t('footer.enjoy-a-discount-on-your-first-order')}</Link>
             </li>
           </ul>
         </div>
         <div className={moreOptions}>
           <ul>
             <li>
-              <Link href="https://www.ubereats.com/tw/near-me">{t('footer.food_delivery_near_me')}</Link>
+              <Link href="https://www.ubereats.com/tw/near-me">{t('footer.food-delivery-near-me')}</Link>
             </li>
             <li>
-              <Link href="https://www.ubereats.com/tw/location">{t('footer.view_all_cities')}</Link>
+              <Link href="https://www.ubereats.com/tw/location">{t('footer.view-all-cities')}</Link>
             </li>
             <li>
-              <Link href="https://www.ubereats.com/tw/location#all-countries">{t('footer.view_all_countries_regions')}</Link>
+              <Link href="https://www.ubereats.com/tw/location#all-countries">{t('footer.view-all-countries-regions')}</Link>
             </li>
             <li>
-              <Link href="https://www.uber.com/blog/eat">{t('footer.read_our_blog')}</Link>
+              <Link href="https://www.uber.com/blog/eat">{t('footer.read-our-blog')}</Link>
             </li>
             <li>
-              <Link href="https://about.ubereats.com">{t('footer.about_ubereats')}</Link>
+              <Link href="https://about.ubereats.com">{t('footer.about-ubereats')}</Link>
             </li>
             <li>
               <span className={selectLanguage} onClick={() => setIsLocaleSwitchModalOpen(true)}>
@@ -145,7 +145,7 @@ function Footer() {
             </li>
             <Modal isOpen={isLocaleSwitchModalOpen} onClose={() => setIsLocaleSwitchModalOpen(false)}>
               <div className="p-6">
-                <h1 className="text-xl font-medium text-4xl pb-6">{t('footer.select_a_language')}</h1>
+                <h1 className="text-xl font-medium text-4xl pb-6">{t('footer.select-a-language')}</h1>
                 {['zh-TW', 'en-US'].map((language) => (
                   <div
                     key={language}
@@ -212,32 +212,32 @@ function Footer() {
           </Link>
         </div>
         <div className={policy}>
-          <Link href="https://www.uber.com/legal/privacy/users">{t('footer.privacy_policy')}</Link>
+          <Link href="https://www.uber.com/legal/privacy/users">{t('footer.privacy-policy')}</Link>
           <div className={space_40} />
           <Link href="https://www.uber.com/terms">{t('footer.terms')}</Link>
           <div className={space_40} />
           <Link href="https://help.uber.com/ubereats/article/uber-eats-pricing?nodeId=2adbed88-9822-4690-9529-3061c4821755">{t('footer.pricing')}</Link>
           <div className={space_40} />
-          <Link href="https://privacy.uber.com/privacy/california">{t('footer.do_not_sell_my_info')}</Link>
+          <Link href="https://privacy.uber.com/privacy/california">{t('footer.do-not-sell-my-info')}</Link>
         </div>
       </div>
       <div className={statement}>
         <div>
-          {t('footer.policy_statement_1')}
+          {t('footer.policy-statement-1')}
           <Link
             href="https://policies.google.com/privacy"
             className="hover:underline"
           >
-            {t('footer.policy_statement_2')}
+            {t('footer.policy-statement-2')}
           </Link>
-          {t('footer.policy_statement_3')}
+          {t('footer.policy-statement-3')}
           <Link
             href="https://policies.google.com/terms"
             className="hover:underline"
           >
-            {t('footer.policy_statement_4')}
+            {t('footer.policy-statement-4')}
           </Link>
-          {t('footer.policy_statement_5')}
+          {t('footer.policy-statement-5')}
         </div>
         <div className={space_40} />
         <div>© 2025 Uber Technologies Inc.</div>

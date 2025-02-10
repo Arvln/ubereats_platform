@@ -1,8 +1,8 @@
 export enum ConditionsTypes {
-  CLASSIFICATION = 'restrict_search.categories',
-  PRICE_RANGE = 'restrict_search.price_range',
-  DELIVERY_COST_LIMITATION = 'restrict_search.maximum_delivery_fee',
-  DIETARY_RESTRICTION = 'restrict_search.dietary_restrictions'
+  CLASSIFICATION = 'restrict-search.categories',
+  PRICE_RANGE = 'restrict-search.price-range',
+  DELIVERY_COST_LIMITATION = 'restrict-search.maximum-delivery-fee',
+  DIETARY_RESTRICTION = 'restrict-search.dietary-restrictions'
 };
 
 export enum ClassificationTypes {
@@ -13,10 +13,10 @@ export enum ClassificationTypes {
 };
 
 export enum ClassificationsTypes {
-  RECOMMEND = 'restrict_search.personalized_recommended_dishes',
-  POPULAR = 'restrict_search.popular_dishes',
-  SCORE = 'restrict_search.rating',
-  DELIVERY_TIME = 'restrict_search.delivery_time'
+  RECOMMEND = 'restrict-search.personalized-recommended-dishes',
+  POPULAR = 'restrict-search.popular-dishes',
+  SCORE = 'restrict-search.rating',
+  DELIVERY_TIME = 'restrict-search.delivery-time'
 };
 
 export enum PriceLevelTypes {
@@ -41,8 +41,8 @@ export enum DeliveryRestrictionTypes {
 };
 
 export enum DeliveryRestrictionsTypes {
-  VEGETABLE = 'restrict_search.vegetarian_dishes',
-  VEGAN = 'restrict_search.vegan_dishes',
-  GLUTEN_FREE = 'restrict_search.gluten_free_dishes',
-  NO_ALLERGY = 'restrict_search.allergy_friendly'
+  VEGETABLE = 'restrict-search.vegetarian-dishes',
+  VEGAN = 'restrict-search.vegan-dishes',
+  GLUTEN_FREE = 'restrict-search.gluten-free-dishes',
+  NO_ALLERGY = 'restrict-search.allergy-friendly'
 };
