@@ -25,10 +25,14 @@ export function getPageStaticPaths<T>(
 			}
 		}: ApolloQueryResult<TDynamicRoutesPageResult<T>> = await client.query({
 			query
-		});
-		const paths = slugs.map(slug => ({
-			params: slug
-		} as TPath<T>));
+    });
+    
+    const paths = ['zh-TW', 'en-US'].flatMap(locale => 
+      slugs.map(slug => ({
+        params: slug,
+        locale
+      } as TPath<T>))
+    );
 
 		return {
 			paths,
@@ -40,16 +44,20 @@ export function getPageStaticPaths<T>(
 export function getPageProps<T>(
 	query: DocumentNode,
 	key?: string
-): GetStaticProps & GetServerSideProps {
+): GetServerSideProps & GetStaticProps {
 	return async ({
-		params: variables
+    params: variables,
+    locale,
+    ...res
 	}) => {
 		let {
 			data: pageData
 		}: ApolloQueryResult<TQueryResult<T>> = await client.query({
 			query,
 			variables
-		});
+    });
+
+    if ('req' in res) locale = res.req?.cookies?.NEXT_LOCALE ?? 'zh-TW';
 
 		if (key) {
 			const {
@@ -59,10 +67,12 @@ export function getPageProps<T>(
 			pageData = pageDataList[0];
 		};
 
-		if (pageData) {
+    if (pageData) {
 			return {
 				props: {
-					pageData
+          pageData,
+          locale,
+          messages: (await import(`locales/${locale}.json`)).default,
 				}
 			}
 		};

@@ -35,7 +35,7 @@ CREATE TABLE `Table_Advertise` (
 CREATE TABLE `Table_Shop_Channel` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` char(50) NOT NULL DEFAULT '',
-  `subtitle` char(50) DEFAULT '',
+  `subtitle` char(100) DEFAULT '',
   `image_suffix` char(100) DEFAULT '',
   `uuid` BINARY(16) NOT NULL,
   PRIMARY KEY ( `id` )
@@ -113,29 +113,29 @@ CREATE TABLE `Table_Mapping_Shop_And_Category` (
 --
 
 INSERT INTO `Table_Shop_Category` (`title`, `name`, `image_suffix`, `is_cuisines`, `rank`, `uuid`) VALUES
-('優惠', 'Deals', 'deals.png', false, 5, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('生鮮雜貨', 'Grocery', 'uber_grocery.png', false, 1, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('便利商店', 'Essentials', 'convenience.png', false, 11, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('美妝母嬰', '', 'beauty.png', false, 22, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('寵物用品', 'Pet', 'pet_supplies.jpg', false, 9, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('鮮花', 'Flowers', 'flowers.jpg', false, 10, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('百貨商場', 'Retail', 'retail.jpg', false, 4, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('嚴選餐廳', 'TopEats', 'top_eats.png', false, 14, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('珍珠奶茶', 'BubbleTea', 'bubbletea.png', true, 2, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('中式美食', 'Chinese', 'chinese.png', true, 12, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('咖啡和茶', 'CoffeeTea', 'coffeeandtea.png', true, 8, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('日本美食', 'Japanese', 'japanese.png', true, 7, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('甜點', 'Dessert', 'dessert.png', true, 6, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('台灣美食', 'Taiwanese', 'taiwanese.png', true, 3, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('泰國美食', 'Thai', 'thai.png', true, 15, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('韓國美食', 'Korean', 'korean.png', true, 20, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('BBQ', 'BBQ', 'bbq.png', true, 16, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('健康飲食', 'Healthy', 'healthy.png', true, 21, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('亞洲美食', 'Asian', 'asian.png', true, 17, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('義大利美食', 'Italian', 'italian.png', true, 18, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('街頭美食', 'StreetFood', 'streetfood.png', true, 13, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('披薩', 'Pizza', 'pizza.png', true, 23, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('早餐和早午餐', 'Breakfast', 'breakfast.png', true, 19, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
+('categories-promotions', 'Deals', 'deals.png', false, 5, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-fresh-groceries', 'Grocery', 'uber_grocery.png', false, 1, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-convenience-stores', 'Essentials', 'convenience.png', false, 11, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-beauty-baby', '', 'beauty.png', false, 22, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-pet-supplies', 'Pet', 'pet_supplies.jpg', false, 9, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-fresh-flowers', 'Flowers', 'flowers.jpg', false, 10, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-department-stores', 'Retail', 'retail.jpg', false, 4, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-curated-restaurants', 'TopEats', 'top_eats.png', false, 14, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-bubble-tea', 'BubbleTea', 'bubbletea.png', true, 2, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-chinese-cuisine', 'Chinese', 'chinese.png', true, 12, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-coffee-tea', 'CoffeeTea', 'coffeeandtea.png', true, 8, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-japanese-cuisine', 'Japanese', 'japanese.png', true, 7, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-desserts', 'Dessert', 'dessert.png', true, 6, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-taiwanese-cuisine', 'Taiwanese', 'taiwanese.png', true, 3, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-thai-cuisine', 'Thai', 'thai.png', true, 15, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-korean-cuisine', 'Korean', 'korean.png', true, 20, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-bbq', 'BBQ', 'bbq.png', true, 16, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-healthy-eating', 'Healthy', 'healthy.png', true, 21, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-asian-cuisine', 'Asian', 'asian.png', true, 17, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-italian-cuisine', 'Italian', 'italian.png', true, 18, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-street-food', 'StreetFood', 'streetfood.png', true, 13, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-pizza', 'Pizza', 'pizza.png', true, 23, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('categories-breakfast-and-brunch', 'Breakfast', 'breakfast.png', true, 19, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
 
 INSERT INTO `Table_Advertise` (`content`, `image_suffix`, `is_show`, `uuid`) VALUES 
 (
@@ -324,21 +324,21 @@ INSERT INTO `Table_Advertise` (`content`, `image_suffix`, `is_show`, `uuid`) VAL
 '3f5f5207-631f-4360-a657-704264570a1a.png', true, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
 
 INSERT INTO `Table_Shop_Channel` (`title`, `subtitle`, `image_suffix`, `uuid`) VALUES 
-('買 1 送 1 優惠', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('本日優惠方案', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('全國知名品牌', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('健康餐點', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('依類別探索', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('嚴選餐廳', '優質外送餐廳', 'd4p17acsd5wyj.cloudfront.net/eatsfeed/carousel_icons/carousel_icon_top_eats.png', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('適合家庭享用的餐廳', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('您附近的熱門商家', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('趕時間嗎？', '為您提供最快速的外送服務', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('自取免服務費', '選擇自取就不用支付此費用', 'd4p17acsd5wyj.cloudfront.net/eatsfeed/pickup-homefeed-carousel/pickupcarousel_icon@3x.png', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('深受當地人喜愛', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('最新的 Uber Eats 合作餐廳', '加入第一批支持他們的顧客行列', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('您的獎勵', '', 'duyt4h9nfnj50.cloudfront.net/eatsfeed/cheerios_rebrand_carousel_aligned.png', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('好好款待自己', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
-('過敏族群友善餐廳', '接受食物過敏特殊需求的餐廳', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
+('channel.buy-1-get-1-free-offer', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.today-special-offer', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.nationwide-famous-brands', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.healthy-meals', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.explore-by-category', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.curated-restaurants', 'channel.high-quality-delivery-restaurants', 'd4p17acsd5wyj.cloudfront.net/eatsfeed/carousel_icons/carousel_icon_top_eats.png', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.family-friendly-restaurants', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.popular-merchants-near-you', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.in-a-hurry', 'channel.fastest-delivery-service', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.no-service-fee-for-pickup', 'channel.choose-pickup-to-avoid-this-fee', 'd4p17acsd5wyj.cloudfront.net/eatsfeed/pickup-homefeed-carousel/pickupcarousel_icon@3x.png', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.loved-by-locals', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.the-latest-ubereats-partner-restaurants', 'channel.be-among-the-first-to-support-them', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.your-rewards', '', 'duyt4h9nfnj50.cloudfront.net/eatsfeed/cheerios_rebrand_carousel_aligned.png', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.treat-yourself-well', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
+('channel.allergy-friendly-restaurants', 'channel.restaurants-accommodating-food-allergy-special-needs', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
 
 INSERT INTO `Table_Shop` (`name`, `delivery_cost`, `shortest_delivery_time`, `score`, `discount_label`, `image_suffix`, `banner_suffix`, `address`, `uuid`) VALUES 
 ('九湯屋日本拉麵 中山林森店', 40, 15, 47, "買1送1", '52282d1b-0ed6-4453-b297-c7d3a59b95ff.jpeg', '3d1d9b7a-05e4-429f-82ab-b83d3b6c3b53.jpeg', '台北市中山區南京東路一段132巷33號, Taipei, 104', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),

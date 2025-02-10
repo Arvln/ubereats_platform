@@ -12,7 +12,7 @@ function Button({
   icon,
   text,
   ...restProps
-}: Prop) {
+}: Prop & React.HTMLProps<HTMLDivElement>) {
   const {
     appendWrapper,
     appendContent,
