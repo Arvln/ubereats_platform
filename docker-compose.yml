@@ -14,8 +14,6 @@ services:
     expose:
       - "3306"
     restart: always
-    networks:
-      - mysql_net
   database_tool:
     image: phpmyadmin
     container_name: database_tool
@@ -26,8 +24,6 @@ services:
     depends_on:
       - database
     restart: always
-    networks:
-      - mysql_net
   server:
     image: arvin1995/ubereats_platform:server-${TAG:-latest}
     build:
@@ -39,29 +35,19 @@ services:
     depends_on:
       - database
     restart: always
-    networks:
-      - mysql_net
-      - server_net
   web:
     image: arvin1995/ubereats_platform:web-${TAG:-latest}
     build:
       context: .
       dockerfile: ./app/Dockerfile.dev
-      args:
-        SERVER_HOST: server
     container_name: web
     volumes:
       - ./app:/usr/src/app:cached
       - /usr/src/app/node_modules
       - /usr/src/app/.next
-    environment:
-      SERVER_HOST: server
     depends_on:
       - server
     restart: always
-    networks:
-      - server_net
-      - web_net
   nginx:
     image: arvin1995/ubereats_platform:nginx-${TAG:-latest}
     build: ./docker/nginx
@@ -73,26 +59,3 @@ services:
     depends_on:
       - web
     restart: always
-    networks:
-      - server_net
-      - web_net
-
-networks:
-  mysql_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.18.0.0/16
-          gateway: 172.18.0.1
-  server_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.19.0.0/16
-          gateway: 172.19.0.1
-  web_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-          gateway: 172.20.0.1

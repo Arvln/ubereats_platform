@@ -3,6 +3,7 @@
 # dependencies
 /app/node_modules
 /server/node_modules
+/app/.pnpm-store
 
 # testing
 /coverage

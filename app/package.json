@@ -40,5 +40,10 @@
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
-  }
+  },
+  "onlyBuiltDependencies": [
+    "cypress",
+    "sharp"
+  ],
+  "packageManager": "pnpm@9.15.0"
 }
