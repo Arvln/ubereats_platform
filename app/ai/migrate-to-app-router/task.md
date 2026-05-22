@@ -134,7 +134,7 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: `features/layout` uses `next/head` for `<title>` and meta tags. App Router prefers the Metadata API. Decide whether to (a) leave `next/head` inside the client layout for now, or (b) move metadata to `export const metadata` in `app/[locale]/layout.tsx`. Option (a) is lower risk for this migration.
+**[HUMAN REVIEW: approved]**: `features/layout` uses `next/head` for `<title>` and meta tags. App Router prefers the Metadata API. Decide whether to (a) leave `next/head` inside the client layout for now, or (b) move metadata to `export const metadata` in `app/[locale]/layout.tsx`. Option (a) is lower risk for this migration.
 
 **Note**: LocaleProvider from contexts will temporarily coexist with next-intl's useLocale between Step 6 and Step 14. Ensure there is no naming conflict — components should import useLocale from next-intl, not from contexts, after Step 12.
 
