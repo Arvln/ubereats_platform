@@ -142,15 +142,15 @@ Colocate by feature first; promote to root only when reused across route groups.
 
 ### Supported locales
 
-- `zh-TW` (default)
-- `en-US`
+- `en-US` (default)
+- `zh-TW`
 
 ### Folder structure
 
 ```
 locales/
-  zh-TW.json
   en-US.json
+  zh-TW.json
 app/
   [locale]/
     layout.tsx

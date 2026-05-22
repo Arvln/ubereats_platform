@@ -55,8 +55,8 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 **How**:
 
 1. Create `i18n.ts` at project root with:
-   - `locales: ['zh-TW', 'en-US']`
-   - `defaultLocale: 'zh-TW'`
+   - `locales: ['en-US', 'zh-TW']`
+   - `defaultLocale: 'en-US'`
    - `localePrefix: 'always'` (matches current `/${locale}/...` URL pattern in `components/shop` and `components/category_item`)
 2. Export types/helpers next-intl v3 expects (`Locale`, etc.).
 
