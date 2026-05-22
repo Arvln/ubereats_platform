@@ -121,7 +121,7 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 **How**:
 
 1. Create `app/[locale]/layout.tsx` as a Server Component:
-   - `generateStaticParams` → `[{ locale: 'zh-TW' }, { locale: 'en-US' }]`
+   - `generateStaticParams` → `[{ locale: 'en-US' }, { locale: 'zh-TW' }]`
    - Validate `params.locale` against `i18n.ts`; call `notFound()` if invalid
    - Load `messages` from `locales/${locale}.json`
    - Wrap children with `NextIntlClientProvider` from `next-intl` (pass `locale`, `messages`)
