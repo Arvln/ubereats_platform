@@ -37,6 +37,9 @@
       "graphql/*": [
         "graphql/*"
       ],
+      "lib/*": [
+        "lib/*"
+      ],
       "styles/*": [
         "styles/*"
       ],
