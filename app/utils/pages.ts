@@ -27,12 +27,9 @@ export function getPageStaticPaths<T>(
 			query
     });
     
-    const paths = ['zh-TW', 'en-US'].flatMap(locale => 
-      slugs.map(slug => ({
-        params: slug,
-        locale
-      } as TPath<T>))
-    );
+    const paths = slugs.map(slug => ({
+      params: slug,
+    } as TPath<T>));
 
 		return {
 			paths,

@@ -76,7 +76,7 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: After first page lands under `app/[locale]/`, confirm middleware redirects `/` → `/zh-TW` and sets `NEXT_LOCALE` cookie as expected.
+**[HUMAN REVIEW: approved]**: After first page lands under `app/[locale]/`, confirm middleware redirects `/` → `/en-US` and sets `NEXT_LOCALE` cookie as expected.
 
 ---
 
