@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop } from './types';
 
 import classes from 'styles/features/Popups.module.scss';

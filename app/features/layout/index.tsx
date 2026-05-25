@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop, THandleForm } from './types';
 import { createContext, useState } from 'react';
 import Head from 'next/head';

@@ -1,6 +1,9 @@
+'use client';
+
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 import { useCookies } from 'react-cookie';
+import { locales } from '../../i18n';
 
 interface LocaleContextType {
   locale: string;
@@ -14,6 +17,7 @@ export const LocaleProvider = ({ pageLocale, children }: {
   children: ReactNode;
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [cookies, setCookie] = useCookies<"NEXT_LOCALE", {
     NEXT_LOCALE?: string;
   }>(['NEXT_LOCALE']);
@@ -27,7 +31,9 @@ export const LocaleProvider = ({ pageLocale, children }: {
   const changeLocale = (newLocale: string) => {
     setCookie('NEXT_LOCALE', newLocale, { path: '/', maxAge: 365 * 24 * 60 * 60 });
     setLocale(newLocale);
-    router.push(router.pathname, router.asPath, { locale: newLocale });
+    const localePattern = new RegExp(`^/(${locales.join('|')})`);
+    const pathnameWithoutLocale = (pathname ?? '').replace(localePattern, '') || '';
+    router.push(`/${newLocale}${pathnameWithoutLocale}`);
   };
 
   return (

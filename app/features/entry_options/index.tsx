@@ -1,3 +1,5 @@
+'use client';
+
 import { TAppendClass } from 'components/button/types';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';

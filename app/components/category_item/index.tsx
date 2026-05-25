@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop } from './types';
 import Link from 'next/link';
 import { useLocale } from 'contexts';

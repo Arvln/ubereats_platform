@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop, TConditionsState } from './types';
 import {
   ConditionsTypes,

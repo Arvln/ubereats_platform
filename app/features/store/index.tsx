@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import { useState } from 'react';

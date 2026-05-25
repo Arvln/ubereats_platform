@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop, TChannelItem, TPagesState } from './types';
 import Image from 'next/image';
 import { Arrow } from 'components';

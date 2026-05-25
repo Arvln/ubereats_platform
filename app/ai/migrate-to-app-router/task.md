@@ -169,7 +169,7 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`. Human checks `/zh-TW` and `/en-US`: shortcuts, carousel, and channel render with data.
 
-**[HUMAN REVIEW]**: While both `pages/index.tsx` and `app/[locale]/page.tsx` exist, confirm which route Next 14 serves (App Router takes precedence for matching paths). Delete `pages/index.tsx` in Step 15.
+**[HUMAN REVIEW: approved]**: While both `pages/index.tsx` and `app/[locale]/page.tsx` exist, confirm which route Next 14 serves (App Router takes precedence for matching paths). Delete `pages/index.tsx` in Step 15.
 
 ---
 

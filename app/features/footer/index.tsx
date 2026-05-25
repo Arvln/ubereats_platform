@@ -1,3 +1,5 @@
+'use client';
+
 import Button from 'components/button';
 import { useLocale } from 'contexts';
 import { useTranslations } from 'next-intl';

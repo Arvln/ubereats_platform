@@ -1,3 +1,5 @@
+'use client';
+
 import { Prop } from './types';
 import { TGood } from 'types/pages/store';
 import { useContext } from 'react';

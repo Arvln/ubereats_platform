@@ -1,3 +1,7 @@
+const createNextIntlPlugin = require('next-intl/plugin');
+
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const ENV = process.env;
 const SHORTCUT_ICONS_SERVER_HOST = ENV.SHORTCUT_ICONS_SERVER_HOST;
@@ -8,7 +12,7 @@ const UTILS_ICONS_SERVER_HOST = ENV.UTILS_ICONS_SERVER_HOST;
 const STAR_ICON_SERVER_HOST = ENV.STAR_ICON_SERVER_HOST;
 const SPICY_ICON_SERVER_HOST = ENV.SPICY_ICON_SERVER_HOST;
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   env: {
     SHORTCUT_ICONS_SERVER_HOST,
@@ -46,4 +50,6 @@ module.exports = {
 
     return config;
   },
-}
+};
+
+module.exports = withNextIntl(nextConfig);
