@@ -224,7 +224,7 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`. Human opens a store from the home channel list (`/zh-TW/store/<name>/<uuid>`) and sees the store page.
 
-**[HUMAN REVIEW]**: `features/store/index.tsx` uses `next/head` for store-specific title — confirm acceptable for now or migrate to `generateMetadata` in this `page.tsx`.
+**[HUMAN REVIEW: approved]**: `features/store/index.tsx` uses `next/head` for store-specific title — confirm acceptable for now or migrate to `generateMetadata` in this `page.tsx`.
 
 ---
 
