@@ -1,11 +1,11 @@
 'use client';
 
 import Button from 'components/button';
-import { useLocale } from 'contexts';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname, useRouter } from '../../i18n/navigation';
 
 import classes from 'styles/features/Footer.module.scss';
 
@@ -60,7 +60,9 @@ const Modal = ({ isOpen, onClose, children }: {
 
 function Footer() {
   const t = useTranslations();
-  const { locale, changeLocale } = useLocale();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isLocaleSwitchModalOpen, setIsLocaleSwitchModalOpen] = useState(false);
 
   function _renderMoreOptions() {
@@ -153,7 +155,7 @@ function Footer() {
                     key={language}
                     className="mb-6 flex justify-between cursor-pointer"
                     onClick={() => {
-                      changeLocale(language);
+                      router.replace(pathname, { locale: language });
                       setIsLocaleSwitchModalOpen(false);
                     }}
                   >
