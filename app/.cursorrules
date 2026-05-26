@@ -7,11 +7,10 @@
 ## Path aliases (current tsconfig.json)
 
 - `components/*` → `components/*`
-- `contexts/*` → `contexts/*` (will be removed after Pages Router migration)
 - `features/*` → `features/*`
 - `graphql/*` → `graphql/*`
 - `locales/*` → `locales/*`
-- `pages/*` → `pages/*` (will be removed after Pages Router migration)
+- `lib/*` → `lib/*`
 - `styles/*` → `styles/*`
 - `themes/*` → `themes/*` (will move to `lib/` after structure cleanup)
 - `utils/*` → `utils/*` (will move to `lib/` after structure cleanup)

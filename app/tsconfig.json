@@ -22,17 +22,11 @@
       "components/*": [
         "components/*"
       ],
-      "contexts/*": [
-        "contexts/*"
-      ],
       "locales/*": [
         "locales/*"
       ],
       "features/*": [
         "features/*"
-      ],
-      "pages/*": [
-        "pages/*"
       ],
       "graphql/*": [
         "graphql/*"

@@ -316,7 +316,7 @@ Reference: `ai/migrate-to-app-router/objective.md`, `.cursorrules`, `conventions
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`. All objective success conditions met.
 
-**[HUMAN REVIEW]**: Sign off that webpack Sass config, metadata/head strategy, and Cypress e2e paths are acceptable post-migration.
+**[HUMAN REVIEW: approved]**: Sign off that webpack Sass config, metadata/head strategy, and Cypress e2e paths are acceptable post-migration.
 
 ---
 
