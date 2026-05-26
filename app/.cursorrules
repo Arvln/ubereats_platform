@@ -21,6 +21,7 @@
 ## TypeScript
 
 - Prefer `z.infer<typeof schema>` over hand-written duplicates.
+- Never use `any` type — always use explicit TypeScript types (e.g. `React.ReactNode`, `unknown`, or `z.infer<typeof schema>`).
 - Shared domain types in root `types/` (shared with server — do not move).
 - Feature-only types in `feature/types/`.
 - Barrel-export public modules via `index.ts`.

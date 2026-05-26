@@ -17,8 +17,10 @@ jest.mock('next/image', () => ({
     ),
 }));
 
-jest.mock('contexts', () => ({
-  useLocale: jest.fn(() => ({ locale: 'zh-TW', changeLocale: jest.fn() })),
+jest.mock('../../i18n/navigation', () => ({
+  Link: ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <a href={href}>{children}</a>
+  ),
 }));
 
 const mockData: Prop['data'] = [
@@ -108,6 +110,6 @@ describe('Test Shop Component', () => {
     render(<Shop data={mockData} size={4} imageHeight="200px" />);
 
     const link = screen.getByTestId('store-title-123');
-    expect(link.closest('a')).toHaveAttribute('href', '/zh-TW/store/Shop 1/123');
+    expect(link.closest('a')).toHaveAttribute('href', '/store/Shop 1/123');
   });
 });

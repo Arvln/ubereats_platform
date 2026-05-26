@@ -3,8 +3,10 @@ import { render, screen } from '@testing-library/react';
 import type { Prop } from './types';
 import { CategoryItem }from 'components';
 
-jest.mock('contexts', () => ({
-  useLocale: jest.fn(() => ({ locale: 'zh-TW', changeLocale: jest.fn() })),
+jest.mock('../../i18n/navigation', () => ({
+  Link: ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <a href={href}>{children}</a>
+  ),
 }));
 
 const mockProps: Prop = {
@@ -19,7 +21,7 @@ describe('Test CategoryItem Component', () => {
     render(<CategoryItem {...mockProps} />);
 
     const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute('href', `/zh-TW${mockProps.pageUrl}`);
+    expect(linkElement).toHaveAttribute('href', mockProps.pageUrl);
 
     const textElement = screen.getByTestId('category-item-content');
     expect(textElement).toHaveTextContent(mockProps.text);

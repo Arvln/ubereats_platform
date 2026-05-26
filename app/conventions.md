@@ -128,6 +128,7 @@ Colocate by feature first; promote to root only when reused across route groups.
 ## TypeScript
 
 - Prefer `z.infer<typeof schema>` over hand-written duplicates.
+- Never use `any` type — always use explicit TypeScript types (e.g. `React.ReactNode`, `unknown`, or `z.infer<typeof schema>`).
 - Shared domain types in `types/`; feature-only types in `feature/types/`.
 - Barrel-export public modules via `index.ts`.
 

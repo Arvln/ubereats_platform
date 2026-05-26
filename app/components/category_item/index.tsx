@@ -1,8 +1,7 @@
 'use client';
 
 import { Prop } from './types';
-import Link from 'next/link';
-import { useLocale } from 'contexts';
+import { Link } from '../../i18n/navigation';
 
 import classes from 'styles/components/CategoryItem.module.scss';
 
@@ -14,12 +13,11 @@ function CategoryItem({
   icon,
   text
 }: Prop) {
-  const { locale } = useLocale();
   const wrapperStyle = `${wrapper} ${appendClass}`;
 
   return (
     <div className={wrapperStyle} data-testid="category-item-wrapper">
-      <Link href={`/${locale}${pageUrl}`}>
+      <Link href={pageUrl}>
         {icon}
         <span data-testid="category-item-content">{text}</span>
       </Link>

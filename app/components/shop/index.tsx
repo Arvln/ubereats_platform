@@ -3,9 +3,8 @@
 import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '../../i18n/navigation';
 import { Button } from 'components';
-import { useLocale } from 'contexts';
 import {
   getScore,
   isPickup,
@@ -48,8 +47,6 @@ function Shop({
   size,
   imageHeight
 }: Prop) {
-  const { locale } = useLocale();
-
   function _renderDetailContent(
     cost: number,
     time: number,
@@ -144,7 +141,7 @@ function Shop({
               key={uuid}
               data-testid={`shop-item-${uuid}`}
             >
-              <Link href={`/${locale}/store/${name}/${uuid}`}>
+              <Link href={`/store/${name}/${uuid}`}>
                 <h3 className={storeTitle} data-testid={`store-title-${uuid}`}>{name}</h3>
                 <div className={`${imageWrapper} ${imageHeight}`} data-testid={`image-wrapper-${uuid}`}>
                   <Image
