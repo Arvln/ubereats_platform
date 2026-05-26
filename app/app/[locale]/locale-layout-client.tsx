@@ -1,19 +1,11 @@
-'use client';
+"use client";
 
-import type { Locale } from '../../i18n';
-import Layout from 'features/layout';
-import { LocaleProvider } from 'contexts';
+import Layout from "features/layout";
 
 export default function LocaleLayoutClient({
   children,
-  pageLocale,
 }: {
   children: React.ReactNode;
-  pageLocale: Locale;
 }) {
-  return (
-    <LocaleProvider pageLocale={pageLocale}>
-      <Layout>{children as JSX.Element}</Layout>
-    </LocaleProvider>
-  );
+  return <Layout>{children}</Layout>;
 }

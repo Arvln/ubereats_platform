@@ -1,5 +1,5 @@
 export type Prop = {
-	children: JSX.Element;
+  children: React.ReactNode;
 };
 
 export type THandleForm = (form?: JSX.Element | undefined) => void;
