@@ -2,7 +2,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '../../i18n';
-import { loadMessages } from 'lib/page-data';
 import LocaleLayoutClient from './locale-layout-client';
 
 export function generateStaticParams() {
@@ -31,10 +30,8 @@ export default async function LocaleLayout(
 
   setRequestLocale(locale);
 
-  const messages = await loadMessages(locale as Locale);
-
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale}>
       <LocaleLayoutClient>
         {children}
       </LocaleLayoutClient>

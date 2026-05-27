@@ -219,7 +219,7 @@ Reference: [next-intl 4.0 blog](https://next-intl.dev/blog/next-intl-4-0).
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Confirm locale switching in the footer still works and cookie/session behavior matches product expectations after v4 GDPR defaults.
+**[HUMAN REVIEW: approved]**: Confirm locale switching in the footer still works and cookie/session behavior matches product expectations after v4 GDPR defaults.
 
 ---
 
@@ -237,7 +237,7 @@ Reference: [next-intl 4.0 blog](https://next-intl.dev/blog/next-intl-4-0).
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Verify all `useTranslations()` strings render on client-heavy pages (footer, header, modals).
+**[HUMAN REVIEW: approved]**: Verify all `useTranslations()` strings render on client-heavy pages (footer, header, modals).
 
 ---
 
