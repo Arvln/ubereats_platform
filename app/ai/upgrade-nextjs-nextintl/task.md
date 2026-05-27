@@ -255,7 +255,7 @@ Reference: [next-intl 4.0 blog](https://next-intl.dev/blog/next-intl-4-0).
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Switch en-US ↔ zh-TW on home, a category page, marketing, and store; confirm URL prefix and content language update.
+**[HUMAN REVIEW: approved]**: Switch en-US ↔ zh-TW on home, a category page, marketing, and store; confirm URL prefix and content language update.
 
 ---
 
@@ -275,7 +275,7 @@ Reference: [next-intl 4.0 blog](https://next-intl.dev/blog/next-intl-4-0).
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Confirm Sass/styles still compile (webpack `resolve-url-loader` override).
+**[HUMAN REVIEW: approved]**: Confirm Sass/styles still compile (webpack `resolve-url-loader` override).
 
 ---
 
@@ -318,7 +318,7 @@ Reference: [next-intl 4.0 blog](https://next-intl.dev/blog/next-intl-4-0).
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Sign off on objective success conditions — all pages render with correct data, locale switching works, no regressions in Docker build.
+**[HUMAN REVIEW: approved]**: Sign off on objective success conditions — all pages render with correct data, locale switching works, no regressions in Docker build.
 
 ---
 
