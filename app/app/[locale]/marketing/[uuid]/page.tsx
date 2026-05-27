@@ -19,11 +19,17 @@ export async function generateStaticParams() {
   return slugs.map(({ uuid }) => ({ uuid }));
 }
 
-export default async function AdvertisePage({
-  params: { uuid },
-}: {
-  params: { uuid: string };
-}) {
+export default async function AdvertisePage(
+  props: {
+    params: Promise<{ uuid: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    uuid
+  } = params;
+
   const pageData = await fetchPageDataByKey<TPageData>(
     getAdvertiseByUUID,
     { uuid },

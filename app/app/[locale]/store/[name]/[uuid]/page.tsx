@@ -13,11 +13,18 @@ export async function generateStaticParams() {
   return slugs.map(({ name, uuid }) => ({ name, uuid }));
 }
 
-export default async function StorePage({
-  params: { name, uuid },
-}: {
-  params: { name: string; uuid: string };
-}) {
+export default async function StorePage(
+  props: {
+    params: Promise<{ name: string; uuid: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    name,
+    uuid
+  } = params;
+
   const pageData = await fetchPageDataSingle<TPageData>(
     getStoreBySlug,
     { name: decodeURIComponent(name), uuid },

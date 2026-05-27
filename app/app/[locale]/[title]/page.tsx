@@ -17,11 +17,17 @@ export async function generateStaticParams() {
   return slugs.map(({ title }) => ({ title }));
 }
 
-export default async function CategoryPage({
-  params: { title },
-}: {
-  params: { title: string };
-}) {
+export default async function CategoryPage(
+  props: {
+    params: Promise<{ title: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    title
+  } = params;
+
   const pageData = await fetchPageDataByKey<TPageData>(
     getCategoryByTitle,
     { title },
