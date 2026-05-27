@@ -1,6 +1,7 @@
 import { TPageData, TUUID } from 'types/pages/marketing/advertise';
 import { Fields } from 'enums/pages/marketing/advertise';
 import { getUUID, getAdvertiseByUUID } from 'graphql/queries/pages/marketing/advertise';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import {
   fetchStaticSlugs,
   fetchPageDataByKey,
@@ -29,6 +30,9 @@ export default async function AdvertisePage(
   const {
     uuid
   } = params;
+
+  const locale = await getLocale();
+  setRequestLocale(locale);
 
   const pageData = await fetchPageDataByKey<TPageData>(
     getAdvertiseByUUID,

@@ -3,6 +3,7 @@ import { Fields } from "enums/pages/store";
 import { getStoreSlugs, getStoreBySlug } from "graphql/queries/pages/store";
 import { Store } from "features";
 import { fetchStaticSlugs, fetchPageDataSingle } from "lib/page-data";
+import { getLocale, setRequestLocale } from "next-intl/server";
 
 const { STORESLUGS, STORE } = Fields;
 
@@ -24,6 +25,9 @@ export default async function StorePage(
     name,
     uuid
   } = params;
+
+  const locale = await getLocale();
+  setRequestLocale(locale);
 
   const pageData = await fetchPageDataSingle<TPageData>(
     getStoreBySlug,

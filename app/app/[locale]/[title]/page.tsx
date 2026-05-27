@@ -2,6 +2,7 @@ import { TPageData, TTitles } from 'types/pages/categories';
 import { Fields } from 'enums/pages/categories';
 import { getTitles, getCategoryByTitle } from 'graphql/queries/pages/categories';
 import { Category } from 'features';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import {
   fetchStaticSlugs,
   fetchPageDataByKey,
@@ -27,6 +28,9 @@ export default async function CategoryPage(
   const {
     title
   } = params;
+
+  const locale = await getLocale();
+  setRequestLocale(locale);
 
   const pageData = await fetchPageDataByKey<TPageData>(
     getCategoryByTitle,
