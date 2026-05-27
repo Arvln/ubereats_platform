@@ -11,8 +11,8 @@
     "test:e2e": "cypress run"
   },
   "dependencies": {
-    "next": "^14.2.22",
-    "next-intl": "^3.26.3",
+    "next": "^16",
+    "next-intl": "^4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sharp": "^0.29.3"
@@ -27,7 +27,7 @@
     "@types/react": "17.0.30",
     "autoprefixer": "^10.3.7",
     "cypress": "^14.0.0",
-    "eslint-config-next": "14.2.22",
+    "eslint-config-next": "^16",
     "graphql": "^15.6.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
