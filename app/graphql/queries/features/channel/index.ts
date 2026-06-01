@@ -6,6 +6,7 @@ export const getChannel: string = `
 		uuid
 		channelItems {
 			... on ChannelShop {
+				__typename
 				name
 				deliveryCost
 				shortestDeliveryTime
@@ -15,6 +16,7 @@ export const getChannel: string = `
 				uuid
 			}
 			... on ChannelCategory {
+				__typename
 				title
 				name
 				uuid
