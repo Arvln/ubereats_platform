@@ -11,11 +11,15 @@
     "test:e2e": "cypress run"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5",
+    "graphql-request": "^7",
     "next": "^16",
     "next-intl": "^4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "sharp": "^0.29.3"
+    "sharp": "^0.29.3",
+    "zod": "^3",
+    "zustand": "^5"
   },
   "devDependencies": {
     "@apollo/client": "^3.4.16",

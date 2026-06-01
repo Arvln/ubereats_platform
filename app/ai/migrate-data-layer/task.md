@@ -54,7 +54,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Record pre-existing issues.
+**[HUMAN REVIEW: approved]**: Record pre-existing issues.
 
 ---
 
@@ -67,7 +67,6 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 1. Add dependencies: `graphql-request`, `@tanstack/react-query`, `zod`, `zustand`.
 2. Do not remove `@apollo/client` yet.
 3. Do not upgrade unrelated packages.
-4. `pnpm install` in `app/`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
