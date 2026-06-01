@@ -148,6 +148,10 @@ Colocate by feature first; promote to root only when reused across route groups.
 
 ### Folder structure
 
+- Zod schemas: co-located with page.tsx in the same route folder, named `schema.ts`
+- Zustand stores: co-located with page.tsx in the same route folder, named `store.ts`
+- components/ inside a route folder contains only UI components, no state or schema logic
+
 ```
 locales/
   en-US.json
@@ -155,7 +159,12 @@ locales/
 app/
   [locale]/
     layout.tsx
+    schema.ts
+    store.ts
     page.tsx
+      components/
+        header.tsx
+        sidebar.tsx
 middleware.ts
 ```
 
