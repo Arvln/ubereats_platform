@@ -1,11 +1,10 @@
-import { gql } from '@apollo/client';
 import {
 	getShortcut,
 	getCarousel,
 	getChannel
 } from '../features';
 
-export const query = gql`
+export const query = `
 	query {
 		${getShortcut}
 		${getCarousel}

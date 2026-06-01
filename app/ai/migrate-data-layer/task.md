@@ -141,7 +141,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Channel shop vs category pagination on home.
+**[HUMAN REVIEW: approved]**: Channel shop vs category pagination on home.
 
 ---
 

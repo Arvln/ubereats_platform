@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const getStoreSlugs = gql`
+export const getStoreSlugs = `
 	query {
 		storeSlugs {
 			name
@@ -9,7 +7,7 @@ export const getStoreSlugs = gql`
 	}
 `
 
-export const getStoreBySlug = gql`
+export const getStoreBySlug = `
 	query($name: String!, $uuid: String!) {
 		store(name: $name, uuid: $uuid) {
 			name

@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const getUUID = gql`
+export const getUUID = `
 	query {
 		carousel {
 			uuid
@@ -8,7 +6,7 @@ export const getUUID = gql`
 	}
 `
 
-export const getAdvertiseByUUID = gql`
+export const getAdvertiseByUUID = `
 	query($uuid: String!) {
 		advertise(uuid: $uuid) {
 			content

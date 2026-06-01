@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const getTitles = gql`
+export const getTitles = `
 	query {
 		shortcut {
 			title
@@ -8,7 +6,7 @@ export const getTitles = gql`
 	}
 `
 
-export const getCategoryByTitle = gql`
+export const getCategoryByTitle = `
 	query($title: String!) {
 		category(title: $title) {
 			title
