@@ -7,6 +7,7 @@ import {
   fetchPageDataByKey,
   redirectToHome,
 } from 'lib/page-data';
+import { marketingPageDataSchema, marketingSlugsSchema } from './schema';
 
 import classes from 'styles/pages/marketing/Advertise.module.scss';
 
@@ -16,7 +17,11 @@ const { CAROUSEL, ADVERTISE } = Fields;
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = await fetchStaticSlugs<TUUID>(getUUID, CAROUSEL);
+  const slugs = await fetchStaticSlugs<TUUID>(
+    getUUID,
+    CAROUSEL,
+    marketingSlugsSchema
+  );
   return slugs.map(({ uuid }) => ({ uuid }));
 }
 
@@ -37,7 +42,8 @@ export default async function AdvertisePage(
   const pageData = await fetchPageDataByKey<TPageData>(
     getAdvertiseByUUID,
     { uuid },
-    ADVERTISE
+    ADVERTISE,
+    marketingPageDataSchema
   );
 
   if (!pageData) {

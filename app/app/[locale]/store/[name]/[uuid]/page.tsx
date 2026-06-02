@@ -4,13 +4,18 @@ import { getStoreSlugs, getStoreBySlug } from "graphql/queries/pages/store";
 import { Store } from "features";
 import { fetchStaticSlugs, fetchPageDataSingle } from "lib/page-data";
 import { getLocale, setRequestLocale } from "next-intl/server";
+import { storePageDataSchema, storeSlugsSchema } from "./schema";
 
 const { STORESLUGS, STORE } = Fields;
 
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const slugs = await fetchStaticSlugs<TStoreSlug>(getStoreSlugs, STORESLUGS);
+  const slugs = await fetchStaticSlugs<TStoreSlug>(
+    getStoreSlugs,
+    STORESLUGS,
+    storeSlugsSchema
+  );
   return slugs.map(({ name, uuid }) => ({ name, uuid }));
 }
 
@@ -32,7 +37,8 @@ export default async function StorePage(
   const pageData = await fetchPageDataSingle<TPageData>(
     getStoreBySlug,
     { name: decodeURIComponent(name), uuid },
-    STORE
+    STORE,
+    storePageDataSchema
   );
 
   if (!pageData) {

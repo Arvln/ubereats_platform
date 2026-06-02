@@ -148,8 +148,9 @@ Colocate by feature first; promote to root only when reused across route groups.
 
 ### Folder structure
 
-- Zod schemas: co-located with page.tsx in the same route folder, named `schema.ts`
-- Zustand stores: co-located with page.tsx in the same route folder, named `store.ts`
+- Keep code close to where it is used.
+- Zod schemas: colocate with the consuming page/component in the App Router tree. Only extract to a shared frontend `schema/` directory when reused by multiple features.
+- Zustand stores: define in the consuming Client Component file, directly above the component. Only extract to a shared frontend `store/` directory when reused by multiple features or routes.
 - components/ inside a route folder contains only UI components, no state or schema logic
 
 ```
@@ -160,7 +161,6 @@ app/
   [locale]/
     layout.tsx
     schema.ts
-    store.ts
     page.tsx
       components/
         header.tsx

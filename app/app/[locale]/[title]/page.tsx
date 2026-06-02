@@ -1,33 +1,37 @@
-import { TPageData, TTitles } from 'types/pages/categories';
-import { Fields } from 'enums/pages/categories';
-import { getTitles, getCategoryByTitle } from 'graphql/queries/pages/categories';
-import { Category } from 'features';
-import { getLocale, setRequestLocale } from 'next-intl/server';
+import { TPageData, TTitles } from "types/pages/categories";
+import { Fields } from "enums/pages/categories";
+import {
+  getTitles,
+  getCategoryByTitle,
+} from "graphql/queries/pages/categories";
+import { Category } from "features";
+import { getLocale, setRequestLocale } from "next-intl/server";
 import {
   fetchStaticSlugs,
   fetchPageDataByKey,
   redirectToHome,
-} from 'lib/page-data';
+} from "lib/page-data";
+import { categoryPageDataSchema, categorySlugsSchema } from "./schema";
 
 const { SHORTCUT, CATEGORY } = Fields;
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = await fetchStaticSlugs<TTitles>(getTitles, SHORTCUT);
+  const slugs = await fetchStaticSlugs<TTitles>(
+    getTitles,
+    SHORTCUT,
+    categorySlugsSchema
+  );
   return slugs.map(({ title }) => ({ title }));
 }
 
-export default async function CategoryPage(
-  props: {
-    params: Promise<{ title: string }>;
-  }
-) {
+export default async function CategoryPage(props: {
+  params: Promise<{ title: string }>;
+}) {
   const params = await props.params;
 
-  const {
-    title
-  } = params;
+  const { title } = params;
 
   const locale = await getLocale();
   setRequestLocale(locale);
@@ -35,7 +39,8 @@ export default async function CategoryPage(
   const pageData = await fetchPageDataByKey<TPageData>(
     getCategoryByTitle,
     { title },
-    CATEGORY
+    CATEGORY,
+    categoryPageDataSchema
   );
 
   if (!pageData) {
