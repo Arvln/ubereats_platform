@@ -178,16 +178,14 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **How**:
 
-1. Create centralized module (e.g. `lib/graphql-definitions.ts`) with named exports only for:
-   - `queryKey` factories (e.g. `['GetHomePage']`, `['GetCategoryByTitle', { title }]`)
-   - query documents
-   - Zod schemas
-2. Keep **separate** transport-specific query functions:
-   - Server queryFns use `gqlServerClient`
-   - Client queryFns use `gqlClient`
-3. Do not share or unify queryFn implementations between server and client.
-4. Do not split existing page-level queries into feature-level network calls unless required.
-5. Avoid duplicate GraphQL calls during SSR (server prefetch satisfies hydrated client query).
+1. Rename existing `schema.ts` files to `queries.ts` and expand their responsibility.
+2. Each `queries.ts` must contain all GraphQL-related concerns for that feature:
+   - GraphQL query document
+   - queryKey definition (React Query key)
+   - Zod schema for runtime validation
+3. Remove any previously centralized or duplicated definitions:
+   - queryKey factories in separate files
+   - GraphQL document-only modules
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
@@ -199,10 +197,15 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **How**:
 
-1. Replace Apollo with `gqlServerClient` + Zod in `fetchPageData`, `fetchPageDataByKey`, `fetchPageDataSingle`, `fetchStaticSlugs`.
-2. Keep signatures stable until Steps 12–16 migrate pages.
-3. Keep `redirectToHome`, `loadMessages`.
-4. Accept string query documents if Apollo `DocumentNode` is removed.
+1. Keep **separate** transport-specific query functions:
+   - Server queryFns use `gqlServerClient`
+   - Client queryFns use `gqlClient`
+2. Do not share or unify queryFn implementations between server and client.
+3. Avoid duplicate GraphQL calls during SSR (server prefetch satisfies hydrated client query).
+4. Replace Apollo with `gqlServerClient` + Zod in `fetchPageData`, `fetchPageDataByKey`, `fetchPageDataSingle`, `fetchStaticSlugs`.
+5. Keep signatures stable until Steps 12–16 migrate pages.
+6. Keep `redirectToHome`, `loadMessages`.
+7. Accept string query documents if Apollo `DocumentNode` is removed.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 

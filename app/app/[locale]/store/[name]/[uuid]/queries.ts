@@ -1,5 +1,43 @@
 import { z } from "zod";
 
+export const storeSlugsQueryDocument = `
+  query {
+    storeSlugs {
+      name
+      uuid
+    }
+  }
+`;
+
+export const storeBySlugQueryDocument = `
+  query($name: String!, $uuid: String!) {
+    store(name: $name, uuid: $uuid) {
+      name
+      deliveryCost
+      shortestDeliveryTime
+      score
+      bannerSuffix
+      address
+      goodChannels {
+        label
+        items {
+          name
+          price
+          discription
+          spicyLevel
+          imageSuffix
+          isEmphasis
+          uuid
+        }
+      }
+    }
+  }
+`;
+
+export const storeSlugsQueryKey = ["store", "slugs"] as const;
+export const storeBySlugQueryKey = (name: string, uuid: string) =>
+  ["store", "by-slug", name, uuid] as const;
+
 const goodSchema = z.object({
   name: z.string(),
   price: z.number(),

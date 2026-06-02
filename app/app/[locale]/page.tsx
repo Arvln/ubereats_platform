@@ -5,10 +5,9 @@ import {
   RestrictSearch,
   Channel,
 } from 'features';
-import { query } from 'graphql/queries/pages';
 import { fetchPageData, redirectToHome } from 'lib/page-data';
 import { getLocale, setRequestLocale } from 'next-intl/server';
-import { homePageDataSchema } from './schema';
+import { homePageDataSchema, homeQueryDocument } from './queries';
 
 import classes from 'styles/pages/Home.module.scss';
 
@@ -19,7 +18,7 @@ export default async function HomePage() {
   setRequestLocale(locale);
 
   const pageData = await fetchPageData<TPageData>(
-    query,
+    homeQueryDocument,
     undefined,
     homePageDataSchema
   );

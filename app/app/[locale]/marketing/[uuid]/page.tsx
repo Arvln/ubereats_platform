@@ -1,13 +1,17 @@
 import { TPageData, TUUID } from 'types/pages/marketing/advertise';
 import { Fields } from 'enums/pages/marketing/advertise';
-import { getUUID, getAdvertiseByUUID } from 'graphql/queries/pages/marketing/advertise';
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import {
   fetchStaticSlugs,
   fetchPageDataByKey,
   redirectToHome,
 } from 'lib/page-data';
-import { marketingPageDataSchema, marketingSlugsSchema } from './schema';
+import {
+  marketingByUuidQueryDocument,
+  marketingPageDataSchema,
+  marketingSlugsSchema,
+  marketingUuidsQueryDocument,
+} from './queries';
 
 import classes from 'styles/pages/marketing/Advertise.module.scss';
 
@@ -18,7 +22,7 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const slugs = await fetchStaticSlugs<TUUID>(
-    getUUID,
+    marketingUuidsQueryDocument,
     CAROUSEL,
     marketingSlugsSchema
   );
@@ -40,7 +44,7 @@ export default async function AdvertisePage(
   setRequestLocale(locale);
 
   const pageData = await fetchPageDataByKey<TPageData>(
-    getAdvertiseByUUID,
+    marketingByUuidQueryDocument,
     { uuid },
     ADVERTISE,
     marketingPageDataSchema

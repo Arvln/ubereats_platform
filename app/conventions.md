@@ -21,7 +21,7 @@ app/
       layout.tsx
       components/
       hooks/
-      schema/
+      queries/
       api/
       stores/
       types/
@@ -30,7 +30,7 @@ components/ui/
 components/custom-ui/
 hooks/
 providers/
-schema/
+queries/
 types/
 stores/
 lib/
@@ -148,8 +148,11 @@ Colocate by feature first; promote to root only when reused across route groups.
 
 ### Folder structure
 
-- Keep code close to where it is used.
-- Zod schemas: colocate with the consuming page/component in the App Router tree. Only extract to a shared frontend `schema/` directory when reused by multiple features.
+- Keep code close to where it is used. Prefer feature-level and route-level colocation over centralized abstraction.
+- GraphQL: all related concerns must be colocated in the nearest feature or route folder inside a single `queries.ts` file. This includes:
+  - GraphQL query document
+  - queryKey definition
+  - Zod schema for runtime validation
 - Zustand stores: define in the consuming Client Component file, directly above the component. Only extract to a shared frontend `store/` directory when reused by multiple features or routes.
 - components/ inside a route folder contains only UI components, no state or schema logic
 

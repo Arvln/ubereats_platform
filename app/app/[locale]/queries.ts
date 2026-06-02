@@ -1,5 +1,46 @@
 import { z } from "zod";
 
+export const homeQueryDocument = `
+  query {
+    shortcut {
+      title
+      imageSuffix
+      isCuisines
+      uuid
+    }
+    carousel {
+      imageSuffix
+      uuid
+    }
+    channel {
+      title
+      subtitle
+      imageSuffix
+      uuid
+      channelItems {
+        ... on ChannelShop {
+          __typename
+          name
+          deliveryCost
+          shortestDeliveryTime
+          score
+          discountLabel
+          imageSuffix
+          uuid
+        }
+        ... on ChannelCategory {
+          __typename
+          title
+          name
+          uuid
+        }
+      }
+    }
+  }
+`;
+
+export const homeQueryKey = ["home-page"] as const;
+
 const shortcutSchema = z.object({
   title: z.string(),
   imageSuffix: z.string(),

@@ -1,9 +1,11 @@
 import { TPageData, TTitles } from "types/pages/categories";
 import { Fields } from "enums/pages/categories";
 import {
-  getTitles,
-  getCategoryByTitle,
-} from "graphql/queries/pages/categories";
+  categoryByTitleQueryDocument,
+  categoryPageDataSchema,
+  categorySlugsSchema,
+  categoryTitlesQueryDocument,
+} from "./queries";
 import { Category } from "features";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import {
@@ -11,7 +13,6 @@ import {
   fetchPageDataByKey,
   redirectToHome,
 } from "lib/page-data";
-import { categoryPageDataSchema, categorySlugsSchema } from "./schema";
 
 const { SHORTCUT, CATEGORY } = Fields;
 
@@ -19,7 +20,7 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const slugs = await fetchStaticSlugs<TTitles>(
-    getTitles,
+    categoryTitlesQueryDocument,
     SHORTCUT,
     categorySlugsSchema
   );
@@ -37,7 +38,7 @@ export default async function CategoryPage(props: {
   setRequestLocale(locale);
 
   const pageData = await fetchPageDataByKey<TPageData>(
-    getCategoryByTitle,
+    categoryByTitleQueryDocument,
     { title },
     CATEGORY,
     categoryPageDataSchema
