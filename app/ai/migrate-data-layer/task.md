@@ -223,7 +223,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: No client loading flash/refetch right after hydration; home content correct.
+**[HUMAN REVIEW: approved]**: No client loading flash/refetch right after hydration; home content correct.
 
 ---
 

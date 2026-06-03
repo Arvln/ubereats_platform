@@ -1,6 +1,7 @@
 'use client';
 
-import { Prop, TChannelItem, TPagesState } from './types';
+import { useQuery } from '@tanstack/react-query';
+import { TChannelItem, TPagesState } from './types';
 import Image from 'next/image';
 import { Arrow } from 'components';
 import ChannelShop from 'features/channel_shop';
@@ -15,6 +16,9 @@ import {
 } from './utils';
 import { pagesStateVar } from 'graphql/cache/features';
 import { useVar } from 'utils';
+import {
+  homePageQueryOptions,
+} from '../../app/[locale]/queries';
 
 import classes from 'styles/features/Channel.module.scss';
 import { useTranslations } from 'next-intl';
@@ -43,9 +47,13 @@ const initialPageState = {
 };
 const CHANNEL_PAGE_OFFSET_SIZE: number = -100;
 
-function Channel({ data }: Prop) {
+function Channel() {
   const t = useTranslations();
   const [pages, pagesState] = useVar<TPagesState>(pagesStateVar);
+  const { data: channels = [] } = useQuery({
+    ...homePageQueryOptions,
+    select: (pageData) => pageData.channel,
+  });
 
   function _handlePreviousButton(selectedId: string) {
     const page = pagesState[selectedId];
@@ -136,15 +144,18 @@ function Channel({ data }: Prop) {
     );
   };
 
-  function _renderRegularContent(data: TChannelItem[], currentPage: number) {
-    if (isShopsChannel(data)) {
+  function _renderRegularContent(
+    channelItems: TChannelItem[],
+    currentPage: number
+  ) {
+    if (isShopsChannel(channelItems)) {
       return (
         <ChannelShop
           data={getPageDataList(
-            data,
-            getRegularPageSize(data)
+            channelItems,
+            getRegularPageSize(channelItems)
           )}
-          size={getRegularPageSize(data)}
+          size={getRegularPageSize(channelItems)}
           offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
         />
       );
@@ -153,8 +164,8 @@ function Channel({ data }: Prop) {
     return (
       <ChannelCategory
         data={getPageDataList(
-          data,
-          getRegularPageSize(data)
+          channelItems,
+          getRegularPageSize(channelItems)
         )}
         pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
       />
@@ -163,7 +174,7 @@ function Channel({ data }: Prop) {
 
   function _renderChannel() {
     return (
-      data.map(({
+      channels.map(({
         title,
         subtitle,
         imageSuffix,

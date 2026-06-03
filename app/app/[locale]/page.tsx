@@ -1,25 +1,12 @@
 import { Shortcut, Carousel, RestrictSearch, Channel } from "features";
-import { gqlServerClient } from "api/graphql";
 import { createServerQueryClient } from "lib/server-query-client";
-import { redirectToHome } from "lib/page-data";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import {
-  homePageDataSchema,
-  homeQueryDocument,
-  homeQueryKey,
-  type HomePageData,
-} from "./queries";
+import { fetchHomePageDataServer, homeQueryKey } from "./queries";
 
 import classes from "styles/pages/Home.module.scss";
 
 const { wrapper, storesWrapper } = classes;
-
-async function fetchHomePageDataServer(): Promise<HomePageData | null> {
-  const raw = await gqlServerClient().request<unknown>(homeQueryDocument);
-  const parsed = homePageDataSchema.safeParse(raw);
-  return parsed.success ? parsed.data : null;
-}
 
 export default async function HomePage() {
   const locale = await getLocale();
@@ -32,24 +19,15 @@ export default async function HomePage() {
     queryFn: fetchHomePageDataServer,
   });
 
-  const pageData = queryClient.getQueryData<HomePageData | null>(homeQueryKey);
-
-  if (!pageData) {
-    return redirectToHome();
-  }
-
-  const { shortcut, carousel, channel } = pageData;
-  const dehydratedState = dehydrate(queryClient);
-
   return (
-    <HydrationBoundary state={dehydratedState}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <main className={wrapper}>
-        <Shortcut data={shortcut} />
+        <Shortcut />
         <hr />
-        <Carousel data={carousel} />
+        <Carousel />
         <section className={storesWrapper}>
           <RestrictSearch isCuisines />
-          <Channel data={channel} />
+          <Channel />
         </section>
       </main>
     </HydrationBoundary>

@@ -1,11 +1,4 @@
-import {
-	TChannelData,
-	TChannelItem
-} from "types/features";
-
-export type Prop = {
-	data: TChannelData[];
-};
+import { TChannelItem } from "types/features";
 
 export type TPagesState = {
 	[id: string]: {

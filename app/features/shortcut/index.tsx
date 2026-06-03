@@ -1,10 +1,13 @@
 'use client';
 
-import { Prop } from './types';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { CategoryItem } from 'components';
+import {
+  homePageQueryOptions,
+} from '../../app/[locale]/queries';
 
 import classes from 'styles/features/Shortcut.module.scss';
 
@@ -15,9 +18,13 @@ const {
 } = classes;
 const SHORTCUT_ICONS_SERVER_HOST = process.env.SHORTCUT_ICONS_SERVER_HOST;
 
-function Shortcut({ data }: Prop) {
+function Shortcut() {
   const t = useTranslations();
   const [selectedId, setSelectedId] = useState<string>('');
+  const { data: shortcut = [] } = useQuery({
+    ...homePageQueryOptions,
+    select: (pageData) => pageData.shortcut,
+  });
 
   function _handleMouseEnter(selectedId: string): void {
     setSelectedId(selectedId);
@@ -29,7 +36,7 @@ function Shortcut({ data }: Prop) {
 
   function _renderItems(): JSX.Element[] {
     return (
-      data.map(({
+      shortcut.map(({
         title,
         imageSuffix,
         isCuisines,

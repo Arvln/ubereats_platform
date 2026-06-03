@@ -1,3 +1,5 @@
+import { gqlClient, gqlServerClient } from "api/graphql";
+import { redirectToHome } from "lib/page-data";
 import { z } from "zod";
 
 export const homeQueryDocument = `
@@ -95,3 +97,26 @@ export const homePageDataSchema = z.object({
 });
 
 export type HomePageData = z.infer<typeof homePageDataSchema>;
+
+export async function fetchHomePageDataServer(): Promise<HomePageData> {
+  const raw = await gqlServerClient().request<unknown>(homeQueryDocument);
+  const parsed = homePageDataSchema.safeParse(raw);
+  if (!parsed.success) {
+    redirectToHome();
+  }
+  return parsed.data;
+}
+
+export async function fetchHomePageDataClient(): Promise<HomePageData> {
+  const raw = await gqlClient().request<unknown>(homeQueryDocument);
+  const parsed = homePageDataSchema.safeParse(raw);
+  if (!parsed.success) {
+    throw new Error("Invalid home page data");
+  }
+  return parsed.data;
+}
+
+export const homePageQueryOptions = {
+  queryKey: homeQueryKey,
+  queryFn: fetchHomePageDataClient,
+} as const;

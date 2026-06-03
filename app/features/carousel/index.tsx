@@ -1,6 +1,6 @@
 'use client';
 
-import { Prop } from './types';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Link } from '../../i18n/navigation';
 import Image from 'next/image';
@@ -11,6 +11,9 @@ import {
 } from './utils';
 import { horizontalOffsetVar } from 'graphql/cache/features'
 import { useVar } from 'utils';
+import {
+  homePageQueryOptions,
+} from '../../app/[locale]/queries';
 
 import classes from 'styles/features/Carousel.module.scss';
 
@@ -32,7 +35,11 @@ const leftBoundaryValue: number = -100;
 const rightBoundaryValue: number = -433.333;
 const leftStratPoint: number = -133.333;
 
-function Carousel({ data }: Prop) {
+function Carousel() {
+	const { data: carousel = [] } = useQuery({
+		...homePageQueryOptions,
+		select: (pageData) => pageData.carousel,
+	});
 	const [horizontalOffset] = useVar<number>(horizontalOffsetVar);
 	const [transition, setTransition] = useState<string>(smoothTransition);
 
@@ -64,15 +71,15 @@ function Carousel({ data }: Prop) {
 	}
 
 	function _renderItems() {
-		data = getRenderData(data);
+		const items = getRenderData(carousel);
 
 		return (
-			data.map(({
+			items.map(({
 				imageSuffix,
 				uuid
 			}, index) => {
 				const ariaHidden: boolean | undefined =
-					index < 3 || index > data.length - 6
+					index < 3 || index > items.length - 6
 						? true
 						: undefined;
 
