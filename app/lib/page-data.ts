@@ -7,24 +7,6 @@ import { ZodTypeAny } from "zod";
 
 const client = getApolloClient();
 
-export async function fetchPageData<T>(
-  query: string,
-  variables?: Record<string, unknown>,
-  schema?: ZodTypeAny
-): Promise<T | null> {
-  const { data }: ApolloQueryResult<TQueryResult<T>> = await client.query({
-    query: gql(query),
-    variables,
-  });
-
-  if (!data) return null;
-
-  if (!schema) return data as T;
-
-  const parsed = schema.safeParse(data);
-  return parsed.success ? parsed.data : null;
-}
-
 export async function fetchPageDataByKey<T>(
   query: string,
   variables: Record<string, unknown>,

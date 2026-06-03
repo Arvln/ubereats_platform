@@ -27,6 +27,7 @@
 
 ## Imports & style
 
+- Remove unused imports from every file you modify before finishing a task.
 - Order: external → alias → relative.
 - Use `cn()` for conditional classes; CVA for component variants.
 - Toast feedback: `sonner` via `@/components/custom-ui/message` — don't duplicate in components.

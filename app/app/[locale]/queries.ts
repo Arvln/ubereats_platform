@@ -13,6 +13,7 @@ export const homeQueryDocument = `
       uuid
     }
     channel {
+      id
       title
       subtitle
       imageSuffix
@@ -27,6 +28,7 @@ export const homeQueryDocument = `
           discountLabel
           imageSuffix
           uuid
+          channelId
         }
         ... on ChannelCategory {
           __typename
@@ -62,6 +64,7 @@ const channelShopItemSchema = z.object({
   discountLabel: z.string(),
   imageSuffix: z.string(),
   uuid: z.string(),
+  channelId: z.number(),
 });
 
 const channelCategoryItemSchema = z.object({
@@ -77,6 +80,7 @@ const channelItemSchema = z.union([
 ]);
 
 const channelSchema = z.object({
+  id: z.number(),
   title: z.string(),
   subtitle: z.string(),
   imageSuffix: z.string(),

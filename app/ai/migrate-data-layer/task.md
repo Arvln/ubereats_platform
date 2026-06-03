@@ -191,56 +191,33 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 11: Rewrite `lib/page-data.ts` to use graphql-request
-
-**What**: Remove Apollo from server helpers (interim until pages use RQ only).
-
-**How**:
-
-1. Keep **separate** transport-specific query functions:
-   - Server queryFns use `gqlServerClient`
-   - Client queryFns use `gqlClient`
-2. Do not share or unify queryFn implementations between server and client.
-3. Avoid duplicate GraphQL calls during SSR (server prefetch satisfies hydrated client query).
-4. Replace Apollo with `gqlServerClient` + Zod in `fetchPageData`, `fetchPageDataByKey`, `fetchPageDataSingle`, `fetchStaticSlugs`.
-5. Keep signatures stable until Steps 12–16 migrate pages.
-6. Keep `redirectToHome`, `loadMessages`.
-7. Accept string query documents if Apollo `DocumentNode` is removed.
-
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
-
-**[HUMAN REVIEW]**: All four page types still return correct data.
-
----
-
-### Step 12: Migrate home page to SSR hydration pattern
+### Step 11: Migrate home page to SSR hydration pattern
 
 **What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for home.
 
 **How**:
 
 1. In `app/[locale]/page.tsx`:
-   - Create a shared per-request QueryClient factory function in lib/server-query-client.ts.Use it in this step.
-   - `prefetchQuery` with home `queryKey` / **server-specific** `queryFn` (`gqlServerClient`)
-   - `dehydrate` + wrap children in `HydrationBoundary`
-2. Keep `setRequestLocale`.
-3. Do not fetch initial data in `useEffect`.
-4. Do not remove fetchPageData or data props in this step.
+   - Create a shared per-request QueryClient factory function in `lib/server-query-client.ts`. Use it in this step.
+   - `prefetchQuery` with home `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageData`.
+   - `dehydrate` + wrap children in `HydrationBoundary`.
+2. Remove the `fetchPageData` call.
+3. After removal, check whether `fetchPageData` still has any remaining callers across the codebase. If it has none, delete it from `lib/page-data.ts`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
-### Step 13: Migrate home client features to `useQuery`
+### Step 12: Migrate home client features to `useQuery`
 
 **What**: Client components read hydrated cache; remove server `data` props where migrated.
 
 **How**:
 
-1. Remove fetchPageData and data props migrated in this step.
+1. Remove data props migrated in this step.
 2. `features/shortcut`, `features/carousel`, `features/channel`: `useQuery` with **same** `queryKey` as Step 12 and **client-specific** `queryFn` (`gqlClient`) for refetches.
 3. Do not import `gqlServerClient` in these client components.
-4. Validate in client queryFn at trust boundary only when network request occurs; do not re-parse cache data in components.
+4. Validate in client `queryFn` at trust boundary only when network request occurs; do not re-parse cache data in components.
 5. `RestrictSearch`: UI-only (`isCuisines`); no server data in Zustand.
 6. Minimal changes; no scss refactors.
 
@@ -250,48 +227,53 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 14: Migrate category page to SSR hydration + `useQuery`
+### Step 13: Migrate category page to SSR hydration + `useQuery`
 
 **What**: Same pattern for `app/[locale]/[title]/page.tsx`.
 
 **How**:
 
-1. Use the shared QueryClient factory from lib/server-query-client.ts created in Step 12
-2. Remove fetchPageData and data props migrated in this step.
-3. `prefetchQuery` + `HydrationBoundary`; `generateStaticSlugs` via graphql-request.
+1. Use the shared QueryClient factory from `lib/server-query-client.ts` created in Step 12.
+2. `prefetchQuery` with category `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataByKey`.
+3. `dehydrate` + `HydrationBoundary`; `generateStaticParams` via `gqlServerClient` directly — do not call `fetchStaticSlugs`.
 4. Category UI consumes `useQuery` with `['GetCategoryByTitle', { title }]`.
-5. One page-level query — do not add separate feature-level requests.
+5. Remove the `fetchPageDataByKey` and `fetchStaticSlugs` calls previously used by this page.
+6. After removal, check whether `fetchPageDataByKey` and `fetchStaticSlugs` still have any remaining callers. If either has none, delete it from `lib/page-data.ts`.
+7. One page-level query — do not add separate feature-level requests.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
-### Step 15: Migrate marketing page to SSR hydration + `useQuery`
+### Step 14: Migrate marketing page to SSR hydration + `useQuery`
 
 **What**: Same pattern for `app/[locale]/marketing/[uuid]/page.tsx`.
 
 **How**:
 
-1. Use the shared QueryClient factory from lib/server-query-client.ts created in Step 12.
-2. Remove fetchPageData and data props migrated in this step.
-3. Prefetch advertise query; `HydrationBoundary`.
-4. Client child / page section uses matching `useQuery`.
-5. Keep advertise scss/UI unchanged.
+1. Use the shared QueryClient factory from `lib/server-query-client.ts` created in Step 12.
+2. `prefetchQuery` with advertise `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageData` or `fetchPageDataSingle`.
+3. `dehydrate` + `HydrationBoundary`; client child uses matching `useQuery`.
+4. Remove the helper calls previously used by this page.
+5. After removal, check whether each removed helper still has any remaining callers. If any has none, delete it from `lib/page-data.ts`.
+6. Keep advertise scss/UI unchanged.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
-### Step 16: Migrate store page to SSR hydration + `useQuery`
+### Step 15: Migrate store page to SSR hydration + `useQuery`
 
 **What**: Same pattern for `app/[locale]/store/[name]/[uuid]/page.tsx`.
 
 **How**:
 
-1. Use the shared QueryClient factory from lib/server-query-client.ts created in Step 12.
-2. Remove fetchPageData and data props migrated in this step.
-3. Prefetch store query; `HydrationBoundary`; keep `dynamicParams: true`.
-4. `features/store` uses `useQuery` with store `queryKey`; remove `data` prop when migrated.
+1. Use the shared QueryClient factory from `lib/server-query-client.ts` created in Step 12.
+2. `prefetchQuery` with store `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataSingle`.
+3. `dehydrate` + `HydrationBoundary`; keep `dynamicParams: true`.
+4. `features/store` uses `useQuery` with store `queryKey`; remove `data` prop.
+5. Remove the helper calls previously used by this page.
+6. After removal, check whether `fetchPageDataSingle` still has any remaining callers. If it has none, delete it from `lib/page-data.ts`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
@@ -299,7 +281,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 17: Create Zustand stores (carousel, channel, restrict_search)
+### Step 16: Create Zustand stores (carousel, channel, restrict_search)
 
 **What**: Replace Apollo Reactive Variables.
 
@@ -314,7 +296,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 18: Migrate `features/carousel` to Zustand
+### Step 17: Migrate `features/carousel` to Zustand
 
 **What**: Remove `horizontalOffsetVar` / `useVar`.
 
@@ -326,7 +308,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 19: Migrate `features/channel` to Zustand
+### Step 18: Migrate `features/channel` to Zustand
 
 **What**: Remove `pagesStateVar` / `useVar`.
 
@@ -338,7 +320,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 20: Migrate `features/restrict_search` to Zustand
+### Step 19: Migrate `features/restrict_search` to Zustand
 
 **What**: Remove `conditionsStateVar` / `useVar`.
 
@@ -348,7 +330,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 21: Delete `graphql/cache/` and Apollo reactive utilities
+### Step 20: Delete `graphql/cache/` and Apollo reactive utilities
 
 **What**: Remove deprecated cache layer.
 
@@ -362,7 +344,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 22: Remove Apollo Client completely
+### Step 21: Remove Apollo Client completely
 
 **What**: Objective: Apollo fully removed.
 
@@ -378,21 +360,19 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 23: Full regression verification
+### Step 22: Remove Apollo Client completely
 
-**What**: All objective success conditions.
+**What**: Apollo fully removed.
 
 **How**:
 
-1. `docker-compose build --no-cache && docker-compose up -d`.
-2. All pages + data; locale switching.
-3. Apollo gone; `graphql/cache/` gone; no `server/`, `types/`, `docker/` edits.
-4. `pnpm test` — migration-related fixes only.
-5. Confirm no `gqlServerClient` in client bundles (spot-check imports).
+1. Delete `graphql/apollo_client/`.
+2. Remove `@apollo/client` from `package.json`.
+3. Confirm `lib/page-data.ts` contains only `redirectToHome` and `loadMessages` — all four fetch helpers must have been deleted in Steps 12–16. If any remain, delete them now.
+4. Grep: zero Apollo references across the codebase.
+5. `pnpm install`.
 
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
-
-**[HUMAN REVIEW]**: Sign off on objective success conditions.
+**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
