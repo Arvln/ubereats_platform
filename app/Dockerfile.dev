@@ -14,6 +14,12 @@ RUN mkdir -p ../types
 
 COPY ./types ../types
 
+ENV WATCHPACK_POLLING=true
+
+ENV CHOKIDAR_USEPOLLING=true
+
+ENV CHOKIDAR_INTERVAL=2000
+
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
 EXPOSE 3000

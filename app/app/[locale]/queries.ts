@@ -66,7 +66,7 @@ const channelShopItemSchema = z.object({
   discountLabel: z.string(),
   imageSuffix: z.string(),
   uuid: z.string(),
-  channelId: z.number(),
+  channelId: z.string(),
 });
 
 const channelCategoryItemSchema = z.object({
@@ -82,7 +82,7 @@ const channelItemSchema = z.union([
 ]);
 
 const channelSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   title: z.string(),
   subtitle: z.string(),
   imageSuffix: z.string(),

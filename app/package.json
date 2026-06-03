@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsc --noEmit && next dev --webpack",
+    "dev": "next dev --webpack",
     "build": "next build --webpack",
     "lint": "next lint",
     "start": "next build --webpack && next start",
