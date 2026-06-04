@@ -302,7 +302,24 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 16: Create Zustand stores (carousel, channel, restrict_search)
+### Step 16: Refactor `fetchStaticSlugs` to use `gqlServerClient`
+
+**What**: Replace Apollo client usage in `fetchStaticSlugs` with `gqlServerClient` to align with the rest of the codebase.
+
+**How**:
+
+1. In `lib/page-data.ts`, rewrite `fetchStaticSlugs` to use `gqlServerClient` directly instead of `getApolloClient`.
+2. Keep the same function signature — callers should require no changes.
+3. Keep Zod validation logic unchanged.
+4. Remove `getApolloClient` and `@apollo/client` imports if no longer used in this file after the change.
+
+**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies `generateStaticParams` still works correctly after running `docker-compose build --no-cache && docker-compose up -d`
+
+**[HUMAN REVIEW]**: Static routes generate correctly; no Apollo client usage remaining in `lib/page-data.ts`.
+
+---
+
+### Step 17: Create Zustand stores (carousel, channel, restrict_search)
 
 **What**: Replace Apollo Reactive Variables.
 
@@ -317,7 +334,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 17: Migrate `features/carousel` to Zustand
+### Step 18: Migrate `features/carousel` to Zustand
 
 **What**: Remove `horizontalOffsetVar` / `useVar`.
 
@@ -329,7 +346,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 18: Migrate `features/channel` to Zustand
+### Step 19: Migrate `features/channel` to Zustand
 
 **What**: Remove `pagesStateVar` / `useVar`.
 
@@ -341,7 +358,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 19: Migrate `features/restrict_search` to Zustand
+### Step 20: Migrate `features/restrict_search` to Zustand
 
 **What**: Remove `conditionsStateVar` / `useVar`.
 
@@ -351,7 +368,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 20: Delete `graphql/cache/` and Apollo reactive utilities
+### Step 21: Delete `graphql/cache/` and Apollo reactive utilities
 
 **What**: Remove deprecated cache layer.
 
@@ -365,7 +382,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 21: Remove Apollo Client completely
+### Step 22: Remove Apollo Client completely
 
 **What**: Objective: Apollo fully removed.
 
@@ -381,7 +398,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 22: Remove Apollo Client completely
+### Step 23: Remove Apollo Client completely
 
 **What**: Apollo fully removed.
 
