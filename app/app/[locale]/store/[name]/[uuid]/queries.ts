@@ -1,3 +1,4 @@
+import { gqlClient, gqlServerClient } from "api/graphql";
 import { z } from "zod";
 
 export const storeSlugsQueryDocument = `
@@ -34,7 +35,6 @@ export const storeBySlugQueryDocument = `
   }
 `;
 
-export const storeSlugsQueryKey = ["store", "slugs"] as const;
 export const storeBySlugQueryKey = (name: string, uuid: string) =>
   ["store", "by-slug", name, uuid] as const;
 
@@ -65,12 +65,51 @@ export const storePageDataSchema = z.object({
   goodChannels: z.array(goodChannelSchema),
 });
 
-export const storeSlugSchema = z.object({
+const storeSlugSchema = z.object({
   name: z.string(),
   uuid: z.string(),
 });
 
 export const storeSlugsSchema = z.array(storeSlugSchema);
 
+const storeBySlugResponseSchema = z.object({
+  store: z.array(storePageDataSchema),
+});
+
 export type StorePageData = z.infer<typeof storePageDataSchema>;
 export type StoreSlug = z.infer<typeof storeSlugSchema>;
+
+export async function fetchStoreBySlugServer(
+  name: string,
+  uuid: string,
+): Promise<StorePageData | null> {
+  const raw = await gqlServerClient().request<unknown>(storeBySlugQueryDocument, {
+    name,
+    uuid,
+  });
+  const parsed = storeBySlugResponseSchema.safeParse(raw);
+  return parsed.success ? (parsed.data.store[0] ?? null) : null;
+}
+
+export async function fetchStoreBySlugClient(
+  name: string,
+  uuid: string,
+): Promise<StorePageData> {
+  const raw = await gqlClient().request<unknown>(storeBySlugQueryDocument, {
+    name,
+    uuid,
+  });
+  const parsed = storeBySlugResponseSchema.safeParse(raw);
+  const pageData = parsed.success ? parsed.data.store[0] : undefined;
+  if (!pageData) {
+    throw new Error("Invalid store page data");
+  }
+  return pageData;
+}
+
+export function storeBySlugQueryOptions(name: string, uuid: string) {
+  return {
+    queryKey: storeBySlugQueryKey(name, uuid),
+    queryFn: () => fetchStoreBySlugClient(name, uuid),
+  } as const;
+}

@@ -1,6 +1,7 @@
 "use client";
 
-import { Prop } from "./types";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 import { TAppendClass } from "components/button/types";
 import { useState } from "react";
 import { Button } from "components";
@@ -9,6 +10,7 @@ import Sidebar from "./sidebar";
 import Menu from "./menu";
 import Head from "next/head";
 import Image from "next/image";
+import { storeBySlugQueryOptions } from "../../app/[locale]/store/[name]/[uuid]/queries";
 
 import classes from "styles/features/store/Store.module.scss";
 
@@ -21,10 +23,19 @@ const button: TAppendClass = {
 };
 const originPosition: number = 0;
 
-function Store({ data }: Prop) {
+function Store() {
+  const params = useParams<{ name: string; uuid: string }>();
+  const name = decodeURIComponent(params.name);
+  const uuid = params.uuid;
+  const { data } = useQuery(storeBySlugQueryOptions(name, uuid));
   const [position, setPosition] = useState<number>(originPosition);
+
+  if (!data) {
+    return <div>loading...</div>;
+  }
+
   const {
-    name,
+    name: storeName,
     deliveryCost,
     shortestDeliveryTime,
     score,
@@ -73,7 +84,7 @@ function Store({ data }: Prop) {
   return (
     <>
       <Head>
-        <title>{`${name} 台北 外送 | 菜單 | Uber Eats`}</title>
+        <title>{`${storeName} 台北 外送 | 菜單 | Uber Eats`}</title>
         <meta
           name="description"
           content="使用 Uber 帳戶即可向台北的兔寶寶漢堡店訂購外送美食。瀏覽菜單、查看熱門餐點，並可追蹤訂單進度。"
@@ -82,7 +93,7 @@ function Store({ data }: Prop) {
       <main className={wrapper}>
         {_renderBanner()}
         <Title
-          name={name}
+          name={storeName}
           deliveryCost={deliveryCost}
           shortestDeliveryTime={shortestDeliveryTime}
           score={score}
