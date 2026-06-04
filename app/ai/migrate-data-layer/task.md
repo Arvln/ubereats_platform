@@ -229,55 +229,85 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ### Step 13: Migrate category page to SSR hydration + `useQuery`
 
-**What**: Same pattern for `app/[locale]/[title]/page.tsx`.
+**What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for category page; client components read hydrated cache via `useQuery`.
 
 **How**:
 
-1. Use the shared QueryClient factory from `lib/server-query-client.ts` created in Step 12.
-2. `prefetchQuery` with category `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataByKey`.
-3. `dehydrate` + `HydrationBoundary`; `generateStaticParams` via `gqlServerClient` directly — do not call `fetchStaticSlugs`.
-4. Category UI consumes `useQuery` with `['GetCategoryByTitle', { title }]`.
-5. Remove the `fetchPageDataByKey` and `fetchStaticSlugs` calls previously used by this page.
+**Server (app/[locale]/[title]/page.tsx)**:
+
+1. Use the shared QueryClient factory from `lib/server-query-client.ts`.
+2. `prefetchQuery` with `['GetCategoryByTitle', { title }]` queryKey and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataByKey`.
+3. `generateStaticParams` via `gqlServerClient` directly — do not call `fetchStaticSlugs`.
+4. `dehydrate` + wrap children in `HydrationBoundary`.
+5. Remove `fetchPageDataByKey` and `fetchStaticSlugs` calls.
 6. After removal, check whether `fetchPageDataByKey` and `fetchStaticSlugs` still have any remaining callers. If either has none, delete it from `lib/page-data.ts`.
-7. One page-level query — do not add separate feature-level requests.
+
+**Client (features/category)**:
+
+1. `useQuery` with **same** `['GetCategoryByTitle', { title }]` queryKey and **client-specific** `queryFn` (`gqlClient`) for refetches.
+2. Do not import `gqlServerClient` in client components.
+3. Validate in client `queryFn` at trust boundary only when network request occurs; do not re-parse cache data in components.
+4. Remove `data` props replaced by `useQuery`.
+5. One page-level query — do not add separate feature-level requests.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
+
+**[HUMAN REVIEW: approved]**: No client loading flash/refetch right after hydration; category content correct.
 
 ---
 
 ### Step 14: Migrate marketing page to SSR hydration + `useQuery`
 
-**What**: Same pattern for `app/[locale]/marketing/[uuid]/page.tsx`.
+**What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for marketing page; client components read hydrated cache via `useQuery`.
 
 **How**:
 
-1. Use the shared QueryClient factory from `lib/server-query-client.ts` created in Step 12.
+**Server (app/[locale]/marketing/[uuid]/page.tsx)**:
+
+1. Use the shared QueryClient factory from `lib/server-query-client.ts`.
 2. `prefetchQuery` with advertise `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageData` or `fetchPageDataSingle`.
-3. `dehydrate` + `HydrationBoundary`; client child uses matching `useQuery`.
-4. Remove the helper calls previously used by this page.
+3. `dehydrate` + wrap children in `HydrationBoundary`.
+4. Remove `fetchPageData` and `fetchPageDataSingle` calls.
 5. After removal, check whether each removed helper still has any remaining callers. If any has none, delete it from `lib/page-data.ts`.
-6. Keep advertise scss/UI unchanged.
+
+**Client (features/marketing)**:
+
+1. `useQuery` with **same** advertise `queryKey` and **client-specific** `queryFn` (`gqlClient`) for refetches.
+2. Do not import `gqlServerClient` in client components.
+3. Validate in client `queryFn` at trust boundary only when network request occurs; do not re-parse cache data in components.
+4. Remove `data` props replaced by `useQuery`.
+5. Keep advertise scss/UI unchanged.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
+
+**[HUMAN REVIEW: approved]**: No client loading flash/refetch right after hydration; marketing content correct.
 
 ---
 
 ### Step 15: Migrate store page to SSR hydration + `useQuery`
 
-**What**: Same pattern for `app/[locale]/store/[name]/[uuid]/page.tsx`.
+**What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for store page; client components read hydrated cache via `useQuery`.
 
 **How**:
 
-1. Use the shared QueryClient factory from `lib/server-query-client.ts` created in Step 12.
+**Server (app/[locale]/store/[name]/[uuid]/page.tsx)**:
+
+1. Use the shared QueryClient factory from `lib/server-query-client.ts`.
 2. `prefetchQuery` with store `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataSingle`.
-3. `dehydrate` + `HydrationBoundary`; keep `dynamicParams: true`.
-4. `features/store` uses `useQuery` with store `queryKey`; remove `data` prop.
-5. Remove the helper calls previously used by this page.
-6. After removal, check whether `fetchPageDataSingle` still has any remaining callers. If it has none, delete it from `lib/page-data.ts`.
+3. `dehydrate` + wrap children in `HydrationBoundary`; keep `dynamicParams: true`.
+4. Remove `fetchPageDataSingle` calls.
+5. After removal, check whether `fetchPageDataSingle` still has any remaining callers. If it has none, delete it from `lib/page-data.ts`.
+
+**Client (features/store)**:
+
+1. `useQuery` with **same** store `queryKey` and **client-specific** `queryFn` (`gqlClient`) for refetches.
+2. Do not import `gqlServerClient` in client components.
+3. Validate in client `queryFn` at trust boundary only when network request occurs; do not re-parse cache data in components.
+4. Remove `data` prop replaced by `useQuery`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Store SSR/ISR fallback behavior unchanged.
+**[HUMAN REVIEW: approved]**: Store SSR/ISR fallback behavior unchanged; no client loading flash/refetch right after hydration.
 
 ---
 
