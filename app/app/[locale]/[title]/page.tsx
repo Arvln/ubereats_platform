@@ -1,16 +1,41 @@
 import { Category } from "features";
+import { gqlServerClient } from "api/graphql";
 import { createServerQueryClient } from "lib/server-query-client";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { z } from "zod";
 import {
   categoryByTitleQueryKey,
   fetchCategoryByTitleServer,
-  fetchCategoryTitlesServer,
 } from "./queries";
 
+const categoryTitlesQueryDocument = `
+  query {
+    shortcut {
+      title
+    }
+  }
+`;
+
+const categorySlugSchema = z.object({
+  title: z.string(),
+});
+
+const categorySlugsSchema = z.array(categorySlugSchema);
+
+const categoryTitlesResponseSchema = z.object({
+  shortcut: z.array(categorySlugSchema),
+});
+
 export async function generateStaticParams() {
-  const slugs = await fetchCategoryTitlesServer();
-  return slugs.map(({ title }) => ({ title }));
+  const raw = await gqlServerClient().request<unknown>(
+    categoryTitlesQueryDocument,
+  );
+  const parsed = categoryTitlesResponseSchema.safeParse(raw);
+  if (!parsed.success) return [];
+
+  const slugs = categorySlugsSchema.safeParse(parsed.data.shortcut);
+  return (slugs.success ? slugs.data : []).map(({ title }) => ({ title }));
 }
 
 export default async function CategoryPage(props: {

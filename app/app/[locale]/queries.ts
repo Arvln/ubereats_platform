@@ -1,5 +1,5 @@
 import { gqlClient, gqlServerClient } from "api/graphql";
-import { redirectToHome } from "lib/page-data";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export const homeQueryDocument = `
@@ -102,7 +102,7 @@ export async function fetchHomePageDataServer(): Promise<HomePageData> {
   const raw = await gqlServerClient().request<unknown>(homeQueryDocument);
   const parsed = homePageDataSchema.safeParse(raw);
   if (!parsed.success) {
-    redirectToHome();
+    redirect("/");
   }
   return parsed.data;
 }

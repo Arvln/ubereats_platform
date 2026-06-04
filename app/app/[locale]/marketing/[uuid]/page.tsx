@@ -1,32 +1,47 @@
-import { TUUID } from 'types/pages/marketing/advertise';
-import { Fields } from 'enums/pages/marketing/advertise';
 import { gqlServerClient } from 'api/graphql';
 import { getLocale, setRequestLocale } from 'next-intl/server';
-import { fetchStaticSlugs, redirectToHome } from 'lib/page-data';
+import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import {
   marketingByUuidQueryDocument,
   marketingPageDataSchema,
-  marketingSlugsSchema,
-  marketingUuidsQueryDocument,
 } from './queries';
 
 import classes from 'styles/pages/marketing/Advertise.module.scss';
 
 const { wrapper, massage } = classes;
-const { CAROUSEL } = Fields;
+
+const marketingSlugSchema = z.object({
+  uuid: z.string(),
+});
+
+const marketingSlugsSchema = z.array(marketingSlugSchema);
+
+const marketingUuidsQueryDocument = `
+  query {
+    carousel {
+      uuid
+    }
+  }
+`;
+
+const marketingUuidsResponseSchema = z.object({
+  carousel: z.array(marketingSlugSchema),
+});
 
 const marketingByUuidResponseSchema = z.object({
   advertise: z.array(marketingPageDataSchema),
 });
 
 export async function generateStaticParams() {
-  const slugs = await fetchStaticSlugs<TUUID>(
+  const raw = await gqlServerClient().request<unknown>(
     marketingUuidsQueryDocument,
-    CAROUSEL,
-    marketingSlugsSchema
   );
-  return slugs.map(({ uuid }) => ({ uuid }));
+  const parsed = marketingUuidsResponseSchema.safeParse(raw);
+  if (!parsed.success) return [];
+
+  const slugs = marketingSlugsSchema.safeParse(parsed.data.carousel);
+  return (slugs.success ? slugs.data : []).map(({ uuid }) => ({ uuid }));
 }
 
 export default async function AdvertisePage(props: {
@@ -45,7 +60,7 @@ export default async function AdvertisePage(props: {
   const pageData = parsed.success ? parsed.data.advertise[0] : undefined;
 
   if (!pageData) {
-    return redirectToHome();
+    redirect('/');
   }
 
   const { content } = pageData;

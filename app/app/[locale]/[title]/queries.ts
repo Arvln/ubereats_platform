@@ -1,14 +1,6 @@
 import { gqlClient, gqlServerClient } from "api/graphql";
-import { redirectToHome } from "lib/page-data";
+import { redirect } from "next/navigation";
 import { z } from "zod";
-
-export const categoryTitlesQueryDocument = `
-  query {
-    shortcut {
-      title
-    }
-  }
-`;
 
 export const categoryByTitleQueryDocument = `
   query($title: String!) {
@@ -55,30 +47,7 @@ const categoryByTitleResponseSchema = z.object({
   category: z.array(categoryPageDataSchema),
 });
 
-const categoryTitlesResponseSchema = z.object({
-  shortcut: z.array(
-    z.object({
-      title: z.string(),
-    }),
-  ),
-});
-
-export const categorySlugSchema = z.object({
-  title: z.string(),
-});
-
-export const categorySlugsSchema = z.array(categorySlugSchema);
-
 export type CategoryPageData = z.infer<typeof categoryPageDataSchema>;
-export type CategorySlug = z.infer<typeof categorySlugSchema>;
-
-export async function fetchCategoryTitlesServer(): Promise<CategorySlug[]> {
-  const raw = await gqlServerClient().request<unknown>(
-    categoryTitlesQueryDocument,
-  );
-  const parsed = categoryTitlesResponseSchema.safeParse(raw);
-  return parsed.success ? parsed.data.shortcut : [];
-}
 
 export async function fetchCategoryByTitleServer(
   title: string,
@@ -90,7 +59,7 @@ export async function fetchCategoryByTitleServer(
   const parsed = categoryByTitleResponseSchema.safeParse(raw);
   const pageData = parsed.success ? parsed.data.category[0] : undefined;
   if (!pageData) {
-    redirectToHome();
+    redirect("/");
   }
   return pageData;
 }

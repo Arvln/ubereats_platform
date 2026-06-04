@@ -1,15 +1,6 @@
 import { gqlClient, gqlServerClient } from "api/graphql";
 import { z } from "zod";
 
-export const storeSlugsQueryDocument = `
-  query {
-    storeSlugs {
-      name
-      uuid
-    }
-  }
-`;
-
 export const storeBySlugQueryDocument = `
   query($name: String!, $uuid: String!) {
     store(name: $name, uuid: $uuid) {
@@ -65,19 +56,11 @@ export const storePageDataSchema = z.object({
   goodChannels: z.array(goodChannelSchema),
 });
 
-const storeSlugSchema = z.object({
-  name: z.string(),
-  uuid: z.string(),
-});
-
-export const storeSlugsSchema = z.array(storeSlugSchema);
-
 const storeBySlugResponseSchema = z.object({
   store: z.array(storePageDataSchema),
 });
 
 export type StorePageData = z.infer<typeof storePageDataSchema>;
-export type StoreSlug = z.infer<typeof storeSlugSchema>;
 
 export async function fetchStoreBySlugServer(
   name: string,

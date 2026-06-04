@@ -302,20 +302,23 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 16: Refactor `fetchStaticSlugs` to use `gqlServerClient`
+### Step 16: Remove `fetchStaticSlugs` from `lib/page-data.ts`
 
-**What**: Replace Apollo client usage in `fetchStaticSlugs` with `gqlServerClient` to align with the rest of the codebase.
+**What**: Delete `fetchStaticSlugs` — all callers have been migrated to call `gqlServerClient` directly in `generateStaticParams`.
 
 **How**:
 
-1. In `lib/page-data.ts`, rewrite `fetchStaticSlugs` to use `gqlServerClient` directly instead of `getApolloClient`.
-2. Keep the same function signature — callers should require no changes.
-3. Keep Zod validation logic unchanged.
-4. Remove `getApolloClient` and `@apollo/client` imports if no longer used in this file after the change.
+1. Confirm `fetchStaticSlugs` has no remaining callers across the codebase.
+2. Delete `fetchStaticSlugs` from `lib/page-data.ts`.
+3. Remove any imports only used by `fetchStaticSlugs` (`getApolloClient`, `@apollo/client`, `gql`) if no longer used elsewhere in the file.
+4. Find all callers of `redirectToHome` across the codebase; replace each with `redirect("/")` inline.
+5. Find all callers of `loadMessages` across the codebase; replace each with the inline dynamic import.
+6. Confirm `lib/page-data.ts` has no remaining callers or imports.
+7. Delete `lib/page-data.ts`.
 
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies `generateStaticParams` still works correctly after running `docker-compose build --no-cache && docker-compose up -d`
+**Done When**: No TypeScript or import errors shown in Cursor editor.
 
-**[HUMAN REVIEW]**: Static routes generate correctly; no Apollo client usage remaining in `lib/page-data.ts`.
+**[HUMAN REVIEW]**: `fetchStaticSlugs` deleted; no Apollo client usage remaining in `lib/page-data.ts`.
 
 ---
 
