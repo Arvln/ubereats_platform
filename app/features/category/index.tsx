@@ -1,8 +1,14 @@
-import { Prop } from './types';
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'next/navigation';
 import { RecommandCategories } from 'enums/features/category';
 import Title from './title';
 import { Shop } from 'components';
 import RestrictSearch from 'features/restrict_search';
+import {
+  categoryByTitleQueryOptions,
+} from '../../app/[locale]/[title]/queries';
 
 import classes from 'styles/features/category/Category.module.scss';
 
@@ -19,9 +25,17 @@ const {
 	TOP_EATS
 } = RecommandCategories;
 
-function Category({ data }: Prop) {
+function Category() {
+	const params = useParams<{ title: string }>();
+	const title = params.title;
+	const { data } = useQuery(categoryByTitleQueryOptions(title));
+
+	if (!data) {
+		return null;
+	}
+
 	const {
-		title,
+		title: categoryTitle,
 		isCuisines,
 		imageSuffix,
 		categoryShopItems: shops
@@ -41,7 +55,7 @@ function Category({ data }: Prop) {
 		);
 	};
 
-	if (title === DEALS || title === TOP_EATS) {
+	if (categoryTitle === DEALS || categoryTitle === TOP_EATS) {
 		return (
 			<main className={wrapper}>
 				{_renderShops(imageHeight_30, recommandShop)}
@@ -52,7 +66,7 @@ function Category({ data }: Prop) {
 	return (
 		<>
 			<Title
-				title={title}
+				title={categoryTitle}
 				iconUrl={iconUrl}
 			/>
 			<main className={wrapper}>

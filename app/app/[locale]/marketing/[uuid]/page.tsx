@@ -18,8 +18,6 @@ import classes from 'styles/pages/marketing/Advertise.module.scss';
 const { wrapper, massage } = classes;
 const { CAROUSEL, ADVERTISE } = Fields;
 
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const slugs = await fetchStaticSlugs<TUUID>(
     marketingUuidsQueryDocument,

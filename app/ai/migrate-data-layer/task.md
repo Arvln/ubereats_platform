@@ -236,7 +236,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 **Server (app/[locale]/[title]/page.tsx)**:
 
 1. Use the shared QueryClient factory from `lib/server-query-client.ts`.
-2. `prefetchQuery` with `['GetCategoryByTitle', { title }]` queryKey and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataByKey`.
+2. `prefetchQuery` with `["category", "by-title", title]` queryKey and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageDataByKey`.
 3. `generateStaticParams` via `gqlServerClient` directly — do not call `fetchStaticSlugs`.
 4. `dehydrate` + wrap children in `HydrationBoundary`.
 5. Remove `fetchPageDataByKey` and `fetchStaticSlugs` calls.
@@ -244,7 +244,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **Client (features/category)**:
 
-1. `useQuery` with **same** `['GetCategoryByTitle', { title }]` queryKey and **client-specific** `queryFn` (`gqlClient`) for refetches.
+1. `useQuery` with **same** `["category", "by-title", title]` queryKey and **client-specific** `queryFn` (`gqlClient`) for refetches.
 2. Do not import `gqlServerClient` in client components.
 3. Validate in client `queryFn` at trust boundary only when network request occurs; do not re-parse cache data in components.
 4. Remove `data` props replaced by `useQuery`.

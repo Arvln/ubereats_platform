@@ -12,8 +12,6 @@ import {
 
 const { STORESLUGS, STORE } = Fields;
 
-export const dynamicParams = true;
-
 export async function generateStaticParams() {
   const slugs = await fetchStaticSlugs<TStoreSlug>(
     storeSlugsQueryDocument,

@@ -1,52 +1,36 @@
-import { TPageData, TTitles } from "types/pages/categories";
-import { Fields } from "enums/pages/categories";
-import {
-  categoryByTitleQueryDocument,
-  categoryPageDataSchema,
-  categorySlugsSchema,
-  categoryTitlesQueryDocument,
-} from "./queries";
 import { Category } from "features";
+import { createServerQueryClient } from "lib/server-query-client";
 import { getLocale, setRequestLocale } from "next-intl/server";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import {
-  fetchStaticSlugs,
-  fetchPageDataByKey,
-  redirectToHome,
-} from "lib/page-data";
-
-const { SHORTCUT, CATEGORY } = Fields;
-
-export const dynamicParams = false;
+  categoryByTitleQueryKey,
+  fetchCategoryByTitleServer,
+  fetchCategoryTitlesServer,
+} from "./queries";
 
 export async function generateStaticParams() {
-  const slugs = await fetchStaticSlugs<TTitles>(
-    categoryTitlesQueryDocument,
-    SHORTCUT,
-    categorySlugsSchema
-  );
+  const slugs = await fetchCategoryTitlesServer();
   return slugs.map(({ title }) => ({ title }));
 }
 
 export default async function CategoryPage(props: {
   params: Promise<{ title: string }>;
 }) {
-  const params = await props.params;
-
-  const { title } = params;
+  const { title } = await props.params;
 
   const locale = await getLocale();
   setRequestLocale(locale);
 
-  const pageData = await fetchPageDataByKey<TPageData>(
-    categoryByTitleQueryDocument,
-    { title },
-    CATEGORY,
-    categoryPageDataSchema
+  const queryClient = createServerQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: categoryByTitleQueryKey(title),
+    queryFn: () => fetchCategoryByTitleServer(title),
+  });
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Category />
+    </HydrationBoundary>
   );
-
-  if (!pageData) {
-    return redirectToHome();
-  }
-
-  return <Category data={pageData} />;
 }
