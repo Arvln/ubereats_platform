@@ -7,28 +7,6 @@ import { ZodTypeAny } from "zod";
 
 const client = getApolloClient();
 
-export async function fetchPageDataByKey<T>(
-  query: string,
-  variables: Record<string, unknown>,
-  key: string,
-  schema?: ZodTypeAny
-): Promise<T | null> {
-  const { data }: ApolloQueryResult<TQueryResult<T>> = await client.query({
-    query: gql(query),
-    variables,
-  });
-
-  if (!data) return null;
-
-  const { [key]: pageDataList } = data as TDynamicRoutesPageResult<T>;
-  const pageData = pageDataList?.[0];
-  if (!pageData) return null;
-  if (!schema) return pageData;
-
-  const parsed = schema.safeParse(pageData);
-  return parsed.success ? parsed.data : null;
-}
-
 export async function fetchPageDataSingle<T>(
   query: string,
   variables: Record<string, unknown>,

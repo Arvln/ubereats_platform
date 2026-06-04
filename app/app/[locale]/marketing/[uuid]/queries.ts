@@ -16,19 +16,12 @@ export const marketingByUuidQueryDocument = `
   }
 `;
 
-export const marketingUuidsQueryKey = ["marketing", "uuids"] as const;
-export const marketingByUuidQueryKey = (uuid: string) =>
-  ["marketing", "by-uuid", uuid] as const;
+const marketingSlugSchema = z.object({
+  uuid: z.string(),
+});
 
 export const marketingPageDataSchema = z.object({
   content: z.string(),
 });
 
-export const marketingSlugSchema = z.object({
-  uuid: z.string(),
-});
-
 export const marketingSlugsSchema = z.array(marketingSlugSchema);
-
-export type MarketingPageData = z.infer<typeof marketingPageDataSchema>;
-export type MarketingSlug = z.infer<typeof marketingSlugSchema>;

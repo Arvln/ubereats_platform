@@ -227,7 +227,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 13: Migrate category page to SSR hydration + `useQuery`
+### Step 13: Migrate category page to SSG hydration + `useQuery`
 
 **What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for category page; client components read hydrated cache via `useQuery`.
 
@@ -256,27 +256,18 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 14: Migrate marketing page to SSR hydration + `useQuery`
+### Step 14: Migrate marketing page to SSG
 
-**What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for marketing page; client components read hydrated cache via `useQuery`.
+**What**: Replace `fetchPageDataByKey` with direct `gqlServerClient` call in server component; UI unchanged.
 
 **How**:
 
-**Server (app/[locale]/marketing/[uuid]/page.tsx)**:
+**Server (`app/[locale]/marketing/[uuid]/page.tsx`)**:
 
-1. Use the shared QueryClient factory from `lib/server-query-client.ts`.
-2. `prefetchQuery` with advertise `queryKey` and a **server-specific** `queryFn` using `gqlServerClient` directly — do not call `fetchPageData` or `fetchPageDataSingle`.
-3. `dehydrate` + wrap children in `HydrationBoundary`.
-4. Remove `fetchPageData` and `fetchPageDataSingle` calls.
-5. After removal, check whether each removed helper still has any remaining callers. If any has none, delete it from `lib/page-data.ts`.
-
-**Client (features/marketing)**:
-
-1. `useQuery` with **same** advertise `queryKey` and **client-specific** `queryFn` (`gqlClient`) for refetches.
-2. Do not import `gqlServerClient` in client components.
-3. Validate in client `queryFn` at trust boundary only when network request occurs; do not re-parse cache data in components.
-4. Remove `data` props replaced by `useQuery`.
-5. Keep advertise scss/UI unchanged.
+1. Replace `fetchPageDataByKey` with direct `gqlServerClient` call.
+2. Keep data reading and UI render in server component — no `useQuery`, no `HydrationBoundary` needed.
+3. Keep existing UI and scss classes unchanged — no refactors.
+4. After removal, check whether `fetchPageDataByKey` still has any remaining callers. If none, delete it from `lib/page-data.ts`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
@@ -284,7 +275,7 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 ---
 
-### Step 15: Migrate store page to SSR hydration + `useQuery`
+### Step 15: Migrate store page to SSG hydration + `useQuery`
 
 **What**: `prefetchQuery` → `dehydrate` → `HydrationBoundary` for store page; client components read hydrated cache via `useQuery`.
 
