@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { usePathname, useRouter } from '../../i18n/navigation';
+import { usePathname, useRouter } from 'i18n/navigation';
 
 import classes from 'styles/features/Footer.module.scss';
 

@@ -134,7 +134,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Header, footer, entry-options popup, and form overlay work on every route.
+**[HUMAN REVIEW: approved]**: Header, footer, entry-options popup, and form overlay work on every route.
 
 ---
 

@@ -5,7 +5,7 @@ import { TGood } from 'types/pages/store';
 import { useContext } from 'react';
 import Image from 'next/image';
 import { getDiscountPrice, isFreeGift } from './utils';
-import { FormContext } from 'features/layout';
+import { FormContext } from 'app/[locale]/components/layout';
 import OrderForm from '../order_form';
 
 import classes from 'styles/features/store/Menu.module.scss';

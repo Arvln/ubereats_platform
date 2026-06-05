@@ -4,10 +4,10 @@ import { Prop, THandleForm } from './types';
 import { createContext, useState } from 'react';
 import Head from 'next/head';
 import { Form } from 'components';
-import Popups from 'features/popups';
-import EntryOptions from 'features/entry_options';
-import Header from 'features/header';
-import Footer from 'features/footer';
+import Popups from '../popups';
+import EntryOptions from '../entry_options';
+import Header from '../header';
+import Footer from '../footer';
 
 import classes from 'styles/features/Layout.module.scss';
 

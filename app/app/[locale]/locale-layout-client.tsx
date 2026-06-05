@@ -1,6 +1,6 @@
 "use client";
 
-import Layout from "features/layout";
+import Layout from "./components/layout";
 import { QueryClientProvider } from "providers/query-client-provider";
 
 export default function LocaleLayoutClient({
