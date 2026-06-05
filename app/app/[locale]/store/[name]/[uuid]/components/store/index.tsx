@@ -10,7 +10,7 @@ import Sidebar from "./sidebar";
 import Menu from "./menu";
 import Head from "next/head";
 import Image from "next/image";
-import { storeBySlugQueryOptions } from "../../app/[locale]/store/[name]/[uuid]/queries";
+import { storeBySlugQueryOptions } from "../../../queries";
 
 import classes from "styles/features/store/Store.module.scss";
 

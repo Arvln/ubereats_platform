@@ -1,4 +1,4 @@
-import { Store } from "features";
+import Store from "./components/store";
 import { gqlServerClient } from "api/graphql";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
