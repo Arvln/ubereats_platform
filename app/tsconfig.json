@@ -42,9 +42,6 @@
       ],
       "types/*": [
         "../types/*"
-      ],
-      "enums/*": [
-        "enums/*"
       ]
     },
     "incremental": true,
