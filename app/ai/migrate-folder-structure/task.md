@@ -200,7 +200,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Store page menu, sidebar, order form, and title render correctly; form overlay still works via `FormContext`.
+**[HUMAN REVIEW: approved]**: Store page menu, sidebar, order form, and title render correctly; form overlay still works via `FormContext`.
 
 ---
 
@@ -218,7 +218,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Confirm `features/` and `enums/` directories are fully deleted from the repo root.
+**[HUMAN REVIEW: approved]**: Confirm `features/` and `enums/` directories are fully deleted from the repo root.
 
 ---
 
@@ -240,7 +240,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: All success conditions in `ai/migrate-folder-structure/objective.md` are met.
+**[HUMAN REVIEW: approved]**: All success conditions in `ai/migrate-folder-structure/objective.md` are met.
 
 ---
 

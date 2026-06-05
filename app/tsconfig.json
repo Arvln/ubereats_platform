@@ -25,9 +25,6 @@
       "locales/*": [
         "locales/*"
       ],
-      "features/*": [
-        "features/*"
-      ],
       "graphql/*": [
         "graphql/*"
       ],
