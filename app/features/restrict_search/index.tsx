@@ -1,21 +1,61 @@
 'use client';
 
 import { Prop, TConditionsState } from './types';
-import {
-  ConditionsTypes,
-  ClassificationTypes,
-  ClassificationsTypes,
-  PriceLevelTypes,
-  DeliveryCostLimitTypes,
-  DeliveryRestrictionTypes,
-  DeliveryRestrictionsTypes
-} from 'enums/features/restrict_search';
 import { TAppendClass } from 'components/button/types';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Button } from 'components';
 import classes from 'styles/features/RestrictSearch.module.scss';
 import { useTranslations } from 'next-intl';
+
+enum ConditionsTypes {
+  CLASSIFICATION = 'restrict-search.categories',
+  PRICE_RANGE = 'restrict-search.price-range',
+  DELIVERY_COST_LIMITATION = 'restrict-search.maximum-delivery-fee',
+  DIETARY_RESTRICTION = 'restrict-search.dietary-restrictions'
+};
+
+enum ClassificationTypes {
+  RECOMMEND = 0,
+  POPULAR = 1,
+  SCORE = 2,
+  DELIVERY_TIME = 3
+};
+
+enum ClassificationsTypes {
+  RECOMMEND = 'restrict-search.personalized-recommended-dishes',
+  POPULAR = 'restrict-search.popular-dishes',
+  SCORE = 'restrict-search.rating',
+  DELIVERY_TIME = 'restrict-search.delivery-time'
+};
+
+enum PriceLevelTypes {
+  EXTREMELY_LOW = '$',
+  LOW = '$$',
+  MIDDLE = '$$$',
+  HIGH = '$$$$'
+};
+
+enum DeliveryCostLimitTypes {
+  LOWEST_FEE = 0,
+  LOW_FEE = 1,
+  MODERATE_FEE = 2,
+  HIGHER_FEE = 3,
+};
+
+enum DeliveryRestrictionTypes {
+  VEGETABLE = 0,
+  VEGAN = 1,
+  GLUTEN_FREE = 2,
+  NO_ALLERGY = 3
+};
+
+enum DeliveryRestrictionsTypes {
+  VEGETABLE = 'restrict-search.vegetarian-dishes',
+  VEGAN = 'restrict-search.vegan-dishes',
+  GLUTEN_FREE = 'restrict-search.gluten-free-dishes',
+  NO_ALLERGY = 'restrict-search.allergy-friendly'
+};
 
 const {
   wrapper,
@@ -45,42 +85,12 @@ const {
   space_16,
   rotate_180
 } = classes;
-const {
-  CLASSIFICATION,
-  PRICE_RANGE,
-  DELIVERY_COST_LIMITATION,
-  DIETARY_RESTRICTION
-} = ConditionsTypes;
-const {
-  RECOMMEND,
-  POPULAR,
-  SCORE,
-  DELIVERY_TIME
-} = ClassificationTypes;
-const {
-  EXTREMELY_LOW,
-  LOW,
-  MIDDLE,
-  HIGH
-} = PriceLevelTypes;
-const {
-  LOWEST_FEE,
-  LOW_FEE,
-  MODERATE_FEE,
-  HIGHER_FEE
-} = DeliveryCostLimitTypes;
-const {
-  VEGETABLE,
-  VEGAN,
-  GLUTEN_FREE,
-  NO_ALLERGY
-} = DeliveryRestrictionTypes;
 
 function RestrictSearch({ isCuisines }: Prop) {
   const t = useTranslations();
   const [conditionsState, setConditionsState] = useState<TConditionsState>({});
-  const [classificationOption, setClassificationOption] = useState<number>(RECOMMEND);
-  const [deliveryCostInputValue, setDeliveryCostInputValue] = useState<number>(HIGHER_FEE);
+  const [classificationOption, setClassificationOption] = useState<number>(ClassificationTypes.RECOMMEND);
+  const [deliveryCostInputValue, setDeliveryCostInputValue] = useState<number>(DeliveryCostLimitTypes.HIGHER_FEE);
   const deliveryCostInput = useRef<HTMLInputElement | null>(null);
 
   function _handleButton(title: string) {
@@ -113,7 +123,12 @@ function RestrictSearch({ isCuisines }: Prop) {
   };
 
   function _renderClassificationContent() {
-    const classifications: number[] = [RECOMMEND, POPULAR, SCORE, DELIVERY_TIME];
+    const classifications: number[] = [
+      ClassificationTypes.RECOMMEND,
+      ClassificationTypes.POPULAR,
+      ClassificationTypes.SCORE,
+      ClassificationTypes.DELIVERY_TIME
+    ];
 
     return (
       classifications.map(classification => {
@@ -150,7 +165,12 @@ function RestrictSearch({ isCuisines }: Prop) {
   };
 
   function _renderPriceRange() {
-    const priceRanges: string[] = [EXTREMELY_LOW, LOW, MIDDLE, HIGH];
+    const priceRanges: string[] = [
+      PriceLevelTypes.EXTREMELY_LOW,
+      PriceLevelTypes.LOW,
+      PriceLevelTypes.MIDDLE,
+      PriceLevelTypes.HIGH
+    ];
     const priceRangeButton: TAppendClass = {
       appendWrapper: rangeButtonWrapper,
       appendContent: rangeButtonContentWrapper
@@ -178,32 +198,32 @@ function RestrictSearch({ isCuisines }: Prop) {
 
   function _renderDeliveryCostLimitation() {
     const firstDivider: string = `${deliveryCostOption} ${divider}`;
-    const secondDivider: string = `${deliveryCostOption} ${deliveryCostInputValue !== MODERATE_FEE ? divider : ''}`;
+    const secondDivider: string = `${deliveryCostOption} ${deliveryCostInputValue !== DeliveryCostLimitTypes.MODERATE_FEE ? divider : ''}`;
 
     return (
       <div className={deliveryCostContent}>
         <div className={deliveryCostOptions}>
           <div
             className={deliveryCostOption}
-            onClick={() => setDeliveryCostInputValue(LOWEST_FEE)}
+            onClick={() => setDeliveryCostInputValue(DeliveryCostLimitTypes.LOWEST_FEE)}
           >
             {t('restrict-search.lowest')}
           </div>
           <div
             className={firstDivider}
-            onClick={() => setDeliveryCostInputValue(LOW_FEE)}
+            onClick={() => setDeliveryCostInputValue(DeliveryCostLimitTypes.LOW_FEE)}
           >
             {t('restrict-search.low')}
           </div>
           <div
             className={secondDivider}
-            onClick={() => setDeliveryCostInputValue(MODERATE_FEE)}
+            onClick={() => setDeliveryCostInputValue(DeliveryCostLimitTypes.MODERATE_FEE)}
           >
             {t('restrict-search.moderate')}
           </div>
           <div
             className={deliveryCostOption}
-            onClick={() => setDeliveryCostInputValue(HIGHER_FEE)}
+            onClick={() => setDeliveryCostInputValue(DeliveryCostLimitTypes.HIGHER_FEE)}
           >
             {t('restrict-search.higher')}
           </div>
@@ -221,7 +241,12 @@ function RestrictSearch({ isCuisines }: Prop) {
   };
 
   function _renderDietaryRestriction(): JSX.Element {
-    const deliveryRestrictions: number[] = [VEGETABLE, VEGAN, GLUTEN_FREE, NO_ALLERGY];
+    const deliveryRestrictions: number[] = [
+      DeliveryRestrictionTypes.VEGETABLE,
+      DeliveryRestrictionTypes.VEGAN,
+      DeliveryRestrictionTypes.GLUTEN_FREE,
+      DeliveryRestrictionTypes.NO_ALLERGY
+    ];
     const deliveryRestrictionButton: TAppendClass = {
       appendWrapper: dietaryButtonWrapper,
       appendContent: dietaryButtonContentWrapper
@@ -259,7 +284,7 @@ function RestrictSearch({ isCuisines }: Prop) {
     condition: string,
     content: JSX.Element | JSX.Element[]
   ) {
-    if (condition === DIETARY_RESTRICTION && !isCuisines) return;
+    if (condition === ConditionsTypes.DIETARY_RESTRICTION && !isCuisines) return;
 
     const initialConditionsState = {
       rotate: rotate_180,
@@ -304,25 +329,25 @@ function RestrictSearch({ isCuisines }: Prop) {
           </div>
           {
             _renderCondition(
-              CLASSIFICATION,
+              ConditionsTypes.CLASSIFICATION,
               _renderClassificationContent()
             )
           }
           {
             _renderCondition(
-              PRICE_RANGE,
+              ConditionsTypes.PRICE_RANGE,
               _renderPriceRange()
             )
           }
           {
             _renderCondition(
-              DELIVERY_COST_LIMITATION,
+              ConditionsTypes.DELIVERY_COST_LIMITATION,
               _renderDeliveryCostLimitation()
             )
           }
           {
             _renderCondition(
-              DIETARY_RESTRICTION,
+              ConditionsTypes.DIETARY_RESTRICTION,
               _renderDietaryRestriction()
             )
           }

@@ -1,15 +1,14 @@
 import type { HomeChannelItem } from "./types";
-import { ContentTypes } from 'enums/features/channel';
+
+enum ContentTypes {
+	CHANNELSHOP = 'ChannelShop',
+	CHANNELCATEGORY = 'ChannelCategory'
+};
 
 const EMPHASIS_SHOP_PAGE_SIZE: number = 3;
 const REGULAR_DEFAULT_PAGE_SIZE: number = 4;
 const SHOP_PAGE_SIZE: number = 4;
 const CATEGORY_PAGE_SIZE: number = 8;
-
-const {
-	CHANNELSHOP,
-	CHANNELCATEGORY
-} = ContentTypes;
 
 export function getOffset(
 	currentPage: number,
@@ -49,14 +48,14 @@ export function getEmphsisPageSize() {
 };
 
 export function isShopsChannel(data: HomeChannelItem[]) {
-	return data[0]['__typename'] === CHANNELSHOP;
+	return data[0]['__typename'] === ContentTypes.CHANNELSHOP;
 };
 
 export function getRegularPageSize(data: HomeChannelItem[]) {
 	const type: string = data[0]['__typename'];
 
-	if (type === CHANNELSHOP) return SHOP_PAGE_SIZE;
-	if (type === CHANNELCATEGORY) return CATEGORY_PAGE_SIZE;
+	if (type === ContentTypes.CHANNELSHOP) return SHOP_PAGE_SIZE;
+	if (type === ContentTypes.CHANNELCATEGORY) return CATEGORY_PAGE_SIZE;
 
 	return REGULAR_DEFAULT_PAGE_SIZE;
 };
