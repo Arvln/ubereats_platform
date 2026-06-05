@@ -22,7 +22,6 @@
     "zustand": "^5"
   },
   "devDependencies": {
-    "@apollo/client": "^3.4.16",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.0",
