@@ -3,7 +3,7 @@
 import { Prop } from './types';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { RecommandCategories } from 'app/[locale]/[title]/components/category/recommand-categories';
+import { RecommandCategories } from '../recommand-categories';
 
 import classes from 'styles/features/category/Title.module.scss';
 

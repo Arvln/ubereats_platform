@@ -158,7 +158,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Home page shortcut, carousel, restrict-search filters, and channel pagination behave as before.
+**[HUMAN REVIEW: approved]**: Home page shortcut, carousel, restrict-search filters, and channel pagination behave as before.
 
 ---
 
@@ -179,7 +179,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Category page title, restrict-search, and shop list render correctly for multiple category slugs.
+**[HUMAN REVIEW: approved]**: Category page title, restrict-search, and shop list render correctly for multiple category slugs.
 
 ---
 

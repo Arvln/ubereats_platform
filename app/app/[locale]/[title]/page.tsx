@@ -1,4 +1,4 @@
-import { Category } from "features";
+import Category from "./components/category";
 import { gqlServerClient } from "api/graphql";
 import { createServerQueryClient } from "lib/server-query-client";
 import { getLocale, setRequestLocale } from "next-intl/server";

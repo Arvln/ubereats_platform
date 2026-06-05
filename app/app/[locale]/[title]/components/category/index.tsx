@@ -2,13 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import { RecommandCategories } from 'app/[locale]/[title]/components/category/recommand-categories';
+import { RecommandCategories } from './recommand-categories';
 import Title from './title';
 import { Shop } from 'components';
 import RestrictSearch from 'app/[locale]/components/restrict_search';
 import {
   categoryByTitleQueryOptions,
-} from '../../app/[locale]/[title]/queries';
+} from '../../queries';
 
 import classes from 'styles/features/category/Category.module.scss';
 
