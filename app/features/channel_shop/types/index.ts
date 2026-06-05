@@ -1,13 +1,13 @@
-import { TChannelItem } from "types/features";
+import type { HomeChannelItem } from "../../../app/[locale]/queries";
 import { TShop } from 'types/shop';
 
 export type Prop = {
-	data: TChannelItem[][];
+	data: HomeChannelItem[][];
 	size: number;
 	offset: number;
 };
 
 export type {
-	TChannelItem,
+	HomeChannelItem,
 	TShop
 };

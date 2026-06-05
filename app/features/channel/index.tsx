@@ -1,7 +1,8 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { TChannelItem, TPagesState } from './types';
+import { useState } from 'react';
+import { HomeChannelItem, TPagesState } from './types';
 import Image from 'next/image';
 import { Arrow } from 'components';
 import ChannelShop from 'features/channel_shop';
@@ -14,8 +15,6 @@ import {
   isShopsChannel,
   getTotalPage
 } from './utils';
-import { pagesStateVar } from 'graphql/cache/features';
-import { useVar } from 'utils';
 import {
   homePageQueryOptions,
 } from '../../app/[locale]/queries';
@@ -49,7 +48,7 @@ const CHANNEL_PAGE_OFFSET_SIZE: number = -100;
 
 function Channel() {
   const t = useTranslations();
-  const [pages, pagesState] = useVar<TPagesState>(pagesStateVar);
+  const [pagesState, setPagesState] = useState<TPagesState>({});
   const { data: channels = [] } = useQuery({
     ...homePageQueryOptions,
     select: (pageData) => pageData.channel,
@@ -59,12 +58,12 @@ function Channel() {
     const page = pagesState[selectedId];
 
     if (!page || page.currentPage - 1 <= initialPage) {
-      pagesStateVar({
+      setPagesState({
         ...pagesState,
         [selectedId]: initialPageState
       });
     } else {
-      pagesStateVar({
+      setPagesState({
         ...pagesState,
         [selectedId]: {
           currentPage: page.currentPage - 1,
@@ -79,7 +78,7 @@ function Channel() {
     const page = pagesState[selectedId];
 
     if (!page) {
-      pagesStateVar({
+      setPagesState({
         ...pagesState,
         [selectedId]: {
           currentPage: 2,
@@ -91,7 +90,7 @@ function Channel() {
     };
 
     if (page.currentPage + 1 < totalPage) {
-      pagesStateVar({
+      setPagesState({
         ...pagesState,
         [selectedId]: {
           currentPage: page.currentPage + 1,
@@ -100,7 +99,7 @@ function Channel() {
         }
       });
     } else {
-      pagesStateVar({
+      setPagesState({
         ...pagesState,
         [selectedId]: {
           currentPage: totalPage,
@@ -127,7 +126,7 @@ function Channel() {
     const {
       previousButtonStyle: previousButton,
       nextButtonStyle: nextButton
-    } = pages[uuid] ?? initialPageState;
+    } = pagesState[uuid] ?? initialPageState;
 
     return (
       <div className={buttonWrapper}>
@@ -145,7 +144,7 @@ function Channel() {
   };
 
   function _renderRegularContent(
-    channelItems: TChannelItem[],
+    channelItems: HomeChannelItem[],
     currentPage: number
   ) {
     if (isShopsChannel(channelItems)) {
@@ -182,7 +181,7 @@ function Channel() {
         channelItems
       }) => {
         const isEmphasisTitle: boolean = imageSuffix !== '';
-        const { currentPage } = pages[uuid] ?? initialPageState;
+        const { currentPage } = pagesState[uuid] ?? initialPageState;
 
         if (isEmphasisTitle) {
           const totalPage = getTotalPage(channelItems, getEmphsisPageSize());

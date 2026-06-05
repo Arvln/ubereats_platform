@@ -1,4 +1,4 @@
-import { TChannelItem } from "types/features";
+import type { HomeChannelItem } from "../../../app/[locale]/queries";
 
 export type TPagesState = {
 	[id: string]: {
@@ -8,4 +8,4 @@ export type TPagesState = {
 	};
 };
 
-export type { TChannelItem };
+export type { HomeChannelItem };

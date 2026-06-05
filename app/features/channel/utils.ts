@@ -1,4 +1,4 @@
-import { TChannelItem } from "types/features";
+import type { HomeChannelItem } from "./types";
 import { ContentTypes } from 'enums/features/channel';
 
 const EMPHASIS_SHOP_PAGE_SIZE: number = 3;
@@ -19,13 +19,13 @@ export function getOffset(
 };
 
 export function getPageDataList(
-	data: TChannelItem[],
+	data: HomeChannelItem[],
 	size: number
 ) {
 	let currentPage: number = 1;
 	let offset: number = 0;
 	let hasData: boolean = data.length > 0;
-	let pageDataList: TChannelItem[][] = [];
+	let pageDataList: HomeChannelItem[][] = [];
 
 	while (hasData) {
 		pageDataList = [
@@ -48,11 +48,11 @@ export function getEmphsisPageSize() {
 	return EMPHASIS_SHOP_PAGE_SIZE;
 };
 
-export function isShopsChannel(data: TChannelItem[]) {
+export function isShopsChannel(data: HomeChannelItem[]) {
 	return data[0]['__typename'] === CHANNELSHOP;
 };
 
-export function getRegularPageSize(data: TChannelItem[]) {
+export function getRegularPageSize(data: HomeChannelItem[]) {
 	const type: string = data[0]['__typename'];
 
 	if (type === CHANNELSHOP) return SHOP_PAGE_SIZE;
@@ -62,7 +62,7 @@ export function getRegularPageSize(data: TChannelItem[]) {
 };
 
 export function getTotalPage(
-	data: TChannelItem[],
+	data: HomeChannelItem[],
 	pageSize: number
 ) {
 	return Math.ceil(data.length / pageSize);

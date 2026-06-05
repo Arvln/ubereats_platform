@@ -1,6 +1,6 @@
 'use client';
 
-import { Prop, TChannelCategory } from './types';
+import { HomeChannelCategory, Prop } from './types';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { CategoryItem } from 'components';
@@ -21,7 +21,7 @@ function ChannelCategory({
 }: Prop) {
   const t = useTranslations();
 
-  function _renderCategory(categoies: TChannelCategory[]) {
+  function _renderCategory(categoies: HomeChannelCategory[]) {
     return (
       categoies.map(({
         title,
@@ -57,7 +57,7 @@ function ChannelCategory({
           className={pageWrapper}
           key={index}
         >
-          {_renderCategory(categoies as TChannelCategory[])}
+          {_renderCategory(categoies as HomeChannelCategory[])}
         </div>
       ))
     );

@@ -1,14 +1,11 @@
-import {
-	TChannelItem,
-	TChannelCategory
-} from 'types/features';
+import type {
+  HomeChannelCategory,
+  HomeChannelItem,
+} from "../../../app/[locale]/queries";
 
 export type Prop = {
-	data: TChannelItem[][];
+	data: HomeChannelItem[][];
 	pageOffset: number;
 };
 
-export type {
-	TChannelItem,
-	TChannelCategory
-};
+export type { HomeChannelCategory, HomeChannelItem };

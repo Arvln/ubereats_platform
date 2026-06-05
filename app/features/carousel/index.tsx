@@ -9,8 +9,6 @@ import {
 	getRenderData,
 	getRightStartPoint
 } from './utils';
-import { horizontalOffsetVar } from 'graphql/cache/features'
-import { useVar } from 'utils';
 import {
   homePageQueryOptions,
 } from '../../app/[locale]/queries';
@@ -40,17 +38,17 @@ function Carousel() {
 		...homePageQueryOptions,
 		select: (pageData) => pageData.carousel,
 	});
-	const [horizontalOffset] = useVar<number>(horizontalOffsetVar);
+	const [horizontalOffset, setHorizontalOffset] = useState(-100);
 	const [transition, setTransition] = useState<string>(smoothTransition);
 
 	useEffect(() => {
 		if (horizontalOffset <= rightBoundaryValue) {
-			horizontalOffsetVar(leftStratPoint);
+			setHorizontalOffset(leftStratPoint);
 			setTransition(clearTransition);
 		}
 
 		if (horizontalOffset > leftBoundaryValue) {
-			horizontalOffsetVar(getRightStartPoint(horizontalOffset));
+			setHorizontalOffset(getRightStartPoint(horizontalOffset));
 			setTransition(clearTransition);
 		}
 
@@ -58,14 +56,14 @@ function Carousel() {
 
 	function _handlePreviousButton(): void {
 		if (horizontalOffset <= leftBoundaryValue) {
-			horizontalOffsetVar(horizontalOffset + offsetPerClick);
+			setHorizontalOffset(horizontalOffset + offsetPerClick);
 			setTransition(smoothTransition);
 		}
 	}
 
 	function _handleNextButton(): void {
 		if (horizontalOffset > rightBoundaryValue) {
-			horizontalOffsetVar(horizontalOffset - offsetPerClick);
+			setHorizontalOffset(horizontalOffset - offsetPerClick);
 			setTransition(smoothTransition);
 		}
 	}

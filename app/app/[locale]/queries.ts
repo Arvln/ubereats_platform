@@ -97,6 +97,8 @@ export const homePageDataSchema = z.object({
 });
 
 export type HomePageData = z.infer<typeof homePageDataSchema>;
+export type HomeChannelItem = z.infer<typeof channelItemSchema>;
+export type HomeChannelCategory = z.infer<typeof channelCategoryItemSchema>;
 
 export async function fetchHomePageDataServer(): Promise<HomePageData> {
   const raw = await gqlServerClient().request<unknown>(homeQueryDocument);
