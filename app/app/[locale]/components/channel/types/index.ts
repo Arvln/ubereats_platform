@@ -1,4 +1,4 @@
-import type { HomeChannelItem } from "../../../app/[locale]/queries";
+import type { HomeChannelItem } from "../../../queries";
 
 export type TPagesState = {
 	[id: string]: {

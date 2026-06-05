@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { CategoryItem } from 'components';
 import {
   homePageQueryOptions,
-} from '../../app/[locale]/queries';
+} from '../../queries';
 
 import classes from 'styles/features/Shortcut.module.scss';
 

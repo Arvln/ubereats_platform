@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Link } from '../../i18n/navigation';
+import { Link } from 'i18n/navigation';
 import Image from 'next/image';
 import { Arrow } from 'components';
 import {
@@ -11,7 +11,7 @@ import {
 } from './utils';
 import {
   homePageQueryOptions,
-} from '../../app/[locale]/queries';
+} from '../../queries';
 
 import classes from 'styles/features/Carousel.module.scss';
 

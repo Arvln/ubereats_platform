@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { HomeChannelItem, TPagesState } from './types';
 import Image from 'next/image';
 import { Arrow } from 'components';
-import ChannelShop from 'features/channel_shop';
-import ChannelCategory from 'features/channel_category';
+import ChannelShop from '../channel_shop';
+import ChannelCategory from '../channel_category';
 import {
   getOffset,
   getPageDataList,
@@ -17,7 +17,7 @@ import {
 } from './utils';
 import {
   homePageQueryOptions,
-} from '../../app/[locale]/queries';
+} from '../../queries';
 
 import classes from 'styles/features/Channel.module.scss';
 import { useTranslations } from 'next-intl';

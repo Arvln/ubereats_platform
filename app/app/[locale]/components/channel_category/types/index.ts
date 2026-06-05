@@ -1,7 +1,7 @@
 import type {
   HomeChannelCategory,
   HomeChannelItem,
-} from "../../../app/[locale]/queries";
+} from "../../../queries";
 
 export type Prop = {
 	data: HomeChannelItem[][];

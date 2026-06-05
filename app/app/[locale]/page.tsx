@@ -1,4 +1,7 @@
-import { Shortcut, Carousel, RestrictSearch, Channel } from "features";
+import Shortcut from "./components/shortcut";
+import Carousel from "./components/carousel";
+import RestrictSearch from "./components/restrict_search";
+import Channel from "./components/channel";
 import { createServerQueryClient } from "lib/server-query-client";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
