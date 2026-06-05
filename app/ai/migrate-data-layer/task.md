@@ -318,74 +318,39 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 **Done When**: No TypeScript or import errors shown in Cursor editor.
 
-**[HUMAN REVIEW]**: `fetchStaticSlugs` deleted; no Apollo client usage remaining in `lib/page-data.ts`.
+**[HUMAN REVIEW: approved]**: `fetchStaticSlugs` deleted; no Apollo client usage remaining in `lib/page-data.ts`.
 
 ---
 
-### Step 17: Create Zustand stores (carousel, channel, restrict_search)
+### Step 17: Replace Apollo Reactive Variables with useState
 
 **What**: Replace Apollo Reactive Variables.
 
 **How**:
 
-1. `stores/carousel.ts` — `horizontalOffset`, `setHorizontalOffset` (initial `-100`).
-2. `stores/channel.ts` — `TPagesState` + setters.
-3. `stores/restrict-search.ts` — `TConditionsState` + setters.
-4. `useStore((s) => s.field)`; never store GraphQL data.
+1. `features/carousel` — replace `horizontalOffset` reactive variable with `useState(-100)`.
+2. `features/channel` — replace `TPagesState` reactive variable with `useState`.
+3. `features/restrict-search` — replace `TConditionsState` reactive variable with `useState`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
-### Step 18: Migrate `features/carousel` to Zustand
-
-**What**: Remove `horizontalOffsetVar` / `useVar`.
-
-**How**: Use `stores/carousel.ts`; no scss refactors.
-
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
-
-**[HUMAN REVIEW]**: Carousel behavior unchanged.
-
----
-
-### Step 19: Migrate `features/channel` to Zustand
-
-**What**: Remove `pagesStateVar` / `useVar`.
-
-**How**: Use `stores/channel.ts`; keep `utils.ts` logic; Step 7 `__typename` required.
-
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
-
-**[HUMAN REVIEW]**: Channel pagination unchanged.
-
----
-
-### Step 20: Migrate `features/restrict_search` to Zustand
-
-**What**: Remove `conditionsStateVar` / `useVar`.
-
-**How**: Use `stores/restrict-search.ts`; keep `isCuisines` and filter UI.
-
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
-
----
-
-### Step 21: Delete `graphql/cache/` and Apollo reactive utilities
+### Step 18: Delete `graphql/cache` and Apollo reactive utilities
 
 **What**: Remove deprecated cache layer.
 
 **How**:
 
-1. Delete `graphql/cache/`.
-2. Delete `utils/variables.ts`; update `utils/index.ts`.
+1. Delete `graphql/cache`.
+2. Delete `utils/`.
 3. Grep: no `graphql/cache`, `makeVar`, `useReactiveVar`, `useVar`, `getVar`.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
-### Step 22: Remove Apollo Client completely
+### Step 19: Remove Apollo Client completely
 
 **What**: Objective: Apollo fully removed.
 
@@ -393,27 +358,9 @@ Reference: `ai/migrate-data-layer/objective.md`, `.cursorrules`, `conventions.md
 
 1. Delete `graphql/apollo_client/`.
 2. Remove `@apollo/client` from `package.json`.
-3. Remove dead `lib/page-data.ts` Apollo paths if all helpers have been replaced by centralized queries in lib/graphql-definitions.ts.
-4. Grep: zero Apollo references.
-5. `pnpm install`.
+3. Grep: zero Apollo references.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
-
----
-
-### Step 23: Remove Apollo Client completely
-
-**What**: Apollo fully removed.
-
-**How**:
-
-1. Delete `graphql/apollo_client/`.
-2. Remove `@apollo/client` from `package.json`.
-3. Confirm `lib/page-data.ts` contains only `redirectToHome` and `loadMessages` — all four fetch helpers must have been deleted in Steps 12–16. If any remain, delete them now.
-4. Grep: zero Apollo references across the codebase.
-5. `pnpm install`.
-
-**Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
 ---
 
