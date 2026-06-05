@@ -151,6 +151,7 @@ Colocate by feature first; promote to root only when reused across route groups.
 ### Folder structure
 
 - Keep code close to where it is used. Prefer feature-level and route-level colocation over centralized abstraction.
+- Use `components/` (no leading underscore) for co-located component directories inside App Router route segments.
 - GraphQL: all related concerns must be colocated in the nearest feature or route folder inside a single `queries.ts` file. This includes:
   - GraphQL query document
   - queryKey definition
