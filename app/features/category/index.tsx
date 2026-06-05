@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import { RecommandCategories } from 'enums/features/category';
+import { RecommandCategories } from 'app/[locale]/[title]/components/category/recommand-categories';
 import Title from './title';
 import { Shop } from 'components';
 import RestrictSearch from 'features/restrict_search';

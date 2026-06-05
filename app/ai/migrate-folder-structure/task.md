@@ -95,7 +95,7 @@ Reference: `ai/migrate-folder-structure/objective.md`, `.cursorrules`, `conventi
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Confirm `recommand-categories.ts` exists at `app/[locale]/[title]/components/category/recommand-categories.ts`, both callers under `features/category/` resolve the import without errors, and no unrelated routes reference the file. Callers are not yet co-located with the enum — that happens in Step 7.
+**[HUMAN REVIEW: approved]**: Confirm `recommand-categories.ts` exists at `app/[locale]/[title]/components/category/recommand-categories.ts`, both callers under `features/category/` resolve the import without errors, and no unrelated routes reference the file. Callers are not yet co-located with the enum — that happens in Step 7.
 
 ---
 
