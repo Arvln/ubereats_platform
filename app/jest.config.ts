@@ -6,14 +6,10 @@ const convertPathsToModuleNameMapper = (paths: typeof compilerOptions) => {
   const moduleNameMapper = {} as {
       [key: string]: string | string[];
   };
-  const createRootPath = (basePath: string) => {
-    if (basePath === 'utils') return `../<rootDir>/${basePath}/index.ts`;
-    else return `<rootDir>/${basePath}/index.ts`;
-  }
-  const createPath = (basePath: string) => {
-    if (basePath === 'utils') return `../<rootDir>/${basePath}/$1`;
-    else return `<rootDir>/${basePath}/$1`;
-  }
+  const createRootPath = (basePath: string) =>
+    `<rootDir>/${basePath}/index.ts`;
+  const createPath = (basePath: string) =>
+    `<rootDir>/${basePath}/$1`;
 
   Object.keys(paths).filter((path) => path.includes('styles') === false).forEach((path) => {
     const basePath = path.replace('/*', '');

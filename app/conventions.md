@@ -135,6 +135,7 @@ Colocate by feature first; promote to root only when reused across route groups.
 ## Imports & style
 
 - Remove unused imports from every file you modify before finishing a task.
+- After deleting files, remove any resulting empty directories before finishing a task.
 - Order: external → `@/` absolute → relative.
 - Use `cn()` for conditional classes; CVA for component variants.
 - Toast feedback: `sonner` via `@/components/custom-ui/message` — don't duplicate in components.

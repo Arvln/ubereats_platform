@@ -40,9 +40,6 @@
       "themes/*": [
         "themes/*"
       ],
-      "utils/*": [
-        "utils/*"
-      ],
       "types/*": [
         "../types/*"
       ],

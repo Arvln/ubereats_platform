@@ -13,7 +13,6 @@
 - `lib/*` → `lib/*`
 - `styles/*` → `styles/*`
 - `themes/*` → `themes/*` (will move to `lib/` after structure cleanup)
-- `utils/*` → `utils/*` (will move to `lib/` after structure cleanup)
 - `enums/*` → `enums/*`
 - `types/*` → `../types/*` (shared with server — do not move)
 
@@ -28,6 +27,7 @@
 ## Imports & style
 
 - Remove unused imports from every file you modify before finishing a task.
+- After deleting files, remove any resulting empty directories before finishing a task.
 - Order: external → alias → relative.
 - Use `cn()` for conditional classes; CVA for component variants.
 - Toast feedback: `sonner` via `@/components/custom-ui/message` — don't duplicate in components.
