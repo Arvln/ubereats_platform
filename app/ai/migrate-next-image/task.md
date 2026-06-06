@@ -18,12 +18,12 @@ Reference: `ai/migrate-next-image/objective.md`, `.cursorrules`, `ai/migrate-nex
 
 **Image API rules:**
 
-| Mode | Rule |
-| ---- | ---- |
-| `fill` | Use boolean `fill` prop (not `layout="fill"`). Always pair with `sizes`. Parent wrapper must already have `position: relative` — confirm in co-located `.module.scss`; do not add positioning if absent (fix is out of scope). |
-| `objectFit` | Replace deprecated `objectFit="cover"` with `style={{ objectFit: 'cover' }}`. |
-| `width`/`height` | Already correct — do not change dimensions or layout props. |
-| Blur | Import `blurDataURL` from `lib/image-placeholder`; add `placeholder="blur"` and `blurDataURL={blurDataURL}` to every `Image` component. |
+| Mode             | Rule                                                                                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fill`           | Use boolean `fill` prop (not `layout="fill"`). Always pair with `sizes`. Parent wrapper must already have `position: relative` — confirm in co-located `.module.scss`; do not add positioning if absent (fix is out of scope). |
+| `objectFit`      | Replace deprecated `objectFit="cover"` with `style={{ objectFit: 'cover' }}`.                                                                                                                                                  |
+| `width`/`height` | Already correct — do not change dimensions or layout props.                                                                                                                                                                    |
+| Blur             | Import `blurDataURL` from `lib/image-placeholder`; add `placeholder="blur"` and `blurDataURL={blurDataURL}` to every `Image` component.                                                                                        |
 
 **Grep patterns to use throughout:**
 
@@ -54,7 +54,7 @@ Reference: `ai/migrate-next-image/objective.md`, `.cursorrules`, `ai/migrate-nex
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Record pre-existing image or layout issues and optionally capture a baseline Lighthouse LCP score for later comparison.
+**[HUMAN REVIEW: approved]**: Record pre-existing image or layout issues and optionally capture a baseline Lighthouse LCP score for later comparison.
 
 ---
 
