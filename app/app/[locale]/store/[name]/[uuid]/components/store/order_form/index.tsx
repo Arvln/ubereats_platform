@@ -58,6 +58,7 @@ function OrderForm({ data }: Prop) {
         <Image
           src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
           fill
+          sizes="(max-width: 768px) 100vw, 676px"
           alt="Good"
         />
       </div>
@@ -76,6 +77,7 @@ function OrderForm({ data }: Prop) {
           <Image
             src={`https://${SPICY_ICON_SERVER_HOST}/badge_check@3x.png`}
             fill
+            sizes="20px"
             alt="Spicy Level"
           />
         </div>

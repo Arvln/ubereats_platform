@@ -34,6 +34,7 @@ function Title({ title, iconUrl }: Prop) {
         <Image
           src={iconUrl}
           fill
+          sizes="160px"
           alt={title}
         />
       </div>

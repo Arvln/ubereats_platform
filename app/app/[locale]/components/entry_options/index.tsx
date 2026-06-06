@@ -35,6 +35,7 @@ function EntryOptions() {
             <Image
               src="/images/download.svg"
               fill
+              sizes="56px"
               alt="Uber Eats 優食"
             />
           </div>

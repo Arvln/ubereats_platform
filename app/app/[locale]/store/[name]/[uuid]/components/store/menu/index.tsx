@@ -42,6 +42,7 @@ function Menu({ data }: Prop) {
           src={`https://${STORE_IMAGE_SERVER_HOST}/${suffix}`}
           className={image}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectFit: 'cover' }}
           alt={name}
         />

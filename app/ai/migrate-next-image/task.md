@@ -106,7 +106,7 @@ Reference: `ai/migrate-next-image/objective.md`, `.cursorrules`, `ai/migrate-nex
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: `sizes` values must match real rendered layout; verify each updated image loads an appropriately sized asset in DevTools Network tab (not always the largest variant). If any sizes value looks incorrect after visual inspection, correct it manually before proceeding to Step 5.
+**[HUMAN REVIEW: approved]**: `sizes` values must match real rendered layout; verify each updated image loads an appropriately sized asset in DevTools Network tab (not always the largest variant). If any sizes value looks incorrect after visual inspection, correct it manually before proceeding to Step 5.
 
 ---
 

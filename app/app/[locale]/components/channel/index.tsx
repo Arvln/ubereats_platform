@@ -116,6 +116,7 @@ function Channel() {
         <Image
           src={`https://${imageSuffix}`}
           fill
+          sizes="133px"
           alt="Emphasis"
         />
       </div>

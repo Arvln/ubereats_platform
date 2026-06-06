@@ -50,6 +50,7 @@ function Store() {
         <Image
           src={`https://${STORE_IMAGE_SERVER_HOST}/${bannerSuffix}`}
           fill
+          sizes="100vw"
           style={{ objectFit: 'cover' }}
           alt="Banner"
         />
