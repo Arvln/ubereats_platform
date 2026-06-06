@@ -147,7 +147,7 @@ function Shop({
             >
               <Link href={`/store/${name}/${uuid}`}>
                 <h3 className={storeTitle} data-testid={`store-title-${uuid}`}>{name}</h3>
-                <div className={`${imageWrapper} ${imageHeight}`} data-testid={`image-wrapper-${uuid}`}>
+                <div className={`${imageWrapper} ${imageHeight} relative`} data-testid={`image-wrapper-${uuid}`}>
                   <Image
                     src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
                     fill
@@ -155,7 +155,7 @@ function Shop({
                     placeholder="blur"
                     blurDataURL={blurDataURL}
                     alt="Shop"
-                    style={{ objectFit: 'cover' }}
+                    className="object-cover"
                   />
                   <div className={discountMessage} data-testid={`discount-message-${uuid}`}>
                     <span

@@ -12,7 +12,7 @@ const {
 
 function Arrow({ appendWrapper }: Prop) {
 	const button: TAppendClass = {
-		appendWrapper: `${appendWrapper ?? ''} ${buttonWrapper}`,
+		appendWrapper: `${appendWrapper ?? ''} ${buttonWrapper} items-center`.trim(),
 		appendContent: ''
 	};
 

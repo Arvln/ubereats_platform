@@ -41,10 +41,9 @@ function Menu({ data }: Prop) {
       <div className={imageWrapper}>
         <Image
           src={`https://${STORE_IMAGE_SERVER_HOST}/${suffix}`}
-          className={image}
+          className={`${image} object-cover`}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          style={{ objectFit: 'cover' }}
           placeholder="blur"
           blurDataURL={blurDataURL}
           alt={name}

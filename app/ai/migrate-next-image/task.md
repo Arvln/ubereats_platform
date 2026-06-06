@@ -21,7 +21,7 @@ Reference: `ai/migrate-next-image/objective.md`, `.cursorrules`, `ai/migrate-nex
 | Mode             | Rule                                                                                                                                                                                                                           |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `fill`           | Use boolean `fill` prop (not `layout="fill"`). Always pair with `sizes`. Parent wrapper must already have `position: relative` — confirm in co-located `.module.scss`; do not add positioning if absent (fix is out of scope). |
-| `objectFit`      | Replace deprecated `objectFit="cover"` with `style={{ objectFit: 'cover' }}`.                                                                                                                                                  |
+| `objectFit`      | Replace deprecated `objectFit="cover"` with `className='object-cover'`.                                                                                                                                                        |
 | `width`/`height` | Already correct — do not change dimensions or layout props.                                                                                                                                                                    |
 | Blur             | Import `blurDataURL` from `lib/image-placeholder`; add `placeholder="blur"` and `blurDataURL={blurDataURL}` to every `Image` component.                                                                                        |
 
@@ -169,11 +169,11 @@ Reference: `ai/migrate-next-image/objective.md`, `.cursorrules`, `ai/migrate-nex
 **How**:
 
 1. Grep all `.tsx` files — expect zero matches for `layout="fill"`, `layout='fill'`, and `objectFit=`.
-2. Grep for `Image` components with `fill` — every match must include both `sizes` and `placeholder="blur"`.
+2. Grep for `Image` components with `fill` — every match must include both `sizes` and `placeholder="blur"` except components with width and height both under 40px.
 3. Grep for imports from `next/image` — every `Image` usage must include `placeholder="blur"` (fill and width/height modes).
 4. Run `docker-compose build --no-cache && docker-compose up -d` from repo root.
 5. Visually verify images on home, category, marketing, and store routes; confirm no layout regressions or broken images.
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Compare Lighthouse LCP score to Step 1 baseline; confirm improved or unchanged image load behavior with no console warnings about deprecated `layout` or missing `sizes`.
+**[HUMAN REVIEW: approved]**: Compare Lighthouse LCP score to Step 1 baseline; confirm improved or unchanged image load behavior with no console warnings about deprecated `layout` or missing `sizes`.

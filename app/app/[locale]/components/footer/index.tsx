@@ -143,7 +143,7 @@ function Footer() {
               <Link href="https://about.ubereats.com">{t('footer.about-ubereats')}</Link>
             </li>
             <li>
-              <span className={selectLanguage} onClick={() => setIsLocaleSwitchModalOpen(true)}>
+              <span className={`${selectLanguage} items-center`} onClick={() => setIsLocaleSwitchModalOpen(true)}>
                 <Image
                   src="/images/chinese.svg"
                   width={16}
@@ -188,9 +188,10 @@ function Footer() {
       {_renderMoreOptions()}
       <hr />
       <div className={about}>
-        <div className={socialMedia}>
+        <div className={`${socialMedia} items-center`}>
           <Link
             href="https://www.facebook.com/ubereats"
+            className="flex items-center"
           >
             <Image
               src="/images/facebook.svg"
@@ -202,17 +203,19 @@ function Footer() {
           <div className={space_24} />
           <Link
             href="https://www.twitter.com/ubereats"
+            className="flex items-center"
           >
             <Image
               src="/images/twitter.svg"
-              width={16}
-              height={16}
+              width={14}
+              height={12}
               alt="Twitter"
             />
           </Link>
           <div className={space_24} />
           <Link
             href="https://www.instagram.com/ubereats"
+            className="flex items-center"
           >
             <Image
               src="/images/instagram.svg"

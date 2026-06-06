@@ -73,7 +73,7 @@ function Carousel() {
       return (
         <li key={index} aria-hidden={ariaHidden} className={advertiseItem}>
           <div className={itemWrapper}>
-            <Link href={`/marketing/${uuid}`}>
+            <Link href={`/marketing/${uuid}`} className="absolute inset-0 block">
               <Image
                 src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
                 fill

@@ -40,6 +40,7 @@
 - New components: Tailwind CSS + cn() only.
 - Do not mix scss and Tailwind in the same new component.
 - scss will be fully replaced by Tailwind in a future refactor.
+- For layout or positioning fixes (e.g. `next/image` `fill` parent), use Tailwind utility classes — do not use inline `style` props on wrapper or image elements.
 
 ## Folder structure (current)
 
@@ -74,3 +75,4 @@
 - Refactor existing scss — leave it for future Tailwind migration.
 - Only change what is necessary to complete this task.
 - Do not refactor unrelated code.
+- Do not use inline `style` for layout or positioning fixes — use Tailwind utility classes instead.

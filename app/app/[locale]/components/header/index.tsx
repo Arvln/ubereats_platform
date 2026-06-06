@@ -46,11 +46,11 @@ const selectedButton: TAppendClass = {
   appendWrapper: `${deliveryButtonWrapper} ${deliveryButtonSelected}`
 };
 const locationButton: TAppendClass = {
-  appendWrapper: locationButtonWrapper,
+  appendWrapper: `${locationButtonWrapper} items-center`,
   appendContent: locationButtonContent
 };
 const cartButton: TAppendClass = {
-  appendWrapper: cartButtonWrapper,
+  appendWrapper: `${cartButtonWrapper} items-center`,
   appendContent: cartButtonContent
 };
 const loginButton: TAppendClass = {

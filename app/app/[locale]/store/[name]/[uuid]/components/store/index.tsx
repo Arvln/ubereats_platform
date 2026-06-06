@@ -52,7 +52,7 @@ function Store() {
           src={`https://${STORE_IMAGE_SERVER_HOST}/${bannerSuffix}`}
           fill
           sizes="100vw"
-          style={{ objectFit: 'cover' }}
+          className="object-cover"
           placeholder="blur"
           blurDataURL={blurDataURL}
           alt="Banner"

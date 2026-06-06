@@ -140,6 +140,7 @@ Colocate by feature first; promote to root only when reused across route groups.
 - Use `cn()` for conditional classes; CVA for component variants.
 - Toast feedback: `sonner` via `@/components/custom-ui/message` — don't duplicate in components.
 - i18n: `const { t } = useTranslations()`; keys as dot-paths (`'feature.label'`).
+- For layout or positioning fixes (e.g. `next/image` `fill` parent), use Tailwind utility classes — do not use inline `style` props on wrapper or image elements.
 
 ## i18n (next-intl App Router)
 
@@ -191,3 +192,4 @@ middleware.ts
 - Create default-export utility modules (except Next.js pages).
 - Duplicate toast logic in components.
 - Hardcode display strings — always use `t()`.
+- Use inline `style` for layout or positioning fixes — use Tailwind utility classes instead.
