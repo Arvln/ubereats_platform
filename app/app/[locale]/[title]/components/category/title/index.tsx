@@ -33,7 +33,7 @@ function Title({ title, iconUrl }: Prop) {
       <div className={imageWrapper}>
         <Image
           src={iconUrl}
-          layout="fill"
+          fill
           alt={title}
         />
       </div>

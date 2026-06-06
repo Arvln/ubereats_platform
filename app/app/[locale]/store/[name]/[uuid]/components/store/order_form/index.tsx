@@ -57,7 +57,7 @@ function OrderForm({ data }: Prop) {
       <div className={imageWrapper}>
         <Image
           src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
-          layout="fill"
+          fill
           alt="Good"
         />
       </div>
@@ -75,7 +75,7 @@ function OrderForm({ data }: Prop) {
         <div className={image}>
           <Image
             src={`https://${SPICY_ICON_SERVER_HOST}/badge_check@3x.png`}
-            layout="fill"
+            fill
             alt="Spicy Level"
           />
         </div>

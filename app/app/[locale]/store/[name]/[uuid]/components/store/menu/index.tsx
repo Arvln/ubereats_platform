@@ -41,8 +41,8 @@ function Menu({ data }: Prop) {
         <Image
           src={`https://${STORE_IMAGE_SERVER_HOST}/${suffix}`}
           className={image}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           alt={name}
         />
       </div>

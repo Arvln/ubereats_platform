@@ -91,7 +91,7 @@ function Carousel() {
 							<Link href={`/marketing/${uuid}`}>
                 <Image
                   src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
-                  layout="fill"
+                  fill
                   alt={imageSuffix}
                 />
 							</Link>

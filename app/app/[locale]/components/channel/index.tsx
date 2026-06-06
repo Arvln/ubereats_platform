@@ -115,7 +115,7 @@ function Channel() {
       <div className={titleImage}>
         <Image
           src={`https://${imageSuffix}`}
-          layout="fill"
+          fill
           alt="Emphasis"
         />
       </div>

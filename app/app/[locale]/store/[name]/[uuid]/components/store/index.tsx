@@ -49,8 +49,8 @@ function Store() {
       <div className={banner}>
         <Image
           src={`https://${STORE_IMAGE_SERVER_HOST}/${bannerSuffix}`}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           alt="Banner"
         />
         <div className={moreOptions}>

@@ -308,7 +308,7 @@ function RestrictSearch({ isCuisines }: Prop) {
           >
             <Image
               src="/images/dropdown.svg"
-              layout="fill"
+              fill
               alt="Dropdown"
             />
           </div>
