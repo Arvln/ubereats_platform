@@ -99,6 +99,7 @@ function Shop({
           <Image
             src={`https://${SHORTCUT_ICONS_SERVER_HOST}/eatsfeed/other_icons/top_eats.png`}
             fill
+            sizes="28px"
             alt="Carefully Selected"
           />
         </div>
@@ -185,6 +186,7 @@ function Shop({
                       <Image
                         src={`https://${UTILS_ICONS_SERVER_HOST}/ticket@3x.png`}
                         fill
+                        sizes="14px"
                         alt="Ticket"
                       />
                     </div>
