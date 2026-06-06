@@ -4,6 +4,7 @@ import { TAppendClass } from 'components/button/types';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { Button } from 'components';
 
 import classes from 'styles/features/EntryOptions.module.scss';
@@ -36,6 +37,8 @@ function EntryOptions() {
               src="/images/download.svg"
               fill
               sizes="56px"
+              placeholder="blur"
+              blurDataURL={blurDataURL}
               alt="Uber Eats 優食"
             />
           </div>

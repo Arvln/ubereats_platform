@@ -124,7 +124,7 @@ Reference: `ai/migrate-next-image/objective.md`, `.cursorrules`, `ai/migrate-nex
 
 **Done When**: No TypeScript or import errors shown in Cursor editor, and human verifies in browser after running `docker-compose build --no-cache && docker-compose up -d`
 
-**[HUMAN REVIEW]**: Confirm shop/card thumbnails and small badge icons request reasonably sized images in DevTools Network tab.
+**[HUMAN REVIEW: approved]**: Confirm shop/card thumbnails and small badge icons request reasonably sized images in DevTools Network tab.
 
 ---
 

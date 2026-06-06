@@ -4,6 +4,7 @@ import { Prop, TConditionsState } from './types';
 import { TAppendClass } from 'components/button/types';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { Button } from 'components';
 import classes from 'styles/features/RestrictSearch.module.scss';
 import { useTranslations } from 'next-intl';
@@ -310,6 +311,8 @@ function RestrictSearch({ isCuisines }: Prop) {
               src="/images/dropdown.svg"
               fill
               sizes="24px"
+              placeholder="blur"
+              blurDataURL={blurDataURL}
               alt="Dropdown"
             />
           </div>

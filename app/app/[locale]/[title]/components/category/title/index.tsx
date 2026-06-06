@@ -3,6 +3,7 @@
 import { Prop } from './types';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { RecommandCategories } from '../recommand-categories';
 
 import classes from 'styles/features/category/Title.module.scss';
@@ -35,6 +36,8 @@ function Title({ title, iconUrl }: Prop) {
           src={iconUrl}
           fill
           sizes="160px"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           alt={title}
         />
       </div>

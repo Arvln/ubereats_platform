@@ -3,6 +3,7 @@
 import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { Link } from '../../i18n/navigation';
 import { Button } from 'components';
 import {
@@ -100,6 +101,8 @@ function Shop({
             src={`https://${SHORTCUT_ICONS_SERVER_HOST}/eatsfeed/other_icons/top_eats.png`}
             fill
             sizes="28px"
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             alt="Carefully Selected"
           />
         </div>
@@ -149,6 +152,8 @@ function Shop({
                     src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
                     fill
                     sizes="25vw"
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
                     alt="Shop"
                     style={{ objectFit: 'cover' }}
                   />
@@ -187,6 +192,8 @@ function Shop({
                         src={`https://${UTILS_ICONS_SERVER_HOST}/ticket@3x.png`}
                         fill
                         sizes="14px"
+                        placeholder="blur"
+                        blurDataURL={blurDataURL}
                         alt="Ticket"
                       />
                     </div>

@@ -4,6 +4,7 @@ import { Prop } from './types';
 import { TGood } from 'types/pages/store';
 import { useContext } from 'react';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { getDiscountPrice, isFreeGift } from './utils';
 import { FormContext } from 'app/[locale]/components/layout';
 import OrderForm from '../order_form';
@@ -44,6 +45,8 @@ function Menu({ data }: Prop) {
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectFit: 'cover' }}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           alt={name}
         />
       </div>

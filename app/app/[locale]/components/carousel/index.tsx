@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link } from "i18n/navigation";
 import Image from "next/image";
+import { blurDataURL } from "lib/image-placeholder";
 import { Arrow } from "components";
 import { getRenderData, getRightStartPoint } from "./utils";
 import { homePageQueryOptions } from "../../queries";
@@ -77,6 +78,8 @@ function Carousel() {
                 src={`https://${ADVERTISE_IMAGE_SERVER_HOST}/${imageSuffix}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 25vw"
+                placeholder="blur"
+                blurDataURL={blurDataURL}
                 alt={imageSuffix}
               />
             </Link>

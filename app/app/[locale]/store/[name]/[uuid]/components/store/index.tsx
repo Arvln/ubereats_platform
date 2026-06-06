@@ -10,6 +10,7 @@ import Sidebar from "./sidebar";
 import Menu from "./menu";
 import Head from "next/head";
 import Image from "next/image";
+import { blurDataURL } from "lib/image-placeholder";
 import { storeBySlugQueryOptions } from "../../queries";
 
 import classes from "styles/features/store/Store.module.scss";
@@ -52,6 +53,8 @@ function Store() {
           fill
           sizes="100vw"
           style={{ objectFit: 'cover' }}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           alt="Banner"
         />
         <div className={moreOptions}>

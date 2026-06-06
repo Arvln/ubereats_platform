@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { HomeChannelItem, TPagesState } from './types';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { Arrow } from 'components';
 import ChannelShop from '../channel_shop';
 import ChannelCategory from '../channel_category';
@@ -117,6 +118,8 @@ function Channel() {
           src={`https://${imageSuffix}`}
           fill
           sizes="133px"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           alt="Emphasis"
         />
       </div>

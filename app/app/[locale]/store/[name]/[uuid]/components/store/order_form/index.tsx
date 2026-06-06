@@ -5,6 +5,7 @@ import { TAppendClass } from 'components/button/types';
 import { Button } from 'components';
 import { useState } from 'react';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 
 import classes from 'styles/features/store/OrderForm.module.scss';
 
@@ -59,6 +60,8 @@ function OrderForm({ data }: Prop) {
           src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
           fill
           sizes="(max-width: 768px) 100vw, 676px"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           alt="Good"
         />
       </div>
@@ -78,6 +81,8 @@ function OrderForm({ data }: Prop) {
             src={`https://${SPICY_ICON_SERVER_HOST}/badge_check@3x.png`}
             fill
             sizes="20px"
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             alt="Spicy Level"
           />
         </div>
