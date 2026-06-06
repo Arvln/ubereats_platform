@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 
 import classes from 'styles/pages/Error.module.scss';
 
@@ -23,6 +24,8 @@ export default function NotFound() {
             src="/images/error.svg"
             width={226}
             height={160}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             alt="Error"
           />
         </div>

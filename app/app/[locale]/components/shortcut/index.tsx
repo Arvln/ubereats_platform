@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { CategoryItem } from 'components';
 import {
   homePageQueryOptions,
@@ -60,6 +61,8 @@ function Shortcut() {
                   src={`https://${SHORTCUT_ICONS_SERVER_HOST}/shortcuts${isCuisines ? `/cuisines/` : '/'}${imageSuffix}`}
                   width={60}
                   height={60}
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
                   alt={title}
                 />
               }

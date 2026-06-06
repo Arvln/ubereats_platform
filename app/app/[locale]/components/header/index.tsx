@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from 'i18n/navigation';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { Button } from 'components';
 
 import classes from 'styles/features/Header.module.scss';
@@ -97,6 +98,8 @@ function Header({
             src="/images/header_logo.svg"
             width={146}
             height={24}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             alt="Logo"
           />
         </Link>

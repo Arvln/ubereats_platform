@@ -3,6 +3,7 @@
 import Button from 'components/button';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'i18n/navigation';
@@ -76,6 +77,8 @@ function Footer() {
               src="/images/footer_logo.svg"
               width={146}
               height={24}
+              placeholder="blur"
+              blurDataURL={blurDataURL}
               alt="Logo"
             />
           </div>
@@ -85,6 +88,8 @@ function Footer() {
                 src="/images/app_store.svg"
                 width={135}
                 height={40}
+                placeholder="blur"
+                blurDataURL={blurDataURL}
                 alt="App Store"
               />
             </Link>
@@ -94,6 +99,8 @@ function Footer() {
                 src="/images/google_play.png"
                 width={135}
                 height={40}
+                placeholder="blur"
+                blurDataURL={blurDataURL}
                 alt="Google Play"
               />
             </Link>

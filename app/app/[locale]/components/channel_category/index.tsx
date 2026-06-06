@@ -3,6 +3,7 @@
 import { HomeChannelCategory, Prop } from './types';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
 import { CategoryItem } from 'components';
 
 import classes from 'styles/features/ChannelCategory.module.scss';
@@ -40,6 +41,8 @@ function ChannelCategory({
                 src={`https://${CATEGORY_ICONS_SERVER_HOST}/new_search_home_eats_icon/${name}_BrowseHome@3x.png`}
                 width={68}
                 height={80}
+                placeholder="blur"
+                blurDataURL={blurDataURL}
                 alt={name}
               />
             }
