@@ -8,7 +8,7 @@
     "lint": "next lint",
     "start": "next build --webpack && next start",
     "test": "vitest run",
-    "test:e2e": "cypress run"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@tanstack/react-query": "^5",
@@ -29,7 +29,6 @@
     "@types/react": "17.0.30",
     "@vitejs/plugin-react": "6.0.2",
     "autoprefixer": "^10.3.7",
-    "cypress": "^14.0.0",
     "eslint-config-next": "^16",
     "graphql": "^15.6.1",
     "jsdom": "29.1.1",
@@ -42,7 +41,6 @@
     "vitest": "4.1.8"
   },
   "onlyBuiltDependencies": [
-    "cypress",
     "sharp"
   ],
   "packageManager": "pnpm@9.15.0"
