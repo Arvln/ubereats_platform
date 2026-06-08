@@ -236,8 +236,9 @@ export default defineConfig({
 Do not configure Playwright to start its own server — tests run against `docker-compose up -d`. Use a single Chromium project: WebKit is not supported on macOS 12 (`playwright install` fails on `webkit`), so install only Chromium (`pnpm exec playwright install chromium`) and keep the config Chromium-only.
 
 For stability against the single dockerized app instance, the config also needs:
-  - `workers: 1` — run serially (like Cypress). Parallel workers overload the one app container, which slows React hydration enough to trigger Next.js `<Link>` hydration-race no-op clicks and `goto` timeouts.
-  - Generous timeouts — the app can be slow to fully load/hydrate under load: `timeout: 60000` (per test), `expect: { timeout: 15000 }`, and `use: { actionTimeout: 15000, navigationTimeout: 30000 }`.
+
+- `workers: 1` — run serially (like Cypress). Parallel workers overload the one app container, which slows React hydration enough to trigger Next.js `<Link>` hydration-race no-op clicks and `goto` timeouts.
+- Generous timeouts — the app can be slow to fully load/hydrate under load: `timeout: 60000` (per test), `expect: { timeout: 15000 }`, and `use: { actionTimeout: 15000, navigationTimeout: 30000 }`.
 
 Do not modify `server/`, `types/`, or `docker/`.
 
@@ -265,11 +266,12 @@ Do not modify `server/`, `types/`, or `docker/`.
 There are no custom Cypress commands to migrate — `app/cypress/support/commands.ts` contains only commented examples and `app/cypress/support/e2e.ts` only imports it.
 
 **Codebase-specific gotchas (verified during migration) — apply these or the specs will fail against the real app:**
-  - **Locale**: routing is `localePrefix: 'always'`, `defaultLocale: 'en-US'`, `localeDetection: false`. Visiting `/` always redirects to `/en-US` (English UI), but the Cypress specs assert Chinese strings (`美食、生鮮雜貨、飲料等`, `蔬食料理`, store names, etc.), which only exist at the `zh-TW` locale. Navigate to `/zh-TW` (e.g. `page.goto('/zh-TW')`), and assert the locale-prefixed home URL `'/zh-TW'` where the Cypress logo test asserted `'/'`.
-  - **Hydration race**: a Next.js `<Link>` click can be a no-op until React hydrates. Wrap every navigating click in `await expect(async () => { await locator.click(); await expect(page).toHaveURL(target, { timeout: 3000 }); }).toPass({ timeout: 30000 })` so the click retries until navigation actually happens. Use `page.goto(url, { waitUntil: 'domcontentloaded' })` (the homepage's many images make the default `load` event slow).
-  - **Carousels / duplicated slides**: home store and category sections render hidden/cloned items, so a plain `.first()` may resolve to a hidden or non-navigating clone. Use `.filter({ visible: true }).first()`.
-  - **Lazy menu data**: on the store page, `li[data-testid^="good-detail-"]` items load via react-query after navigation — `await goods.first().waitFor({ state: 'visible' })` before counting/iterating.
-  - **Non-orderable menu items**: the first menu section is "買1送1" (free gifts) whose items open no order form on click. Click visible `good-detail` items in a loop until `div[data-testid="order-amount"]` becomes visible, rather than assuming `.first()` is orderable.
+
+- **Locale**: routing is `localePrefix: 'always'`, `defaultLocale: 'en-US'`, `localeDetection: false`. Visiting `/` always redirects to `/en-US` (English UI), but the Cypress specs assert Chinese strings (`美食、生鮮雜貨、飲料等`, `蔬食料理`, store names, etc.), which only exist at the `zh-TW` locale. Navigate to `/zh-TW` (e.g. `page.goto('/zh-TW')`), and assert the locale-prefixed home URL `'/zh-TW'` where the Cypress logo test asserted `'/'`.
+- **Hydration race**: a Next.js `<Link>` click can be a no-op until React hydrates. Wrap every navigating click in `await expect(async () => { await locator.click(); await expect(page).toHaveURL(target, { timeout: 3000 }); }).toPass({ timeout: 30000 })` so the click retries until navigation actually happens. Use `page.goto(url, { waitUntil: 'domcontentloaded' })` (the homepage's many images make the default `load` event slow).
+- **Carousels / duplicated slides**: home store and category sections render hidden/cloned items, so a plain `.first()` may resolve to a hidden or non-navigating clone. Use `.filter({ visible: true }).first()`.
+- **Lazy menu data**: on the store page, `li[data-testid^="good-detail-"]` items load via react-query after navigation — `await goods.first().waitFor({ state: 'visible' })` before counting/iterating.
+- **Non-orderable menu items**: the first menu section is "買1送1" (free gifts) whose items open no order form on click. Click visible `good-detail` items in a loop until `div[data-testid="order-amount"]` becomes visible, rather than assuming `.first()` is orderable.
 
 Use relative paths in `page.goto()` / `toHaveURL()` (baseURL is prepended) rather than hardcoding `http://localhost`. Do not modify `server/`, `types/`, or `docker/`.
 
@@ -283,7 +285,7 @@ Use relative paths in `page.goto()` / `toHaveURL()` (baseURL is prepended) rathe
 
 **How**: From the repo root, run `docker-compose up -d` and confirm the app is serving at `http://localhost` (the nginx container, port 80) — locally you can just wait for the containers to finish booting and load the page once. Then, from `app/`, run `pnpm exec playwright test` (uses `app/playwright.config.ts`, `testDir: './e2e'`, `baseURL: 'http://localhost'`). Do NOT have Playwright start its own server. Investigate failures (timing, selector translation, or URL assertions) and fix the E2E test files or `app/playwright.config.ts` only. Do not change application/component logic, and do not modify `server/`, `types/`, or `docker/`.
 
-> **CI/CD reminder (not part of local Step 11):** In an interactive local run you can eyeball when the stack is up, so no automated readiness gate is needed here. When the GitHub Actions workflow is set up later (CI/CD phase), add an explicit readiness check **as a workflow step between `docker-compose up -d` and `playwright test`**, because `docker-compose up -d` returns as soon as containers *start*, not when the app is actually serving — without it CI will flake with connection/timeout errors. Suggested workflow step:
+> **CI/CD reminder (not part of local Step 11):** In an interactive local run you can eyeball when the stack is up, so no automated readiness gate is needed here. When the GitHub Actions workflow is set up later (CI/CD phase), add an explicit readiness check **as a workflow step between `docker-compose up -d` and `playwright test`**, because `docker-compose up -d` returns as soon as containers _start_, not when the app is actually serving — without it CI will flake with connection/timeout errors. Suggested workflow step:
 >
 > ```bash
 > # Wait for the app (nginx → web) to actually serve before running E2E
@@ -319,6 +321,6 @@ Use relative paths in `page.goto()` / `toHaveURL()` (baseURL is prepended) rathe
 - Jest and Cypress are fully removed from `app/package.json` (no `jest`, `ts-jest`, `jest-environment-jsdom`, `@types/jest`, `identity-obj-proxy`, or `cypress`).
 - No changes were made to `server/`, `types/`, or `docker/`, and no component logic/props changed (review the diff).
 
-**[HUMAN REVIEW]**: A human must visually confirm the editor shows no TS/import errors and that the diff contains no component logic, props, scss, or Tailwind changes — these require human judgment and cannot be fully verified by the test runners alone.
+**[HUMAN REVIEW: approved]**: A human must visually confirm the editor shows no TS/import errors and that the diff contains no component logic, props, scss, or Tailwind changes — these require human judgment and cannot be fully verified by the test runners alone.
 
 **Done When**: A human confirms every bullet above is satisfied.
