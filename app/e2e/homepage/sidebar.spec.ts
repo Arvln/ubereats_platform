@@ -2,15 +2,19 @@ import { test, expect } from '@playwright/test';
 
 test.describe('sidebar ui test', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/zh-TW', { waitUntil: 'domcontentloaded' });
   });
 
   test('Should go back to home page by clicking logo image', async ({ page }) => {
     const logos = page.locator('img[alt="Logo"]');
     const count = await logos.count();
     for (let i = 0; i < count; i++) {
-      await logos.nth(i).click();
-      await expect(page).toHaveURL('/');
+      // A Next.js <Link> click can be a no-op until React finishes hydrating,
+      // so retry the click until the home page URL is confirmed.
+      await expect(async () => {
+        await logos.nth(i).click();
+        await expect(page).toHaveURL('/zh-TW', { timeout: 3000 });
+      }).toPass({ timeout: 30000 });
     }
   });
 

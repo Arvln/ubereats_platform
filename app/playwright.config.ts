@@ -6,10 +6,18 @@ import { defineConfig, devices } from '@playwright/test';
 // supported on macOS 12; Chromium covers the migrated Cypress specs.
 export default defineConfig({
   testDir: './e2e',
+  // Run serially (like Cypress) against the single dockerized app instance.
+  // Parallel workers overload the one app container, slowing React hydration
+  // enough to trigger Next.js <Link> hydration-race no-op clicks and slow page loads.
+  workers: 1,
+  // Generous timeouts: the dockerized app can be slow to fully load/hydrate.
+  timeout: 60000,
+  expect: { timeout: 15000 },
   use: {
     baseURL: 'http://localhost',
+    actionTimeout: 15000,
+    navigationTimeout: 30000,
   },
-  expect: { timeout: 10000 },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
   ],
