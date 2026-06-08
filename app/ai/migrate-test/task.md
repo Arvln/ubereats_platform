@@ -218,7 +218,7 @@ export default defineConfig({
 });
 ```
 
-Do not configure Playwright to start its own server — tests run against `docker-compose up -d`. Do not modify `server/`, `types/`, or `docker/`.
+Do not configure Playwright to start its own server — tests run against `docker-compose up -d`. Use a single Chromium project: WebKit is not supported on macOS 12 (`playwright install` fails on `webkit`), so install only Chromium (`pnpm exec playwright install chromium`) and keep the config Chromium-only. Do not modify `server/`, `types/`, or `docker/`.
 
 **Done When**: `app/playwright.config.ts` exists with `testDir: './e2e'` and `baseURL: 'http://localhost'`.
 
