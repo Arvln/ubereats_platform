@@ -27,6 +27,7 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.3",
     "@types/react": "17.0.30",
+    "@vitejs/plugin-react": "6.0.2",
     "autoprefixer": "^10.3.7",
     "cypress": "^14.0.0",
     "eslint-config-next": "^16",
@@ -34,13 +35,15 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "29.1.1",
     "postcss": "^8.3.9",
     "postcss-cli": "^9.0.1",
     "sass": "^1.43.2",
     "tailwindcss": "^2.2.17",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "4.1.8"
   },
   "onlyBuiltDependencies": [
     "cypress",

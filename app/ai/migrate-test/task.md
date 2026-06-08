@@ -28,10 +28,22 @@ files** under `app/cypress/e2e/homepage/`.
 
 **How**: From `app/`, run:
 `pnpm add -D vitest@4.1.8 @vitejs/plugin-react@6.0.2 jsdom@29.1.1`
-Leave the existing `@testing-library/*` packages in place — they work with Vitest.
-Do not remove Jest yet (it is removed in a later step). Do not modify `server/`, `types/`, or `docker/`.
+Do NOT reinstall, upgrade, or downgrade the existing `@testing-library/*` packages
+(`@testing-library/react`, `@testing-library/user-event`, and especially
+`@testing-library/jest-dom@^6.6.3`) — they already work with Vitest and Step 3 relies on
+the existing `@testing-library/jest-dom/vitest` entry point. Do not remove Jest yet
+(it is removed in a later step). Do not modify `server/`, `types/`, or `docker/`.
 
-**Done When**: `vitest`, `@vitejs/plugin-react`, and `jsdom` appear in `devDependencies` of `app/package.json` at the exact versions above, and `pnpm install` completes without errors.
+Note: installing Vitest 4 pulls in Vite 8, which emits a peer-dependency warning
+`unmet peer sass@^1.70.0: found 1.43.x`. This is a warning, not a failure, and is
+expected here. Because Step 2 relies on `sass` to compile SCSS modules under Vitest, if
+SCSS processing later fails in Step 6, bumping `sass` to `^1.70.0` is the fix — but do
+NOT change any `.scss` source files (only the `sass` package version, if needed).
+
+**Done When**: `vitest`, `@vitejs/plugin-react`, and `jsdom` appear in `devDependencies`
+of `app/package.json` at the exact versions above; `pnpm install` completes (peer-dependency
+*warnings* are acceptable; resolution *errors* are not); and `pnpm ls vitest @vitejs/plugin-react jsdom --depth 0`
+confirms the installed versions match the pinned versions exactly.
 
 ---
 
