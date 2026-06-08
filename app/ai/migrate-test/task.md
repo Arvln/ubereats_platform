@@ -82,6 +82,16 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     include: ['components/**/*.test.{ts,tsx}'],
+    server: {
+      deps: {
+        // `next` ships no package "exports" map, so subpaths like
+        // `next/navigation` only resolve via extension probing. Inlining
+        // next-intl lets Vite's resolver handle that import; Node's native
+        // ESM resolver (used for externalized deps) does NOT probe extensions
+        // and will fail with "Cannot find module .../next/navigation".
+        inline: ['next-intl'],
+      },
+    },
     css: {
       modules: { classNameStrategy: 'non-scoped' },
     },
@@ -89,7 +99,11 @@ export default defineConfig({
 });
 ```
 
-Do not use a Babel transform. Do not modify `server/`, `types/`, or `docker/`.
+The `server.deps.inline: ['next-intl']` entry is required because the `components`
+barrel (`components/index.ts`) transitively imports the real `i18n/navigation`
+(`next-intl/navigation` → `next/navigation`); without inlining next-intl, every test that
+imports from `components` (even ones that don't mock navigation) fails to resolve
+`next/navigation`. Do not use a Babel transform. Do not modify `server/`, `types/`, or `docker/`.
 
 **Done When**: `app/vitest.config.ts` exists, imports `@vitejs/plugin-react`, defines `jsdom` environment, references `./vitest.setup.ts`, sets `css.modules.classNameStrategy: 'non-scoped'`, and every `resolve.alias` entry was verified against `app/tsconfig.json` `compilerOptions.paths` (each target confirmed to match exactly, including the bare `components` → `components/index.ts` mapping and any aliases pointing outside `app/`).
 
@@ -144,7 +158,11 @@ Do not change component logic or props. Do not modify `server/`, `types/`, or `d
 
 **What**: Execute all migrated unit tests and verify they pass with no TypeScript or import errors.
 
-**How**: From `app/`, run `pnpm test` (which runs `vitest run` against `app/vitest.config.ts`). Investigate any failures — common causes: missing path alias in `app/vitest.config.ts`, missing env var in `app/vitest.setup.ts`, or an un-migrated `jest.*` call. Fix config/test issues only; do not change component logic or props, and do not modify `server/`, `types/`, or `docker/`.
+**How**: From `app/`, run `pnpm test` (which runs `vitest run` against `app/vitest.config.ts`). Investigate any failures — known causes for this codebase:
+  - `[sass] sass.initAsyncCompiler is not a function`: the installed `sass` is older than Vite 8 requires. Fix by bumping the `sass` package to `^1.70.0` (`pnpm add -D sass@^1.70.0`). Do NOT edit any `.scss` source files.
+  - `Cannot find module '.../next/navigation'`: ensure `app/vitest.config.ts` has `test.server.deps.inline: ['next-intl']` (see Step 2). `next` has no `exports` map, so this inline is required for any test importing the `components` barrel.
+  - Missing path alias in `app/vitest.config.ts`, missing env var in `app/vitest.setup.ts`, or an un-migrated `jest.*` call.
+A benign jsdom log `Not implemented: navigation to another Document` may appear (from a click handler) and does NOT fail the run. Fix config/test issues only; do not change component logic or props, and do not modify `server/`, `types/`, or `docker/`.
 
 **Done When**: All Vitest unit tests pass (every test file under `app/components/` is green), and no TypeScript or import errors are reported.
 

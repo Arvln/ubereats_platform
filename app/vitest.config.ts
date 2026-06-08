@@ -24,6 +24,15 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     include: ['components/**/*.test.{ts,tsx}'],
+    server: {
+      deps: {
+        // `next` ships no package "exports" map, so subpaths like
+        // `next/navigation` only resolve via extension probing. Inlining
+        // next-intl lets Vite's resolver handle that import (Node's native
+        // ESM resolver, used for externalized deps, does not probe extensions).
+        inline: ['next-intl'],
+      },
+    },
     css: {
       // Replicates the Jest identity-obj-proxy behavior: SCSS-module class
       // names resolve to their original (non-hashed) names so existing

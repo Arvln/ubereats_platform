@@ -16,10 +16,10 @@ importers:
         version: 7.4.0(graphql@15.7.2)
       next:
         specifier: ^16
-        version: 16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.43.4)
+        version: 16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.100.0)
       next-intl:
         specifier: ^4
-        version: 4.12.0(next@16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.43.4))(react@19.0.0)(typescript@5.7.2)
+        version: 4.12.0(next@16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.100.0))(react@19.0.0)(typescript@5.7.2)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -53,7 +53,7 @@ importers:
         version: 17.0.30
       '@vitejs/plugin-react':
         specifier: 6.0.2
-        version: 6.0.2(vite@8.0.16(@types/node@22.10.3)(sass@1.43.4))
+        version: 6.0.2(vite@8.0.16(@types/node@22.10.3)(sass@1.100.0))
       autoprefixer:
         specifier: ^10.3.7
         version: 10.4.0(postcss@8.3.11)
@@ -85,8 +85,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.2(postcss@8.3.11)(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@22.10.3)(typescript@5.7.2))
       sass:
-        specifier: ^1.43.2
-        version: 1.43.4
+        specifier: ^1.100.0
+        version: 1.100.0
       tailwindcss:
         specifier: ^2.2.17
         version: 2.2.19(autoprefixer@10.4.0(postcss@8.3.11))(postcss@8.3.11)(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@22.10.3)(typescript@5.7.2))
@@ -101,7 +101,7 @@ importers:
         version: 5.7.2
       vitest:
         specifier: 4.1.8
-        version: 4.1.8(@types/node@22.10.3)(jsdom@29.1.1)(vite@8.0.16(@types/node@22.10.3)(sass@1.43.4))
+        version: 4.1.8(@types/node@22.10.3)(jsdom@29.1.1)(vite@8.0.16(@types/node@22.10.3)(sass@1.100.0))
 
 packages:
 
@@ -1626,6 +1626,10 @@ packages:
     resolution: {integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==}
     engines: {node: '>= 8.10.0'}
 
+  chokidar@5.0.0:
+    resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
+    engines: {node: '>= 20.19.0'}
+
   ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
     engines: {node: '>=8'}
@@ -2550,6 +2554,9 @@ packages:
   ignore@7.0.5:
     resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
+
+  immutable@5.1.6:
+    resolution: {integrity: sha512-q1swsS8K7L8usSHuOqF2TAoCCkonYz0SG38wLAggaa4Wml70zixIvt2ql4coQ2C2B3hTjltJry4r6bULwgAXLQ==}
 
   import-cwd@3.0.0:
     resolution: {integrity: sha512-4pnzH16plW+hgvRECbDWpQl3cqtvSofHWh44met7ESfZ8UZOWWddm8hEyDTqREJ9RbYHY8gi8DqmaelApoOGMg==}
@@ -3643,6 +3650,10 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
+  readdirp@5.0.0:
+    resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
+    engines: {node: '>= 20.19.0'}
+
   redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
     engines: {node: '>=8'}
@@ -3761,9 +3772,9 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  sass@1.43.4:
-    resolution: {integrity: sha512-/ptG7KE9lxpGSYiXn7Ar+lKOv37xfWsZRtFYal2QHNigyVQDx685VFT/h7ejVr+R8w7H4tmUgtulsKl5YpveOg==}
-    engines: {node: '>=8.9.0'}
+  sass@1.100.0:
+    resolution: {integrity: sha512-B5j0rYMlinhhOo9tjQebMVVn0TfyXAF+wB3b2ggZUuJ/is/Y+7+JGjirAMxHZ9Z3hIP98NPfamlAkBHa1lAaXQ==}
+    engines: {node: '>=20.19.0'}
     hasBin: true
 
   saxes@6.0.0:
@@ -5669,10 +5680,10 @@ snapshots:
       '@typescript-eslint/types': 8.60.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-react@6.0.2(vite@8.0.16(@types/node@22.10.3)(sass@1.43.4))':
+  '@vitejs/plugin-react@6.0.2(vite@8.0.16(@types/node@22.10.3)(sass@1.100.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.0.16(@types/node@22.10.3)(sass@1.43.4)
+      vite: 8.0.16(@types/node@22.10.3)(sass@1.100.0)
 
   '@vitest/expect@4.1.8':
     dependencies:
@@ -5683,13 +5694,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.8(vite@8.0.16(@types/node@22.10.3)(sass@1.43.4))':
+  '@vitest/mocker@4.1.8(vite@8.0.16(@types/node@22.10.3)(sass@1.100.0))':
     dependencies:
       '@vitest/spy': 4.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.16(@types/node@22.10.3)(sass@1.43.4)
+      vite: 8.0.16(@types/node@22.10.3)(sass@1.100.0)
 
   '@vitest/pretty-format@4.1.8':
     dependencies:
@@ -6135,6 +6146,10 @@ snapshots:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+
+  chokidar@5.0.0:
+    dependencies:
+      readdirp: 5.0.0
 
   ci-info@3.9.0: {}
 
@@ -7301,6 +7316,8 @@ snapshots:
 
   ignore@7.0.5: {}
 
+  immutable@5.1.6: {}
+
   import-cwd@3.0.0:
     dependencies:
       import-from: 3.0.0
@@ -8206,14 +8223,14 @@ snapshots:
 
   next-intl-swc-plugin-extractor@4.12.0: {}
 
-  next-intl@4.12.0(next@16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.43.4))(react@19.0.0)(typescript@5.7.2):
+  next-intl@4.12.0(next@16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.100.0))(react@19.0.0)(typescript@5.7.2):
     dependencies:
       '@formatjs/intl-localematcher': 0.8.8
       '@parcel/watcher': 2.5.6
       '@swc/core': 1.15.40
       icu-minify: 4.12.0
       negotiator: 1.0.0
-      next: 16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.43.4)
+      next: 16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.100.0)
       next-intl-swc-plugin-extractor: 4.12.0
       po-parser: 2.1.1
       react: 19.0.0
@@ -8223,7 +8240,7 @@ snapshots:
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  next@16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.43.4):
+  next@16.2.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.100.0):
     dependencies:
       '@next/env': 16.2.6
       '@swc/helpers': 0.5.15
@@ -8242,7 +8259,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.2.6
       '@next/swc-win32-arm64-msvc': 16.2.6
       '@next/swc-win32-x64-msvc': 16.2.6
-      sass: 1.43.4
+      sass: 1.100.0
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -8574,6 +8591,8 @@ snapshots:
     dependencies:
       picomatch: 2.3.0
 
+  readdirp@5.0.0: {}
+
   redent@3.0.0:
     dependencies:
       indent-string: 4.0.0
@@ -8716,9 +8735,13 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass@1.43.4:
+  sass@1.100.0:
     dependencies:
-      chokidar: 3.5.2
+      chokidar: 5.0.0
+      immutable: 5.1.6
+      source-map-js: 1.2.1
+    optionalDependencies:
+      '@parcel/watcher': 2.5.6
 
   saxes@6.0.0:
     dependencies:
@@ -9292,7 +9315,7 @@ snapshots:
       core-util-is: 1.0.2
       extsprintf: 1.3.0
 
-  vite@8.0.16(@types/node@22.10.3)(sass@1.43.4):
+  vite@8.0.16(@types/node@22.10.3)(sass@1.100.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -9302,12 +9325,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.10.3
       fsevents: 2.3.3
-      sass: 1.43.4
+      sass: 1.100.0
 
-  vitest@4.1.8(@types/node@22.10.3)(jsdom@29.1.1)(vite@8.0.16(@types/node@22.10.3)(sass@1.43.4)):
+  vitest@4.1.8(@types/node@22.10.3)(jsdom@29.1.1)(vite@8.0.16(@types/node@22.10.3)(sass@1.100.0)):
     dependencies:
       '@vitest/expect': 4.1.8
-      '@vitest/mocker': 4.1.8(vite@8.0.16(@types/node@22.10.3)(sass@1.43.4))
+      '@vitest/mocker': 4.1.8(vite@8.0.16(@types/node@22.10.3)(sass@1.100.0))
       '@vitest/pretty-format': 4.1.8
       '@vitest/runner': 4.1.8
       '@vitest/snapshot': 4.1.8
@@ -9324,7 +9347,7 @@ snapshots:
       tinyexec: 1.2.4
       tinyglobby: 0.2.16
       tinyrainbow: 3.1.0
-      vite: 8.0.16(@types/node@22.10.3)(sass@1.43.4)
+      vite: 8.0.16(@types/node@22.10.3)(sass@1.100.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.10.3
