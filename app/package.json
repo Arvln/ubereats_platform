@@ -7,7 +7,7 @@
     "build": "next build --webpack",
     "lint": "next lint",
     "start": "next build --webpack && next start",
-    "test": "jest",
+    "test": "vitest run",
     "test:e2e": "cypress run"
   },
   "dependencies": {
