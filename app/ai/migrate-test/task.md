@@ -42,7 +42,7 @@ NOT change any `.scss` source files (only the `sass` package version, if needed)
 
 **Done When**: `vitest`, `@vitejs/plugin-react`, and `jsdom` appear in `devDependencies`
 of `app/package.json` at the exact versions above; `pnpm install` completes (peer-dependency
-*warnings* are acceptable; resolution *errors* are not); and `pnpm ls vitest @vitejs/plugin-react jsdom --depth 0`
+_warnings_ are acceptable; resolution _errors_ are not); and `pnpm ls vitest @vitejs/plugin-react jsdom --depth 0`
 confirms the installed versions match the pinned versions exactly.
 
 ---
@@ -52,36 +52,49 @@ confirms the installed versions match the pinned versions exactly.
 **What**: Create a new file `app/vitest.config.ts` that replaces `app/jest.config.ts`. This is a **shared resource** named `app/vitest.config.ts` and is reused by all later unit-test steps.
 
 **How**: The current `app/jest.config.ts` does three things that MUST be replicated exactly so test behavior is unchanged:
-  1. Uses the `jsdom` test environment with a setup file (`setupFilesAfterEnv: ['./jest.setup.ts']`). In Vitest this becomes `test.environment: 'jsdom'` and `test.setupFiles: ['./vitest.setup.ts']` (that setup file is created in Step 3 — its name is `app/vitest.setup.ts`).
-  2. Maps the TypeScript path aliases from `app/tsconfig.json` `compilerOptions.paths` (`components`, `locales`, `graphql`, `lib`, `styles`, `themes`, `types`). Note that bare imports like `import { Button } from 'components'` must resolve to `components/index.ts`, and `components/*` must resolve to `components/*` — mirror this for every alias.
-  3. Handles `.scss`/SCSS-module imports. Jest mapped `\.scss$` to `identity-obj-proxy`, which returns each class name verbatim (e.g. `styles.wrapper` → `"wrapper"`). Replicate this in Vitest with `css.modules.classNameStrategy: 'non-scoped'` so SCSS-module class names resolve to their original names. `sass` is already installed.
+
+1. Uses the `jsdom` test environment with a setup file (`setupFilesAfterEnv: ['./jest.setup.ts']`). In Vitest this becomes `test.environment: 'jsdom'` and `test.setupFiles: ['./vitest.setup.ts']` (that setup file is created in Step 3 — its name is `app/vitest.setup.ts`).
+2. Maps the TypeScript path aliases from `app/tsconfig.json` `compilerOptions.paths` (`components`, `locales`, `graphql`, `lib`, `styles`, `themes`, `types`). Note that bare imports like `import { Button } from 'components'` must resolve to `components/index.ts`, and `components/*` must resolve to `components/*` — mirror this for every alias.
+3. Handles `.scss`/SCSS-module imports. Jest mapped `\.scss$` to `identity-obj-proxy`, which returns each class name verbatim (e.g. `styles.wrapper` → `"wrapper"`). Replicate this in Vitest with `css.modules.classNameStrategy: 'non-scoped'` so SCSS-module class names resolve to their original names. `sass` is already installed.
 
 Use `@vitejs/plugin-react@6.0.2`. Before writing the `resolve.alias` block, open `app/tsconfig.json` and read `compilerOptions.paths`; derive every alias entry directly from those values — do NOT assume the mappings below are current. In particular, confirm the on-disk target of each alias (e.g. whether `types/*` points to `../types/*` outside the `app/` directory) and that the bare `components` → `components/index.ts` resolution matches how the app imports today. The block below is a template to adapt, not a source of truth:
 
 ```ts
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: /^components$/, replacement: resolve(__dirname, 'components/index.ts') },
-      { find: /^components\/(.*)$/, replacement: resolve(__dirname, 'components/$1') },
-      { find: /^locales\/(.*)$/, replacement: resolve(__dirname, 'locales/$1') },
-      { find: /^graphql\/(.*)$/, replacement: resolve(__dirname, 'graphql/$1') },
-      { find: /^lib\/(.*)$/, replacement: resolve(__dirname, 'lib/$1') },
-      { find: /^styles\/(.*)$/, replacement: resolve(__dirname, 'styles/$1') },
-      { find: /^themes\/(.*)$/, replacement: resolve(__dirname, 'themes/$1') },
-      { find: /^types\/(.*)$/, replacement: resolve(__dirname, '../types/$1') },
+      {
+        find: /^components$/,
+        replacement: resolve(__dirname, "components/index.ts"),
+      },
+      {
+        find: /^components\/(.*)$/,
+        replacement: resolve(__dirname, "components/$1"),
+      },
+      {
+        find: /^locales\/(.*)$/,
+        replacement: resolve(__dirname, "locales/$1"),
+      },
+      {
+        find: /^graphql\/(.*)$/,
+        replacement: resolve(__dirname, "graphql/$1"),
+      },
+      { find: /^lib\/(.*)$/, replacement: resolve(__dirname, "lib/$1") },
+      { find: /^styles\/(.*)$/, replacement: resolve(__dirname, "styles/$1") },
+      { find: /^themes\/(.*)$/, replacement: resolve(__dirname, "themes/$1") },
+      { find: /^types\/(.*)$/, replacement: resolve(__dirname, "../types/$1") },
     ],
   },
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./vitest.setup.ts'],
-    include: ['components/**/*.test.{ts,tsx}'],
+    environment: "jsdom",
+    setupFiles: ["./vitest.setup.ts"],
+    include: ["components/**/*.test.{ts,tsx}"],
     server: {
       deps: {
         // `next` ships no package "exports" map, so subpaths like
@@ -89,11 +102,11 @@ export default defineConfig({
         // next-intl lets Vite's resolver handle that import; Node's native
         // ESM resolver (used for externalized deps) does NOT probe extensions
         // and will fail with "Cannot find module .../next/navigation".
-        inline: ['next-intl'],
+        inline: ["next-intl"],
       },
     },
     css: {
-      modules: { classNameStrategy: 'non-scoped' },
+      modules: { classNameStrategy: "non-scoped" },
     },
   },
 });
@@ -114,9 +127,10 @@ imports from `components` (even ones that don't mock navigation) fails to resolv
 **What**: Create `app/vitest.setup.ts` (the Vitest equivalent of `app/jest.setup.ts`) and update `app/tsconfig.test.json` to reference Vitest types instead of Jest. `app/vitest.setup.ts` is a **shared resource** reused by all unit-test steps.
 
 **How**: `app/jest.setup.ts` currently (a) imports `@testing-library/jest-dom` to register DOM matchers, and (b) sets three environment variables that tests depend on:
-  - `SHORTCUT_ICONS_SERVER_HOST: 'mockhost1'`
-  - `UTILS_ICONS_SERVER_HOST: 'mockhost2'`
-  - `STORE_IMAGE_SERVER_HOST: 'mockhost3'` (the Shop test asserts image `src` of `https://mockhost3/...`, so this value MUST be preserved exactly)
+
+- `SHORTCUT_ICONS_SERVER_HOST: 'mockhost1'`
+- `UTILS_ICONS_SERVER_HOST: 'mockhost2'`
+- `STORE_IMAGE_SERVER_HOST: 'mockhost3'` (the Shop test asserts image `src` of `https://mockhost3/...`, so this value MUST be preserved exactly)
 
 Create `app/vitest.setup.ts` that does both: `import '@testing-library/jest-dom/vitest';` and sets the same three env vars with the same values.
 
@@ -141,10 +155,11 @@ Then update `app/tsconfig.test.json`: it currently extends `tsconfig.json` and o
 **What**: Convert every Jest-specific API call in the unit test files under `app/components/` to the Vitest equivalent. Do not change any assertion, mock data, or test description.
 
 **How**: Scan all unit test files with `grep -rn "jest\." app/components` and `grep -rln "\.test\.tsx\?$" app/components` (there are 5 such files today). For each file:
-  - Replace `jest.mock(...)` with `vi.mock(...)`, `jest.fn(...)` with `vi.fn(...)`, and any other `jest.*` call with the `vi.*` equivalent.
-  - Add `import { vi } from 'vitest';` to any file that uses `vi.*`. (`describe`, `test`, `expect` are provided as globals by the shared config `app/vitest.config.ts`, so they do not need imports.)
-  - Do NOT change `render`/`screen`/`fireEvent` imports from `@testing-library/react` — they are unchanged.
-  - Keep all `data-testid` queries, mocked module paths (e.g. `next/image`, `../../i18n/navigation`), mock objects, and assertions byte-for-byte identical.
+
+- Replace `jest.mock(...)` with `vi.mock(...)`, `jest.fn(...)` with `vi.fn(...)`, and any other `jest.*` call with the `vi.*` equivalent.
+- Add `import { vi } from 'vitest';` to any file that uses `vi.*`. (`describe`, `test`, `expect` are provided as globals by the shared config `app/vitest.config.ts`, so they do not need imports.)
+- Do NOT change `render`/`screen`/`fireEvent` imports from `@testing-library/react` — they are unchanged.
+- Keep all `data-testid` queries, mocked module paths (e.g. `next/image`, `../../i18n/navigation`), mock objects, and assertions byte-for-byte identical.
 
 Several files mock `next/image` and/or `../../i18n/navigation` via `jest.mock` — those become `vi.mock` with identical factory bodies. One file (the Shop test) asserts image `src` values built from `STORE_IMAGE_SERVER_HOST` (`mockhost3`), which is supplied by the shared setup file `app/vitest.setup.ts`; do not inline that value into the test.
 
@@ -159,10 +174,11 @@ Do not change component logic or props. Do not modify `server/`, `types/`, or `d
 **What**: Execute all migrated unit tests and verify they pass with no TypeScript or import errors.
 
 **How**: From `app/`, run `pnpm test` (which runs `vitest run` against `app/vitest.config.ts`). Investigate any failures — known causes for this codebase:
-  - `[sass] sass.initAsyncCompiler is not a function`: the installed `sass` is older than Vite 8 requires. Fix by bumping the `sass` package to `^1.70.0` (`pnpm add -D sass@^1.70.0`). Do NOT edit any `.scss` source files.
-  - `Cannot find module '.../next/navigation'`: ensure `app/vitest.config.ts` has `test.server.deps.inline: ['next-intl']` (see Step 2). `next` has no `exports` map, so this inline is required for any test importing the `components` barrel.
-  - Missing path alias in `app/vitest.config.ts`, missing env var in `app/vitest.setup.ts`, or an un-migrated `jest.*` call.
-A benign jsdom log `Not implemented: navigation to another Document` may appear (from a click handler) and does NOT fail the run. Fix config/test issues only; do not change component logic or props, and do not modify `server/`, `types/`, or `docker/`.
+
+- `[sass] sass.initAsyncCompiler is not a function`: the installed `sass` is older than Vite 8 requires. Fix by bumping the `sass` package to `^1.70.0` (`pnpm add -D sass@^1.70.0`). Do NOT edit any `.scss` source files.
+- `Cannot find module '.../next/navigation'`: ensure `app/vitest.config.ts` has `test.server.deps.inline: ['next-intl']` (see Step 2). `next` has no `exports` map, so this inline is required for any test importing the `components` barrel.
+- Missing path alias in `app/vitest.config.ts`, missing env var in `app/vitest.setup.ts`, or an un-migrated `jest.*` call.
+  A benign jsdom log `Not implemented: navigation to another Document` may appear (from a click handler) and does NOT fail the run. Fix config/test issues only; do not change component logic or props, and do not modify `server/`, `types/`, or `docker/`.
 
 **Done When**: All Vitest unit tests pass (every test file under `app/components/` is green), and no TypeScript or import errors are reported.
 
@@ -197,24 +213,23 @@ A benign jsdom log `Not implemented: navigation to another Document` may appear 
 **What**: Create `app/playwright.config.ts`. This is a **shared resource** named `app/playwright.config.ts`, reused by the E2E run step.
 
 **How**: The current Cypress config (`app/cypress.config.ts`) uses `baseUrl: 'http://localhost'` — the app is served by the nginx container on port 80 from `docker-compose up -d` (see root `docker-compose.yml`). Create `app/playwright.config.ts` with:
-  - `testDir: './e2e'` (Playwright tests live under `app/e2e/`)
-  - `use.baseURL: 'http://localhost'`
-  - A reasonable `timeout`/`expect` timeout (Cypress used a 10s timeout for location assertions — preserve similar generosity).
+
+- `testDir: './e2e'` (Playwright tests live under `app/e2e/`)
+- `use.baseURL: 'http://localhost'`
+- A reasonable `timeout`/`expect` timeout (Cypress used a 10s timeout for location assertions — preserve similar generosity).
 
 Example:
 
 ```ts
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: './e2e',
+  testDir: "./e2e",
   use: {
-    baseURL: 'http://localhost',
+    baseURL: "http://localhost",
   },
   expect: { timeout: 10000 },
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-  ],
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
 });
 ```
 
@@ -229,16 +244,17 @@ Do not configure Playwright to start its own server — tests run against `docke
 **What**: Recreate the 3 Cypress E2E specs as Playwright tests under `app/e2e/`, preserving identical test intent, selectors, and assertions. Do not add new test cases.
 
 **How**: The source specs live in `app/cypress/e2e/homepage/` (3 files: homepage sidebar, shop, and category flows). Create equivalent Playwright specs under `app/e2e/` (e.g. `app/e2e/homepage/`). The Playwright config `app/playwright.config.ts` sets `baseURL: 'http://localhost'`, so use relative paths in `page.goto('/')`. Translate Cypress APIs to Playwright equivalents, keeping every selector and asserted value identical:
-  - `cy.visit('/')` → `await page.goto('/')`
-  - `cy.get(sel)` → `page.locator(sel)`
-  - `.type('x')` → `.fill('x')` (or `.pressSequentially('x')` if the input needs keystroke events)
-  - `.should('have.value', 'x')` → `await expect(locator).toHaveValue('x')`
-  - `.should('be.checked')` / `.should('exist')` → `await expect(locator).toBeChecked()` / `await expect(locator).toBeVisible()`
-  - `.click()` → `await locator.click()`
-  - `cy.contains('text')` → `page.getByText('text')` and `await expect(...).toBeVisible()`
-  - `cy.location('pathname').should('eq', x)` → `await expect(page).toHaveURL(...)` matching the pathname
-  - `.each(...)` and `.first()` → Playwright `.first()` / loops over `locator.all()`
-  - Preserve the Chinese-language UI strings exactly (e.g. placeholder `美食、生鮮雜貨、飲料等`, price/delivery labels, store name `九湯屋日本拉麵`).
+
+- `cy.visit('/')` → `await page.goto('/')`
+- `cy.get(sel)` → `page.locator(sel)`
+- `.type('x')` → `.fill('x')` (or `.pressSequentially('x')` if the input needs keystroke events)
+- `.should('have.value', 'x')` → `await expect(locator).toHaveValue('x')`
+- `.should('be.checked')` / `.should('exist')` → `await expect(locator).toBeChecked()` / `await expect(locator).toBeVisible()`
+- `.click()` → `await locator.click()`
+- `cy.contains('text')` → `page.getByText('text')` and `await expect(...).toBeVisible()`
+- `cy.location('pathname').should('eq', x)` → `await expect(page).toHaveURL(...)` matching the pathname
+- `.each(...)` and `.first()` → Playwright `.first()` / loops over `locator.all()`
+- Preserve the Chinese-language UI strings exactly (e.g. placeholder `美食、生鮮雜貨、飲料等`, price/delivery labels, store name `九湯屋日本拉麵`).
 
 There are no custom Cypress commands to migrate — `app/cypress/support/commands.ts` contains only commented examples and `app/cypress/support/e2e.ts` only imports it. Do not modify `server/`, `types/`, or `docker/`.
 
@@ -250,7 +266,7 @@ There are no custom Cypress commands to migrate — `app/cypress/support/command
 
 **What**: Start the application via Docker and run the Playwright E2E suite to verify it passes.
 
-**How**: From the repo root, run `docker-compose up -d`. Note that `docker-compose up -d` returns as soon as the containers are *started*, NOT when the app is actually serving — running Playwright immediately will fail with connection/timeout errors. Add an explicit readiness check that polls `http://localhost` until it returns HTTP 200 before running the suite, for example:
+**How**: From the repo root, run `docker-compose up -d`. Note that `docker-compose up -d` returns as soon as the containers are _started_, NOT when the app is actually serving — running Playwright immediately will fail with connection/timeout errors. Add an explicit readiness check that polls `http://localhost` until it returns HTTP 200 before running the suite, for example:
 
 ```bash
 docker-compose up -d
@@ -282,11 +298,12 @@ done
 **What**: Confirm all success conditions from `ai/migrate-test/objective.md` are met.
 
 **How**: Verify:
-  - No TypeScript or import errors are shown in the Cursor editor for any test or config file.
-  - `pnpm test` (Vitest) passes for all 5 unit test files under `app/components/`.
-  - `pnpm exec playwright test` passes for all 3 E2E files under `app/e2e/` against `docker-compose up -d`.
-  - Jest and Cypress are fully removed from `app/package.json` (no `jest`, `ts-jest`, `jest-environment-jsdom`, `@types/jest`, `identity-obj-proxy`, or `cypress`).
-  - No changes were made to `server/`, `types/`, or `docker/`, and no component logic/props changed (review the diff).
+
+- No TypeScript or import errors are shown in the Cursor editor for any test or config file.
+- `pnpm test` (Vitest) passes for all 5 unit test files under `app/components/`.
+- `pnpm exec playwright test` passes for all 3 E2E files under `app/e2e/` against `docker-compose up -d`.
+- Jest and Cypress are fully removed from `app/package.json` (no `jest`, `ts-jest`, `jest-environment-jsdom`, `@types/jest`, `identity-obj-proxy`, or `cypress`).
+- No changes were made to `server/`, `types/`, or `docker/`, and no component logic/props changed (review the diff).
 
 **[HUMAN REVIEW]**: A human must visually confirm the editor shows no TS/import errors and that the diff contains no component logic, props, scss, or Tailwind changes — these require human judgment and cannot be fully verified by the test runners alone.
 
