@@ -1,9 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import type { Prop } from './types';
 import { Shop } from 'components';
 
-jest.mock('next/image', () => ({
+vi.mock('next/image', () => ({
   __esModule: true,
   default: ({ src, alt, width, height, style, fill, ...props }: { src: string, alt: string, width?: number | string, height?: number | string, fill?: boolean, style?: React.CSSProperties }) => (
       <img
@@ -17,7 +18,7 @@ jest.mock('next/image', () => ({
     ),
 }));
 
-jest.mock('../../i18n/navigation', () => ({
+vi.mock('../../i18n/navigation', () => ({
   Link: ({ href, children }: { href: string; children: React.ReactNode }) => (
     <a href={href}>{children}</a>
   ),

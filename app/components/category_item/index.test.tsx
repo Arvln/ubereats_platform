@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import type { Prop } from './types';
 import { CategoryItem }from 'components';
 
-jest.mock('../../i18n/navigation', () => ({
+vi.mock('../../i18n/navigation', () => ({
   Link: ({ href, children }: { href: string; children: React.ReactNode }) => (
     <a href={href}>{children}</a>
   ),
