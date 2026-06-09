@@ -11,7 +11,6 @@ import classes from 'styles/features/store/OrderForm.module.scss';
 
 const {
   wrapper,
-  navbar,
   hidden,
   imageWrapper,
   information,

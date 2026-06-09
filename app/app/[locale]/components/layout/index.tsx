@@ -17,7 +17,7 @@ const {
   showForm,
   hideForm
 } = classes;
-let handleForm: THandleForm = () => { };
+const noopHandleForm: THandleForm = () => { };
 
 function Layout({ children }: Prop) {
   const [isShowEntryOptions, setIsShowEntryOptions] = useState<boolean>(false);
@@ -38,10 +38,10 @@ function Layout({ children }: Prop) {
     setIsShowEntryOptions(!isShowEntryOptions);
   };
 
-  handleForm = form => {
+  const handleForm: THandleForm = form => {
     _handleBodyStyle(isShowForm);
     setIsShowFrom(!isShowForm);
-    form && setForm(form);
+    if (form) setForm(form);
   };
 
   function _renderEntryOptionsWithMask() {
@@ -91,6 +91,6 @@ function Layout({ children }: Prop) {
   );
 };
 
-export const FormContext = createContext(handleForm);
+export const FormContext = createContext(noopHandleForm);
 
 export default Layout;

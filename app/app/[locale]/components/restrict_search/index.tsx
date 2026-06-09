@@ -137,7 +137,7 @@ function RestrictSearch({ isCuisines }: Prop) {
         const labelStyle =
           isSelected ? `${optionContentLabel} ${selectedLabel}` : optionContentLabel;
         const key: string = ClassificationTypes[classification];
-        const title: string = (ClassificationsTypes as any)[key];
+        const title: string = ClassificationsTypes[key as keyof typeof ClassificationsTypes];
 
         return (
           <div
@@ -258,7 +258,7 @@ function RestrictSearch({ isCuisines }: Prop) {
         {
           deliveryRestrictions.map(deliveryRestriction => {
             const key: string = DeliveryRestrictionTypes[deliveryRestriction];
-            const title: string = (DeliveryRestrictionsTypes as any)[key];
+            const title: string = DeliveryRestrictionsTypes[key as keyof typeof DeliveryRestrictionsTypes];
 
             return (
               <Button

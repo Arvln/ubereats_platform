@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "lint": "next lint",
+    "lint": "eslint .",
     "start": "next build --webpack && next start",
     "test": "vitest run",
     "test:e2e": "playwright test"
@@ -29,6 +29,7 @@
     "@types/react": "17.0.30",
     "@vitejs/plugin-react": "6.0.2",
     "autoprefixer": "^10.3.7",
+    "eslint": "^9",
     "eslint-config-next": "^16",
     "graphql": "^15.6.1",
     "jsdom": "29.1.1",

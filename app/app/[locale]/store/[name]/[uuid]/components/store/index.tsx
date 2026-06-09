@@ -29,7 +29,7 @@ function Store() {
   const name = decodeURIComponent(params.name);
   const uuid = params.uuid;
   const { data } = useQuery(storeBySlugQueryOptions(name, uuid));
-  const [position, setPosition] = useState<number>(originPosition);
+  const [position] = useState<number>(originPosition);
 
   if (!data) {
     return <div>loading...</div>;
@@ -41,7 +41,6 @@ function Store() {
     shortestDeliveryTime,
     score,
     bannerSuffix,
-    address,
     goodChannels,
   } = data;
 

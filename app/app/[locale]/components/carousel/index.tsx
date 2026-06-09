@@ -37,6 +37,10 @@ function Carousel() {
   const [horizontalOffset, setHorizontalOffset] = useState(-100);
   const [transition, setTransition] = useState<string>(smoothTransition);
 
+  /* eslint-disable react-hooks/set-state-in-effect --
+   * Intentional infinite-scroll snap-back: once the track animates past a
+   * boundary we instantly reposition it (without transition) to the opposite
+   * start point, creating a seamless looping carousel. */
   useEffect(() => {
     if (horizontalOffset <= rightBoundaryValue) {
       setHorizontalOffset(leftStratPoint);
@@ -48,6 +52,7 @@ function Carousel() {
       setTransition(clearTransition);
     }
   }, [horizontalOffset]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function _handlePreviousButton(): void {
     if (horizontalOffset <= leftBoundaryValue) {
