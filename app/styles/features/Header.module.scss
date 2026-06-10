@@ -1,6 +1,6 @@
 @import '../utils/index.scss';
 
-$THEME_FEATURES_HEADER_BACKGROUND_COLOR: rgb(238, 238, 238);
+$THEME_FEATURES_HEADER_BACKGROUND_COLOR: 'rgb(238,238,238)';
 $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
 
 .wrapper {
@@ -67,7 +67,7 @@ $THEME_FEATURES_HEADER_BORDER_RADIUS: 500px;
 }
 
 .searchbarShadow {
-  box-shadow: rgb(0, 0, 0) 0px -2px 0 inset;
+  box-shadow: rgb(0 0 0) 0px -2px 0 inset;
 }
 
 .cartWrapper {
