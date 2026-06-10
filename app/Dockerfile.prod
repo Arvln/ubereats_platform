@@ -12,8 +12,6 @@ RUN mkdir -p ../types
 
 COPY ./types ../types
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
 EXPOSE 3000
 
 CMD ["pm2-runtime", "pnpm", "--", "run", "start"]

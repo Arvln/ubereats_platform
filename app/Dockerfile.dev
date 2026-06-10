@@ -4,8 +4,6 @@ WORKDIR /usr/src/app
 
 COPY ./app/package.json ./app/pnpm-lock.yaml .
 
-ENV CYPRESS_INSTALL_BINARY=0
-
 RUN npm install -g pm2 && npm install -g pnpm && pnpm i --frozen-lockfile
 
 COPY ./app .
@@ -13,14 +11,6 @@ COPY ./app .
 RUN mkdir -p ../types
 
 COPY ./types ../types
-
-ENV WATCHPACK_POLLING=true
-
-ENV CHOKIDAR_USEPOLLING=true
-
-ENV CHOKIDAR_INTERVAL=2000
-
-ENV NODE_OPTIONS=--openssl-legacy-provider
 
 EXPOSE 3000
 

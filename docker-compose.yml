@@ -30,8 +30,8 @@ services:
       context: .
       dockerfile: ./server/Dockerfile
     container_name: server
-    environment:
-      MYSQL_HOST: database
+    env_file:
+      - ./server/.env
     depends_on:
       - database
     restart: always
@@ -41,6 +41,8 @@ services:
       context: .
       dockerfile: ./app/Dockerfile.dev
     container_name: web
+    env_file:
+      - ./app/.env.local
     volumes:
       - ./app:/usr/src/app:cached
       - /usr/src/app/node_modules
