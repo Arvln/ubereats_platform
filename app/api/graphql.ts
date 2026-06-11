@@ -1,8 +1,16 @@
-import { GraphQLClient, type RequestDocument, type Variables } from 'graphql-request';
+import {
+  GraphQLClient,
+  type RequestDocument,
+  type Variables,
+} from "graphql-request";
 
 function getServerGraphqlEndpoint(): string {
-  const port = process.env.SERVER_PORT;
-  return `http://server:${port}`;
+  const serverUrl = process.env.SERVER_URL;
+
+  if (!serverUrl) {
+    throw new Error("SERVER_URL is not defined");
+  }
+  return serverUrl;
 }
 
 /**
@@ -18,19 +26,19 @@ export function gqlServerClient(): GraphQLClient {
  * Do not use in Server Components or Route Handlers.
  */
 export function gqlClient(): GraphQLClient {
-  return new GraphQLClient('/api/graphql');
+  return new GraphQLClient("/api/graphql");
 }
 
-export async function gqlServerRequest<
-  T,
-  V extends Variables = Variables,
->(document: RequestDocument, variables?: V): Promise<T> {
+export async function gqlServerRequest<T, V extends Variables = Variables>(
+  document: RequestDocument,
+  variables?: V,
+): Promise<T> {
   return gqlServerClient().request<T>(document, variables);
 }
 
-export async function gqlClientRequest<
-  T,
-  V extends Variables = Variables,
->(document: RequestDocument, variables?: V): Promise<T> {
+export async function gqlClientRequest<T, V extends Variables = Variables>(
+  document: RequestDocument,
+  variables?: V,
+): Promise<T> {
   return gqlClient().request<T>(document, variables);
 }
