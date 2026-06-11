@@ -9,7 +9,7 @@ import EntryOptions from '../entry_options';
 import Header from '../header';
 import Footer from '../footer';
 
-import classes from 'styles/features/Layout.module.scss';
+import classes from '@/styles/features/Layout.module.scss';
 
 const {
   hideContent,

@@ -10,7 +10,7 @@ import {
   categoryByTitleQueryOptions,
 } from '../../queries';
 
-import classes from 'styles/features/category/Category.module.scss';
+import classes from '@/styles/features/category/Category.module.scss';
 
 const {
 	wrapper,

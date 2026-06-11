@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { getScore } from 'components/shop/utils';
 
-import classes from 'styles/features/store/Title.module.scss';
+import classes from '@/styles/features/store/Title.module.scss';
 
 const {
   info,

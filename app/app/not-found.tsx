@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { blurDataURL } from 'lib/image-placeholder';
 
-import classes from 'styles/pages/Error.module.scss';
+import classes from '@/styles/pages/Error.module.scss';
 
 export const metadata: Metadata = {
   title: '糟糕！發生錯誤 | Uber Eats 優食',

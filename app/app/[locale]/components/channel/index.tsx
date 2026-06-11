@@ -20,7 +20,7 @@ import {
   homePageQueryOptions,
 } from '../../queries';
 
-import classes from 'styles/features/Channel.module.scss';
+import classes from '@/styles/features/Channel.module.scss';
 import { useTranslations } from 'next-intl';
 
 const {

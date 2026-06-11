@@ -13,7 +13,7 @@ import Image from "next/image";
 import { blurDataURL } from "lib/image-placeholder";
 import { storeBySlugQueryOptions } from "../../queries";
 
-import classes from "styles/features/store/Store.module.scss";
+import classes from "@/styles/features/store/Store.module.scss";
 
 const { wrapper, banner, moreOptions, buttonWrapper, content, space_40 } =
   classes;

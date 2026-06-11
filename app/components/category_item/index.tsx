@@ -3,7 +3,7 @@
 import { Prop } from './types';
 import { Link } from '../../i18n/navigation';
 
-import classes from 'styles/components/CategoryItem.module.scss';
+import classes from '@/styles/components/CategoryItem.module.scss';
 
 const { wrapper } = classes;
 

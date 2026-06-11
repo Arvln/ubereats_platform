@@ -10,7 +10,7 @@ import {
   homePageQueryOptions,
 } from '../../queries';
 
-import classes from 'styles/features/Shortcut.module.scss';
+import classes from '@/styles/features/Shortcut.module.scss';
 
 const {
   wrapper,

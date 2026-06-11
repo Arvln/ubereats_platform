@@ -6,7 +6,7 @@ import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { blurDataURL } from 'lib/image-placeholder';
 import { Button } from 'components';
-import classes from 'styles/features/RestrictSearch.module.scss';
+import classes from '@/styles/features/RestrictSearch.module.scss';
 import { useTranslations } from 'next-intl';
 
 enum ConditionsTypes {

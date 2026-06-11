@@ -9,7 +9,7 @@ import { Arrow } from "components";
 import { getRenderData, getRightStartPoint } from "./utils";
 import { homePageQueryOptions } from "../../queries";
 
-import classes from "styles/features/Carousel.module.scss";
+import classes from "@/styles/features/Carousel.module.scss";
 
 const {
   wrapper,

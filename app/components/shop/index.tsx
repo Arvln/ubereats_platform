@@ -13,7 +13,7 @@ import {
   getPageSizeWrapper
 } from './utils';
 
-import classes from 'styles/components/Shop.module.scss';
+import classes from '@/styles/components/Shop.module.scss';
 
 const {
   wrapper,

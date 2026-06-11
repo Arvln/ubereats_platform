@@ -1,4 +1,4 @@
-import classes from 'styles/components/Shop.module.scss';
+import classes from '@/styles/components/Shop.module.scss';
 
 const {
 	shopWidth_3,

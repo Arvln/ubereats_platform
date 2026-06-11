@@ -1,7 +1,7 @@
 import { Prop, TShop } from './types';
 import { Shop } from 'components';
 
-import classes from 'styles/features/ChannelShop.module.scss';
+import classes from '@/styles/features/ChannelShop.module.scss';
 
 const {
 	wrapper,

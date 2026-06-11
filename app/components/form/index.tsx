@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { TAppendClass } from 'components/button/types';
 import { Button } from 'components';
 
-import classes from 'styles/components/Form.module.scss';
+import classes from '@/styles/components/Form.module.scss';
 
 const {
 	wrapper,
