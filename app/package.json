@@ -41,12 +41,5 @@
     "typescript": "^5.7.2",
     "vitest": "4.1.8"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp",
-      "@parcel/watcher",
-      "@swc/core"
-    ]
-  },
   "packageManager": "pnpm@11.5.1"
 }
