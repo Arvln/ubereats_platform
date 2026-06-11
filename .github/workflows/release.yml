@@ -3,10 +3,10 @@ name: release
 on:
   push:
     branches:
-      - "release*"
+      - 'release*'
   pull_request:
     branches:
-      - "release*"
+      - 'release*'
 
 jobs:
   linting:
@@ -22,7 +22,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+<<<<<<< HEAD
           cache: "pnpm"
+=======
+          cache: 'pnpm'
+>>>>>>> release
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -44,7 +48,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+<<<<<<< HEAD
           cache: "pnpm"
+=======
+          cache: 'pnpm'
+>>>>>>> release
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -60,23 +68,36 @@ jobs:
     if: github.event_name == 'push'
     outputs:
       TAG: ${{ steps.tag.outputs.TAG }}
+<<<<<<< HEAD
       IMAGE: ${{ steps.tag.outputs.IMAGE }}
+=======
+>>>>>>> release
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+<<<<<<< HEAD
       - name: Generate tag and image name
         id: tag
         run: |
           echo "TAG=dev-v1.0.$(date +%Y%m%d%H%M%S)" >> "$GITHUB_OUTPUT"
           echo "IMAGE=ghcr.io/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+=======
+      - name: Generate tag
+        id: tag
+        run: echo "TAG=dev-v1.0.$(date +%Y%m%d%H%M%S)" >> "$GITHUB_OUTPUT"
+>>>>>>> release
       - name: Build image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./server/Dockerfile
           push: false
+<<<<<<< HEAD
           tags: ${{ steps.tag.outputs.IMAGE }}:${{ steps.tag.outputs.TAG }}
+=======
+          tags: ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.TAG }}
+>>>>>>> release
           outputs: type=docker,dest=/tmp/image.tar
       - name: Upload image artifact
         uses: actions/upload-artifact@v4
@@ -94,7 +115,10 @@ jobs:
       packages: write
     outputs:
       TAG: ${{ needs.build.outputs.TAG }}
+<<<<<<< HEAD
       IMAGE: ${{ needs.build.outputs.IMAGE }}
+=======
+>>>>>>> release
     steps:
       - name: Download image artifact
         uses: actions/download-artifact@v4
@@ -110,7 +134,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push image
+<<<<<<< HEAD
         run: docker push ${{ needs.build.outputs.IMAGE }}:${{ needs.build.outputs.TAG }}
+=======
+        run: docker push ghcr.io/${{ github.repository }}:${{ needs.build.outputs.TAG }}
+>>>>>>> release
       - name: Delete old images (keep latest 5)
         uses: actions/delete-package-versions@v5
         with:
@@ -129,7 +157,10 @@ jobs:
       - name: Deploy Next.js to Vercel (preview)
         uses: amondnet/vercel-action@v25
         with:
+<<<<<<< HEAD
           vercel-version: latest
+=======
+>>>>>>> release
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
