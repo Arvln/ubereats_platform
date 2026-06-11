@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { blurDataURL } from 'lib/image-placeholder';
 import { Button } from 'components';
 
-import classes from 'styles/features/EntryOptions.module.scss';
+import classes from '@/styles/features/EntryOptions.module.scss';
 
 const {
   wrapper,

@@ -1,6 +1,6 @@
 import { Prop } from "./types";
 
-import classes from "styles/features/store/Sidebar.module.scss";
+import classes from "@/styles/features/store/Sidebar.module.scss";
 
 const { wrapper, buttonWrapper, buttonContent, borderBottom } = classes;
 

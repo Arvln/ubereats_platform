@@ -7,7 +7,7 @@ import {
   marketingPageDataSchema,
 } from './queries';
 
-import classes from 'styles/pages/marketing/Advertise.module.scss';
+import classes from '@/styles/pages/marketing/Advertise.module.scss';
 
 const { wrapper, massage } = classes;
 

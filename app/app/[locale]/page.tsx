@@ -7,7 +7,7 @@ import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { fetchHomePageDataServer, homeQueryKey } from "./queries";
 
-import classes from "styles/pages/Home.module.scss";
+import classes from "@/styles/pages/Home.module.scss";
 
 const { wrapper, storesWrapper } = classes;
 

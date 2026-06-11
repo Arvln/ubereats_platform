@@ -9,7 +9,7 @@ import { getDiscountPrice, isFreeGift } from './utils';
 import { FormContext } from 'app/[locale]/components/layout';
 import OrderForm from '../order_form';
 
-import classes from 'styles/features/store/Menu.module.scss';
+import classes from '@/styles/features/store/Menu.module.scss';
 
 const {
   wrapper,

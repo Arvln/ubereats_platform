@@ -2,7 +2,7 @@
 
 import { Prop } from './types';
 
-import classes from 'styles/features/Popups.module.scss';
+import classes from '@/styles/features/Popups.module.scss';
 
 const {
 	wrapper,

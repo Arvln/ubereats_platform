@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { blurDataURL } from 'lib/image-placeholder';
 
-import classes from 'styles/features/store/OrderForm.module.scss';
+import classes from '@/styles/features/store/OrderForm.module.scss';
 
 const {
   wrapper,
