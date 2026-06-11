@@ -61,7 +61,7 @@ Reference: `ai/cicd-refactor/objective.md`, `ai/cicd-refactor/prompt.md`.
     uses: actions/setup-node@v4
     with:
       node-version: 20
-      cache: 'pnpm'
+      cache: "pnpm"
       cache-dependency-path: app/pnpm-lock.yaml
   - name: Install dependencies
     run: pnpm i --frozen-lockfile
@@ -79,7 +79,7 @@ Reference: `ai/cicd-refactor/objective.md`, `ai/cicd-refactor/prompt.md`.
 
 ---
 
-## Phase 1 — `ci.yml` (develop / feature/* / bugfix/* branches)
+## Phase 1 — `ci.yml` (develop / feature/_ / bugfix/_ branches)
 
 Single-machine Docker Compose that mirrors local dev. No image push, no cloud deploy.
 
@@ -134,13 +134,9 @@ Docker Compose and runs the Playwright E2E suite.
      ```yaml
      - name: Wait for database
        run: |
-         for i in $(seq 1 10); do
-           if docker exec database mysql -uroot -p"${{ secrets.DB_ROOT_PASSWORD }}" -e "SHOW DATABASES;" >/dev/null 2>&1; then
-             echo "database ready"; exit 0
-           fi
-           echo "waiting for database... ($i)"; sleep 5
+         until docker exec database mysqladmin ping -uroot -p"${{ secrets.DB_ROOT_PASSWORD }}" --silent; do
+           echo "waiting for database..."; sleep 2
          done
-         echo "database not ready"; exit 1
      ```
   4. Wait for nginx / the app to actually serve. The Next.js `web` container's port 3000 is **not**
      published to the host — only nginx publishes host port **80** — so the readiness gate must target
@@ -148,11 +144,7 @@ Docker Compose and runs the Playwright E2E suite.
      ```yaml
      - name: Wait for app via nginx
        run: |
-         for i in $(seq 1 30); do
-           if curl -sf -o /dev/null http://localhost; then echo "app ready"; exit 0; fi
-           echo "waiting for app... ($i)"; sleep 5
-         done
-         echo "app not ready"; exit 1
+         curl --retry 12 --retry-delay 5 --retry-connrefused -sf http://localhost
      ```
   5. Install Playwright's Chromium browser, then run the E2E suite (Playwright replaces Cypress;
      `app/playwright.config.ts` is Chromium-only with `baseURL: 'http://localhost'`):
@@ -182,7 +174,7 @@ stack down with `if: always()`; there is no Cypress reference, no image push, an
 
 ---
 
-## Phase 2 — `release.yml` (release* branches → staging)
+## Phase 2 — `release.yml` (release\* branches → staging)
 
 Staging deploy: build + push ghcr.io image, deploy Next.js to Vercel preview, run Aiven init SQL.
 Render is NOT deployed on release (reserved for production to stay within the 750 free-hour limit).
@@ -472,7 +464,7 @@ against Aiven.
          vercel-token: ${{ secrets.VERCEL_TOKEN }}
          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-         vercel-args: '--prod'
+         vercel-args: "--prod"
          working-directory: app
      ```
   3. Trigger the Render production deploy hook (Render then pulls the new image from ghcr.io):
@@ -537,8 +529,8 @@ or table definitions.
 - Edit `docker/mysql/data/data.sql` (this is the exact, named shared file the deploy jobs run; there is no
   `init.sql`).
 - It already starts with `CREATE DATABASE IF NOT EXISTS ... ; use ...;` — keep that.
-- Convert every `CREATE TABLE \`X\` (` to `CREATE TABLE IF NOT EXISTS \`X\` (` so re-runs do not error on
-  existing tables. Do not alter any column definitions, types, defaults, keys, or `ENGINE`/`COLLATE`.
+- Convert every `CREATE TABLE \`X\` (`to`CREATE TABLE IF NOT EXISTS \`X\` (`so re-runs do not error on
+existing tables. Do not alter any column definitions, types, defaults, keys, or`ENGINE`/`COLLATE`.
 - Make every `INSERT INTO` idempotent so re-runs do not create duplicate rows or fail on duplicate primary
   keys: change `INSERT INTO` to `INSERT IGNORE INTO` (do not change the inserted values/rows). Do not use
   stored procedures or triggers (the schema must stay pure `CREATE TABLE` + `INSERT`).
