@@ -1,6 +1,6 @@
-import { gqlServerClient } from 'api/graphql';
-import { ClientError } from 'graphql-request';
-import { NextRequest, NextResponse } from 'next/server';
+import { gqlServerClient } from "@/api/graphql-client";
+import { ClientError } from "graphql-request";
+import { NextRequest, NextResponse } from "next/server";
 
 type GraphqlRequestBody = {
   query: string;
@@ -14,16 +14,16 @@ export async function POST(request: NextRequest) {
     body = (await request.json()) as GraphqlRequestBody;
   } catch {
     return NextResponse.json(
-      { errors: [{ message: 'Invalid JSON body' }] },
+      { errors: [{ message: "Invalid JSON body" }] },
       { status: 400 },
     );
   }
 
   const { query, variables } = body;
 
-  if (!query || typeof query !== 'string') {
+  if (!query || typeof query !== "string") {
     return NextResponse.json(
-      { errors: [{ message: 'Missing query' }] },
+      { errors: [{ message: "Missing query" }] },
       { status: 400 },
     );
   }
@@ -39,11 +39,8 @@ export async function POST(request: NextRequest) {
     }
 
     const message =
-      error instanceof Error ? error.message : 'GraphQL request failed';
+      error instanceof Error ? error.message : "GraphQL request failed";
 
-    return NextResponse.json(
-      { errors: [{ message }] },
-      { status: 500 },
-    );
+    return NextResponse.json({ errors: [{ message }] }, { status: 500 });
   }
 }

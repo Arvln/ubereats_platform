@@ -1,13 +1,13 @@
-import { gqlServerClient } from 'api/graphql';
-import { getLocale, setRequestLocale } from 'next-intl/server';
-import { redirect } from 'next/navigation';
-import { z } from 'zod';
+import { gqlServerClient } from "@/api/graphql-client";
+import { getLocale, setRequestLocale } from "next-intl/server";
+import { redirect } from "next/navigation";
+import { z } from "zod";
 import {
   marketingByUuidQueryDocument,
   marketingPageDataSchema,
-} from './queries';
+} from "./queries";
 
-import classes from '@/styles/pages/marketing/Advertise.module.scss';
+import classes from "@/styles/pages/marketing/Advertise.module.scss";
 
 const { wrapper, massage } = classes;
 
@@ -60,7 +60,7 @@ export default async function AdvertisePage(props: {
   const pageData = parsed.success ? parsed.data.advertise[0] : undefined;
 
   if (!pageData) {
-    redirect('/');
+    redirect("/");
   }
 
   const { content } = pageData;

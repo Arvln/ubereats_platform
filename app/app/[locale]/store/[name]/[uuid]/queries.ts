@@ -1,4 +1,4 @@
-import { gqlClient, gqlServerClient } from "api/graphql";
+import { gqlClient, gqlServerClient } from "@/api/graphql-client";
 import { z } from "zod";
 
 export const storeBySlugQueryDocument = `
@@ -66,10 +66,13 @@ export async function fetchStoreBySlugServer(
   name: string,
   uuid: string,
 ): Promise<StorePageData | null> {
-  const raw = await gqlServerClient().request<unknown>(storeBySlugQueryDocument, {
-    name,
-    uuid,
-  });
+  const raw = await gqlServerClient().request<unknown>(
+    storeBySlugQueryDocument,
+    {
+      name,
+      uuid,
+    },
+  );
   const parsed = storeBySlugResponseSchema.safeParse(raw);
   return parsed.success ? (parsed.data.store[0] ?? null) : null;
 }

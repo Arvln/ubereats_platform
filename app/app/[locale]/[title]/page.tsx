@@ -1,13 +1,10 @@
 import Category from "./components/category";
-import { gqlServerClient } from "api/graphql";
+import { gqlServerClient } from "@/api/graphql-client";
 import { createServerQueryClient } from "lib/server-query-client";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { z } from "zod";
-import {
-  categoryByTitleQueryKey,
-  fetchCategoryByTitleServer,
-} from "./queries";
+import { categoryByTitleQueryKey, fetchCategoryByTitleServer } from "./queries";
 
 const categoryTitlesQueryDocument = `
   query {

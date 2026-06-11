@@ -1,13 +1,10 @@
 import Store from "./components/store";
-import { gqlServerClient } from "api/graphql";
+import { gqlServerClient } from "@/api/graphql-client";
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { createServerQueryClient } from "lib/server-query-client";
 import { z } from "zod";
-import {
-  fetchStoreBySlugServer,
-  storeBySlugQueryKey,
-} from "./queries";
+import { fetchStoreBySlugServer, storeBySlugQueryKey } from "./queries";
 
 const storeSlugsQueryDocument = `
   query {

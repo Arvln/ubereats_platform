@@ -1,4 +1,4 @@
-import { gqlClient, gqlServerClient } from "api/graphql";
+import { gqlClient, gqlServerClient } from "@/api/graphql-client";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
