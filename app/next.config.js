@@ -1,4 +1,4 @@
-const createNextIntlPlugin = require('next-intl/plugin');
+const createNextIntlPlugin = require("next-intl/plugin");
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -21,37 +21,28 @@ const nextConfig = {
     STORE_IMAGE_SERVER_HOST,
     UTILS_ICONS_SERVER_HOST,
     STAR_ICON_SERVER_HOST,
-    SPICY_ICON_SERVER_HOST
+    SPICY_ICON_SERVER_HOST,
   },
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: SHORTCUT_ICONS_SERVER_HOST },
-      { protocol: 'https', hostname: ADVERTISE_IMAGE_SERVER_HOST },
-      { protocol: 'https', hostname: CATEGORY_ICONS_SERVER_HOST },
-      { protocol: 'https', hostname: STORE_IMAGE_SERVER_HOST },
-      { protocol: 'https', hostname: UTILS_ICONS_SERVER_HOST },
-      { protocol: 'https', hostname: STAR_ICON_SERVER_HOST },
-      { protocol: 'https', hostname: SPICY_ICON_SERVER_HOST },
+      { protocol: "https", hostname: SHORTCUT_ICONS_SERVER_HOST },
+      { protocol: "https", hostname: ADVERTISE_IMAGE_SERVER_HOST },
+      { protocol: "https", hostname: CATEGORY_ICONS_SERVER_HOST },
+      { protocol: "https", hostname: STORE_IMAGE_SERVER_HOST },
+      { protocol: "https", hostname: UTILS_ICONS_SERVER_HOST },
+      { protocol: "https", hostname: STAR_ICON_SERVER_HOST },
+      { protocol: "https", hostname: SPICY_ICON_SERVER_HOST },
     ],
     deviceSizes: [240, 550, 640, 750, 1080, 2880],
   },
-  turbopack: {
-    rules: {
-      '*.scss': {
-        loaders: ['sass-loader'],
-        as: '*.css',
-      },
-    },
-  },
   webpack(config) {
     const rules = config.module.rules
-      .find(rule => typeof rule.oneOf === 'object')
-      .oneOf
-      .filter(rule => Array.isArray(rule.use));
+      .find((rule) => typeof rule.oneOf === "object")
+      .oneOf.filter((rule) => Array.isArray(rule.use));
 
     rules.forEach((rule) => {
       rule.use.forEach((moduleLoader) => {
-        if (moduleLoader.loader?.includes('resolve-url-loader'))
+        if (moduleLoader.loader?.includes("resolve-url-loader"))
           moduleLoader.options.sourceMap = false;
       });
     });
