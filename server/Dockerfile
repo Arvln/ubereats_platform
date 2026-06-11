@@ -12,6 +12,8 @@ RUN mkdir -p ../types
 
 COPY ./types ../types
 
+RUN chown -R node:node /usr/src
+
 EXPOSE 8000
 
 USER node
