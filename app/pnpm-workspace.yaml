@@ -1,4 +1,0 @@
-onlyBuiltDependencies:
-  - sharp
-  - '@parcel/watcher'
-  - '@swc/core'
