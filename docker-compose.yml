@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
       MYSQL_DATABASE: ubereats_platform_local
     volumes:
       - ./docker/mysql/config/my.cnf:/etc/mysql/my.cnf
