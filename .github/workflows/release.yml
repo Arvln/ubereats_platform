@@ -142,4 +142,4 @@ jobs:
                 -p${{ secrets.AIVEN_PASSWORD }} \
                 --ssl-mode=REQUIRED \
                 ${{ secrets.AIVEN_DATABASE }} \
-                < docker/mysql/data/data.sql
+                < docker/mysql/data/data_mysql84.sql
