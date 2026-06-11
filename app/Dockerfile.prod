@@ -12,8 +12,6 @@ RUN mkdir -p ../types
 
 COPY ./types ../types
 
-RUN pnpm build
-
 EXPOSE 3000
 
-CMD ["pm2-runtime", "pnpm", "--", "run", "start"]
+CMD ["sh", "-c", "pnpm run build && exec pm2-runtime pnpm -- run start"]

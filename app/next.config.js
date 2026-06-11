@@ -35,14 +35,6 @@ const nextConfig = {
     ],
     deviceSizes: [240, 550, 640, 750, 1080, 2880],
   },
-  turbopack: {
-    rules: {
-      "*.scss": {
-        loaders: ["sass-loader"],
-        as: "*.css",
-      },
-    },
-  },
   webpack(config) {
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === "object")
