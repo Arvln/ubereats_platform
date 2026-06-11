@@ -1,9 +1,9 @@
-import { TAdvertise } from 'types/pages/marketing/advertise';
-import { query } from '../../db/query';
+import { TAdvertise } from "types/pages/marketing/advertise";
+import { query } from "../../db/query";
 
-export async function getData(uuid: string){
-	const advertise = await query(
-		`
+export async function getData(uuid: string) {
+  const advertise = (await query(
+    `
 			SELECT
 				content
 			FROM
@@ -11,8 +11,8 @@ export async function getData(uuid: string){
 			WHERE
 				uuid = UNHEX(?);
 		`,
-		[uuid]
-	) as TAdvertise[];
+    [uuid.replace(/-/g, "")],
+  )) as TAdvertise[];
 
-	return advertise;
+  return advertise;
 }

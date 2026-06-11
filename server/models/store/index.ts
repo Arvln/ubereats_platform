@@ -1,21 +1,18 @@
-import {
-	TStoreSlug,
-	TParent
-} from 'types/pages/store';
-import { query } from '../../db/query';
+import { TStoreSlug, TParent } from "types/pages/store";
+import { query } from "../../db/query";
 
 export async function getData(name?: string, uuid?: string) {
-	const storeSlugs = await query(
-		`
+  const storeSlugs = (await query(
+    `
 			SELECT
 				name,
 				HEX(uuid) AS uuid
 			FROM
 				Table_Shop;
-		`
-	) as TStoreSlug[];
-	const store = await query(
-		`
+		`,
+  )) as TStoreSlug[];
+  const store = (await query(
+    `
 			SELECT
 				id,
 				name,
@@ -32,11 +29,11 @@ export async function getData(name?: string, uuid?: string) {
 			AND
 				uuid = UNHEX(?);
 		`,
-		[name, uuid]
-	) as TParent[];
+    [name, uuid?.replace(/-/g, "")],
+  )) as TParent[];
 
-	return {
-		storeSlugs,
-		store
-	};
+  return {
+    storeSlugs,
+    store,
+  };
 }
