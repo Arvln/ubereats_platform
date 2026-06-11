@@ -42,7 +42,9 @@
     "vitest": "4.1.8"
   },
   "onlyBuiltDependencies": [
-    "sharp"
+    "sharp",
+    "@parcel/watcher",
+    "@swc/core"
   ],
   "packageManager": "pnpm@11.5.1"
 }
