@@ -13,9 +13,6 @@ const STAR_ICON_SERVER_HOST = ENV.STAR_ICON_SERVER_HOST;
 const SPICY_ICON_SERVER_HOST = ENV.SPICY_ICON_SERVER_HOST;
 
 const nextConfig = {
-  experimental: {
-    turbopack: false,
-  },
   reactStrictMode: true,
   env: {
     SHORTCUT_ICONS_SERVER_HOST,
