@@ -1,0 +1,251 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { HomeChannelItem, TPagesState } from './types';
+import Image from 'next/image';
+import { blurDataURL } from 'lib/image-placeholder';
+import { Arrow } from 'components';
+import ChannelShop from '../channel_shop';
+import ChannelCategory from '../channel_category';
+import {
+  getOffset,
+  getPageDataList,
+  getEmphsisPageSize,
+  getRegularPageSize,
+  isShopsChannel,
+  getTotalPage
+} from './utils';
+import {
+  homePageQueryOptions,
+} from '../../queries';
+
+import classes from 'styles/features/Channel.module.scss';
+import { useTranslations } from 'next-intl';
+
+const {
+  wrapper,
+  emphasisWrapper,
+  emphasisTitle,
+  titleImage,
+  emphasisContent,
+  emphasisButton,
+  regularWrapper,
+  regularTitle,
+  titleWrapper,
+  buttonWrapper,
+  space_4,
+  space_40,
+  rotate_180,
+  disableButton
+} = classes;
+const initialPage: number = 1;
+const initialPageState = {
+  currentPage: initialPage,
+  previousButtonStyle: disableButton,
+  nextButtonStyle: ''
+};
+const CHANNEL_PAGE_OFFSET_SIZE: number = -100;
+
+function Channel() {
+  const t = useTranslations();
+  const [pagesState, setPagesState] = useState<TPagesState>({});
+  const { data: channels = [] } = useQuery({
+    ...homePageQueryOptions,
+    select: (pageData) => pageData.channel,
+  });
+
+  function _handlePreviousButton(selectedId: string) {
+    const page = pagesState[selectedId];
+
+    if (!page || page.currentPage - 1 <= initialPage) {
+      setPagesState({
+        ...pagesState,
+        [selectedId]: initialPageState
+      });
+    } else {
+      setPagesState({
+        ...pagesState,
+        [selectedId]: {
+          currentPage: page.currentPage - 1,
+          previousButtonStyle: '',
+          nextButtonStyle: ''
+        }
+      });
+    };
+  };
+
+  function _handleNextButton(selectedId: string, totalPage: number) {
+    const page = pagesState[selectedId];
+
+    if (!page) {
+      setPagesState({
+        ...pagesState,
+        [selectedId]: {
+          currentPage: 2,
+          previousButtonStyle: '',
+          nextButtonStyle: totalPage === 2 ? disableButton : ''
+        }
+      });
+      return;
+    };
+
+    if (page.currentPage + 1 < totalPage) {
+      setPagesState({
+        ...pagesState,
+        [selectedId]: {
+          currentPage: page.currentPage + 1,
+          previousButtonStyle: '',
+          nextButtonStyle: ''
+        }
+      });
+    } else {
+      setPagesState({
+        ...pagesState,
+        [selectedId]: {
+          currentPage: totalPage,
+          previousButtonStyle: '',
+          nextButtonStyle: disableButton
+        }
+      });
+    };
+  };
+
+  function _renderTitleImage(imageSuffix: string) {
+    return (
+      <div className={titleImage}>
+        <Image
+          src={`https://${imageSuffix}`}
+          fill
+          sizes="133px"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          alt="Emphasis"
+        />
+      </div>
+    );
+  };
+
+  function _renderButtons(uuid: string, totalPage: number) {
+    const {
+      previousButtonStyle: previousButton,
+      nextButtonStyle: nextButton
+    } = pagesState[uuid] ?? initialPageState;
+
+    return (
+      <div className={buttonWrapper}>
+        <button>{t('channel.view-all')}</button>
+        <div className={space_40} />
+        <div onClick={() => _handlePreviousButton(uuid)}>
+          <Arrow appendWrapper={previousButton} />
+        </div>
+        <div className={space_4} />
+        <div onClick={() => _handleNextButton(uuid, totalPage)}>
+          <Arrow appendWrapper={`${nextButton} ${rotate_180}`} />
+        </div>
+      </div>
+    );
+  };
+
+  function _renderRegularContent(
+    channelItems: HomeChannelItem[],
+    currentPage: number
+  ) {
+    if (isShopsChannel(channelItems)) {
+      return (
+        <ChannelShop
+          data={getPageDataList(
+            channelItems,
+            getRegularPageSize(channelItems)
+          )}
+          size={getRegularPageSize(channelItems)}
+          offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
+        />
+      );
+    };
+
+    return (
+      <ChannelCategory
+        data={getPageDataList(
+          channelItems,
+          getRegularPageSize(channelItems)
+        )}
+        pageOffset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
+      />
+    );
+  };
+
+  function _renderChannel() {
+    return (
+      channels.map(({
+        title,
+        subtitle,
+        imageSuffix,
+        uuid,
+        channelItems
+      }) => {
+        const isEmphasisTitle: boolean = imageSuffix !== '';
+        const { currentPage } = pagesState[uuid] ?? initialPageState;
+
+        if (isEmphasisTitle) {
+          const totalPage = getTotalPage(channelItems, getEmphsisPageSize());
+
+          return (
+            <div
+              className={emphasisWrapper}
+              key={uuid}
+            >
+              <div className={`${titleWrapper} ${emphasisTitle}`}>
+                {_renderTitleImage(imageSuffix)}
+                <h1>{t(title)}</h1>
+                {!subtitle || <span>{t(subtitle)}</span>}
+              </div>
+              <div className={emphasisContent}>
+                <div className={emphasisButton}>
+                  {_renderButtons(uuid, totalPage)}
+                </div>
+                <ChannelShop
+                  data={getPageDataList(
+                    channelItems,
+                    getEmphsisPageSize()
+                  )}
+                  size={getEmphsisPageSize()}
+                  offset={getOffset(currentPage, CHANNEL_PAGE_OFFSET_SIZE)}
+                />
+              </div>
+            </div>
+          );
+        };
+
+        const totalPage = getTotalPage(
+          channelItems,
+          getRegularPageSize(channelItems)
+        );
+
+        return (
+          <div
+            className={regularWrapper}
+            key={uuid}
+          >
+            <div className={regularTitle}>
+              <div className={titleWrapper}>
+                <h1>{t(title)}</h1>
+                {!subtitle || <span>{t(subtitle)}</span>}
+              </div>
+              {_renderButtons(uuid, totalPage)}
+            </div>
+            {_renderRegularContent(channelItems, currentPage)}
+          </div>
+        );
+      })
+    );
+  };
+
+  return (
+    <div className={wrapper}>
+      {_renderChannel()}
+    </div>
+  );
+};
+
+export default Channel;

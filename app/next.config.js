@@ -1,3 +1,7 @@
+const createNextIntlPlugin = require('next-intl/plugin');
+
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const ENV = process.env;
 const SHORTCUT_ICONS_SERVER_HOST = ENV.SHORTCUT_ICONS_SERVER_HOST;
@@ -8,13 +12,8 @@ const UTILS_ICONS_SERVER_HOST = ENV.UTILS_ICONS_SERVER_HOST;
 const STAR_ICON_SERVER_HOST = ENV.STAR_ICON_SERVER_HOST;
 const SPICY_ICON_SERVER_HOST = ENV.SPICY_ICON_SERVER_HOST;
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
-  i18n: {
-    locales: ['zh-TW', 'en-US'],
-    defaultLocale: 'zh-TW',
-    localeDetection: false,
-  },
   env: {
     SHORTCUT_ICONS_SERVER_HOST,
     ADVERTISE_IMAGE_SERVER_HOST,
@@ -25,16 +24,24 @@ module.exports = {
     SPICY_ICON_SERVER_HOST
   },
   images: {
-    domains: [
-      SHORTCUT_ICONS_SERVER_HOST,
-      ADVERTISE_IMAGE_SERVER_HOST,
-      CATEGORY_ICONS_SERVER_HOST,
-      STORE_IMAGE_SERVER_HOST,
-      UTILS_ICONS_SERVER_HOST,
-      STAR_ICON_SERVER_HOST,
-      SPICY_ICON_SERVER_HOST
+    remotePatterns: [
+      { protocol: 'https', hostname: SHORTCUT_ICONS_SERVER_HOST },
+      { protocol: 'https', hostname: ADVERTISE_IMAGE_SERVER_HOST },
+      { protocol: 'https', hostname: CATEGORY_ICONS_SERVER_HOST },
+      { protocol: 'https', hostname: STORE_IMAGE_SERVER_HOST },
+      { protocol: 'https', hostname: UTILS_ICONS_SERVER_HOST },
+      { protocol: 'https', hostname: STAR_ICON_SERVER_HOST },
+      { protocol: 'https', hostname: SPICY_ICON_SERVER_HOST },
     ],
     deviceSizes: [240, 550, 640, 750, 1080, 2880],
+  },
+  turbopack: {
+    rules: {
+      '*.scss': {
+        loaders: ['sass-loader'],
+        as: '*.css',
+      },
+    },
   },
   webpack(config) {
     const rules = config.module.rules
@@ -51,4 +58,6 @@ module.exports = {
 
     return config;
   },
-}
+};
+
+module.exports = withNextIntl(nextConfig);
