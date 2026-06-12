@@ -48,9 +48,8 @@ export async function getData(){
 			FROM
 				Table_Shop_Category
 			ORDER BY
-				rank
-			LIMIT
-				?;
+				\`rank\`
+			LIMIT ?
 		`,
 		[CATEGORY_LIMIT]
 	) as TChannelCategory[];
