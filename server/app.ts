@@ -6,14 +6,6 @@ import { query } from "./db/query";
 const app = express();
 const SERVER_PORT = process.env.SERVER_PORT;
 
-app.use(
-  "/",
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  }),
-);
-
 app.get("/health/db", async (_, res) => {
   try {
     await query("SELECT 1");
@@ -22,6 +14,14 @@ app.get("/health/db", async (_, res) => {
     res.status(500).json({ status: "error", message: "disconnected" });
   }
 });
+
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  }),
+);
 
 app.listen(SERVER_PORT, () => {
   console.log(`server running on port ${SERVER_PORT}`);

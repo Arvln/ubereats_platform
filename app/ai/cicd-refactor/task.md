@@ -321,7 +321,7 @@ and runs the idempotent init SQL against Aiven. Render is NOT deployed on releas
                -p${{ secrets.AIVEN_PASSWORD }} \
                --ssl-mode=REQUIRED \
                ${{ secrets.AIVEN_DATABASE }} \
-               < docker/mysql/data/data.sql
+               < docker/mysql/data/data_mysql84.sql
      ```
 - Do NOT trigger Render here (Render is production-only). Do NOT use GCP/`gcloud`.
 
@@ -518,7 +518,7 @@ for `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `docker-compose push`, `gcloud`, `GCP_
 
 ---
 
-### Step 12: Make `docker/mysql/data/data.sql` idempotent (safe to re-run)
+### Step 12: Make `docker/mysql/data/data_mysql84.sql` idempotent (safe to re-run)
 
 **What**: The `deploy` jobs in `release.yml` and `main.yml` run `docker/mysql/data/data.sql` against Aiven
 on **every** deploy, so it must be safe to re-run. Make the SQL idempotent without changing any data values
@@ -526,7 +526,7 @@ or table definitions.
 
 **How**:
 
-- Edit `docker/mysql/data/data.sql` (this is the exact, named shared file the deploy jobs run; there is no
+- Edit `docker/mysql/data/data_mysql84.sql` (this is the exact, named shared file the deploy jobs run; there is no
   `init.sql`).
 - It already starts with `CREATE DATABASE IF NOT EXISTS ... ; use ...;` — keep that.
 - Convert every `CREATE TABLE \`X\` (`to`CREATE TABLE IF NOT EXISTS \`X\` (`so re-runs do not error on
@@ -536,7 +536,7 @@ existing tables. Do not alter any column definitions, types, defaults, keys, or`
   stored procedures or triggers (the schema must stay pure `CREATE TABLE` + `INSERT`).
 - Do not reorder statements and do not remove any table or row.
 
-**Done When**: Every `CREATE TABLE` in `docker/mysql/data/data.sql` uses `CREATE TABLE IF NOT EXISTS`,
+**Done When**: Every `CREATE TABLE` in `docker/mysql/data/data_mysql84.sql` uses `CREATE TABLE IF NOT EXISTS`,
 every `INSERT INTO` uses `INSERT IGNORE INTO`, no stored procedures/triggers were added, no column
 definitions or inserted values were changed, and running the file twice against a fresh MySQL would
 succeed both times.
