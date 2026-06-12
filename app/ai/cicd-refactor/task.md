@@ -290,54 +290,12 @@ artifact, `docker load`s it, logs in to ghcr.io with `GITHUB_TOKEN`, pushes
 
 ---
 
-### Step 6: Add the `deploy` job (staging) to `.github/workflows/release.yml`
-
-**What**: Add a `deploy` job to `.github/workflows/release.yml` that deploys Next.js to a Vercel preview
-and runs the idempotent init SQL against Aiven. Render is NOT deployed on release.
-
-**How**:
-
-- `deploy` job: `runs-on: ubuntu-latest`, `needs: push`, `if: github.event_name == 'push'`.
-- Steps:
-  1. `actions/checkout@v4` (needed to read `docker/mysql/data/data_mysql84.sql`).
-  2. Deploy Next.js to Vercel **preview** (no `--prod` for staging), `working-directory: app`:
-     ```yaml
-     - name: Deploy Next.js to Vercel (preview)
-       uses: amondnet/vercel-action@v25
-       with:
-         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-         working-directory: app
-     ```
-  3. Run the idempotent init SQL against Aiven. The real file is **`docker/mysql/data/data_mysql84.sql`** (there
-     is no `init.sql`). The `mysql` client is not guaranteed on the runner, and Aiven requires TLS:
-     ```yaml
-     - name: Run DB init against Aiven
-       run: |
-         sudo apt-get update && sudo apt-get install -y default-mysql-client
-         mysql -h ${{ secrets.AIVEN_HOST }} \
-               -u ${{ secrets.AIVEN_USER }} \
-               -p${{ secrets.AIVEN_PASSWORD }} \
-               --ssl-mode=REQUIRED \
-               ${{ secrets.AIVEN_DATABASE }} \
-               < docker/mysql/data/data_mysql84.sql
-     ```
-- Do NOT trigger Render here (Render is production-only). Do NOT use GCP/`gcloud`.
-
-**Done When**: `.github/workflows/release.yml` has a `deploy` job with `needs: push` and
-`if: github.event_name == 'push'` that deploys to Vercel **preview** via `amondnet/vercel-action@v25`
-(`working-directory: app`, no `--prod`) and runs `docker/mysql/data/data_mysql84.sql` against Aiven using the
-`AIVEN_*` secrets; there is no Render trigger and no `gcloud`/GCP usage.
-
----
-
 ## Phase 3 — `main.yml` (main branch → production)
 
 Production deploy: same build/push structure as release, but Vercel **production**, plus a Render deploy
 hook, plus Aiven init SQL. Tag format is `prod-v1.0.<timestamp>`.
 
-### Step 7: Create `.github/workflows/main.yml` with triggers, `linting`, and `unit-tests` jobs
+### Step 6: Create `.github/workflows/main.yml` with triggers, `linting`, and `unit-tests` jobs
 
 **What**: Create the new file `.github/workflows/main.yml` with triggers and the `linting` then
 `unit-tests` jobs.
@@ -358,7 +316,7 @@ hook, plus Aiven init SQL. Tag format is `prod-v1.0.<timestamp>`.
 
 ---
 
-### Step 8: Add the `build` job to `.github/workflows/main.yml`
+### Step 7: Add the `build` job to `.github/workflows/main.yml`
 
 **What**: Add a `build` job to `.github/workflows/main.yml` that builds the Express server image and saves
 it as a workflow artifact. Identical to the release build job except the tag prefix is `prod`.
@@ -401,7 +359,7 @@ it as a workflow artifact. Identical to the release build job except the tag pre
 
 ---
 
-### Step 9: Add the `push` job to `.github/workflows/main.yml`
+### Step 8: Add the `push` job to `.github/workflows/main.yml`
 
 **What**: Add a `push` job to `.github/workflows/main.yml` that loads the artifact image, pushes it to
 ghcr.io using `GITHUB_TOKEN`, runs the retention policy, and re-exports the tag.
@@ -445,80 +403,9 @@ Hub login.
 
 ---
 
-### Step 10: Add the `deploy` job (production) to `.github/workflows/main.yml`
-
-**What**: Add a `deploy` job to `.github/workflows/main.yml` that deploys Next.js to Vercel production,
-triggers the Render deploy hook (Render pulls the new ghcr.io image), and runs the idempotent init SQL
-against Aiven.
-
-**How**:
-
-- `deploy` job: `runs-on: ubuntu-latest`, `needs: push`, `if: github.event_name == 'push'`.
-- Steps:
-  1. `actions/checkout@v4` (needed to read `docker/mysql/data/data_mysql84.sql`).
-  2. Deploy Next.js to Vercel **production** (add `vercel-args: '--prod'`), `working-directory: app`:
-     ```yaml
-     - name: Deploy Next.js to Vercel (production)
-       uses: amondnet/vercel-action@v25
-       with:
-         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-         vercel-args: "--prod"
-         working-directory: app
-     ```
-  3. Trigger the Render production deploy hook (Render then pulls the new image from ghcr.io):
-     ```yaml
-     - name: Deploy Express to Render
-       run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_PRODUCTION }}
-     ```
-  4. Run the idempotent init SQL against Aiven (real file is **`docker/mysql/data/data_mysql84.sql`**; install the
-     client; Aiven needs TLS):
-     ```yaml
-     - name: Run DB init against Aiven
-       run: |
-         sudo apt-get update && sudo apt-get install -y default-mysql-client
-         mysql -h ${{ secrets.AIVEN_HOST }} \
-               -u ${{ secrets.AIVEN_USER }} \
-               -p${{ secrets.AIVEN_PASSWORD }} \
-               --ssl-mode=REQUIRED \
-               ${{ secrets.AIVEN_DATABASE }} \
-               < docker/mysql/data/data_mysql84.sql
-     ```
-- Do NOT use GCP/`gcloud`. Do NOT add a `sync_release` / branch-sync job (the old infinite-loop job is
-  removed entirely — see Step 11).
-
-**Done When**: `.github/workflows/main.yml` has a `deploy` job with `needs: push` and
-`if: github.event_name == 'push'` that deploys to Vercel **production** (`vercel-args: '--prod'`,
-`working-directory: app`), POSTs the `RENDER_DEPLOY_HOOK_PRODUCTION` hook, and runs
-`docker/mysql/data/data_mysql84.sql` against Aiven; there is no `gcloud`/GCP usage and no `sync_release` job.
-
----
-
 ## Phase 4 — Supporting changes & cleanup
 
-### Step 11: Delete the obsolete workflow files and remove the infinite-loop sync job
-
-**What**: Delete the three old workflow files so only the new `ci.yml`, `release.yml`, `main.yml` remain.
-This also removes the Docker Hub push, the GCP `gcloud` deploy path, and the `sync_release` job (which
-caused a potential infinite trigger loop).
-
-**How**:
-
-- Delete `.github/workflows/ci-pipeline.yml`, `.github/workflows/release-push.yml`, and
-  `.github/workflows/main-push.yml`.
-- After deletion, grep the `.github/workflows/` directory to confirm none of the following remain anywhere:
-  `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `docker-compose push`, `gcloud`, `GCP_CREDENTIALS`,
-  `sync_release`, `apt-get install -y docker-compose`, `matrix.node-version`, and the literal `-proot`.
-- Confirm `.github/workflows/` contains exactly three files: `ci.yml`, `release.yml`, `main.yml`.
-
-**Done When**: `.github/workflows/` contains only `ci.yml`, `release.yml`, `main.yml`; grepping the folder
-for `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `docker-compose push`, `gcloud`, `GCP_CREDENTIALS`,
-`sync_release`, `apt-get install -y docker-compose`, `matrix.node-version`, and `-proot` returns no matches.
-
----
-
-### Step 12: Make `docker/mysql/data/data_mysql84.sql` idempotent (safe to re-run)
+### Step 9: Make `docker/mysql/data/data_mysql84.sql` idempotent (safe to re-run)
 
 **What**: The `deploy` jobs in `release.yml` and `main.yml` run `docker/mysql/data/data_mysql84.sql` against Aiven
 on **every** deploy, so it must be safe to re-run. Make the SQL idempotent without changing any data values
@@ -543,7 +430,7 @@ succeed both times.
 
 ---
 
-### Step 13: Final verification [HUMAN REVIEW]
+### Step 10: Final verification [HUMAN REVIEW]
 
 **What**: Confirm all success criteria from `ai/cicd-refactor/objective.md` are met across the three new
 workflows and the init SQL.

@@ -118,28 +118,3 @@ jobs:
           package-type: container
           min-versions-to-keep: 5
           delete-only-untagged-versions: false
-
-  deploy:
-    name: Deploy to Staging
-    runs-on: ubuntu-latest
-    needs: push
-    if: github.event_name == 'push'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy Next.js to Vercel (preview)
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-version: latest
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: app
-      - name: Run DB init against Aiven
-        run: |
-          sudo apt-get update && sudo apt-get install -y default-mysql-client
-          mysql -h ${{ secrets.AIVEN_HOST }} \
-                -u ${{ secrets.AIVEN_USER }} \
-                -p${{ secrets.AIVEN_PASSWORD }} \
-                --ssl-mode=REQUIRED \
-                ${{ secrets.AIVEN_DATABASE }} \
-                < docker/mysql/data/data_mysql84.sql
