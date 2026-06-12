@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - develop
-      - 'feature/*'
-      - 'bugfix/*'
+      - "feature/*"
+      - "bugfix/*"
   pull_request:
     branches:
       - develop
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: "pnpm"
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -46,7 +46,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: "pnpm"
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -61,6 +61,27 @@ jobs:
     needs: [linting, unit-tests]
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare environment files
+        run: |
+          {
+            echo "SERVER_PORT=${{ vars.SERVER_PORT }}"
+            echo "MYSQL_HOST=${{ vars.MYSQL_HOST }}"
+            echo "MYSQL_PORT=${{ vars.MYSQL_PORT }}"
+            echo "MYSQL_USER=${{ vars.MYSQL_USER }}"
+            echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}"
+            echo "DATABASE_NAME=${{ vars.DATABASE_NAME }}"
+          } > server/.env
+          {
+            echo "SERVER_URL=${{ vars.SERVER_URL }}"
+            echo "SHORTCUT_ICONS_SERVER_HOST=${{ vars.SHORTCUT_ICONS_SERVER_HOST }}"
+            echo "ADVERTISE_IMAGE_SERVER_HOST=${{ vars.ADVERTISE_IMAGE_SERVER_HOST }}"
+            echo "CATEGORY_ICONS_SERVER_HOST=${{ vars.CATEGORY_ICONS_SERVER_HOST }}"
+            echo "STORE_IMAGE_SERVER_HOST=${{ vars.STORE_IMAGE_SERVER_HOST }}"
+            echo "UTILS_ICONS_SERVER_HOST=${{ vars.UTILS_ICONS_SERVER_HOST }}"
+            echo "STAR_ICON_SERVER_HOST=${{ vars.STAR_ICON_SERVER_HOST }}"
+            echo "SPICY_ICON_SERVER_HOST=${{ vars.SPICY_ICON_SERVER_HOST }}"
+            echo "NODE_OPTIONS=${{ vars.NODE_OPTIONS }}"
+          } > app/.env.local
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -69,7 +90,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: "pnpm"
           cache-dependency-path: app/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm i --frozen-lockfile

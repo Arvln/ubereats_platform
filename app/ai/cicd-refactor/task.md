@@ -14,8 +14,8 @@ Reference: `ai/cicd-refactor/objective.md`, `ai/cicd-refactor/prompt.md`.
 - The repository slug is **`Arvln/ubereats_platform`**, so `${{ github.repository }}` →
   `Arvln/ubereats_platform` and the ghcr.io image is `ghcr.io/${{ github.repository }}` (lowercased
   automatically by ghcr). The `actions/delete-package-versions` `package-name` is **`ubereats_platform`**.
-- The DB init SQL file is **`docker/mysql/data/data.sql`** (there is NO `init.sql` — the prompt's
-  `init.sql` reference is wrong; use `docker/mysql/data/data.sql` everywhere).
+- The DB init SQL file is **`docker/mysql/data/data_mysql84.sql`** (there is NO `init.sql` — the prompt's
+  `init.sql` reference is wrong; use `docker/mysql/data/data_mysql84.sql` everywhere).
 - `docker-compose.yml` services: `database` (mysql:5.7, `container_name: database`,
   `MYSQL_ROOT_PASSWORD: root`, `MYSQL_DATABASE: ubereats_platform_local`), `database_tool` (phpMyAdmin),
   `server` (Express, `./server/Dockerfile`), `web` (Next.js, `./app/Dockerfile.dev`), `nginx`
@@ -299,7 +299,7 @@ and runs the idempotent init SQL against Aiven. Render is NOT deployed on releas
 
 - `deploy` job: `runs-on: ubuntu-latest`, `needs: push`, `if: github.event_name == 'push'`.
 - Steps:
-  1. `actions/checkout@v4` (needed to read `docker/mysql/data/data.sql`).
+  1. `actions/checkout@v4` (needed to read `docker/mysql/data/data_mysql84.sql`).
   2. Deploy Next.js to Vercel **preview** (no `--prod` for staging), `working-directory: app`:
      ```yaml
      - name: Deploy Next.js to Vercel (preview)
@@ -310,7 +310,7 @@ and runs the idempotent init SQL against Aiven. Render is NOT deployed on releas
          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
          working-directory: app
      ```
-  3. Run the idempotent init SQL against Aiven. The real file is **`docker/mysql/data/data.sql`** (there
+  3. Run the idempotent init SQL against Aiven. The real file is **`docker/mysql/data/data_mysql84.sql`** (there
      is no `init.sql`). The `mysql` client is not guaranteed on the runner, and Aiven requires TLS:
      ```yaml
      - name: Run DB init against Aiven
@@ -327,7 +327,7 @@ and runs the idempotent init SQL against Aiven. Render is NOT deployed on releas
 
 **Done When**: `.github/workflows/release.yml` has a `deploy` job with `needs: push` and
 `if: github.event_name == 'push'` that deploys to Vercel **preview** via `amondnet/vercel-action@v25`
-(`working-directory: app`, no `--prod`) and runs `docker/mysql/data/data.sql` against Aiven using the
+(`working-directory: app`, no `--prod`) and runs `docker/mysql/data/data_mysql84.sql` against Aiven using the
 `AIVEN_*` secrets; there is no Render trigger and no `gcloud`/GCP usage.
 
 ---
@@ -455,7 +455,7 @@ against Aiven.
 
 - `deploy` job: `runs-on: ubuntu-latest`, `needs: push`, `if: github.event_name == 'push'`.
 - Steps:
-  1. `actions/checkout@v4` (needed to read `docker/mysql/data/data.sql`).
+  1. `actions/checkout@v4` (needed to read `docker/mysql/data/data_mysql84.sql`).
   2. Deploy Next.js to Vercel **production** (add `vercel-args: '--prod'`), `working-directory: app`:
      ```yaml
      - name: Deploy Next.js to Vercel (production)
@@ -472,7 +472,7 @@ against Aiven.
      - name: Deploy Express to Render
        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_PRODUCTION }}
      ```
-  4. Run the idempotent init SQL against Aiven (real file is **`docker/mysql/data/data.sql`**; install the
+  4. Run the idempotent init SQL against Aiven (real file is **`docker/mysql/data/data_mysql84.sql`**; install the
      client; Aiven needs TLS):
      ```yaml
      - name: Run DB init against Aiven
@@ -483,7 +483,7 @@ against Aiven.
                -p${{ secrets.AIVEN_PASSWORD }} \
                --ssl-mode=REQUIRED \
                ${{ secrets.AIVEN_DATABASE }} \
-               < docker/mysql/data/data.sql
+               < docker/mysql/data/data_mysql84.sql
      ```
 - Do NOT use GCP/`gcloud`. Do NOT add a `sync_release` / branch-sync job (the old infinite-loop job is
   removed entirely — see Step 11).
@@ -491,7 +491,7 @@ against Aiven.
 **Done When**: `.github/workflows/main.yml` has a `deploy` job with `needs: push` and
 `if: github.event_name == 'push'` that deploys to Vercel **production** (`vercel-args: '--prod'`,
 `working-directory: app`), POSTs the `RENDER_DEPLOY_HOOK_PRODUCTION` hook, and runs
-`docker/mysql/data/data.sql` against Aiven; there is no `gcloud`/GCP usage and no `sync_release` job.
+`docker/mysql/data/data_mysql84.sql` against Aiven; there is no `gcloud`/GCP usage and no `sync_release` job.
 
 ---
 
@@ -520,7 +520,7 @@ for `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `docker-compose push`, `gcloud`, `GCP_
 
 ### Step 12: Make `docker/mysql/data/data_mysql84.sql` idempotent (safe to re-run)
 
-**What**: The `deploy` jobs in `release.yml` and `main.yml` run `docker/mysql/data/data.sql` against Aiven
+**What**: The `deploy` jobs in `release.yml` and `main.yml` run `docker/mysql/data/data_mysql84.sql` against Aiven
 on **every** deploy, so it must be safe to re-run. Make the SQL idempotent without changing any data values
 or table definitions.
 
@@ -565,7 +565,7 @@ workflows and the init SQL.
   Vercel production + Render hook + Aiven.
 - ghcr.io image built from `./server/Dockerfile`, pushed as `ghcr.io/${{ github.repository }}:<tag>`
   (`dev-v1.0.*` for release, `prod-v1.0.*` for main), with `delete-package-versions@v5` keeping the latest 5.
-- `docker/mysql/data/data.sql` is idempotent (all `CREATE TABLE IF NOT EXISTS`, all `INSERT IGNORE`).
+- `docker/mysql/data/data_mysql84.sql` is idempotent (all `CREATE TABLE IF NOT EXISTS`, all `INSERT IGNORE`).
 - The old `ci-pipeline.yml`, `release-push.yml`, `main-push.yml` are deleted, and the `sync_release` /
   GCP deploy path is gone.
 
@@ -595,4 +595,4 @@ repo alone and require human judgment before the workflows can succeed on a real
 - `ai/cicd-refactor/prompt.md`
 - `ai/task-generation-rules.md`
 - Current workflows: `.github/workflows/ci-pipeline.yml`, `release-push.yml`, `main-push.yml`
-- `docker-compose.yml`, `docker/mysql/data/data.sql`, `app/package.json`
+- `docker-compose.yml`, `docker/mysql/data/data_mysql84.sql`, `app/package.json`
