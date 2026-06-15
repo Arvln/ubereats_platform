@@ -12,6 +12,8 @@ import Footer from '../footer';
 import classes from '@/styles/features/Layout.module.scss';
 
 const {
+  layoutShell,
+  footerBleed,
   hideContent,
   showContent,
   showForm,
@@ -81,11 +83,17 @@ function Layout({ children }: Prop) {
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
       </Head>
       {_renderEntryOptionsWithMask()}
-      <Header
-        showEntryOptions={_handleEntryOptions}
-      />
-      {children}
-      <Footer />
+      <div className={layoutShell}>
+        <Header
+          showEntryOptions={_handleEntryOptions}
+        />
+        {children}
+      </div>
+      <div className={footerBleed}>
+        <div className={layoutShell}>
+          <Footer />
+        </div>
+      </div>
       {_renderFormWithMask()}
     </FormContext.Provider>
   );

@@ -1,3 +1,14 @@
+.layoutShell {
+  @apply
+    w-full
+    max-w-[1440px]
+    mx-auto;
+}
+
+.footerBleed {
+  @apply w-full bg-black;
+}
+
 .showContent {
   @apply overflow-auto;
 }
