@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
       MYSQL_DATABASE: ubereats_platform_local
     volumes:
       - ./docker/mysql/config/my.cnf:/etc/mysql/my.cnf
@@ -14,8 +14,6 @@ services:
     expose:
       - "3306"
     restart: always
-    networks:
-      - mysql_net
   database_tool:
     image: phpmyadmin
     container_name: database_tool
@@ -26,42 +24,32 @@ services:
     depends_on:
       - database
     restart: always
-    networks:
-      - mysql_net
   server:
     image: arvin1995/ubereats_platform:server-${TAG:-latest}
     build:
       context: .
       dockerfile: ./server/Dockerfile
     container_name: server
-    environment:
-      MYSQL_HOST: database
+    env_file:
+      - ./server/.env
     depends_on:
       - database
     restart: always
-    networks:
-      - mysql_net
-      - server_net
   web:
     image: arvin1995/ubereats_platform:web-${TAG:-latest}
     build:
       context: .
       dockerfile: ./app/Dockerfile.dev
-      args:
-        SERVER_HOST: server
     container_name: web
+    env_file:
+      - ./app/.env.local
     volumes:
       - ./app:/usr/src/app:cached
       - /usr/src/app/node_modules
       - /usr/src/app/.next
-    environment:
-      SERVER_HOST: server
     depends_on:
       - server
     restart: always
-    networks:
-      - server_net
-      - web_net
   nginx:
     image: arvin1995/ubereats_platform:nginx-${TAG:-latest}
     build: ./docker/nginx
@@ -73,26 +61,3 @@ services:
     depends_on:
       - web
     restart: always
-    networks:
-      - server_net
-      - web_net
-
-networks:
-  mysql_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.18.0.0/16
-          gateway: 172.18.0.1
-  server_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.19.0.0/16
-          gateway: 172.19.0.1
-  web_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-          gateway: 172.20.0.1

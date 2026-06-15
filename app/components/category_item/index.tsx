@@ -1,8 +1,9 @@
-import { Prop } from './types';
-import Link from 'next/link';
-import { useLocale } from 'contexts';
+'use client';
 
-import classes from 'styles/components/CategoryItem.module.scss';
+import { Prop } from './types';
+import { Link } from '../../i18n/navigation';
+
+import classes from '@/styles/components/CategoryItem.module.scss';
 
 const { wrapper } = classes;
 
@@ -12,12 +13,11 @@ function CategoryItem({
   icon,
   text
 }: Prop) {
-  const { locale } = useLocale();
   const wrapperStyle = `${wrapper} ${appendClass}`;
 
   return (
     <div className={wrapperStyle} data-testid="category-item-wrapper">
-      <Link href={`/${locale}${pageUrl}`}>
+      <Link href={pageUrl}>
         {icon}
         <span data-testid="category-item-content">{text}</span>
       </Link>

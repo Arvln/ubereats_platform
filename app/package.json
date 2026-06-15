@@ -3,42 +3,43 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsc --noEmit && next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
-    "lint": "next lint",
-    "start": "next build && next start",
-    "test": "jest",
-    "test:e2e": "cypress run"
+    "lint": "eslint .",
+    "start": "next start",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "next": "^14.2.22",
-    "next-intl": "^3.26.3",
+    "@tanstack/react-query": "^5",
+    "graphql-request": "^7",
+    "next": "^16",
+    "next-intl": "^4",
     "react": "19.0.0",
-    "react-cookie": "^7.2.2",
     "react-dom": "19.0.0",
-    "sharp": "^0.29.3"
+    "zod": "^3",
+    "zustand": "^5"
   },
   "devDependencies": {
-    "@apollo/client": "^3.4.16",
+    "@playwright/test": "1.60.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.0",
-    "@types/jest": "^29.5.14",
     "@types/node": "^22.10.3",
     "@types/react": "17.0.30",
+    "@vitejs/plugin-react": "6.0.2",
     "autoprefixer": "^10.3.7",
-    "cypress": "^14.0.0",
-    "eslint-config-next": "14.2.22",
+    "eslint": "^9",
+    "eslint-config-next": "^16",
     "graphql": "^15.6.1",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "29.1.1",
     "postcss": "^8.3.9",
     "postcss-cli": "^9.0.1",
-    "sass": "^1.43.2",
+    "sass": "^1.100.0",
     "tailwindcss": "^2.2.17",
-    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
-  }
+    "typescript": "^5.7.2",
+    "vitest": "4.1.8"
+  },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
 }

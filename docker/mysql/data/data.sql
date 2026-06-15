@@ -11,7 +11,7 @@ use `ubereats_platform_local`;
 -- 資料表結構 `Table_Structure`
 --
 
-CREATE TABLE `Table_Shop_Category` (
+CREATE TABLE IF NOT EXISTS `Table_Shop_Category` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` char(50) NOT NULL DEFAULT '',
   `name` char(50) DEFAULT '',
@@ -22,7 +22,7 @@ CREATE TABLE `Table_Shop_Category` (
   PRIMARY KEY ( `id` )
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Advertise` (
+CREATE TABLE IF NOT EXISTS `Table_Advertise` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `content` varchar(1800) NOT NULL DEFAULT '',
   `image_suffix` char(50) NOT NULL DEFAULT '',
@@ -32,7 +32,7 @@ CREATE TABLE `Table_Advertise` (
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
 
-CREATE TABLE `Table_Shop_Channel` (
+CREATE TABLE IF NOT EXISTS `Table_Shop_Channel` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` char(50) NOT NULL DEFAULT '',
   `subtitle` char(100) DEFAULT '',
@@ -41,7 +41,7 @@ CREATE TABLE `Table_Shop_Channel` (
   PRIMARY KEY ( `id` )
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Shop` (
+CREATE TABLE IF NOT EXISTS `Table_Shop` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` char(50) NOT NULL DEFAULT '',
   `delivery_cost` int(3) DEFAULT 25,
@@ -55,7 +55,7 @@ CREATE TABLE `Table_Shop` (
   PRIMARY KEY ( `id` )
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Good_Channel` (
+CREATE TABLE IF NOT EXISTS `Table_Good_Channel` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` char(50) NOT NULL DEFAULT '',
   `uuid` BINARY(16) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `Table_Good_Channel` (
   FOREIGN KEY(`shop_id`) REFERENCES `Table_Shop`(`id`)
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Good` (
+CREATE TABLE IF NOT EXISTS `Table_Good` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` char(100) NOT NULL DEFAULT '',
   `price` int(3) DEFAULT 0,
@@ -81,7 +81,7 @@ CREATE TABLE `Table_Good` (
   FOREIGN KEY(`shop_id`) REFERENCES `Table_Shop`(`id`)
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Mapping_Good_And_Channel` (
+CREATE TABLE IF NOT EXISTS `Table_Mapping_Good_And_Channel` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `good_id` int(10) UNSIGNED NOT NULL,
   `channel_id` int(10) UNSIGNED NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `Table_Mapping_Good_And_Channel` (
   FOREIGN KEY(`channel_id`) REFERENCES `Table_Good_Channel`(`id`)
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Mapping_Shop_And_Channel` (
+CREATE TABLE IF NOT EXISTS `Table_Mapping_Shop_And_Channel` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `shop_id` int(10) UNSIGNED NOT NULL,
   `channel_id` int(10) UNSIGNED NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE `Table_Mapping_Shop_And_Channel` (
   FOREIGN KEY(`channel_id`) REFERENCES `Table_Shop_Channel`(`id`)
 ) ENGINE=InnoDB DEFAULT COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Table_Mapping_Shop_And_Category` (
+CREATE TABLE IF NOT EXISTS `Table_Mapping_Shop_And_Category` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `shop_id` int(10) UNSIGNED NOT NULL,
   `category_id` int(10) UNSIGNED NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE `Table_Mapping_Shop_And_Category` (
 -- 資料表的資料 `Table_Dataframe`
 --
 
-INSERT INTO `Table_Shop_Category` (`title`, `name`, `image_suffix`, `is_cuisines`, `rank`, `uuid`) VALUES
+INSERT IGNORE INTO `Table_Shop_Category` (`title`, `name`, `image_suffix`, `is_cuisines`, `rank`, `uuid`) VALUES
 ('categories-promotions', 'Deals', 'deals.png', false, 5, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('categories-fresh-groceries', 'Grocery', 'uber_grocery.png', false, 1, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('categories-convenience-stores', 'Essentials', 'convenience.png', false, 11, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
@@ -137,7 +137,7 @@ INSERT INTO `Table_Shop_Category` (`title`, `name`, `image_suffix`, `is_cuisines
 ('categories-pizza', 'Pizza', 'pizza.png', true, 23, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('categories-breakfast-and-brunch', 'Breakfast', 'breakfast.png', true, 19, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
 
-INSERT INTO `Table_Advertise` (`content`, `image_suffix`, `is_show`, `uuid`) VALUES 
+INSERT IGNORE INTO `Table_Advertise` (`content`, `image_suffix`, `is_show`, `uuid`) VALUES 
 (
 '今晚，我想來點平價食尚！
 
@@ -323,7 +323,7 @@ INSERT INTO `Table_Advertise` (`content`, `image_suffix`, `is_show`, `uuid`) VAL
 * Uber Eats 保有對本折扣優惠之所有解釋、修改、調整、終止等相關權利，未盡事宜則以 Uber Eats App 內公告為主', 
 '3f5f5207-631f-4360-a657-704264570a1a.png', true, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
 
-INSERT INTO `Table_Shop_Channel` (`title`, `subtitle`, `image_suffix`, `uuid`) VALUES 
+INSERT IGNORE INTO `Table_Shop_Channel` (`title`, `subtitle`, `image_suffix`, `uuid`) VALUES 
 ('channel.buy-1-get-1-free-offer', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('channel.today-special-offer', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('channel.nationwide-famous-brands', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
@@ -340,7 +340,7 @@ INSERT INTO `Table_Shop_Channel` (`title`, `subtitle`, `image_suffix`, `uuid`) V
 ('channel.treat-yourself-well', '', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('channel.allergy-friendly-restaurants', 'channel.restaurants-accommodating-food-allergy-special-needs', '', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-","")));
 
-INSERT INTO `Table_Shop` (`name`, `delivery_cost`, `shortest_delivery_time`, `score`, `discount_label`, `image_suffix`, `banner_suffix`, `address`, `uuid`) VALUES 
+INSERT IGNORE INTO `Table_Shop` (`name`, `delivery_cost`, `shortest_delivery_time`, `score`, `discount_label`, `image_suffix`, `banner_suffix`, `address`, `uuid`) VALUES 
 ('九湯屋日本拉麵 中山林森店', 40, 15, 47, "買1送1", '52282d1b-0ed6-4453-b297-c7d3a59b95ff.jpeg', '3d1d9b7a-05e4-429f-82ab-b83d3b6c3b53.jpeg', '台北市中山區南京東路一段132巷33號, Taipei, 104', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('21PLUS 京站台北店', 25, 35, 47, '訂購指定餐點即享折扣優惠', 'ae7bebda-9c56-4ed1-ab48-39f515e5ea80.jpeg', '58df0c5d-3831-4618-bfa4-389990766421.jpeg', '103, Taiwan, Taipei City, Datong District, Section 1, Chengde Road, 1號b2, Taipei City 103', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
 ('兔寶寶漢堡店', 50, 15, 100, '免費餐點 (消費 $200)', '3082d6a1-f590-4f9d-af53-d4e6f6e6687c.jpeg', '7fbaf726-1a5c-44d9-b727-41fad1541210.jpeg', 'No. 9, Lane 115, Section 2, Minsheng East Road, Zhongshan District, Taipei City, Taiwan 104', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, "-",""))),
@@ -521,7 +521,7 @@ INSERT INTO `Table_Shop` (`name`, `delivery_cost`, `shortest_delivery_time`, `sc
 ('Flash Coffee 行天宮門市', 50, 25, 48, '', '378b4ec8-f20d-4fe6-8c78-baa0c94def89.jpeg', 'b95b6bdd-e477-41e1-8da1-d523a52165d0.jpeg', 'Songjiang Road 223, B1, Zhongshan District, Taipei City 104', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-',''))),
 ('Woolloomooloo Simple Joy', 50, 25, 49, '', '34ce14fe-a6e1-49df-8308-d04ddc3a7371.jpeg', 'fd94ad8c-e920-44c7-ab28-2a3142873268.jpeg', 'Songjiang Road 56, Zhongshan District, Taipei City 104', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')));
 
-INSERT INTO `Table_Good_Channel` (`title`, `uuid`, `shop_id`) VALUES 
+INSERT IGNORE INTO `Table_Good_Channel` (`title`, `uuid`, `shop_id`) VALUES 
 ('人氣精選 Popular Items', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 1),
 ('日本風味 Japanese Ramen', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 1),
 ('地獄風味 Spicy Ramen', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 1),
@@ -552,7 +552,7 @@ INSERT INTO `Table_Good_Channel` (`title`, `uuid`, `shop_id`) VALUES
 ('🍄兔寶寶單點兒🍄', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 3),
 ('🥤兔寶寶喝飲料🥤', UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 3);
 
-INSERT INTO `Table_Good` (`name`, `price`, `discription`, `image_suffix`, `spicy_level`, `is_emphasis`, `is_discount`, `is_exclusive`, `is_show`, `uuid`, `shop_id`) VALUES 
+INSERT IGNORE INTO `Table_Good` (`name`, `price`, `discription`, `image_suffix`, `spicy_level`, `is_emphasis`, `is_discount`, `is_exclusive`, `is_show`, `uuid`, `shop_id`) VALUES 
 ('東京豚骨拉麵 Tokyo Tonkotsu Ramen', 129, '大骨湯，甘醇醬油獨特風味。', 'd4bd1dcf-0a40-4865-9a52-667440b9b5d1.jpeg', '', true, true, true, true, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 1),
 ('九州白湯拉麵 Kyushu Broth Ramen', 129, '大骨湯，牛奶海鹽濃郁口感，較清淡', 'b83761f2-98bc-43a9-9ba6-ed70230e10f1.jpeg', '', false, false, true, true, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 1),
 ('釜山紅湯拉麵 Busan Red Soup Ramen', 139, '特製蝦醬，蒜。熬製而成海鮮風味', '35453010-3484-41dd-9e17-7d92d15ae345.jpeg', '', false, false, true, true, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 1),
@@ -757,7 +757,7 @@ INSERT INTO `Table_Good` (`name`, `price`, `discription`, `image_suffix`, `spicy
 ('燕麥豆奶拿鐵', 65, '大杯。
 我們使用「義美燕麥全豆奶」加研磨咖啡！ 有乳糖不耐、怕胖、全素、怕長痘痘，總之不喝鮮奶的都可以試試！', '', '', true, false, false, true, UNHEX(REPLACE(UUID() COLLATE utf8_unicode_ci, '-','')), 3);
 
-INSERT INTO `Table_Mapping_Good_And_Channel` (`good_id`, `channel_id`) VALUES
+INSERT IGNORE INTO `Table_Mapping_Good_And_Channel` (`good_id`, `channel_id`) VALUES
 (6, 1),
 (1, 1),
 (7, 1),
@@ -926,7 +926,7 @@ INSERT INTO `Table_Mapping_Good_And_Channel` (`good_id`, `channel_id`) VALUES
 (169, 29),
 (170, 29);
 
-INSERT INTO `Table_Mapping_Shop_And_Channel` (`shop_id`, `channel_id`) VALUES 
+INSERT IGNORE INTO `Table_Mapping_Shop_And_Channel` (`shop_id`, `channel_id`) VALUES 
 (4, 1),
 (5, 1),
 (7, 1),
@@ -1032,7 +1032,7 @@ INSERT INTO `Table_Mapping_Shop_And_Channel` (`shop_id`, `channel_id`) VALUES
 (92, 15);
 
 
-INSERT INTO `Table_Mapping_Shop_And_Category` (`shop_id`, `category_id`) VALUES 
+INSERT IGNORE INTO `Table_Mapping_Shop_And_Category` (`shop_id`, `category_id`) VALUES 
 (99, 1),
 (100, 1),
 (101, 1),

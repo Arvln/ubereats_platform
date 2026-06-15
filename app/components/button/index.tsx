@@ -1,6 +1,6 @@
 import { Prop } from './types';
 
-import classes from 'styles/components/Button.module.scss';
+import classes from '@/styles/components/Button.module.scss';
 
 const {
   wrapper,

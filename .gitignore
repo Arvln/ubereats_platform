@@ -3,9 +3,12 @@
 # dependencies
 /app/node_modules
 /server/node_modules
+/app/.pnpm-store
 
 # testing
 /coverage
+/app/test-results/
+/app/playwright-report/
 
 # next.js
 /app/.next/
@@ -13,9 +16,14 @@
 # production
 /build
 
+# local env files
+/app/.env.local
+/server/.env
+
 # misc
 .DS_Store
 *.pem
+*.pnpm-store
 
 # debug
 npm-debug.log*

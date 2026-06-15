@@ -3,7 +3,7 @@ import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
 import { Button } from 'components';
 
-import classes from 'styles/components/Arrow.module.scss';
+import classes from '@/styles/components/Arrow.module.scss';
 
 const {
 	wrapper,
@@ -12,7 +12,7 @@ const {
 
 function Arrow({ appendWrapper }: Prop) {
 	const button: TAppendClass = {
-		appendWrapper: `${appendWrapper ?? ''} ${buttonWrapper}`,
+		appendWrapper: `${appendWrapper ?? ''} ${buttonWrapper} items-center`.trim(),
 		appendContent: ''
 	};
 

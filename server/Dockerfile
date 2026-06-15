@@ -1,4 +1,4 @@
-FROM node:18.17.1-alpine
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
@@ -11,6 +11,8 @@ COPY ./server .
 RUN mkdir -p ../types
 
 COPY ./types ../types
+
+RUN chown -R node:node /usr/src
 
 EXPOSE 8000
 

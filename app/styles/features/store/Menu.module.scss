@@ -1,8 +1,8 @@
 @import '../../utils/index.scss';
 
 $imageHeight: 40%;
-$textColor: rgb(117, 117, 117);
-$discountPriceTextColor: rgb(5, 148, 79);
+$textColor: 'rgb(117,117,117)';
+$discountPriceTextColor: 'rgb(5,148,79)';
 
 .wrapper {
   @apply

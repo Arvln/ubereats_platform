@@ -1,9 +1,11 @@
+'use client';
+
 import { Prop } from './types';
 import { TAppendClass } from 'components/button/types';
 import Image from 'next/image';
-import Link from 'next/link';
+import { blurDataURL } from 'lib/image-placeholder';
+import { Link } from '../../i18n/navigation';
 import { Button } from 'components';
-import { useLocale } from 'contexts';
 import {
   getScore,
   isPickup,
@@ -11,7 +13,7 @@ import {
   getPageSizeWrapper
 } from './utils';
 
-import classes from 'styles/components/Shop.module.scss';
+import classes from '@/styles/components/Shop.module.scss';
 
 const {
   wrapper,
@@ -46,8 +48,6 @@ function Shop({
   size,
   imageHeight
 }: Prop) {
-  const { locale } = useLocale();
-
   function _renderDetailContent(
     cost: number,
     time: number,
@@ -100,6 +100,9 @@ function Shop({
           <Image
             src={`https://${SHORTCUT_ICONS_SERVER_HOST}/eatsfeed/other_icons/top_eats.png`}
             fill
+            sizes="28px"
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             alt="Carefully Selected"
           />
         </div>
@@ -142,15 +145,17 @@ function Shop({
               key={uuid}
               data-testid={`shop-item-${uuid}`}
             >
-              <Link href={`/${locale}/store/${name}/${uuid}`}>
+              <Link href={`/store/${name}/${uuid}`}>
                 <h3 className={storeTitle} data-testid={`store-title-${uuid}`}>{name}</h3>
-                <div className={`${imageWrapper} ${imageHeight}`} data-testid={`image-wrapper-${uuid}`}>
+                <div className={`${imageWrapper} ${imageHeight} relative`} data-testid={`image-wrapper-${uuid}`}>
                   <Image
                     src={`https://${STORE_IMAGE_SERVER_HOST}/${imageSuffix}`}
                     fill
                     sizes="25vw"
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
                     alt="Shop"
-                    style={{ objectFit: 'cover' }}
+                    className="object-cover"
                   />
                   <div className={discountMessage} data-testid={`discount-message-${uuid}`}>
                     <span
@@ -186,6 +191,9 @@ function Shop({
                       <Image
                         src={`https://${UTILS_ICONS_SERVER_HOST}/ticket@3x.png`}
                         fill
+                        sizes="14px"
+                        placeholder="blur"
+                        blurDataURL={blurDataURL}
                         alt="Ticket"
                       />
                     </div>

@@ -1,4 +1,4 @@
-FROM node:18.17.1-alpine
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
@@ -12,8 +12,6 @@ RUN mkdir -p ../types
 
 COPY ./types ../types
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
 EXPOSE 3000
 
-CMD ["pm2-runtime", "pnpm", "--", "run", "start"]
+CMD ["sh", "-c", "pnpm run build && exec pm2-runtime pnpm -- run start"]

@@ -1,49 +1,44 @@
-@import '../utils/index.scss';
+@import "../utils/index.scss";
 
 $categoryImageWidth: 68px;
 
 .wrapper {
   @include transition(transform, 500);
-  @apply
-    flex
+  @apply flex
     -mx-3;
-  
+
   .pageWrapper {
-    @apply
-      w-full
+    @apply w-full
       flex
       flex-wrap
       flex-shrink-0;
 
     .categoryWrapper {
-      @apply
-        w-1/4
+      @apply w-1/4
         px-3
         mb-6
         flex-grow;
-  
+
       .category {
-        @apply
-          h-20
-          bg-DOVE_GREY;
-    
+        @apply bg-DOVE_GREY;
+
         a {
-          @apply
-            flex
-            flex-row-reverse
-            justify-between;
+          @apply flex
+      flex-row-reverse
+      justify-between
+      items-center    
+      px-2            
+      min-h-[80px];
 
           > div {
             @apply flex-shrink-0;
           }
 
           span {
-            @apply
-              p-4
-              text-lg
-              font-normal
-              whitespace-nowrap
-              flex-shrink-0;
+            @apply p-2       
+        text-sm        
+        font-normal
+        flex-shrink-0;
           }
         }
       }

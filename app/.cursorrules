@@ -1,0 +1,78 @@
+# Conventions (Migration Phase)
+
+# Full conventions apply after all migration tasks are complete.
+
+# See conventions.md for target architecture.
+
+## Path aliases (current tsconfig.json)
+
+- `components/*` → `components/*`
+- `features/*` → `features/*`
+- `graphql/*` → `graphql/*`
+- `locales/*` → `locales/*`
+- `lib/*` → `lib/*`
+- `styles/*` → `styles/*`
+- `themes/*` → `themes/*` (will move to `lib/` after structure cleanup)
+- `enums/*` → `enums/*`
+- `types/*` → `../types/*` (shared with server — do not move)
+
+## TypeScript
+
+- Prefer `z.infer<typeof schema>` over hand-written duplicates.
+- Never use `any` type — always use explicit TypeScript types (e.g. `React.ReactNode`, `unknown`, or `z.infer<typeof schema>`).
+- Shared domain types in root `types/` (shared with server — do not move).
+- Feature-only types in `feature/types/`.
+- Barrel-export public modules via `index.ts`.
+
+## Imports & style
+
+- Remove unused imports from every file you modify before finishing a task.
+- After deleting files, remove any resulting empty directories before finishing a task.
+- Order: external → alias → relative.
+- Use `cn()` for conditional classes; CVA for component variants.
+- Toast feedback: `sonner` via `@/components/custom-ui/message` — don't duplicate in components.
+- i18n: `const { t } = useTranslations()`; keys as dot-paths (`'feature.label'`).
+- Never hardcode display strings — always go through `t()`.
+
+## Styles (transition phase)
+
+- Existing components: keep scss unchanged — do not refactor.
+- New components: Tailwind CSS + cn() only.
+- Do not mix scss and Tailwind in the same new component.
+- scss will be fully replaced by Tailwind in a future refactor.
+- For layout or positioning fixes (e.g. `next/image` `fill` parent), use Tailwind utility classes — do not use inline `style` props on wrapper or image elements.
+
+## Folder structure (current)
+
+- Colocate by feature under `features/`.
+- Promote to root only when reused across multiple features.
+- Keep `server/`, `types/`, `docker/` untouched.
+- Keep code close to where it is used. Prefer feature-level and route-level colocation over centralized abstraction.
+- GraphQL: all related concerns must be colocated in the nearest feature or route folder inside a single `queries.ts` file. This includes:
+  - GraphQL query document
+  - queryKey definition
+  - Zod schema for runtime validation
+- Zustand stores: define in the consuming Client Component file, directly above the component. Only extract to a shared frontend `store/` directory when reused by multiple features or routes.
+- components/ inside a route folder contains only UI components, no state or schema logic
+
+## Zustand (available now)
+
+- Small flat stores with `setX` actions; selector syntax: `useStore((s) => s.field)`.
+- Never store server data in Zustand.
+
+## Do not
+
+- Move or restructure `server/`, `types/`, `docker/`.
+- Restructure internals of `features/` or `components/`.
+- Fetch in `useEffect`.
+- Hardcode display strings — always use `t()`.
+- Create default-export utility modules (except Next.js pages).
+- Add new Context — use Zustand when client state is needed.
+- Use Apollo Client for new code — graphql-request + RQ migration is planned.
+- Duplicate toast logic in components.
+- Put API response data in Zustand or React state.
+- Skip Zod validation on API responses.
+- Refactor existing scss — leave it for future Tailwind migration.
+- Only change what is necessary to complete this task.
+- Do not refactor unrelated code.
+- Do not use inline `style` for layout or positioning fixes — use Tailwind utility classes instead.
