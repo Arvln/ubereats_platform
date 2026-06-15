@@ -46,8 +46,8 @@ The app is served by nginx at `http://localhost`.
 
 Staging and production intentionally share one Render service and one Aiven database — acceptable for a portfolio, not for production-grade isolation. See [`app/ai/cicd-refactor/objective.md`](app/ai/cicd-refactor/objective.md).
 
-| Layer    | Platform | How it deploys                                                        |
-| -------- | -------- | -------------------------------------------------------------------- |
-| Next.js  | Vercel   | Auto-deploy via Git integration (preview on `release*`, prod on `main`) |
-| Express  | Render   | Pulls the `ghcr.io` image; production only (triggered on `main`)     |
-| MySQL    | Aiven    | Initialised manually once; shared across environments               |
+| Layer   | Platform | How it deploys                                                          |
+| ------- | -------- | ----------------------------------------------------------------------- |
+| Next.js | Vercel   | Auto-deploy via Git integration (preview on `release*`, prod on `main`) |
+| Express | Render   | Pulls the `ghcr.io` image; production only (triggered on `main`)        |
+| MySQL   | Aiven    | Initialised manually once; shared across environments                   |
