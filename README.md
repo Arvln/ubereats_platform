@@ -1,8 +1,20 @@
 # UberEats Platform
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://ubereats-platform.vercel.app/)
+
 A server-rendered UberEats clone (food-delivery browsing) built with the Next.js App Router and an Express + GraphQL + MySQL backend.
 
 It exists as a portfolio piece, not a product. The interesting part is not the UI — it is the paper trail. Every architectural change in this repo was scoped as a deliberate migration with its own objective, prompt, and task breakdown under [`app/ai/`](app/ai). This README summarises the decisions and points you to where each one lives in the code. The data is sampled from UberEats Taiwan and used for learning purposes only.
+
+## Preview
+
+![Home Page](docs/screenshots/home.png)
+![Category Page](docs/screenshots/category.png)
+![Store Page](docs/screenshots/store.png)
+
+## Stack
+
+Next.js 14 · TypeScript · React Query · graphql-request · Zod · Vitest · Playwright · SCSS Modules · Tailwind · Docker · GitHub Actions · Vercel · Render · Aiven
 
 ## Technical Decisions
 
@@ -34,7 +46,40 @@ It exists as a portfolio piece, not a product. The interesting part is not the U
 
 ## Local Setup
 
-Prerequisites: Docker + Docker Compose. From the repo root:
+Prerequisites: Docker + Docker Compose.
+
+1. Copy env files:
+
+```bash
+cp app/.env.example app/.env.local
+cp server/.env.example server/.env
+```
+
+2. Fill in the required values (see `.env.example` files for reference):
+
+```bash
+# app/.env.local
+SERVER_URL=
+SHORTCUT_ICONS_SERVER_HOST=
+ADVERTISE_IMAGE_SERVER_HOST=
+CATEGORY_ICONS_SERVER_HOST=
+STORE_IMAGE_SERVER_HOST=
+UTILS_ICONS_SERVER_HOST=
+STAR_ICON_SERVER_HOST=
+SPICY_ICON_SERVER_HOST=
+
+# server/.env
+SERVER_URL=
+SHORTCUT_ICONS_SERVER_HOST=
+ADVERTISE_IMAGE_SERVER_HOST=
+CATEGORY_ICONS_SERVER_HOST=
+STORE_IMAGE_SERVER_HOST=
+UTILS_ICONS_SERVER_HOST=
+STAR_ICON_SERVER_HOST=
+SPICY_ICON_SERVER_HOST=
+```
+
+3. Start:
 
 ```bash
 docker-compose build --no-cache && docker-compose up -d
@@ -46,8 +91,8 @@ The app is served by nginx at `http://localhost`.
 
 Staging and production intentionally share one Render service and one Aiven database — acceptable for a portfolio, not for production-grade isolation. See [`app/ai/cicd-refactor/objective.md`](app/ai/cicd-refactor/objective.md).
 
-| Layer    | Platform | How it deploys                                                        |
-| -------- | -------- | -------------------------------------------------------------------- |
-| Next.js  | Vercel   | Auto-deploy via Git integration (preview on `release*`, prod on `main`) |
-| Express  | Render   | Pulls the `ghcr.io` image; production only (triggered on `main`)     |
-| MySQL    | Aiven    | Initialised manually once; shared across environments               |
+| Layer   | Platform | How it deploys                                                          |
+| ------- | -------- | ----------------------------------------------------------------------- |
+| Next.js | Vercel   | Auto-deploy via Git integration (preview on `release*`, prod on `main`) |
+| Express | Render   | Pulls the `ghcr.io` image; production only (triggered on `main`)        |
+| MySQL   | Aiven    | Initialised manually once; shared across environments                   |
