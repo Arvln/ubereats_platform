@@ -14,7 +14,7 @@ It exists as a portfolio piece, not a product. The interesting part is not the U
 
 ## Stack
 
-Next.js 14 · TypeScript · React Query · graphql-request · Zod · Vitest · Playwright · SCSS Modules · Tailwind · Docker · GitHub Actions · Vercel · Render · Aiven
+Next.js · TypeScript · React Query · graphql-request · Zod · Vitest · Playwright · SCSS Modules · Tailwind · Docker · GitHub Actions · Vercel · Render · Aiven
 
 ## Technical Decisions
 
